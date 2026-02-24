@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Top 3 Selection Flow - Life To Do</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#902bee",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#0a050e", // Deepening the background for premium feel
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(144, 43, 238, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(144, 43, 238, 0.1);
+        }
+        .slot-glow {
+            box-shadow: 0 0 20px rgba(144, 43, 238, 0.15);
+        }
+        .active-glow {
+            box-shadow: 0 0 25px rgba(144, 43, 238, 0.4);
+            border: 2px solid #902bee;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Main Container (iOS Phone Frame Emulation) -->
+<div class="relative flex h-auto min-h-screen w-full max-w-[430px] mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden border-x border-primary/10">
+<!-- Header -->
+<div class="flex items-center p-4 pb-2 justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-20">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-2xl">close</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Top 3 Selection</h2>
+<div class="size-10 flex items-center justify-end">
+<span class="material-symbols-outlined text-primary">info</span>
+</div>
+</div>
+<!-- Hero Instructions -->
+<div class="px-6 pt-6 pb-4">
+<h3 class="text-slate-900 dark:text-slate-100 tracking-tight text-3xl font-bold leading-tight text-center">Prioritize Your Day</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal pt-2 text-center">Drag your most impactful tasks to the slots below to commit to them today.</p>
+</div>
+<!-- Priority Slots -->
+<div class="grid grid-cols-3 gap-3 px-4 py-6">
+<!-- Slot 1 (Filled State Simulation) -->
+<div class="relative flex flex-col items-center gap-2">
+<div class="active-glow bg-primary/20 flex flex-col items-center justify-center rounded-2xl aspect-square w-full relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+<span class="text-xs font-bold text-primary absolute top-2 left-2 px-1.5 py-0.5 rounded-md bg-background-dark/60 backdrop-blur-sm">1</span>
+<span class="material-symbols-outlined text-primary text-3xl mb-1">bolt</span>
+<p class="text-[10px] text-center px-2 font-medium line-clamp-2">Finish Project Proposal</p>
+</div>
+</div>
+<!-- Slot 2 (Empty) -->
+<div class="flex flex-col items-center gap-2">
+<div class="slot-glow border-2 border-dashed border-primary/30 bg-primary/5 flex flex-col items-center justify-center rounded-2xl aspect-square w-full">
+<span class="text-2xl font-black text-primary/40">2</span>
+<span class="text-[10px] uppercase tracking-widest text-primary/40 font-bold">Empty</span>
+</div>
+</div>
+<!-- Slot 3 (Empty) -->
+<div class="flex flex-col items-center gap-2">
+<div class="slot-glow border-2 border-dashed border-primary/30 bg-primary/5 flex flex-col items-center justify-center rounded-2xl aspect-square w-full">
+<span class="text-2xl font-black text-primary/40">3</span>
+<span class="text-[10px] uppercase tracking-widest text-primary/40 font-bold">Empty</span>
+</div>
+</div>
+</div>
+<!-- Candidate Pool Header -->
+<div class="flex items-center justify-between px-6 pt-6 pb-2">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em]">Candidate Pool</h3>
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">8 Actions</span>
+</div>
+<!-- Task List (Candidate Pool) -->
+<div class="flex flex-col gap-3 px-4 pb-32">
+<!-- Task Item 1 -->
+<div class="glass-card p-4 rounded-xl flex items-center gap-4 group active:scale-95 transition-transform">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold dark:text-slate-100">Review quarterly budget</p>
+<p class="text-xs dark:text-slate-500">Finance • 15 mins</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">drag_indicator</span>
+</div>
+<!-- Task Item 2 -->
+<div class="glass-card p-4 rounded-xl flex items-center gap-4 group active:scale-95 transition-transform">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold dark:text-slate-100">Client follow-up: Sarah</p>
+<p class="text-xs dark:text-slate-500">Sales • 10 mins</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">drag_indicator</span>
+</div>
+<!-- Task Item 3 -->
+<div class="glass-card p-4 rounded-xl flex items-center gap-4 group active:scale-95 transition-transform">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">edit</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold dark:text-slate-100">Write weekly newsletter</p>
+<p class="text-xs dark:text-slate-500">Marketing • 45 mins</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">drag_indicator</span>
+</div>
+<!-- Task Item 4 -->
+<div class="glass-card p-4 rounded-xl flex items-center gap-4 group active:scale-95 transition-transform opacity-60">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">fitness_center</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold dark:text-slate-100">Morning workout</p>
+<p class="text-xs dark:text-slate-500">Health • 30 mins</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">drag_indicator</span>
+</div>
+</div>
+<!-- Sticky Bottom Action -->
+<div class="fixed bottom-0 w-full max-w-[430px] p-6 bg-gradient-to-t from-background-dark via-background-dark/95 to-transparent z-30">
+<button class="w-full bg-slate-800 text-slate-500 font-bold py-4 rounded-2xl flex items-center justify-center gap-2 cursor-not-allowed border border-slate-700" disabled="">
+<span>Commit to Today</span>
+<span class="text-xs font-normal opacity-70">(Fill all slots)</span>
+</button>
+<!-- Home Indicator (iOS Style) -->
+<div class="mt-6 h-1.5 w-32 bg-slate-500/30 mx-auto rounded-full"></div>
+</div>
+<!-- Decorative Background Gradient Elements -->
+<div class="fixed top-[-10%] left-[-20%] size-96 bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="fixed bottom-[-5%] right-[-10%] size-80 bg-primary/15 blur-[100px] rounded-full pointer-events-none"></div>
+</div>
+</body></html>

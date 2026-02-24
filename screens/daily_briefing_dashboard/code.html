@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Daily Briefing Dashboard - Life To Do</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f4ab25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#0f172a", // Deep midnight blue for the requested premium feel
+                        "slate-custom": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glowing-border {
+            position: relative;
+        }
+        .glowing-border::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(45deg, #f4ab25, transparent, #f4ab25);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0.3;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden bg-gradient-to-b from-background-dark via-[#1e1b4b] to-background-dark">
+<!-- Header / Top Bar -->
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="flex size-12 shrink-0 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/30" data-alt="User profile avatar with a friendly face" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAM882_h73zINMavreUdKl94farQD5UgYOv3E8-bdvdcGHrT9cU0fkp1x5y8tJT62xZ3iXHBntNdPNZ0nye44u8QrmNGvxPix22vV95MlILWtQDeHbW5DoPoF7d_b2aTISrVpIKXae5q3IFqZdYyXjdkSTgpdLhQUWo3RwwTWBZtFX3giR7lg9YAVUxNc9RjZ7TXm7UN26VaruhdmTA5jfIYw8qZY5zNnSL6NndnSPPg-sI-5IvYf3smX_SgwPgzhqcIa6tDYJHk4E");'></div>
+</div>
+<div class="flex-1 px-3">
+<span class="text-xs font-semibold uppercase tracking-widest text-primary/80">Life To Do</span>
+</div>
+<div class="flex w-12 items-center justify-end">
+<button class="flex size-10 items-center justify-center rounded-full bg-slate-800/50 text-white border border-white/10">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</button>
+</div>
+</div>
+<!-- Greeting Section -->
+<header class="px-6 pt-8 pb-4">
+<h1 class="text-slate-100 tracking-tight text-[32px] font-extrabold leading-tight">Good morning, Alex</h1>
+<div class="flex items-center gap-2 mt-2 text-primary/90">
+<span class="material-symbols-outlined text-[20px]">wb_sunny</span>
+<p class="text-sm font-medium leading-normal">Monday, Oct 24 • 72°F Sunny</p>
+</div>
+</header>
+<!-- Top 3 Action Cards -->
+<section class="px-6 py-4">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-slate-100 text-lg font-bold tracking-tight">Top 3 for Today</h2>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">PRIORITY</span>
+</div>
+<div class="space-y-4">
+<!-- Card 1 -->
+<div class="glowing-border p-[1px] rounded-xl overflow-hidden bg-white/5 border border-white/10">
+<div class="bg-slate-900/40 p-4 rounded-xl flex items-center gap-4">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-100 font-bold text-base">Finalize Q4 Strategy</h3>
+<p class="text-slate-400 text-xs">Work • 2 hours</p>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glowing-border p-[1px] rounded-xl overflow-hidden bg-white/5 border border-white/10">
+<div class="bg-slate-900/40 p-4 rounded-xl flex items-center gap-4">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined">fitness_center</span>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-100 font-bold text-base">Morning Strength Session</h3>
+<p class="text-slate-400 text-xs">Health • 45 mins</p>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glowing-border p-[1px] rounded-xl overflow-hidden bg-white/5 border border-white/10">
+<div class="bg-slate-900/40 p-4 rounded-xl flex items-center gap-4">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-100 font-bold text-base">Client Follow-up Emails</h3>
+<p class="text-slate-400 text-xs">Admin • 30 mins</p>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Calendar Snapshot -->
+<section class="px-6 py-4">
+<h2 class="text-slate-100 text-lg font-bold tracking-tight mb-4">Upcoming Meetings</h2>
+<div class="bg-slate-800/30 rounded-xl border border-white/5 p-4 space-y-4">
+<div class="flex items-start gap-3">
+<div class="flex flex-col items-center justify-center min-w-[48px] bg-primary/10 rounded-lg py-1 border border-primary/20">
+<span class="text-[10px] font-bold text-primary uppercase">10:00</span>
+<span class="text-[10px] font-bold text-primary uppercase">AM</span>
+</div>
+<div>
+<p class="text-slate-100 font-semibold text-sm">Product Sync: Mobile App</p>
+<p class="text-slate-400 text-xs mt-1">Zoom • 45 mins</p>
+</div>
+</div>
+<div class="h-[1px] bg-white/5 w-full"></div>
+<div class="flex items-start gap-3">
+<div class="flex flex-col items-center justify-center min-w-[48px] bg-white/5 rounded-lg py-1 border border-white/10">
+<span class="text-[10px] font-bold text-slate-400 uppercase">02:30</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase">PM</span>
+</div>
+<div>
+<p class="text-slate-100 font-semibold text-sm">Design Review</p>
+<p class="text-slate-400 text-xs mt-1">Office Room 4B</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Review (Overdue) -->
+<section class="px-6 py-4 mb-24">
+<div class="bg-amber-900/20 border border-primary/20 rounded-xl p-4">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-sm">history</span>
+<h3 class="text-primary text-sm font-bold tracking-tight uppercase">Quick Review</h3>
+</div>
+<p class="text-slate-200 text-sm mb-4 leading-relaxed">You have <span class="text-primary font-bold">2 items</span> from yesterday that need attention.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-slate-900 text-xs font-bold py-2 rounded-lg">Reschedule Now</button>
+<button class="px-4 bg-white/5 text-slate-300 text-xs font-bold py-2 rounded-lg border border-white/10">Dismiss</button>
+</div>
+</div>
+</section>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50">
+<div class="flex gap-2 border-t border-white/10 bg-slate-900/95 backdrop-blur-md px-4 pb-6 pt-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-primary" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<p class="text-xs font-semibold leading-normal tracking-[0.015em]">Briefing</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Tasks</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Calendar</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">adjust</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Focus</p>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

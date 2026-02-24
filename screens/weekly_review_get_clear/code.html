@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Weekly Review: Get Clear</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b6cee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .bg-gradient-main {
+            background: radial-gradient(circle at top right, #1e293b 0%, #101622 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col items-center justify-center">
+<div class="relative flex h-[844px] w-[390px] flex-col bg-gradient-main shadow-2xl overflow-hidden rounded-[3rem] border-8 border-slate-800">
+<!-- Top App Bar -->
+<div class="flex items-center p-6 pb-2 justify-between">
+<div class="text-slate-400 flex size-10 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-2xl cursor-pointer">close</span>
+</div>
+<h2 class="text-slate-100 text-sm font-bold leading-tight tracking-wider uppercase opacity-60 flex-1 text-center">Life To Do</h2>
+<div class="flex size-10 items-center justify-end">
+<button class="flex cursor-pointer items-center justify-center rounded-full text-slate-400">
+<span class="material-symbols-outlined text-2xl">help</span>
+</button>
+</div>
+</div>
+<!-- Weekly Streak Card -->
+<div class="px-6 py-4">
+<div class="flex items-center justify-between bg-primary/10 border border-primary/20 rounded-2xl p-4">
+<div>
+<p class="text-slate-400 text-xs font-semibold uppercase tracking-widest">Weekly Streak</p>
+<p class="text-white text-xl font-extrabold leading-tight mt-1">🔥 4 Weeks</p>
+</div>
+<div class="h-10 w-10 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+</div>
+</div>
+</div>
+<!-- Hero Section -->
+<div class="flex-1 flex flex-col items-center justify-center px-8 text-center">
+<div class="mb-6">
+<div class="size-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-4xl text-primary">layers_clear</span>
+</div>
+<h1 class="text-slate-100 text-4xl font-extrabold tracking-tight mb-4">Get Clear</h1>
+<p class="text-slate-400 text-lg font-medium leading-relaxed">Empty your head and workspace to start fresh.</p>
+</div>
+<!-- Focus Checklist Item -->
+<div class="w-full mt-8 group">
+<label class="flex flex-col items-center bg-slate-800/40 border-2 border-slate-700/50 hover:border-primary/50 transition-colors p-8 rounded-3xl cursor-pointer">
+<div class="mb-4">
+<input class="hidden" id="main-task" type="checkbox"/>
+<div class="h-8 w-8 rounded-full border-2 border-primary flex items-center justify-center bg-transparent">
+<!-- Check icon hidden by default, visible when parent input is checked -->
+</div>
+</div>
+<p class="text-slate-100 text-xl font-semibold">Process all physical and digital notes</p>
+</label>
+</div>
+<!-- Massive Done Button -->
+<div class="w-full mt-10">
+<button class="w-full py-6 bg-primary hover:bg-primary/90 text-white rounded-2xl font-bold text-xl shadow-lg shadow-primary/20 transition-all active:scale-[0.98]">
+                    Done
+                </button>
+</div>
+</div>
+<!-- Progress Stepper -->
+<div class="px-6 pb-12">
+<div class="flex justify-between items-center mb-4">
+<div class="flex flex-col items-center flex-1">
+<div class="h-1.5 w-full bg-primary rounded-full mb-2"></div>
+<span class="text-[10px] font-bold text-primary uppercase tracking-tighter">Get Clear</span>
+</div>
+<div class="w-4"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="h-1.5 w-full bg-slate-700 rounded-full mb-2"></div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Get Current</span>
+</div>
+<div class="w-4"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="h-1.5 w-full bg-slate-700 rounded-full mb-2"></div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Get Creative</span>
+</div>
+</div>
+</div>
+<!-- iOS Indicator -->
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-slate-600/30 rounded-full"></div>
+</div>
+</body></html>

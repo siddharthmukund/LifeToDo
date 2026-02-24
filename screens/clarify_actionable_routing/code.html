@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8c25f4",
+                        "background-light": "#f7f5f8",
+                        "background-dark": "#191022",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .custom-glow {
+            box-shadow: 0 0 15px rgba(140, 37, 244, 0.3);
+        }
+        .active-glow {
+            box-shadow: 0 0 25px rgba(140, 37, 244, 0.5);
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-[430px] mx-auto border-x border-slate-200 dark:border-primary/10">
+<!-- Header -->
+<div class="flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 sticky top-0 z-10 justify-between">
+<div class="flex items-center gap-3">
+<button class="text-slate-900 dark:text-slate-100 flex size-10 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<div class="flex flex-col">
+<h1 class="text-xl font-extrabold leading-tight tracking-tight">Clarify</h1>
+<p class="text-[10px] uppercase tracking-widest text-primary font-bold">Life To Do</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="px-3 py-1 bg-primary/20 rounded-full border border-primary/30">
+<span class="text-xs font-bold text-primary">Inbox: 12</span>
+</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="px-4 py-2">
+<div class="h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3 rounded-full"></div>
+</div>
+</div>
+<!-- Main Content Scroll Area -->
+<div class="flex-1 overflow-y-auto px-4 pb-24">
+<!-- Current Inbox Item Context -->
+<div class="mt-4 p-4 rounded-xl bg-white dark:bg-primary/5 border border-slate-200 dark:border-primary/20 shadow-sm">
+<div class="flex items-start gap-4">
+<div class="size-14 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 border border-primary/20">
+<span class="material-symbols-outlined text-primary text-3xl">mail</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[10px] font-bold text-primary uppercase tracking-wider">Processing Now</p>
+<h2 class="text-lg font-bold leading-snug">Draft annual budget proposal for Q4</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Captured from: Mobile App • 2h ago</p>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h3 class="text-2xl font-extrabold tracking-tight mb-2">Is it actionable?</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-6">This item requires action. Choose the best path to move forward.</p>
+</div>
+<!-- Action Tiles Carousel/List -->
+<div class="grid gap-4">
+<!-- Do It Now Option -->
+<button class="relative group flex items-center p-5 rounded-xl bg-primary active-glow transition-all active:scale-[0.98] text-left">
+<div class="size-14 rounded-full bg-white/20 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-3xl">bolt</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<h4 class="text-white text-lg font-bold">Do it now</h4>
+<span class="text-[10px] font-bold bg-white/20 px-2 py-0.5 rounded-full text-white uppercase tracking-tighter">&lt; 2 mins</span>
+</div>
+<p class="text-white/80 text-sm">Action takes less than two minutes. Clear it from your head immediately.</p>
+</div>
+<div class="ml-2">
+<span class="material-symbols-outlined text-white/50">chevron_right</span>
+</div>
+</button>
+<!-- Delegate Option -->
+<button class="relative group flex items-center p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-primary/20 custom-glow transition-all active:scale-[0.98] text-left">
+<div class="size-14 rounded-full bg-primary/10 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">group_add</span>
+</div>
+<div class="flex-1">
+<h4 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Delegate</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Not the right person for this? Assign it to someone else to handle.</p>
+</div>
+<div class="ml-2 text-slate-400">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</button>
+<!-- Defer Option -->
+<button class="relative group flex items-center p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-primary/20 custom-glow transition-all active:scale-[0.98] text-left">
+<div class="size-14 rounded-full bg-primary/10 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">calendar_today</span>
+</div>
+<div class="flex-1">
+<h4 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Defer</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Schedule this for a specific date or add to your next actions list.</p>
+</div>
+<div class="ml-2 text-slate-400">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</button>
+</div>
+<!-- Secondary Help -->
+<div class="mt-8 text-center px-6">
+<p class="text-slate-400 text-xs italic">"Your mind is for having ideas, not holding them." — David Allen</p>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="absolute bottom-0 left-0 right-0 z-20">
+<div class="flex gap-2 border-t border-slate-200 dark:border-primary/20 bg-white/90 dark:bg-background-dark/90 backdrop-blur-lg px-4 pb-8 pt-3">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined font-variation-fill">inbox</span>
+</div>
+<p class="text-[10px] font-bold leading-normal tracking-wide uppercase">Inbox</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">list_alt</span>
+</div>
+<p class="text-[10px] font-bold leading-normal tracking-wide uppercase">Projects</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">event</span>
+</div>
+<p class="text-[10px] font-bold leading-normal tracking-wide uppercase">Calendar</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">settings</span>
+</div>
+<p class="text-[10px] font-bold leading-normal tracking-wide uppercase">Settings</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>

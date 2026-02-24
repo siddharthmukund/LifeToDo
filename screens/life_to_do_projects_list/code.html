@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Life To Do Projects List</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7f0df2",
+                        "background-light": "#f7f5f8",
+                        "background-dark": "#191022",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<header class="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pt-6 pb-2">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<h1 class="text-xl font-800 tracking-tight">Life To Do</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-primary/20 text-primary">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<div class="relative mb-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-slate-100 dark:bg-primary/10 border-none rounded-xl py-3 pl-10 pr-4 focus:ring-2 focus:ring-primary text-sm" placeholder="Search projects" type="text"/>
+</div>
+<nav class="flex gap-6 border-b border-slate-200 dark:border-primary/20 overflow-x-auto no-scrollbar">
+<a class="pb-3 border-b-2 border-primary text-primary font-bold text-sm whitespace-nowrap" href="#">Active</a>
+<a class="pb-3 border-b-2 border-transparent text-slate-500 dark:text-slate-400 font-medium text-sm whitespace-nowrap" href="#">Stuck</a>
+<a class="pb-3 border-b-2 border-transparent text-slate-500 dark:text-slate-400 font-medium text-sm whitespace-nowrap" href="#">Paused</a>
+<a class="pb-3 border-b-2 border-transparent text-slate-500 dark:text-slate-400 font-medium text-sm whitespace-nowrap" href="#">Completed</a>
+</nav>
+</header>
+<main class="flex-1 px-4 py-6 space-y-6">
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-500 fill-1">warning</span>
+                    Stuck Projects
+                </h2>
+<span class="text-xs font-bold px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-full">3 REQUIRED ACTION</span>
+</div>
+<div class="space-y-3">
+<div class="bg-white dark:bg-primary/5 p-4 rounded-xl border border-slate-100 dark:border-primary/10 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-base">Redesign Portfolio</h3>
+<span class="text-[10px] font-bold tracking-widest uppercase text-slate-400">Next Action Missing</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Waiting on client feedback for initial wireframes. Last updated 4 days ago.</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<img class="w-6 h-6 rounded-full border-2 border-white dark:border-background-dark" data-alt="Female profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjtyIvzj9x_1KdNhRd5Wd_TAmQB68CBd-IBjVdHui3_zM82W2cj3I1YOu23Tzm9r02kvylv5IAu9cWhUPkoXHkZoOzaLn7CIA_px2S18LIrPlYNF-ytj5XYCwu42BqlfGdWM8X4huY-fLSfUy8iPCdA5I6-3y_JrEROmWhWvW_ArWHOha7zEUMonrB05pLEKb0VFsKaZawMIw69-PMFcUarc1UJlsXQ0CUSvGFIjaokkyqQw4hXgbTuHC0_4GP2hsX4krHv4UqMxM"/>
+<img class="w-6 h-6 rounded-full border-2 border-white dark:border-background-dark" data-alt="Male profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRDATA1gl5BD9Gizq2PYyeojzlOn4ra-pT9u6yqYWPi6SKlUlFWYCoCxMWZy1E_m0p4p1kx9IqFU0h-iq-v6TMCI-OTmjjipRrAB_IUcGzY7-8xIbPpUsejWO_xOkuJgdkAuBaBsj4DxD8WK0GbTwSbavqbRC4G9GV8K15XODQPQw07gLwZZ1QewhncRiHctW0PB1m962A1TA4RwyAjpXB2G6Eo9rv7fyiCaxWYmBmhmCczSbKVSyHyGyDJebiSaoV-jBpODH82qc"/>
+</div>
+<button class="text-primary text-xs font-bold py-1 px-3 bg-primary/10 rounded-full">Resolve</button>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 p-4 rounded-xl border border-slate-100 dark:border-primary/10 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-base">House Renovation</h3>
+<span class="text-[10px] font-bold tracking-widest uppercase text-slate-400">Overdue</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Kitchen tiling phase is 2 days behind schedule.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-xs text-amber-600 font-medium">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                            Due Nov 12
+                        </div>
+<button class="text-primary text-xs font-bold py-1 px-3 bg-primary/10 rounded-full">Schedule</button>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-bold">Active Projects</h2>
+<button class="text-primary text-sm font-semibold">View All</button>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<div class="bg-white dark:bg-primary/5 p-4 rounded-xl border border-slate-100 dark:border-primary/10 shadow-sm">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center">
+<span class="material-symbols-outlined">fitness_center</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-sm">Marathon Prep</h3>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full mt-2">
+<div class="bg-blue-500 h-1.5 rounded-full w-[65%]"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center text-xs text-slate-400">
+<span>12/18 tasks completed</span>
+<span class="font-bold text-slate-600 dark:text-slate-200">65%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 p-4 rounded-xl border border-slate-100 dark:border-primary/10 shadow-sm">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center">
+<span class="material-symbols-outlined">eco</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-sm">Backyard Garden</h3>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full mt-2">
+<div class="bg-emerald-500 h-1.5 rounded-full w-[30%]"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center text-xs text-slate-400">
+<span>4/12 tasks completed</span>
+<span class="font-bold text-slate-600 dark:text-slate-200">30%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/5 p-4 rounded-xl border border-slate-100 dark:border-primary/10 shadow-sm">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-600 flex items-center justify-center">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-sm">Write Science Fiction Novel</h3>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full mt-2">
+<div class="bg-purple-500 h-1.5 rounded-full w-[85%]"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center text-xs text-slate-400">
+<span>42/50 tasks completed</span>
+<span class="font-bold text-slate-600 dark:text-slate-200">85%</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="sticky bottom-0 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-primary/20 pb-8 pt-2 px-4">
+<div class="flex justify-around items-center max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">inbox</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Inbox</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">format_list_bulleted</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Projects</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Focus</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Settings</span>
+</a>
+</div>
+</footer>
+</body></html>

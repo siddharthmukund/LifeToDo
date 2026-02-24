@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f4e2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0a0f0e",
+                        "surface-dark": "#161e1d",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass {
+            background: rgba(37, 244, 226, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(37, 244, 226, 0.1);
+        }
+        .glow-button {
+            box-shadow: 0 0 20px rgba(37, 244, 226, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top Navigation Bar -->
+<div class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-4 flex items-center justify-between">
+<button class="text-slate-900 dark:text-slate-100 p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Delegate Task</h1>
+<button class="text-slate-900 dark:text-slate-100 p-2 hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<main class="max-w-md mx-auto pb-32">
+<!-- Task Details Card -->
+<div class="px-4 py-2">
+<div class="relative overflow-hidden rounded-xl bg-surface-dark border border-primary/20 p-5 shadow-2xl">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-6xl text-primary">assignment</span>
+</div>
+<div class="relative z-10">
+<p class="text-primary text-xs font-medium uppercase tracking-widest mb-1">Active Task</p>
+<h2 class="text-xl font-bold mb-2">Finalize Q4 Marketing Proposal</h2>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sm text-primary/70">folder_open</span>
+<p class="text-slate-400 text-sm">Life To Do • Marketing</p>
+</div>
+<button class="w-full py-2.5 bg-primary/10 border border-primary/30 text-primary rounded-lg text-sm font-semibold hover:bg-primary/20 transition-all">
+                        View Full Details
+                    </button>
+</div>
+</div>
+</div>
+<!-- Assign To Section -->
+<section class="mt-8">
+<div class="px-4 flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold">Assign To</h3>
+<button class="text-primary text-sm font-medium">View All</button>
+</div>
+<!-- Search Bar -->
+<div class="px-4 mb-6">
+<div class="relative flex items-center h-14 bg-surface-dark border border-white/5 rounded-xl px-4 glass">
+<span class="material-symbols-outlined text-primary/60 mr-3">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-slate-100 placeholder:text-slate-500 w-full font-medium" placeholder="Search contacts or email..." type="text"/>
+</div>
+</div>
+<!-- Horizontal Contacts -->
+<div class="flex overflow-x-auto gap-6 px-4 no-scrollbar pb-2">
+<div class="flex flex-col items-center gap-2 shrink-0 group">
+<div class="relative">
+<div class="w-16 h-16 rounded-full border-2 border-primary p-0.5">
+<img alt="Alex" class="w-full h-auto rounded-full object-cover" data-alt="Portrait of a woman smiling with a bright background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbl8Wf9S_OYvVxQbzh5I0nQ18NrZ9UAQEnilFkX-JR3Fa34Z6AXSQXYekCXDl0SkWy_P62-nUcE2Xizc0Qi_hb-Nsd4GMHBNT6nxIq3EETN7eJXtuC1E0pxns8rbzv5y7Z7doHJpVU2psD6v4If0p2Apn5C595lX0yaoKjRMFgfwNhj14mIb1HRS5nBwBmcVmTvLPrGreINNoE30-87CsivuSl3h5_IkivMuj5GVFuAJA6__QUJ6FggnK_jSNe9h6gwDy69rhR3b4"/>
+</div>
+<div class="absolute bottom-0 right-0 bg-primary text-background-dark rounded-full p-0.5 border-2 border-background-dark">
+<span class="material-symbols-outlined text-[12px] font-bold">check</span>
+</div>
+</div>
+<span class="text-xs font-medium text-primary">Alex</span>
+</div>
+<div class="flex flex-col items-center gap-2 shrink-0">
+<img alt="Sarah" class="w-16 h-16 rounded-full border border-white/10 grayscale hover:grayscale-0 transition-all cursor-pointer" data-alt="Portrait of a man in professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQrIeSCH3P85BS4rI0JWvY4ApBQVP0At4VNP7GaSV4J4aPbEaa1ftJx_wZyX6G1-g2dq-1hfBwuZVK7TDPv1XsFy_8lpBJnM0rUH1ZpdvBv7vA_X7wNL0ynJZnsvDAv5aslSTEHoVcG6eJgz6twD6xujNxmMQmYdzRjZp81LK5uAnj5PGDUDBc8jZ1iHyj9x5mrxkL4WF6JxWlzFxzIFg53bfVclOML_4_d9oNXFoNXXJhnaS7v7jMR522EwT1w-pZ3KGTKzKjgKk"/>
+<span class="text-xs font-medium text-slate-400">Marcus</span>
+</div>
+<div class="flex flex-col items-center gap-2 shrink-0">
+<img alt="Elena" class="w-16 h-16 rounded-full border border-white/10 grayscale hover:grayscale-0 transition-all cursor-pointer" data-alt="Portrait of a young woman looking confident" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL2IdoCxbe1DvOQ8frO_0YvYXAOCfgo0m4YO1lEV7b39aSsjLEwHOt3X7HVdSm01yXAerPYRAGZm8W3SFG7TV1BwAnRIMNrPOA5jrBLaNe6s8NohhtzzeS7blMG6se6xEE-_IBmhNh7FbgvC5IC_HhhsQzOo8ndyr7DqhUxSEHyxbxa-ytZhU7t0HdU6IuPeSCp7Z4lL2Dzpyek1-z4zCcTsXLRwH47ORsXOFvaIyHlnx2J7YBis-_70uiDRpZ3C9zoFM4vNj0LGY"/>
+<span class="text-xs font-medium text-slate-400">Elena</span>
+</div>
+<div class="flex flex-col items-center gap-2 shrink-0">
+<img alt="Mike" class="w-16 h-16 rounded-full border border-white/10 grayscale hover:grayscale-0 transition-all cursor-pointer" data-alt="Portrait of a man with a friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqUi-pWNYWZyDUpI-GSYE0BDkcR9Kx8IyRQaf82XhT6lttzSOLZr9OZo9JFr2SLAiwuopzqd0p4Cj7spAdB-fPbXlxbEgaFULqzhbY8tPCaqvzfP2nZqf23g2XSeI1bQNyBNvtwIL4th0PGcwkDYLckBlUC_jrlWKW91TOYxUNB4wpj1Nd93masn9ByuOF3VssF6cljblXTmNec0OJ24InT_0MRQwHlvsKCGrDnINdYjnyb4lDHtw5j-__MueLnSGzxfayU1qH04c"/>
+<span class="text-xs font-medium text-slate-400">Mike</span>
+</div>
+<div class="flex flex-col items-center gap-2 shrink-0">
+<div class="w-16 h-16 rounded-full border-2 border-dashed border-white/10 flex items-center justify-center cursor-pointer hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-slate-500">add</span>
+</div>
+<span class="text-xs font-medium text-slate-500">Invite</span>
+</div>
+</div>
+</section>
+<!-- Follow-up Section -->
+<section class="mt-8 px-4">
+<h3 class="text-lg font-bold mb-4">Follow-up Date</h3>
+<div class="bg-surface-dark border border-white/5 rounded-xl p-4 glass">
+<div class="flex items-center justify-between mb-6">
+<span class="text-sm font-semibold">November 2024</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer">chevron_left</span>
+<span class="material-symbols-outlined text-primary cursor-pointer">chevron_right</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-2">
+<div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div><div>Su</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center">
+<div class="p-2 text-slate-600">28</div>
+<div class="p-2 text-slate-600">29</div>
+<div class="p-2 text-slate-600">30</div>
+<div class="p-2 hover:bg-primary/10 rounded-lg cursor-pointer">1</div>
+<div class="p-2 hover:bg-primary/10 rounded-lg cursor-pointer">2</div>
+<div class="p-2 hover:bg-primary/10 rounded-lg cursor-pointer">3</div>
+<div class="p-2 hover:bg-primary/10 rounded-lg cursor-pointer">4</div>
+<div class="p-2 hover:bg-primary/10 rounded-lg cursor-pointer">5</div>
+<div class="p-2 hover:bg-primary/10 rounded-lg cursor-pointer">6</div>
+<div class="p-2 hover:bg-primary/10 rounded-lg cursor-pointer">7</div>
+<div class="p-2 bg-primary text-background-dark rounded-lg cursor-pointer font-bold">8</div>
+<div class="p-2 hover:bg-primary/10 rounded-lg cursor-pointer">9</div>
+<div class="p-2 hover:bg-primary/10 rounded-lg cursor-pointer">10</div>
+<div class="p-2 hover:bg-primary/10 rounded-lg cursor-pointer">11</div>
+</div>
+</div>
+</section>
+<!-- Notification Toggle -->
+<section class="mt-6 px-4">
+<div class="flex items-center justify-between bg-surface-dark border border-white/5 rounded-xl p-4 glass">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+</div>
+<div>
+<p class="font-bold text-sm">Notify me when complete</p>
+<p class="text-xs text-slate-500">Real-time update via push</p>
+</div>
+</div>
+<div class="w-12 h-6 bg-primary rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 w-4 h-4 bg-background-dark rounded-full shadow-lg"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Action Button -->
+<div class="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-dark via-background-dark to-transparent">
+<button class="w-full h-16 bg-primary text-background-dark rounded-xl font-bold text-lg flex items-center justify-center gap-2 glow-button hover:scale-[1.02] transition-transform active:scale-95">
+<span class="material-symbols-outlined font-bold">send</span>
+            Delegate Task
+        </button>
+</div>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Waiting For List - Life To Do</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ecda",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#102220",
+                        "neutral-800": "#1a2e2c",
+                        "neutral-700": "#234845",
+                        "accent-amber": "#ffbf00"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .amber-glow {
+            box-shadow: 0 0 10px rgba(255, 191, 0, 0.2);
+            border: 1px solid rgba(255, 191, 0, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto border-x border-neutral-700/30">
+<header class="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pt-6 pb-2">
+<div class="flex items-center justify-between mb-6">
+<button class="flex size-10 items-center justify-center rounded-full bg-neutral-700/20 text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h2 class="text-xl font-bold tracking-tight">Waiting For</h2>
+<button class="flex size-10 items-center justify-center rounded-full bg-neutral-700/20 text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+<div class="flex p-1 bg-neutral-800 rounded-full mb-4">
+<label class="flex h-10 flex-1 cursor-pointer items-center justify-center rounded-full transition-all has-[:checked]:bg-primary has-[:checked]:text-background-dark text-slate-400 font-medium text-sm">
+<span>Active</span>
+<input checked="" class="hidden" name="status" type="radio" value="active"/>
+</label>
+<label class="flex h-10 flex-1 cursor-pointer items-center justify-center rounded-full transition-all has-[:checked]:bg-primary has-[:checked]:text-background-dark text-slate-400 font-medium text-sm">
+<span>Resolved</span>
+<input class="hidden" name="status" type="radio" value="resolved"/>
+</label>
+</div>
+</header>
+<main class="flex-1 px-4 py-2 space-y-4">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-semibold uppercase tracking-widest text-primary/70">Pending Follow-ups</span>
+<span class="text-xs text-slate-500">4 Items</span>
+</div>
+<div class="amber-glow flex flex-col gap-3 rounded-xl bg-neutral-800/50 p-4 border border-neutral-700/50">
+<div class="flex justify-between items-start">
+<div class="flex-1">
+<h3 class="font-bold text-lg leading-tight">Q4 Marketing Assets</h3>
+<p class="text-sm text-slate-400 mt-1">Reviewing final creative drafts</p>
+</div>
+<span class="text-xs font-medium text-accent-amber bg-accent-amber/10 px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">priority_high</span>
+                        Follow-up Due
+                    </span>
+</div>
+<div class="flex items-center justify-between mt-2 pt-3 border-t border-neutral-700/30">
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden border border-primary/30">
+<img alt="Sarah avatar" class="size-full object-cover" data-alt="Female avatar with glasses and professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbRd4Q8qVlvGqJhv2GXmr323Jw04yZhFS5A87wBAM7M258dIUSnPv4QVmEta_sS34J3DKhI1NXF3jpc5zy-P2Fn2GV0RyBueL8Sk_Q3CS-4VazWPh_7Hrau43LClmkKlgQL3gQv6iQ-dCmplSnYo8YqmHiyaLt1BlyqtaFmUtKa7IM7KJc7PRFwRr3gPJtAnknjaeQ896BCEkGtfHVVz3vLfsjZ55BJ1V9qM1w-WIkCCZmRNbG2fXIFXjp6iHIXh16cgQ2OF4saGw"/>
+</div>
+<span class="text-sm font-medium text-primary">Sarah Chen</span>
+</div>
+<span class="text-xs text-slate-500">8 days ago</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 rounded-xl bg-neutral-800/50 p-4 border border-neutral-700/50">
+<div class="flex justify-between items-start">
+<div class="flex-1">
+<h3 class="font-bold text-lg leading-tight">API Infrastructure Audit</h3>
+<p class="text-sm text-slate-400 mt-1">Waiting for technical security report</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2 pt-3 border-t border-neutral-700/30">
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden border border-primary/30">
+<img alt="Mike avatar" class="size-full object-cover" data-alt="Male avatar with beard and confident expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHtOb2GbwgLDl8P96-ZNz2Rjvs7IIjWapENUa623idDGyNDViC_C4kUBx-twMuZ6EiS6agQI113Jxt8lRynPo9gs_sE4hxsJP8EjI4q8n0htt4t-wiyjkh-IS9Mh5KSjXyuaLRfSANKom7NylkAZcNLiZfmhrFUiMmhc_GiIU2atTpR2ZrdIqhsU1uWPzo6HwrGELZpA_n8uI_Y1dpW73g6WOq4q9fdN2v6sMwvrrbxj58rUyUb2jG8P0fvoNSw8tDBsZI1k_9VbA"/>
+</div>
+<span class="text-sm font-medium text-primary">Michael Scott</span>
+</div>
+<span class="text-xs text-slate-500">3 days ago</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 rounded-xl bg-neutral-800/50 p-4 border border-neutral-700/50">
+<div class="flex justify-between items-start">
+<div class="flex-1">
+<h3 class="font-bold text-lg leading-tight">Vendor Contract Renewal</h3>
+<p class="text-sm text-slate-400 mt-1">Pending legal department signature</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2 pt-3 border-t border-neutral-700/30">
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden border border-primary/30">
+<img alt="Legal avatar" class="size-full object-cover" data-alt="A generic corporate placeholder icon for legal department" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAozbmf0p9jRHwyoDIYjzn_Y1LyBgX8d3_73os7zlAlKQ_ejukyUkEsDyObmuzHGV-bwPHjMNMr79boZxMqlVF2Dr_Ny3NEXI2rxmxOaH0psoxhvD-bZg1d6LTq2p3wy0pvgK-XxQJ4FoS32T5BNWnH_NACFNp5naQNylnRrzsy7pZcZWs6HfhTzd7kDkMJJfMbljxjMh8p6MgFxtWsPxymPofTy38aW1p5CxrJ0h7UiTj0zUzSl7U4DCDwqEyRhFjdrGNXGIV3iFc"/>
+</div>
+<span class="text-sm font-medium text-primary">Legal Team</span>
+</div>
+<span class="text-xs text-slate-500">2 days ago</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 rounded-xl bg-neutral-800/50 p-4 border border-neutral-700/50">
+<div class="flex justify-between items-start">
+<div class="flex-1">
+<h3 class="font-bold text-lg leading-tight">Office Lease Agreement</h3>
+<p class="text-sm text-slate-400 mt-1">Delegated for initial walkthrough</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2 pt-3 border-t border-neutral-700/30">
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden border border-primary/30">
+<img alt="Jessica avatar" class="size-full object-cover" data-alt="Female avatar with short hair and modern look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAKcNGVcMHym8blNRn-um2ropnycJgCTNxznp8bL9q4UGEXxoNqWMbVCcIcZLW-KTSiHmVYFdRnkbdBGS78twsDvvROc5ULKKZJYksvO3w8wsqAsKFIulO-EFtFuOLwtKRDmIu04tbdUPR95LYG2ZM5f0BkUxy-V4SryTLu_RhRevq_KrJBb2u70DVBh9eNiKhijyuA4Jaj4rKvSTeu9cp5JKiEusWvA1hB8USBVVmsZzDPOfYL9czDoR_k1TbuD39PqLvdKQeR-g"/>
+</div>
+<span class="text-sm font-medium text-primary">Jessica Wu</span>
+</div>
+<span class="text-xs text-slate-500">5 hours ago</span>
+</div>
+</div>
+</main>
+<nav class="sticky bottom-0 z-30 bg-neutral-800 border-t border-neutral-700 px-6 py-4 pb-8">
+<div class="flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">inbox</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Inbox</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Projects</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">hourglass_top</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Waiting</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Scheduled</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Settings</span>
+</a>
+</div>
+</nav>
+<button class="fixed bottom-24 right-6 size-14 rounded-full bg-primary text-background-dark shadow-xl shadow-primary/20 flex items-center justify-center z-40">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+</div>
+</body></html>

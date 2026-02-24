@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2b90d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1a1608",
+                        "surface-dark": "#2a240d",
+                        "accent-gold": "#d4af37",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .constellation-bg {
+            background-color: #1a1608;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(242, 185, 13, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(242, 185, 13, 0.05) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3C%3Cg fill='%23f2b90d' fill-opacity='0.15' fill-rule='evenodd'%3E%3Ccircle cx='50' cy='50' r='1'/%3E%3Ccircle cx='150' cy='120' r='1'/%3E%3Ccircle cx='250' cy='60' r='1.5'/%3E%3Ccircle cx='350' cy='180' r='1'/%3E%3Ccircle cx='80' cy='280' r='1'/%3E%3Ccircle cx='200' cy='350' r='1'/%3E%3Ccircle cx='320' cy='300' r='1.5'/%3E%3Cpath d='M50 50 L150 120 L250 60' stroke='%23f2b90d' stroke-width='0.2' fill='none'/%3E%3Cpath d='M350 180 L320 300 L200 350' stroke='%23f2b90d' stroke-width='0.2' fill='none'/%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<div class="flex-1 constellation-bg overflow-y-auto pb-32">
+<header class="flex items-center justify-between p-6">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-dark border border-primary/20">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-slate-100">2024 Year in Review</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-dark border border-primary/20">
+<span class="material-symbols-outlined text-primary">share</span>
+</button>
+</header>
+<section class="px-6 mb-8">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-surface-dark to-background-dark border border-primary/30 p-8">
+<div class="relative z-10">
+<span class="text-primary text-xs font-bold uppercase tracking-widest mb-2 block">Your Stellar Year</span>
+<h2 class="text-3xl font-bold text-slate-100 mb-6">Manifesting Excellence</h2>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-primary/10 border border-primary/20 rounded-lg p-4">
+<p class="text-slate-400 text-xs mb-1">Focus Hours</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold text-slate-100">1,240</span>
+<span class="text-green-400 text-xs font-medium">+15%</span>
+</div>
+</div>
+<div class="bg-primary/10 border border-primary/20 rounded-lg p-4">
+<p class="text-slate-400 text-xs mb-1">Projects Done</p>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-bold text-slate-100">48</span>
+<span class="text-green-400 text-xs font-medium">+10%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute -right-4 -top-4 w-32 h-32 bg-primary/20 blur-3xl rounded-full"></div>
+</div>
+</section>
+<section class="px-6 mb-8">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold text-slate-100">2025 Vision Board</h2>
+<span class="text-primary text-sm font-medium">Future Planner</span>
+</div>
+<div class="space-y-4">
+<div class="group relative bg-surface-dark border border-white/5 rounded-xl p-5 hover:border-primary/40 transition-colors">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-bold text-slate-100">Launch New Venture</h3>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-primary/20 text-primary border border-primary/30">Q1 TARGET</span>
+</div>
+<p class="text-sm text-slate-400 leading-relaxed">Secure funding and release the beta version of the sustainable tech platform.</p>
+</div>
+</div>
+</div>
+<div class="group relative bg-surface-dark border border-white/5 rounded-xl p-5 hover:border-primary/40 transition-colors">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">fitness_center</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-bold text-slate-100">Peak Performance</h3>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-700 text-slate-300 border border-white/10">Q2 TARGET</span>
+</div>
+<p class="text-sm text-slate-400 leading-relaxed">Complete the Alpine Marathon and reach optimal metabolic health targets.</p>
+</div>
+</div>
+</div>
+<div class="group relative bg-surface-dark border border-white/5 rounded-xl p-5 hover:border-primary/40 transition-colors">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">public</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-bold text-slate-100">Global Exploration</h3>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-700 text-slate-300 border border-white/10">Q3 TARGET</span>
+</div>
+<p class="text-sm text-slate-400 leading-relaxed">Three-month digital nomad residency in Kyoto to master new creative disciplines.</p>
+</div>
+</div>
+</div>
+<button class="w-full py-4 border-2 border-dashed border-primary/30 rounded-xl flex items-center justify-center gap-2 text-primary/60 hover:text-primary hover:border-primary/60 transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-medium text-sm">Add Major Milestone</span>
+</button>
+</div>
+</section>
+<section class="px-6 mt-8">
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-5 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-3 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined">verified</span>
+                SUBMIT 2025 VISION
+            </button>
+<p class="text-center text-slate-500 text-xs mt-4 italic">Commit these goals to your timeline and start the journey.</p>
+</section>
+</div>
+<nav class="fixed bottom-0 left-0 right-0 bg-background-dark/80 backdrop-blur-lg border-t border-primary/20 px-6 pb-8 pt-4 flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">list_alt</span>
+<span class="text-[10px] font-medium text-slate-500 group-hover:text-primary">Tasks</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">query_stats</span>
+<span class="text-[10px] font-medium text-slate-500 group-hover:text-primary">Review</span>
+</a>
+<a class="flex flex-col items-center gap-1 relative" href="#">
+<div class="absolute -top-10 w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/40 border-4 border-background-dark">
+<span class="material-symbols-outlined text-background-dark font-bold">auto_awesome</span>
+</div>
+<span class="text-[10px] font-medium text-primary mt-6">Vision</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">calendar_month</span>
+<span class="text-[10px] font-medium text-slate-500 group-hover:text-primary">Plan</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">person_outline</span>
+<span class="text-[10px] font-medium text-slate-500 group-hover:text-primary">Profile</span>
+</a>
+</nav>
+</body></html>

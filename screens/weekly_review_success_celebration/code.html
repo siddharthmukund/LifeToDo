@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Weekly Review: Success Celebration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f4c025",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#12110a",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .gold-glow {
+            box-shadow: 0 0 40px 10px rgba(244, 192, 37, 0.15);
+        }
+        .particle-bg {
+            background-image: radial-gradient(circle at 50% 50%, rgba(244, 192, 37, 0.08) 0%, transparent 70%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden particle-bg">
+<!-- Top Navigation -->
+<nav class="flex items-center p-4 justify-between">
+<button class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center justify-center hover:bg-primary/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[28px]">close</span>
+</button>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-12">Weekly Review</h2>
+</nav>
+<!-- Main Celebration Content -->
+<main class="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-12">
+<!-- Success Ring & Icon -->
+<div class="relative flex items-center justify-center mb-10">
+<!-- Outer Ring -->
+<div class="size-64 rounded-full border-[6px] border-primary/20 flex items-center justify-center">
+<!-- Progress Ring (Gold) -->
+<div class="absolute inset-0 rounded-full border-[6px] border-primary gold-glow" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);"></div>
+<!-- Inner Circle -->
+<div class="size-48 bg-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[80px] font-bold">check_circle</span>
+</div>
+</div>
+<!-- Floating Particle Accents -->
+<div class="absolute top-0 right-4 size-3 bg-primary rounded-full blur-[1px]"></div>
+<div class="absolute bottom-8 left-2 size-4 bg-primary/40 rounded-full blur-[2px]"></div>
+<div class="absolute top-12 left-8 size-2 bg-primary/60 rounded-full"></div>
+</div>
+<!-- Text Content -->
+<div class="text-center space-y-3">
+<h1 class="text-slate-900 dark:text-slate-100 tracking-tight text-[36px] font-extrabold leading-tight">Review Complete!</h1>
+<p class="text-slate-600 dark:text-slate-400 text-lg font-medium max-w-[280px] mx-auto">You're all set for a productive week ahead.</p>
+</div>
+<!-- Stats/Streak Card -->
+<div class="w-full mt-10">
+<div class="bg-primary/10 dark:bg-primary/5 border border-primary/20 rounded-xl p-6 flex flex-col items-center gap-2">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-semibold uppercase tracking-widest">Current Streak</p>
+<div class="flex items-center gap-3">
+<span class="text-3xl">🔥</span>
+<p class="text-slate-900 dark:text-slate-100 text-3xl font-extrabold tracking-tight">5 Weeks</p>
+</div>
+<div class="mt-4 flex gap-1">
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+</div>
+</div>
+</div>
+<!-- Summary Card -->
+<div class="w-full mt-4 flex gap-4">
+<div class="flex-1 bg-slate-100 dark:bg-primary/10 rounded-xl p-5 text-center">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase mb-1">Tasks Done</p>
+<p class="text-slate-900 dark:text-slate-100 text-xl font-bold">42</p>
+</div>
+<div class="flex-1 bg-slate-100 dark:bg-primary/10 rounded-xl p-5 text-center">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase mb-1">Focus Time</p>
+<p class="text-slate-900 dark:text-slate-100 text-xl font-bold">18h</p>
+</div>
+</div>
+</main>
+<!-- Bottom Action -->
+<footer class="p-6 pb-10">
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark text-lg font-bold py-5 rounded-xl shadow-lg shadow-primary/20 transition-all active:scale-[0.98]">
+                Done
+            </button>
+<p class="text-center mt-6 text-slate-500 dark:text-slate-500 text-sm font-medium">Life To Do • Weekly Report</p>
+</footer>
+<!-- Abstract Decorative Background Elements -->
+<div class="fixed -bottom-24 -left-24 size-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
+<div class="fixed -top-24 -right-24 size-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
+</div>
+</body></html>

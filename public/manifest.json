@@ -1,0 +1,43 @@
+{
+  "name": "GTD Life",
+  "short_name": "GTD Life",
+  "description": "Getting Things Done, actually. Capture → Clarify → Organize → Reflect → Engage.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#111111",
+  "background_color": "#111111",
+  "categories": ["productivity", "utilities"],
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Capture",
+      "short_name": "Capture",
+      "description": "Add to Inbox",
+      "url": "/inbox",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Today",
+      "short_name": "Today",
+      "description": "See next actions",
+      "url": "/",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

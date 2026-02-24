@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Next Actions: Low Energy Filter</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f4ab25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#1a160f",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .ios-shadow {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .blur-bg {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center p-0 sm:p-4">
+<div class="relative flex h-[844px] w-[390px] flex-col bg-background-light dark:bg-background-dark overflow-hidden rounded-[3rem] border-[8px] border-slate-800 shadow-2xl">
+<!-- Status Bar Simulation -->
+<div class="flex justify-between items-center px-8 pt-4 pb-2 w-full text-xs font-bold">
+<span>9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[14px]">wifi</span>
+<span class="material-symbols-outlined text-[14px]">battery_full</span>
+</div>
+</div>
+<!-- Header -->
+<div class="flex items-center p-6 pb-2 justify-between">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center bg-primary/10 rounded-full">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-extrabold leading-tight tracking-tight flex-1 text-center">Next Actions</h2>
+<div class="flex w-10 items-center justify-end">
+<button class="flex size-10 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="px-6 mb-4">
+<div class="flex border-b border-slate-200 dark:border-slate-800 gap-6">
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-400 pb-3 pt-2" href="#">
+<p class="text-sm font-bold">All</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-2" href="#">
+<p class="text-sm font-bold">Today</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-400 pb-3 pt-2" href="#">
+<p class="text-sm font-bold">Upcoming</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-400 pb-3 pt-2" href="#">
+<p class="text-sm font-bold">Done</p>
+</a>
+</div>
+</div>
+<!-- Energy Slider -->
+<div class="px-6 py-4">
+<div class="bg-primary/5 dark:bg-primary/10 rounded-2xl p-5 border border-primary/20">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary fill-1">bolt</span>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold uppercase tracking-wider">Energy Mode</p>
+</div>
+<span class="bg-primary text-background-dark text-[10px] font-black px-2 py-0.5 rounded-full uppercase">Low Effort</span>
+</div>
+<div class="relative flex w-full flex-col items-start justify-between gap-4">
+<div class="flex w-full shrink-0 items-center justify-between">
+<p class="text-primary text-2xl font-black">Low</p>
+<p class="text-slate-400 text-sm font-medium">Filtering for relaxation</p>
+</div>
+<div class="flex h-6 w-full items-center gap-4 relative">
+<div class="flex h-2 flex-1 rounded-full bg-slate-200 dark:bg-slate-800">
+<div class="h-full w-[25%] rounded-full bg-primary shadow-[0_0_15px_rgba(244,171,37,0.5)]"></div>
+<div class="relative">
+<div class="absolute -left-2.5 -top-2 size-6 rounded-full bg-primary border-4 border-background-light dark:border-background-dark shadow-lg"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter Tags -->
+<div class="flex gap-3 px-6 overflow-x-auto no-scrollbar py-2">
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary px-4">
+<span class="material-symbols-outlined text-background-dark text-sm">bolt</span>
+<p class="text-background-dark text-xs font-bold">Low Energy</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-slate-100 dark:bg-slate-800 px-4 border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-500 text-sm">timer</span>
+<p class="text-slate-600 dark:text-slate-300 text-xs font-bold">Quick Wins</p>
+</div>
+<div class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-slate-100 dark:bg-slate-800 px-4 border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-slate-500 text-sm">person</span>
+<p class="text-slate-600 dark:text-slate-300 text-xs font-bold">Personal</p>
+</div>
+</div>
+<!-- Task List -->
+<div class="flex-1 overflow-y-auto px-6 pt-4 space-y-3 pb-24">
+<!-- Task Item 1 -->
+<div class="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800 flex items-start gap-4 transition-all duration-300 hover:border-primary/50">
+<div class="mt-1 flex size-6 items-center justify-center rounded-full border-2 border-primary/30">
+<div class="size-2 rounded-full bg-transparent"></div>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-900 dark:text-slate-100 font-bold text-sm leading-tight">Quick follow-up email</h3>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1">Reply to Mark regarding the site draft</p>
+<div class="flex gap-2 mt-3">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">LOW ENERGY</span>
+<span class="bg-slate-100 dark:bg-slate-800 text-slate-500 text-[10px] font-bold px-2 py-0.5 rounded-full">5 MINS</span>
+</div>
+</div>
+</div>
+<!-- Task Item 2 -->
+<div class="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800 flex items-start gap-4 transition-all duration-300 hover:border-primary/50">
+<div class="mt-1 flex size-6 items-center justify-center rounded-full border-2 border-primary/30">
+<div class="size-2 rounded-full bg-transparent"></div>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-900 dark:text-slate-100 font-bold text-sm leading-tight">File physical receipts</h3>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1">Organize the stack from last month</p>
+<div class="flex gap-2 mt-3">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">LOW ENERGY</span>
+<span class="bg-slate-100 dark:bg-slate-800 text-slate-500 text-[10px] font-bold px-2 py-0.5 rounded-full">10 MINS</span>
+</div>
+</div>
+</div>
+<!-- Task Item 3 -->
+<div class="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800 flex items-start gap-4 transition-all duration-300 hover:border-primary/50">
+<div class="mt-1 flex size-6 items-center justify-center rounded-full border-2 border-primary/30">
+<div class="size-2 rounded-full bg-transparent"></div>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-900 dark:text-slate-100 font-bold text-sm leading-tight">Water office plants</h3>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1">Check soil moisture for the ferns</p>
+<div class="flex gap-2 mt-3">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">LOW ENERGY</span>
+<span class="bg-slate-100 dark:bg-slate-800 text-slate-500 text-[10px] font-bold px-2 py-0.5 rounded-full">PERSONAL</span>
+</div>
+</div>
+</div>
+<!-- Task Item 4 -->
+<div class="bg-white dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800 flex items-start gap-4 transition-all duration-300 hover:border-primary/50 opacity-80">
+<div class="mt-1 flex size-6 items-center justify-center rounded-full border-2 border-primary/30">
+<div class="size-2 rounded-full bg-transparent"></div>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-900 dark:text-slate-100 font-bold text-sm leading-tight">Clear desktop downloads</h3>
+<p class="text-slate-500 dark:text-slate-400 text-xs mt-1">Quick digital decluttering</p>
+<div class="flex gap-2 mt-3">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">LOW ENERGY</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Add Task Floating Button -->
+<button class="absolute bottom-28 right-6 size-14 bg-primary text-background-dark rounded-full shadow-lg flex items-center justify-center z-20">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+<!-- Bottom Tab Bar -->
+<div class="absolute bottom-0 w-full bg-background-light/80 dark:bg-background-dark/80 blur-bg border-t border-slate-200 dark:border-slate-800 pb-8 pt-2 px-6">
+<div class="flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<p class="text-[10px] font-bold">Dashboard</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">check_circle</span>
+<p class="text-[10px] font-bold">Tasks</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<p class="text-[10px] font-bold">Focus</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-[10px] font-bold">Profile</p>
+</a>
+</div>
+</div>
+<!-- Home Indicator -->
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-slate-800/50 rounded-full"></div>
+</div>
+</body></html>

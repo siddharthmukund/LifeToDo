@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0ddff2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Quarterly Strategy Review</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<!-- Main Container -->
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden pb-24">
+<!-- Header -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10 backdrop-blur-md bg-opacity-80 dark:bg-opacity-80">
+<div class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Quarterly Strategy Review</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-slate-900 dark:text-slate-100 gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Hero Section -->
+<div class="px-4 py-6">
+<h2 class="text-slate-900 dark:text-slate-100 text-3xl font-bold leading-tight tracking-[-0.015em] mb-1">Horizon 2 &amp; 3</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Mid-term focus &amp; Long-term vision</p>
+</div>
+<!-- Status Summary Cards -->
+<div class="flex flex-wrap gap-4 px-4 pb-6">
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-primary/10 border border-slate-200 dark:border-primary/20 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">folder_open</span>
+<p class="text-slate-600 dark:text-slate-300 text-sm font-medium leading-normal">Current Projects</p>
+</div>
+<p class="text-slate-900 dark:text-slate-100 tracking-tight text-2xl font-bold leading-tight">12 Active</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-500 text-xs">trending_up</span>
+<p class="text-emerald-500 text-xs font-bold leading-normal">+15% vs LY</p>
+</div>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-primary/10 border border-slate-200 dark:border-primary/20 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">rocket_launch</span>
+<p class="text-slate-600 dark:text-slate-300 text-sm font-medium leading-normal">Long-term Goals</p>
+</div>
+<p class="text-slate-900 dark:text-slate-100 tracking-tight text-2xl font-bold leading-tight">5 Milestones</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-500 text-xs">check_circle</span>
+<p class="text-emerald-500 text-xs font-bold leading-normal">On Track</p>
+</div>
+</div>
+</div>
+<!-- Behavioral Grid: Keep, Start, Stop -->
+<div class="px-4 py-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-[-0.015em] mb-4">Keep, Start, Stop</h3>
+<div class="grid grid-cols-1 gap-3">
+<!-- Keep -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+<div class="flex size-10 items-center justify-center rounded-full bg-emerald-500 text-white">
+<span class="material-symbols-outlined">refresh</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-emerald-600 dark:text-emerald-400">Keep</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">Daily deep work, Morning journaling</p>
+</div>
+</div>
+<!-- Start -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-primary/10 border border-primary/20">
+<div class="flex size-10 items-center justify-center rounded-full bg-primary text-slate-900">
+<span class="material-symbols-outlined">play_arrow</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-primary">Start</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">Weekly networking, Public learning</p>
+</div>
+</div>
+<!-- Stop -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20">
+<div class="flex size-10 items-center justify-center rounded-full bg-rose-500 text-white">
+<span class="material-symbols-outlined">close</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-rose-600 dark:text-rose-400">Stop</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">Late night scrolling, Overcommitting</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Vision Board Thumbnails -->
+<div class="px-4 py-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-[-0.015em]">Vision Board</h3>
+<button class="text-primary text-sm font-bold">Edit</button>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="aspect-square rounded-lg bg-slate-200 dark:bg-slate-800 overflow-hidden relative border border-slate-200 dark:border-slate-700">
+<img class="object-cover w-full h-full" data-alt="Breathtaking mountain landscape at sunrise" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKDXr9GKPf_MoG8wvWaCWVKUWLYdRNYLzhi_lr6StYb5J3HyELRO8xPT4BRk3XYxMC6yz7yFyz4td7nhY3PFhgJ-g2YEP6gW88Wr8DJD9Iz0S7NEIiqNcOp6d3FyPozKNdcklBl88Zr3Vtt3BccsJ4vfnFyyAoTBjxAVvNG16K-b50EiOitm_hBau_1c6PJ5aZfq571juANFUgxI8bFqt2biDcHAJeutM_TDMMaXS-CKmEN25oVaOi0iklnu0RgfznBRIO0QlgNfE"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-200 dark:bg-slate-800 overflow-hidden relative border border-slate-200 dark:border-slate-700">
+<img class="object-cover w-full h-full" data-alt="Modern minimalist home office space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR-tGAbJ6hcwtACIXEvtvhHf0tz22KexJe_RQZJ8nYud-6irRwHqkTPb-DAq93CAiu5_EB4nEu3TY0VbcX7g37mSXaGlk1oHxmnyCKTRAp1oQO4Ahh6MYoJXqDSWkO9as_tYJV0UN6dwOADfF_KuY6NB6UsSxJHmJPIxhRAWXLXjvgWa4bRDAB0RMqISaTlejyySWQNPgZxZ-SAiyFTB3iHhFFsSusap4o3TJEbYO15SzstHqDuik7mEsfkoYkMBShCfoBF4cyBwo"/>
+</div>
+<div class="aspect-square rounded-lg bg-slate-200 dark:bg-slate-800 overflow-hidden relative border border-slate-200 dark:border-slate-700">
+<img class="object-cover w-full h-full" data-alt="Peaceful yoga meditation pose on beach" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxLFsUo1S_4l1Zf0gV4XppCqZD5IGHT86kHYZzEavAzpB1Qy2C8D95WD6YUC8gVzPuxszlG_yvvQ_widgmWXoK3l1LARq_dFwJjHoU9_IZz9Fw1ZuM31_olQd9QUmR7ZraN2eJnI33v2Le2LdWyILyHfmUjMHpJQ5NEMhXkuTuoFO3GhmhMXezD9dRbGQDWkFNumxk-cI_YJ1c3vfLcskFyAJwI-Gj72EicOy1_27gy7m0CEtE5v7ekebQJqSEjlPVJDLIxzXk4Jk"/>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Spacer -->
+<div class="h-10"></div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-50">
+<div class="flex gap-2 border-t border-slate-200 dark:border-primary/20 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md px-4 pb-6 pt-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 dark:text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Today</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 dark:text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">format_list_bulleted</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Projects</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 dark:text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">ads_click</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Goals</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">pie_chart</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Review</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>

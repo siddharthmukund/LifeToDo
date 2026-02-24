@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Weekly Progress Report</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#902bee",
+                        "accent-cyan": "#00f2ff",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#0a050e",
+                        "surface-dark": "#191022",
+                        "surface-accent": "#271933"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass {
+            background: rgba(144, 43, 238, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(144, 43, 238, 0.2);
+        }
+        .gradient-ring {
+            background: conic-gradient(from 0deg, #902bee 0%, #00f2ff 85%, transparent 85%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4">
+<button class="text-slate-900 dark:text-slate-100 flex items-center justify-center">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Weekly Progress</h1>
+<button class="text-slate-900 dark:text-slate-100 flex items-center justify-center">
+<span class="material-symbols-outlined">share</span>
+</button>
+</header>
+<main class="pb-32">
+<!-- Weekly Score Hero -->
+<section class="flex flex-col items-center justify-center py-8 px-6">
+<div class="relative flex items-center justify-center w-48 h-48">
+<!-- Circular Progress -->
+<div class="absolute inset-0 rounded-full border-8 border-slate-200 dark:border-surface-dark"></div>
+<div class="absolute inset-0 rounded-full border-8 border-transparent gradient-ring opacity-90 rotate-[135deg]"></div>
+<div class="flex flex-col items-center">
+<span class="text-5xl font-black text-primary dark:text-primary">85%</span>
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-widest">Focus Score</span>
+</div>
+</div>
+<div class="mt-6 text-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm">You've reached your focus peak!</p>
+<div class="flex items-center justify-center gap-1 text-emerald-500 font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12% vs last week</span>
+</div>
+</div>
+</section>
+<!-- Main Stats Grid -->
+<section class="grid grid-cols-2 gap-4 px-6 mb-8">
+<div class="bg-white dark:bg-surface-dark p-5 rounded-xl border border-slate-100 dark:border-primary/10">
+<div class="text-primary mb-2">
+<span class="material-symbols-outlined">task_alt</span>
+</div>
+<p class="text-2xl font-bold">124</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Tasks Completed</p>
+</div>
+<div class="bg-white dark:bg-surface-dark p-5 rounded-xl border border-slate-100 dark:border-primary/10">
+<div class="text-accent-cyan mb-2">
+<span class="material-symbols-outlined">timer</span>
+</div>
+<p class="text-2xl font-bold">2,450</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Focus Minutes</p>
+</div>
+</section>
+<!-- Interactive Charts Section -->
+<section class="px-6 mb-8">
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-slate-100 dark:border-primary/10">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h3 class="font-bold text-base">Activity Overview</h3>
+<p class="text-xs text-slate-500">Mon, Oct 23 - Sun, Oct 29</p>
+</div>
+<div class="flex gap-4 text-[10px] uppercase font-bold tracking-wider">
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary"></span> Tasks</div>
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-accent-cyan"></span> Focus</div>
+</div>
+</div>
+<!-- Mixed Chart Container -->
+<div class="relative h-48 flex items-end justify-between gap-2 px-2">
+<!-- Column Bars for Tasks -->
+<div class="flex-1 flex flex-col justify-end items-center gap-1 h-full">
+<div class="w-full bg-primary rounded-t-sm" style="height: 60%"></div>
+<span class="text-[10px] text-slate-400">M</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center gap-1 h-full">
+<div class="w-full bg-primary rounded-t-sm" style="height: 85%"></div>
+<span class="text-[10px] text-slate-400">T</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center gap-1 h-full">
+<div class="w-full bg-primary rounded-t-sm" style="height: 45%"></div>
+<span class="text-[10px] text-slate-400">W</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center gap-1 h-full">
+<div class="w-full bg-primary rounded-t-sm" style="height: 70%"></div>
+<span class="text-[10px] text-slate-400">T</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center gap-1 h-full">
+<div class="w-full bg-primary rounded-t-sm" style="height: 95%"></div>
+<span class="text-[10px] text-slate-400">F</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center gap-1 h-full">
+<div class="w-full bg-primary rounded-t-sm" style="height: 30%"></div>
+<span class="text-[10px] text-slate-400">S</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center gap-1 h-full">
+<div class="w-full bg-primary rounded-t-sm" style="height: 20%"></div>
+<span class="text-[10px] text-slate-400">S</span>
+</div>
+<!-- Overlay Line Chart (Conceptual representation with SVG) -->
+<svg class="absolute top-0 left-0 w-full h-[85%] pointer-events-none overflow-visible" preserveaspectratio="none">
+<path d="M 20 80 Q 60 20 100 40 T 180 10 T 260 60 T 340 100" fill="none" stroke="#00f2ff" stroke-linecap="round" stroke-width="3"></path>
+<circle cx="100" cy="40" fill="#00f2ff" r="4"></circle>
+</svg>
+</div>
+</div>
+</section>
+<!-- Achievement Badges -->
+<section class="px-6 mb-8">
+<h3 class="font-bold text-base mb-4">Milestones Reached</h3>
+<div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+<div class="flex-shrink-0 w-24 flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-2xl glass flex items-center justify-center text-primary shadow-[0_0_20px_rgba(144,43,238,0.3)]">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1">stars</span>
+</div>
+<span class="text-[10px] font-bold text-center leading-tight">Perfect Week</span>
+</div>
+<div class="flex-shrink-0 w-24 flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-2xl glass flex items-center justify-center text-accent-cyan shadow-[0_0_20px_rgba(0,242,255,0.2)]">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1">bolt</span>
+</div>
+<span class="text-[10px] font-bold text-center leading-tight">Speed Demon</span>
+</div>
+<div class="flex-shrink-0 w-24 flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-2xl glass flex items-center justify-center text-primary/80">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1">inbox</span>
+</div>
+<span class="text-[10px] font-bold text-center leading-tight">Inbox Zero Hero</span>
+</div>
+<div class="flex-shrink-0 w-24 flex flex-col items-center gap-2 opacity-40">
+<div class="w-16 h-16 rounded-2xl glass flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-3xl">workspace_premium</span>
+</div>
+<span class="text-[10px] font-bold text-center leading-tight">Elite Pro</span>
+</div>
+</div>
+</section>
+<!-- AI Productivity Insight -->
+<section class="px-6">
+<div class="bg-gradient-to-br from-primary/20 to-accent-cyan/10 p-5 rounded-2xl border border-primary/20 flex gap-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div>
+<h4 class="font-bold text-sm text-primary">AI Insight</h4>
+<p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
+                        You're <span class="text-primary font-bold">20% more productive</span> on Tuesday mornings. Try scheduling your deep work tasks then!
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-background-light/90 dark:bg-surface-dark/90 backdrop-blur-xl border-t border-slate-200 dark:border-primary/10 px-6 pb-8 pt-3">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Tasks</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Calendar</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">bar_chart</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Stats</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

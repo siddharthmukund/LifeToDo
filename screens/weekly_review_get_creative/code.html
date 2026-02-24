@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8c2bee",
+                        "accent-cyan": "#00f2ff",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#0a0510",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glow-input:focus {
+            box-shadow: 0 0 20px rgba(140, 43, 238, 0.3), 0 0 5px rgba(0, 242, 255, 0.2);
+        }
+        .glass-panel {
+            background: rgba(140, 43, 238, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(140, 43, 238, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto border-x border-primary/10">
+<!-- Header Section -->
+<div class="flex items-center p-6 pb-2 justify-between">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center">Weekly Review</h2>
+<div class="flex size-10 items-center justify-end text-slate-400">
+<span class="material-symbols-outlined">help_outline</span>
+</div>
+</div>
+<!-- Progress Tracking -->
+<div class="flex flex-col gap-4 p-6">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-primary text-xs font-bold uppercase tracking-widest mb-1">Phase 3</p>
+<p class="text-xl font-bold">Get Creative</p>
+</div>
+<div class="text-right">
+<p class="text-primary/60 text-xs font-medium">Review Streak</p>
+<div class="flex items-center gap-1 justify-end">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1">local_fire_department</span>
+<p class="text-sm font-bold">5 weeks</p>
+</div>
+</div>
+</div>
+<div class="relative h-2.5 w-full rounded-full bg-primary/10 overflow-hidden">
+<div class="absolute top-0 left-0 h-full rounded-full bg-gradient-to-r from-primary to-accent-cyan" style="width: 75%;"></div>
+</div>
+</div>
+<!-- Main Brainstorming Area -->
+<div class="flex flex-col flex-1 px-6 pt-4 gap-8">
+<div class="space-y-4">
+<h1 class="text-3xl font-bold leading-tight tracking-tight text-center px-2">
+                    What new projects are <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-cyan">calling to you?</span>
+</h1>
+<div class="relative group">
+<textarea class="glow-input w-full min-h-[220px] rounded-xl border border-primary/20 bg-primary/5 p-6 text-lg font-medium text-slate-100 placeholder:text-primary/30 focus:outline-none focus:border-primary/50 transition-all resize-none" placeholder="Brain-dump your ideas here..."></textarea>
+<div class="absolute bottom-4 right-4 flex gap-2">
+<span class="material-symbols-outlined text-primary/40 animate-pulse">edit_note</span>
+</div>
+</div>
+</div>
+<!-- Suggestion Cloud -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 px-1">
+<span class="material-symbols-outlined text-primary text-sm">lightbulb</span>
+<p class="text-xs font-bold uppercase tracking-wider text-slate-500">Someday / Maybe Inspiration</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full border border-primary/10 bg-primary/5 text-sm font-medium hover:bg-primary/20 transition-colors">Learn Guitar</button>
+<button class="px-4 py-2 rounded-full border border-primary/10 bg-primary/5 text-sm font-medium hover:bg-primary/20 transition-colors">Plan Summer Trip</button>
+<button class="px-4 py-2 rounded-full border border-primary/10 bg-primary/5 text-sm font-medium hover:bg-primary/20 transition-colors">Start a Garden</button>
+<button class="px-4 py-2 rounded-full border border-primary/10 bg-primary/5 text-sm font-medium hover:bg-primary/20 transition-colors">Write a Poem</button>
+<button class="px-4 py-2 rounded-full border border-primary/10 bg-primary/5 text-sm font-medium hover:bg-primary/20 transition-colors">Learn Swift UI</button>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="p-6 grid grid-cols-2 gap-4 mt-auto">
+<button class="flex items-center justify-center gap-2 h-14 rounded-xl bg-primary/10 text-primary font-bold hover:bg-primary/20 transition-all border border-primary/10">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+                Add to Someday
+            </button>
+<button class="flex items-center justify-center gap-2 h-14 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-xl">add_task</span>
+                Create Project
+            </button>
+</div>
+<!-- Bottom Navigation -->
+<div class="flex gap-2 border-t border-primary/10 bg-background-dark/80 backdrop-blur-md px-4 pb-8 pt-2">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined text-[24px]">inbox</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Inbox</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined text-[24px]">format_list_bulleted</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Projects</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1">check_circle</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Review</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Settings</p>
+</a>
+</div>
+</div>
+</body></html>
