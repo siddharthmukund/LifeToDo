@@ -1,7 +1,7 @@
 'use client'
 // ProgressBar — horizontal fill bar with optional label.
 // Single responsibility: render a progress state visually.
-// Used on every screen to enforce "progress visibility everywhere" ADHD rule.
+// Updated in iCCW #3: replaced gtd-* tokens with new design tokens.
 
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
@@ -18,9 +18,9 @@ interface ProgressBarProps {
 }
 
 const COLORS = {
-  accent:  'bg-gtd-accent',
-  success: 'bg-gtd-success',
-  warning: 'bg-gtd-warning',
+  accent:  'bg-primary',
+  success: 'bg-green-500',
+  warning: 'bg-yellow-500',
 }
 
 const HEIGHTS = {
@@ -45,11 +45,11 @@ export function ProgressBar({
     <div className={cn('w-full', className)}>
       {showLabel && (label || max > 0) && (
         <div className="flex items-center justify-between mb-1.5">
-          <span className="text-xs text-gtd-muted">
+          <span className="text-xs font-medium text-slate-500">
             {label ?? `${value} of ${max}`}
           </span>
           {isDone && (
-            <span className="text-xs text-gtd-success font-medium">✓ Done</span>
+            <span className="text-xs font-bold text-green-400">✓ Done</span>
           )}
         </div>
       )}

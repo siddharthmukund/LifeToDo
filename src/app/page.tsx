@@ -209,9 +209,14 @@ export default function TodayPage() {
         {/* Waiting For section */}
         {waitingFor.length > 0 && (
           <div className="pt-6">
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4 px-2">
-              Waiting For ({waitingFor.length})
-            </p>
+            <div className="flex items-center justify-between mb-4 px-2">
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                Waiting For ({waitingFor.length})
+              </p>
+              <Link href="/waiting" className="text-[10px] font-bold text-primary uppercase tracking-widest hover:text-primary/80 transition-colors">
+                See all →
+              </Link>
+            </div>
             <div className="space-y-3">
               {waitingFor.map(a => (
                 <div key={a.id} className="glass-card px-5 py-4 rounded-2xl border-l-4 border-l-yellow-500">

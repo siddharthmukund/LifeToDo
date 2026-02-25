@@ -1,3 +1,10 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Life To Do — Global Styles + CSS Design Tokens
+   Tokens extracted from Figma screen exports (25 screens, Feb 2026).
+   Update hex values here; tailwind.config.ts reads them via var().
+───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Manrope font (geometric sans-serif, matches Figma type treatment) ────── */
 @import '@fontsource/manrope/300.css';
 @import '@fontsource/manrope/400.css';
 @import '@fontsource/manrope/500.css';
@@ -9,154 +16,208 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design tokens ──────────────────────────────────────────────────────── */
+/* ── Design tokens ──────────────────────────────────────────────────────────
+   Source of truth for all colors. Every CSS var maps to a Tailwind token
+   in tailwind.config.ts. Change here, takes effect everywhere.
+────────────────────────────────────────────────────────────────────────────── */
 :root {
-  --primary: #2bee6c;
-  --accent: #8b5cf6;
-  --background-dark: #0a0a0c;
-  --card-dark: #16161a;
+  /* Primary — bright cyan. Hero CTAs, active states, progress fills.        */
+  /* Extracted from: all 25 screens — #00E5CC dominant across every view.    */
+  --primary: #00E5CC;
 
-  /* Legacy mapping to keep existing components from breaking temporarily */
-  --gtd-bg: var(--background-dark);
+  /* Accent — rich purple. Secondary actions, focus timer, alternative paths. */
+  --accent: #9D4EDD;
+
+  /* App shell — dark navy. Extracted from purple-theme screens.             */
+  --background-dark: #0F0F1A;
+
+  /* Card surface — slightly elevated navy. All task cards, modal panels.    */
+  --card-dark: #1A1A2E;
+
+  /* Elevated surface — active cards, focused inputs, modals over cards.     */
+  --card-elevated: #232342;
+
+  /* ── Legacy variable aliases (keep for backward compat) ───────────────── */
+  --gtd-bg:      var(--background-dark);
   --gtd-surface: var(--card-dark);
-  --gtd-border: rgba(255, 255, 255, 0.08);
-  --gtd-accent: var(--primary);
-  --gtd-text: #F5F5F5;
-  --gtd-muted: #6B7280;
+  --gtd-border:  rgba(255, 255, 255, 0.07);
+  --gtd-accent:  var(--primary);
+  --gtd-text:    #F5F5F5;
+  --gtd-muted:   #64748B;
 }
 
-/* ── Base ───────────────────────────────────────────────────────────────── */
+/* ── Base reset + defaults ──────────────────────────────────────────────── */
 html {
   background-color: var(--background-dark);
   color: var(--gtd-text);
   font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Prevent text size inflation on iOS rotation */
+  /* Prevent text inflation on iOS rotation */
   -webkit-text-size-adjust: 100%;
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: var(--background-dark);
   overscroll-behavior: none;
-  /* Mobile-first constraints */
+  /* iOS tap highlight removed globally */
   -webkit-tap-highlight-color: transparent;
-  min-height: max(884px, 100dvh);
+  /* Ensure body fills at least the viewport on short screens */
+  min-height: max(844px, 100dvh);
 }
 
-/* ── ADHD Mode Active ───────────────────────────────────────────────────── */
-/* When .adhd-mode is present on a parent, map standard text classes to larger tokens */
-.adhd-mode .text-xs {
-  font-size: 1rem;
-  line-height: 1.5rem;
+/* ── ADHD Mode — cognitive-load overrides ───────────────────────────────────
+   Applied via .adhd-mode class on the root <div> in ClientLayout.
+   1.5× font scale on ALL standard text size classes automatically.
+   No individual component changes required.
+────────────────────────────────────────────────────────────────────────────── */
+.adhd-mode .text-\[10px\] { font-size: 0.875rem; line-height: 1.25rem; }
+.adhd-mode .text-xs  { font-size: 1rem;      line-height: 1.5rem;  }
+.adhd-mode .text-sm  { font-size: 1.125rem;  line-height: 1.75rem; }
+.adhd-mode .text-base{ font-size: 1.3125rem; line-height: 1.875rem;}
+.adhd-mode .text-lg  { font-size: 1.5rem;    line-height: 2rem;    }
+.adhd-mode .text-xl  { font-size: 1.6875rem; line-height: 2.25rem; }
+.adhd-mode .text-2xl { font-size: 2rem;      line-height: 2.5rem;  }
+.adhd-mode .text-3xl { font-size: 2.5rem;    line-height: 3rem;    }
+
+/* Thicker borders for better contrast in ADHD mode */
+.adhd-mode .border   { border-width: 2px !important; }
+.adhd-mode .border-b { border-bottom-width: 2px !important; }
+.adhd-mode .border-t { border-top-width: 2px !important; }
+
+/* ── Glass surfaces — extracted from Figma elevation patterns ───────────── */
+
+/* glass-card: the standard task card surface.
+   Figma: dark navy tinted with subtle cyan, 1px border at ~10% primary.    */
+.glass-card {
+  background: rgba(0, 229, 204, 0.04);
+  border: 1px solid rgba(0, 229, 204, 0.10);
 }
 
-.adhd-mode .text-sm {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+/* glass-card-purple: alternative surface for accent/secondary contexts.     */
+.glass-card-purple {
+  background: rgba(157, 78, 221, 0.05);
+  border: 1px solid rgba(157, 78, 221, 0.12);
 }
 
-.adhd-mode .text-base {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+/* glass-panel: heavy frosted-glass overlay for bottom sheets + modals.
+   Figma: near-background color at 85% opacity, heavy backdrop blur.         */
+.glass-panel {
+  background: rgba(15, 15, 26, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.adhd-mode .text-lg {
-  font-size: 1.5rem;
-  line-height: 2rem;
+/* glass-header: sticky header surfaces.                                      */
+.glass-header {
+  background: rgba(15, 15, 26, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 229, 204, 0.10);
 }
 
-.adhd-mode .text-xl {
-  font-size: 1.75rem;
-  line-height: 2.25rem;
+/* ── Glow effects ───────────────────────────────────────────────────────── */
+
+/* active-glow: applied to active primary elements (mic button, active CTA). */
+.active-glow {
+  box-shadow: 0 0 20px rgba(0, 229, 204, 0.40);
 }
 
-.adhd-mode .text-2xl {
-  font-size: 2rem;
-  line-height: 2.5rem;
+/* active-glow-purple: focus timer ring, secondary accent glow.               */
+.active-glow-purple {
+  box-shadow: 0 0 24px rgba(157, 78, 221, 0.50);
 }
 
-/* Increase border thickness for higher contrast */
-.adhd-mode .border {
-  border-width: 2px !important;
-}
-
-.adhd-mode .border-b {
-  border-bottom-width: 2px !important;
-}
-
-/* ── Utility ────────────────────────────────────────────────────────────── */
-
-/* Hide scrollbars but keep scroll behaviour */
-.custom-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
+/* ── Scrollbar utilities ────────────────────────────────────────────────── */
+.custom-scrollbar,
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
+.custom-scrollbar::-webkit-scrollbar,
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
-/* Safe area padding for notched phones */
+/* ── Safe area utilities ────────────────────────────────────────────────── */
 .safe-area-bottom {
   padding-bottom: max(env(safe-area-inset-bottom), 0px);
 }
 
-/* Glass panel mixin */
-.glass-panel {
-  background: rgba(22, 22, 26, 0.7);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+.safe-area-top {
+  padding-top: max(env(safe-area-inset-top), 0px);
 }
 
-.glass-card {
-  background: rgba(127, 13, 242, 0.05);
-  border: 1px solid rgba(127, 13, 242, 0.1);
-}
-
-.active-glow {
-  box-shadow: 0 0 15px rgba(127, 13, 242, 0.4);
-}
-
-/* Line clamp utilities */
-.line-clamp-2 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.line-clamp-3 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
-
-/* ── Page transitions ───────────────────────────────────────────────────── */
+/* ── Page transition ────────────────────────────────────────────────────── */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
 }
-
 .animate-fade-in {
   animation: fadeIn 0.25s ease-out both;
+}
+
+/* ── Mic recording ring animation ───────────────────────────────────────── */
+/* Used by MicButton component when recording is active.                      */
+@keyframes pulseRing {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  80%  { transform: scale(1.7); opacity: 0;    }
+  100% { transform: scale(1.7); opacity: 0;    }
+}
+.animate-pulse-ring {
+  animation: pulseRing 1.5s ease-out infinite;
+}
+.animate-pulse-ring-2 {
+  animation: pulseRing 1.5s ease-out 0.5s infinite;
+}
+
+/* ── Bounce-in ──────────────────────────────────────────────────────────── */
+@keyframes bounceIn {
+  0%   { transform: scale(0.8); opacity: 0; }
+  70%  { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-bounce-in {
+  animation: bounceIn 0.4s ease-out both;
+}
+
+/* ── Slide up ───────────────────────────────────────────────────────────── */
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out both;
+}
+
+/* ── Shimmer skeleton ───────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+/* ── Line clamp ─────────────────────────────────────────────────────────── */
+.line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+.line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+
+/* ── Skeleton / loading states ──────────────────────────────────────────── */
+.skeleton {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
 }
 
 /* ── Input resets ───────────────────────────────────────────────────────── */
@@ -167,8 +228,61 @@ textarea {
   outline: none;
 }
 
-/* ── Focus visible ──────────────────────────────────────────────────────── */
+/* ── Focus visible (keyboard nav) ───────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--primary);
-  outline-offset: 2px;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Tap highlight removal ──────────────────────────────────────────────── */
+button,
+a,
+[role='button'] {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* ── Text selection ─────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(0, 229, 204, 0.25);
+  color: #FFFFFF;
+}
+
+/* ── Gradient text utility ──────────────────────────────────────────────── */
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, #00BFAE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, #C084FC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Divider ────────────────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Progress bar fill (reusable gradient) ──────────────────────────────── */
+.progress-fill {
+  background: linear-gradient(90deg, var(--primary) 0%, #00BFAE 100%);
+}
+
+/* ── Swipe hint — right edge fade on scrollable lists ──────────────────── */
+.swipe-hint::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 2rem;
+  background: linear-gradient(to right, transparent, var(--background-dark));
+  pointer-events: none;
 }

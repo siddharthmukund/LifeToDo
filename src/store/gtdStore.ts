@@ -3,9 +3,11 @@
 // Zustand store — single source of reactive UI state.
 // Every mutation writes to IndexedDB first, then updates React state.
 // This guarantees the DB is always the truth; React is a projection of it.
+// iCCW #4: analytics track() calls added to key mutations (fire-and-forget).
 
 import { create } from 'zustand'
 import { db } from '@/lib/db'
+import { track } from '@/analytics/tracker'
 import type {
   Action,
   ActionFilters,
@@ -144,6 +146,8 @@ export const useGTDStore = create<GTDState>((set, get) => ({
       inboxItems: [item, ...s.inboxItems],
       inboxCount: s.inboxCount + 1,
     }))
+    void track('inbox_item_captured', { source })
+    if (source === 'voice') void track('voice_capture_used', { success: true })
     return item
   },
 
@@ -151,8 +155,10 @@ export const useGTDStore = create<GTDState>((set, get) => ({
     await db.inbox_items.update(id, { status: 'processed' })
     set(s => {
       const next = s.inboxItems.filter(i => i.id !== id)
+      if (next.length === 0) void track('inbox_zero_achieved')
       return { inboxItems: next, inboxCount: next.length }
     })
+    void track('inbox_item_clarified')
   },
 
   deleteInboxItem: async (id) => {
@@ -182,9 +188,18 @@ export const useGTDStore = create<GTDState>((set, get) => ({
   },
 
   completeAction: async (id) => {
+    const action = await db.actions.get(id)
     const now = new Date()
     await db.actions.update(id, { status: 'complete', completedAt: now, updatedAt: now })
     set(s => ({ actions: s.actions.filter(a => a.id !== id) }))
+    void track('next_action_completed', {
+      energy:       action?.energy       ?? 'medium',
+      timeEstimate: action?.timeEstimate ?? 0,
+      hasProject:   Boolean(action?.projectId),
+    })
+    if (action?.timeEstimate && action.timeEstimate <= 5) {
+      void track('two_minute_completed')
+    }
   },
 
   updateAction: async (id, updates) => {
@@ -235,6 +250,9 @@ export const useGTDStore = create<GTDState>((set, get) => ({
     set(s => ({
       settings: s.settings ? { ...s.settings, ...updates } : null,
     }))
+    if (updates.adhdMode !== undefined) {
+      void track('adhd_mode_toggled', { value: updates.adhdMode })
+    }
   },
 
   addContext: async (name, emoji) => {

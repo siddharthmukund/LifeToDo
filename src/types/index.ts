@@ -157,3 +157,43 @@ export interface ActionFilters {
   energy: EnergyLevel | null
   maxTime: TimeEstimate | null
 }
+
+// ── Analytics & Observability Types (iCCW #4) ────────────────────────────────
+
+/** A single GTD behaviour event stored locally in Dexie — no PII */
+export interface AnalyticsEvent {
+  id: string
+  name: string                                          // GTDEventName
+  ts: number                                            // Date.now()
+  props?: Record<string, string | number | boolean>
+}
+
+/** A Web Vitals or custom performance sample */
+export interface PerfLog {
+  id: string
+  metric: string                                        // e.g. 'LCP', 'CLS', 'render_time'
+  value: number
+  rating: 'good' | 'needs-improvement' | 'poor'
+  ts: number
+}
+
+/** A structured application error captured by the error boundary */
+export interface ErrorLog {
+  id: string
+  code: string                                          // e.g. 'CAPTURE_FAILED'
+  message: string
+  stack?: string
+  ts: number
+  context?: Record<string, string>
+}
+
+/** An offline write queued for cloud sync (Pro tier, future) */
+export interface SyncQueueItem {
+  id: string
+  tableName: string
+  operation: 'add' | 'update' | 'delete'
+  recordId: string
+  payload?: string                                      // JSON-serialised record
+  ts: number
+  attempts: number
+}

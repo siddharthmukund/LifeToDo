@@ -11,15 +11,26 @@ import type {
   Context,
   Review,
   Settings,
+  AnalyticsEvent,
+  PerfLog,
+  ErrorLog,
+  SyncQueueItem,
 } from '@/types'
 
 class GTDDatabase extends Dexie {
+  // ── Core GTD tables ───────────────────────────────────────────────────────
   inbox_items!: Table<InboxItem>
   actions!: Table<Action>
   projects!: Table<Project>
   contexts!: Table<Context>
   reviews!: Table<Review>
   settings!: Table<Settings>
+
+  // ── Observability tables (iCCW #4) ────────────────────────────────────────
+  analytics_events!: Table<AnalyticsEvent>
+  perf_logs!: Table<PerfLog>
+  error_log!: Table<ErrorLog>
+  sync_queue!: Table<SyncQueueItem>
 
   constructor() {
     super('GTDLifeDB')
@@ -33,6 +44,21 @@ class GTDDatabase extends Dexie {
       contexts:    '&id, sortOrder',
       reviews:     '&id, completedAt',
       settings:    '&id',
+    })
+
+    // v2 schema — adds observability + sync queue tables (iCCW #4 Enhancement Layer)
+    // Existing table schemas are unchanged; only new tables are declared here.
+    this.version(2).stores({
+      inbox_items:      '&id, capturedAt, status, syncStatus',
+      actions:          '&id, projectId, contextId, status, energy, timeEstimate, scheduledDate, updatedAt, syncStatus',
+      projects:         '&id, status, updatedAt, syncStatus',
+      contexts:         '&id, sortOrder',
+      reviews:          '&id, completedAt',
+      settings:         '&id',
+      analytics_events: '&id, name, ts',
+      perf_logs:        '&id, metric, ts',
+      error_log:        '&id, code, ts',
+      sync_queue:       '&id, tableName, operation, ts',
     })
 
     // Ensure Date objects are properly reconstructed from IndexedDB

@@ -11,10 +11,12 @@ const CACHE_VERSION = 'gtd-life-v1'
 const APP_SHELL     = [
   '/',
   '/inbox',
+  '/waiting',
   '/projects',
   '/someday',
   '/review',
   '/settings',
+  '/insights',
   '/manifest.json',
 ]
 

@@ -1,13 +1,13 @@
 {
-  "name": "GTD Life",
-  "short_name": "GTD Life",
-  "description": "Getting Things Done, actually. Capture → Clarify → Organize → Reflect → Engage.",
+  "name": "Life To Do",
+  "short_name": "Life To Do",
+  "description": "GTD for real life. Capture → Clarify → Organize → Reflect → Engage.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "theme_color": "#111111",
-  "background_color": "#111111",
+  "theme_color": "#0F0F1A",
+  "background_color": "#0F0F1A",
   "categories": ["productivity", "utilities"],
   "lang": "en",
   "icons": [
@@ -27,16 +27,30 @@
   "shortcuts": [
     {
       "name": "Capture",
-      "short_name": "Capture",
-      "description": "Add to Inbox",
+      "short_name": "Inbox",
+      "description": "Add something to your inbox",
       "url": "/inbox",
       "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Today",
       "short_name": "Today",
-      "description": "See next actions",
+      "description": "See your next actions",
       "url": "/",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Waiting For",
+      "short_name": "Waiting",
+      "description": "Check delegated follow-ups",
+      "url": "/waiting",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Weekly Review",
+      "short_name": "Review",
+      "description": "Run your weekly review",
+      "url": "/review",
       "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     }
   ]

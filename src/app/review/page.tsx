@@ -1,14 +1,16 @@
 'use client'
 // Weekly Review — guided wizard with stale-item nudges.
-// StaleNudge section surfaces overdue items before the review checklist.
+// Updated in iCCW #3: added StreakCalendar to completion screen.
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { RefreshCw, Flame, ChevronRight, Check, Loader2, AlertTriangle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { ProgressBar } from '@/components/ui/ProgressBar'
+import { StreakCalendar } from '@/components/ui/StreakCalendar'
 import { useWeeklyReview } from '@/hooks/useWeeklyReview'
 import { useStaleItems } from '@/hooks/useStaleItems'
+import { db } from '@/lib/db'
 import type { ReviewSection } from '@/types'
 import Link from 'next/link'
 
@@ -20,6 +22,7 @@ export default function ReviewPage() {
   const [intentions, setIntentions] = useState(['', '', ''])
   const [finalStreak, setFinalStreak] = useState<number | null>(null)
   const [finishing, setFinishing] = useState(false)
+  const [reviewDates, setReviewDates] = useState<string[]>([])
 
   async function handleFinish() {
     setFinishing(true)
@@ -27,6 +30,17 @@ export default function ReviewPage() {
     setFinalStreak(streak)
     setFinishing(false)
   }
+
+  // Load past review dates for the StreakCalendar when we reach the completion screen
+  useEffect(() => {
+    if (finalStreak !== null) {
+      db.reviews.orderBy('completedAt').toArray().then(reviews => {
+        setReviewDates(
+          reviews.map(r => new Date(r.completedAt).toISOString().split('T')[0])
+        )
+      })
+    }
+  }, [finalStreak])
 
   // ── Loading ──────────────────────────────────────────────────────────────
   if (isLoading) {
@@ -43,28 +57,43 @@ export default function ReviewPage() {
   // ── Completion screen ────────────────────────────────────────────────────
   if (finalStreak !== null) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen px-6 text-center animate-fade-in">
+      <div className="flex flex-col items-center px-6 pt-safe pb-10 text-center animate-fade-in overflow-y-auto custom-scrollbar min-h-screen justify-center">
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
-          className="text-7xl mb-6"
+          className="text-7xl mb-5"
         >
           🔥
         </motion.div>
-        <h1 className="text-3xl font-display font-bold text-white mb-3">Week {finalStreak} streak!</h1>
-        <p className="text-slate-400 font-medium mb-10">You have a trusted system. Keep it alive.</p>
+        <h1 className="text-3xl font-display font-bold text-white mb-2">Week {finalStreak} streak!</h1>
+        <p className="text-slate-400 font-medium mb-8">You have a trusted system. Keep it alive.</p>
+
+        {/* Streak calendar */}
+        {reviewDates.length > 0 && (
+          <div className="w-full max-w-sm mb-8">
+            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 text-left">
+              Your review history
+            </p>
+            <StreakCalendar completedDates={reviewDates} weeks={6} />
+          </div>
+        )}
+
+        {/* Intentions recap */}
         {intentions.filter(Boolean).length > 0 && (
-          <div className="w-full max-w-sm glass-card rounded-2xl p-6 mb-10 text-left border-l-4 border-l-primary">
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">This week&rsquo;s intentions</p>
+          <div className="w-full max-w-sm glass-card rounded-2xl p-6 mb-8 text-left border-l-4 border-l-primary">
+            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">
+              This week&rsquo;s intentions
+            </p>
             {intentions.filter(Boolean).map((intent, i) => (
-              <div key={i} className="flex items-start gap-3 mb-3">
+              <div key={i} className="flex items-start gap-3 mb-3 last:mb-0">
                 <span className="text-primary font-bold text-sm mt-0.5 flex-shrink-0">{i + 1}.</span>
                 <p className="text-base font-medium text-white">{intent}</p>
               </div>
             ))}
           </div>
         )}
+
         <Link href="/" className="w-full max-w-sm">
           <Button fullWidth size="lg">Go to Today →</Button>
         </Link>
@@ -75,9 +104,9 @@ export default function ReviewPage() {
   if (!data) return null
 
   const grouped = {
-    get_clear: data.sections.filter(s => s.phase === 'get_clear'),
+    get_clear:   data.sections.filter(s => s.phase === 'get_clear'),
     get_current: data.sections.filter(s => s.phase === 'get_current'),
-    get_creative: data.sections.filter(s => s.phase === 'get_creative'),
+    get_creative:data.sections.filter(s => s.phase === 'get_creative'),
   }
 
   const completedCount = data.sections.filter(s => completedIds.has(s.id)).length
@@ -144,9 +173,14 @@ export default function ReviewPage() {
                 </div>
               )}
               {stale.waitingFor > 0 && (
-                <div className="text-base font-medium py-1 text-slate-300">
-                  👤 {stale.waitingFor} waiting-for item{stale.waitingFor !== 1 ? 's' : ''} need a follow-up
-                </div>
+                <Link href="/waiting" className="block">
+                  <div className="flex items-center justify-between text-base font-medium py-1">
+                    <span className="text-slate-300">
+                      👤 {stale.waitingFor} waiting-for item{stale.waitingFor !== 1 ? 's' : ''} need a follow-up
+                    </span>
+                    <span className="text-primary text-xs font-bold uppercase tracking-wider ml-3 flex-shrink-0">Review →</span>
+                  </div>
+                </Link>
               )}
             </div>
           </motion.div>
@@ -179,7 +213,9 @@ export default function ReviewPage() {
             className="space-y-5 pt-4 border-t border-primary/10"
           >
             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2">Set Intentions</p>
-            <p className="text-base font-medium text-white px-2 mb-2">What are the 3 most important outcomes for next week?</p>
+            <p className="text-base font-medium text-white px-2 mb-2">
+              What are the 3 most important outcomes for next week?
+            </p>
             {intentions.map((val, i) => (
               <input
                 key={i}
@@ -191,8 +227,8 @@ export default function ReviewPage() {
                 }}
                 placeholder={`Intention ${i + 1}…`}
                 className="w-full bg-card-dark border border-white/10 rounded-2xl px-5 py-4
-                           text-base font-medium text-white placeholder-slate-500 focus:outline-none
-                           focus:border-primary/50 shadow-inner"
+                           text-base font-medium text-white placeholder-slate-500
+                           focus:outline-none focus:border-primary/50 shadow-inner"
               />
             ))}
             <div className="pt-4">
@@ -228,7 +264,9 @@ function SectionCard({
         <div
           onClick={e => { e.stopPropagation(); onComplete() }}
           className={`flex-shrink-0 w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all bg-card-dark active:scale-95
-            ${completed ? 'bg-primary/20 border-primary text-primary shadow-glow-accent' : 'border-white/20 hover:border-primary/50'}`}
+            ${completed
+              ? 'bg-primary/20 border-primary text-primary shadow-glow-accent'
+              : 'border-white/20 hover:border-primary/50'}`}
         >
           {completed && <Check size={16} strokeWidth={3} />}
         </div>
@@ -238,7 +276,9 @@ function SectionCard({
             {section.title}
           </p>
           {section.count > 0 && (
-            <p className="text-[10px] uppercase tracking-widest font-bold text-primary mt-1">{section.count} items</p>
+            <p className="text-[10px] uppercase tracking-widest font-bold text-primary mt-1">
+              {section.count} items
+            </p>
           )}
         </div>
 
@@ -261,17 +301,25 @@ function SectionCard({
               {section.items && section.items.length > 0 && (
                 <div className="space-y-2">
                   {section.items.slice(0, 5).map((item, i) => (
-                    <div key={i} className="text-sm font-medium text-slate-300 bg-black/20 rounded-xl px-4 py-3 truncate border border-white/5">
+                    <div
+                      key={i}
+                      className="text-sm font-medium text-slate-300 bg-black/20 rounded-xl px-4 py-3 truncate border border-white/5"
+                    >
                       {'text' in item ? item.text : 'name' in item ? (item as { name: string }).name : ''}
                     </div>
                   ))}
                   {section.items.length > 5 && (
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 pl-4 mt-2">+{section.items.length - 5} more</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 pl-4 mt-2">
+                      +{section.items.length - 5} more
+                    </p>
                   )}
                 </div>
               )}
               {!completed && (
-                <button onClick={onComplete} className="mt-5 text-[10px] font-bold uppercase tracking-widest text-primary hover:underline hover:text-primary/80 transition-colors">
+                <button
+                  onClick={onComplete}
+                  className="mt-5 text-[10px] font-bold uppercase tracking-widest text-primary hover:underline hover:text-primary/80 transition-colors"
+                >
                   Mark as reviewed ✓
                 </button>
               )}
