@@ -1,0 +1,13 @@
+{
+  "title": "[Today xx]",
+  "dailyGoals": "[Daily Goals xxxxx]",
+  "sessions": {
+    "title": "[Recent Sessions xxxxxx]",
+    "start": "[Start Session xxxxxx]"
+  },
+  "radar": {
+    "title": "[Radar xx]",
+    "insight": "[Your GTD Health is at {score}%]"
+  },
+  "cta": "[Engage xxx]"
+}

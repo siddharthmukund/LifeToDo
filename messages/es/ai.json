@@ -1,0 +1,15 @@
+{
+    "coach": {
+        "consent": {
+            "title": "Enable AI Coach",
+            "description": "The AI Coach runs locally where possible, and securely processes context via the cloud for deep reasoning.",
+            "accept": "Enable AI features"
+        },
+        "greeting": "Hi, I'm your AI GTD Coach. How can I help clarify your thoughts today?",
+        "suggestions": {
+            "label": "AI suggests:"
+        },
+        "processing": "The Coach is thinking...",
+        "error": "The Coach needs a moment to rest. Try again."
+    }
+}

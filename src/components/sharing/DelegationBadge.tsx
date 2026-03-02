@@ -19,7 +19,7 @@ export function DelegationBadge({ action, compact = false }: DelegationBadgeProp
 
   if (compact) {
     return (
-      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-slate-400 bg-white/5 px-2 py-0.5 rounded-full">
+      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-content-secondary bg-overlay-hover px-2 py-0.5 rounded-full">
         <UserCheck size={9} />
         {person}
       </span>
@@ -30,14 +30,14 @@ export function DelegationBadge({ action, compact = false }: DelegationBadgeProp
     <div className={[
       'flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium',
       isOverdue
-        ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
-        : 'bg-white/5 text-slate-400 border border-white/8',
+        ? 'bg-status-warning/10 text-status-warning border border-status-warn'
+        : 'bg-overlay-hover text-content-secondary border border-border-subtle',
     ].join(' ')}>
       <UserCheck size={12} />
       <span>
         Waiting on <strong>{person}</strong>
         {followUpDate && (
-          <span className={isOverdue ? ' text-yellow-400' : ' text-slate-500'}>
+          <span className={isOverdue ? ' text-status-warning' : ' text-content-muted'}>
             {' '}· {isOverdue ? 'overdue' : `by ${new Date(followUpDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`}
           </span>
         )}

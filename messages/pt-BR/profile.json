@@ -1,0 +1,12 @@
+{
+    "title": "Profile",
+    "data": "Your Data",
+    "exportData": "Export My Data",
+    "deleteAccount": "Delete Account",
+    "achievements": "Badges & Achievements",
+    "stats": {
+        "tasksCompleted": "Tasks Completed",
+        "currentStreak": "Current Streak",
+        "level": "Level"
+    }
+}

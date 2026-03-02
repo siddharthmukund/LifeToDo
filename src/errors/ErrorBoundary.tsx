@@ -65,18 +65,18 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
 
     return (
       <div className="flex flex-col items-center justify-center gap-4 p-8 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
-          <RefreshCw size={20} className="text-red-400" />
+        <div className="w-14 h-14 rounded-2xl bg-status-error/10 border border-status-danger flex items-center justify-center">
+          <RefreshCw size={20} className="text-status-error" />
         </div>
         <div>
-          <p className="font-display font-bold text-white mb-1">Something went wrong</p>
-          <p className="text-sm text-slate-400">
+          <p className="font-display font-bold text-content-primary mb-1">Something went wrong</p>
+          <p className="text-sm text-content-secondary">
             {this.state.errorMsg ?? 'An unexpected error occurred. Your data is safe.'}
           </p>
         </div>
         <button
           onClick={this.handleReset}
-          className="text-xs font-bold text-primary uppercase tracking-widest hover:text-primary/80 transition-colors"
+          className="text-xs font-bold text-primary-ink uppercase tracking-widest hover:text-primary-ink/80 transition-colors"
         >
           Try again →
         </button>

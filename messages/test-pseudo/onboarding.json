@@ -1,0 +1,14 @@
+{
+  "welcome": {
+    "title": "[Welcome to Life To Do xxxxxxxxx]",
+    "subtitle": "[Get things out of your head and into a trusted system. xxxxxxxxxxxxxxxxxxxxxx]"
+  },
+  "steps": {
+    "capture": "[Capture everything. If it's on your mind, put it in the Inbox. xxxxxxxxxxxxxxxxxxxxxxxxx]",
+    "clarify": "[Process your inbox. Decide what the very next action is. xxxxxxxxxxxxxxxxxxxxxxx]",
+    "organize": "[Put it where it belongs. Projects, Someday/Maybe, or Trash. xxxxxxxxxxxxxxxxxxxxxxxx]",
+    "review": "[Review weekly. Keep your system clean and trusted. xxxxxxxxxxxxxxxxxxxx]",
+    "engage": "[Do. Pick the best action based on your context and energy. xxxxxxxxxxxxxxxxxxxxxxxx]"
+  },
+  "finish": "[Start My System xxxxxx]"
+}

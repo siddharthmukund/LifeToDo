@@ -58,7 +58,7 @@ export function StreakCalendar({ completedDates, weeks = 6, className }: StreakC
         {DAYS.map((d, i) => (
           <span
             key={i}
-            className="text-center text-[9px] font-bold uppercase tracking-widest text-slate-600"
+            className="text-center text-[9px] font-bold uppercase tracking-widest text-content-muted"
           >
             {d}
           </span>
@@ -77,8 +77,8 @@ export function StreakCalendar({ completedDates, weeks = 6, className }: StreakC
                   'aspect-square rounded-full transition-colors',
                   state === 'done'   && 'bg-primary shadow-glow-primary',
                   state === 'today'  && 'bg-transparent border-2 border-primary',
-                  state === 'empty'  && 'bg-white/6',
-                  state === 'future' && 'bg-white/3',
+                  state === 'empty'  && 'bg-overlay-hover',
+                  state === 'future' && 'bg-overlay-hover',
                 )}
               />
             ))}

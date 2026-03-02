@@ -1,0 +1,22 @@
+{
+  "inboxNudge": {
+    "title": "[Inbox needs attention xxxxxxxxx]",
+    "body": "[You have {count, plural, one {# item} other {# items}} waiting. A 5-minute sweep would clear the backlog.]"
+  },
+  "reviewReminder": {
+    "title": "[Time for your weekly review! xxxxxxxxxxxx]",
+    "body": "[Your {count}-week streak is on the line. 🔥]"
+  },
+  "streakWarning": {
+    "title": "[Quick heads-up xxxxxx]",
+    "body": "[Do one small thing to keep your {count, plural, one {#-day} other {#-day}} streak alive.]"
+  },
+  "streakCelebration": {
+    "title": "[🎉 {count}-day streak!]",
+    "body": "[You've built a real GTD habit. xxxxxxxxxxxx]"
+  },
+  "projectDeadline": {
+    "title": "[Project due tomorrow xxxxxxxx]",
+    "body": "[Your \"{project}\" project has {count, plural, one {# action} other {# actions}} remaining.]"
+  }
+}

@@ -50,7 +50,7 @@ export function PaginatedList<T>({
     <div className={cn('flex flex-col', className)}>
       {/* ── ADHD progress label ────────────────────────────────────────────── */}
       {isADHDMode && progressLabel && (
-        <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-primary">
+        <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-primary-ink">
           {progressLabel}
         </p>
       )}
@@ -79,15 +79,15 @@ export function PaginatedList<T>({
             onClick={prevPage}
             disabled={!hasPrev}
             aria-label="Previous page"
-            className="p-2.5 rounded-full bg-card-dark border border-white/8 text-slate-400
-                       disabled:opacity-30 hover:border-primary/30 hover:text-primary transition-colors"
+            className="p-2.5 rounded-full bg-surface-card border border-border-subtle text-content-secondary
+                       disabled:opacity-30 hover:border-primary/30 hover:text-primary-ink transition-colors"
           >
             <ChevronLeft size={18} />
           </button>
 
-          <span className="text-sm font-bold text-slate-400 tabular-nums">
-            <span className="text-primary">{page + 1}</span>
-            <span className="text-slate-600 mx-1">/</span>
+          <span className="text-sm font-bold text-content-secondary tabular-nums">
+            <span className="text-primary-ink">{page + 1}</span>
+            <span className="text-content-muted mx-1">/</span>
             {totalPages}
           </span>
 
@@ -95,8 +95,8 @@ export function PaginatedList<T>({
             onClick={nextPage}
             disabled={!hasNext}
             aria-label="Next page"
-            className="p-2.5 rounded-full bg-card-dark border border-white/8 text-slate-400
-                       disabled:opacity-30 hover:border-primary/30 hover:text-primary transition-colors"
+            className="p-2.5 rounded-full bg-surface-card border border-border-subtle text-content-secondary
+                       disabled:opacity-30 hover:border-primary/30 hover:text-primary-ink transition-colors"
           >
             <ChevronRight size={18} />
           </button>

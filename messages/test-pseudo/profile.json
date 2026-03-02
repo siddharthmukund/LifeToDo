@@ -1,0 +1,12 @@
+{
+  "title": "[Profile xxx]",
+  "data": "[Your Data xxxx]",
+  "exportData": "[Export My Data xxxxxx]",
+  "deleteAccount": "[Delete Account xxxxxx]",
+  "achievements": "[Badges & Achievements xxxxxxxxx]",
+  "stats": {
+    "tasksCompleted": "[Tasks Completed xxxxxx]",
+    "currentStreak": "[Current Streak xxxxxx]",
+    "level": "[Level xx]"
+  }
+}

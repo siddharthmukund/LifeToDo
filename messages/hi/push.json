@@ -1,0 +1,22 @@
+{
+    "inboxNudge": {
+        "title": "इनबॉक्स पर ध्यान दें",
+        "body": "आपके पास {count, plural, one {# आइटम} other {# आइटम}} इंतज़ार कर रहे हैं। 5-मिनट का sweep इसे क्लियर कर देगा।"
+    },
+    "reviewReminder": {
+        "title": "साप्ताहिक रिव्यू का समय आ गया है!",
+        "body": "आपकी {count}-हफ़्ते की स्ट्रीक दांव पर है। 🔥"
+    },
+    "streakWarning": {
+        "title": "त्वरित सूचना (Quick heads-up)",
+        "body": "अपनी {count, plural, one {#-दिन} other {#-दिन}} की स्ट्रीक को ज़िंदा रखने के लिए एक छोटा सा काम करें।"
+    },
+    "streakCelebration": {
+        "title": "🎉 {count}-दिन की स्ट्रीक!",
+        "body": "आपने एक शानदार GTD आदत बना ली है।"
+    },
+    "projectDeadline": {
+        "title": "प्रोजेक्ट कल due है",
+        "body": "आपके \"{project}\" प्रोजेक्ट में {count, plural, one {# action} other {# actions}} बचे हैं।"
+    }
+}

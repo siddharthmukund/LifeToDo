@@ -88,7 +88,7 @@ export function Card({
       {onSwipeRight && (
         <div className="absolute inset-0 flex items-center justify-start pl-5 bg-primary rounded-2xl">
           {rightAction ?? (
-            <span className="text-background-dark text-sm font-bold flex items-center gap-2">
+            <span className="text-content-inverse text-sm font-bold flex items-center gap-2">
               ✓ Done!
             </span>
           )}
@@ -99,7 +99,7 @@ export function Card({
       {onSwipeLeft && (
         <div className="absolute inset-0 flex items-center justify-end pr-5 bg-danger rounded-2xl">
           {leftAction ?? (
-            <span className="text-white text-sm font-bold flex items-center gap-2">
+            <span className="text-content-primary text-sm font-bold flex items-center gap-2">
               🗑 Delete
             </span>
           )}

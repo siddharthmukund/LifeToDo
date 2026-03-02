@@ -15,7 +15,19 @@ import type {
   PerfLog,
   ErrorLog,
   SyncQueueItem,
+  UserProfile,
+  SubscriptionRecord,
+  LifetimeGTDStats,
+  DeletionRequest,
+  ConsentRecord,
+  BillingEvent,
 } from '@/types'
+import type {
+  XPEvent,
+  UnlockedAchievement,
+  ActiveChallenge,
+  UserGamificationState
+} from '@/types/gamification'
 
 class GTDDatabase extends Dexie {
   // ── Core GTD tables ───────────────────────────────────────────────────────
@@ -32,6 +44,22 @@ class GTDDatabase extends Dexie {
   error_log!: Table<ErrorLog>
   sync_queue!: Table<SyncQueueItem>
 
+  // ── Identity & account tables (iCCW #6) ───────────────────────────────────
+  profile!: Table<UserProfile>
+  subscription!: Table<SubscriptionRecord>
+  lifetime_stats!: Table<LifetimeGTDStats>
+  deletion_requests!: Table<DeletionRequest>
+
+  // ── Compliance tables (iCCW #6 D6) ────────────────────────────────────────
+  consent_log!: Table<ConsentRecord>
+  billing_events!: Table<BillingEvent>
+
+  // ── Gamification tables (iCCW #12) ────────────────────────────────────────
+  xp_events!: Table<XPEvent>
+  achievements_unlocked!: Table<UnlockedAchievement>
+  active_challenges!: Table<ActiveChallenge>
+  gamification_state!: Table<UserGamificationState>
+
   constructor() {
     super('GTDLifeDB')
 
@@ -39,26 +67,93 @@ class GTDDatabase extends Dexie {
     // '&' = unique primary key, no prefix = regular index
     this.version(1).stores({
       inbox_items: '&id, capturedAt, status, syncStatus',
-      actions:     '&id, projectId, contextId, status, energy, timeEstimate, scheduledDate, updatedAt, syncStatus',
-      projects:    '&id, status, updatedAt, syncStatus',
-      contexts:    '&id, sortOrder',
-      reviews:     '&id, completedAt',
-      settings:    '&id',
+      actions: '&id, projectId, contextId, status, energy, timeEstimate, scheduledDate, updatedAt, syncStatus',
+      projects: '&id, status, updatedAt, syncStatus',
+      contexts: '&id, sortOrder',
+      reviews: '&id, completedAt',
+      settings: '&id',
     })
 
     // v2 schema — adds observability + sync queue tables (iCCW #4 Enhancement Layer)
     // Existing table schemas are unchanged; only new tables are declared here.
     this.version(2).stores({
-      inbox_items:      '&id, capturedAt, status, syncStatus',
-      actions:          '&id, projectId, contextId, status, energy, timeEstimate, scheduledDate, updatedAt, syncStatus',
-      projects:         '&id, status, updatedAt, syncStatus',
-      contexts:         '&id, sortOrder',
-      reviews:          '&id, completedAt',
-      settings:         '&id',
+      inbox_items: '&id, capturedAt, status, syncStatus',
+      actions: '&id, projectId, contextId, status, energy, timeEstimate, scheduledDate, updatedAt, syncStatus',
+      projects: '&id, status, updatedAt, syncStatus',
+      contexts: '&id, sortOrder',
+      reviews: '&id, completedAt',
+      settings: '&id',
       analytics_events: '&id, name, ts',
-      perf_logs:        '&id, metric, ts',
-      error_log:        '&id, code, ts',
-      sync_queue:       '&id, tableName, operation, ts',
+      perf_logs: '&id, metric, ts',
+      error_log: '&id, code, ts',
+      sync_queue: '&id, tableName, operation, ts',
+    })
+
+    // v3 schema — adds identity & account tables (iCCW #6 User Profile)
+    // All existing tables carried forward unchanged.
+    this.version(3).stores({
+      inbox_items: '&id, capturedAt, status, syncStatus',
+      actions: '&id, projectId, contextId, status, energy, timeEstimate, scheduledDate, updatedAt, syncStatus',
+      projects: '&id, status, updatedAt, syncStatus',
+      contexts: '&id, sortOrder',
+      reviews: '&id, completedAt',
+      settings: '&id',
+      analytics_events: '&id, name, ts',
+      perf_logs: '&id, metric, ts',
+      error_log: '&id, code, ts',
+      sync_queue: '&id, tableName, operation, ts',
+      // New in v3:
+      profile: '&uid',
+      subscription: '&uid',
+      lifetime_stats: '&uid',
+      deletion_requests: '++id, uid, requestedAt, status',
+    })
+
+    // v4 schema — adds consent_log + billing_events (iCCW #6 D6 compliance tables)
+    // All existing tables carried forward unchanged.
+    this.version(4).stores({
+      inbox_items: '&id, capturedAt, status, syncStatus',
+      actions: '&id, projectId, contextId, status, energy, timeEstimate, scheduledDate, updatedAt, syncStatus',
+      projects: '&id, status, updatedAt, syncStatus',
+      contexts: '&id, sortOrder',
+      reviews: '&id, completedAt',
+      settings: '&id',
+      analytics_events: '&id, name, ts',
+      perf_logs: '&id, metric, ts',
+      error_log: '&id, code, ts',
+      sync_queue: '&id, tableName, operation, ts',
+      profile: '&uid',
+      subscription: '&uid',
+      lifetime_stats: '&uid',
+      deletion_requests: '++id, uid, requestedAt, status',
+      // New in v4:
+      consent_log: '&id, type, timestamp',
+      billing_events: '&id, subscriptionId, type, timestamp',
+    })
+
+    // v5 schema — adds gamification tables (iCCW #12)
+    this.version(5).stores({
+      inbox_items: '&id, capturedAt, status, syncStatus',
+      actions: '&id, projectId, contextId, status, energy, timeEstimate, scheduledDate, updatedAt, syncStatus',
+      projects: '&id, status, updatedAt, syncStatus',
+      contexts: '&id, sortOrder',
+      reviews: '&id, completedAt',
+      settings: '&id',
+      analytics_events: '&id, name, ts',
+      perf_logs: '&id, metric, ts',
+      error_log: '&id, code, ts',
+      sync_queue: '&id, tableName, operation, ts',
+      profile: '&uid',
+      subscription: '&uid',
+      lifetime_stats: '&uid',
+      deletion_requests: '++id, uid, requestedAt, status',
+      consent_log: '&id, type, timestamp',
+      billing_events: '&id, subscriptionId, type, timestamp',
+      // New in v5:
+      xp_events: '&id, userId, timestamp, action',
+      achievements_unlocked: '&achievementId',
+      active_challenges: '&challengeId',
+      gamification_state: '&userId', // assuming primary key is userId or we can just use 1 row
     })
 
     // Ensure Date objects are properly reconstructed from IndexedDB
@@ -67,8 +162,8 @@ class GTDDatabase extends Dexie {
       return obj
     })
     this.actions.hook('reading', obj => {
-      if (obj.createdAt)  obj.createdAt  = new Date(obj.createdAt)
-      if (obj.updatedAt)  obj.updatedAt  = new Date(obj.updatedAt)
+      if (obj.createdAt) obj.createdAt = new Date(obj.createdAt)
+      if (obj.updatedAt) obj.updatedAt = new Date(obj.updatedAt)
       if (obj.completedAt) obj.completedAt = new Date(obj.completedAt)
       if (obj.scheduledDate) obj.scheduledDate = new Date(obj.scheduledDate)
       if (obj.waitingFor?.followUpDate) {

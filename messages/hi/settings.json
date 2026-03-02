@@ -1,0 +1,17 @@
+{
+    "title": "सेटिंग्स",
+    "preferences": "प्राथमिकताएं",
+    "account": "अकाउंट",
+    "appearance": "दिखावट",
+    "language": {
+        "label": "भाषा",
+        "description": "एप्लिकेशन की भाषा बदलें।"
+    },
+    "theme": {
+        "light": "लाइट मोड",
+        "dark": "डार्क मोड",
+        "system": "सिस्टम डिफ़ॉल्ट"
+    },
+    "adhdMode": "ADHD Assistance मोड",
+    "notifications": "पुश नोटिफिकेशन्स"
+}

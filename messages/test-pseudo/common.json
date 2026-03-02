@@ -1,0 +1,35 @@
+{
+  "actions": {
+    "save": "[Save xx]",
+    "cancel": "[Cancel xxx]",
+    "delete": "[Delete xxx]",
+    "edit": "[Edit xx]",
+    "done": "[Done xx]",
+    "next": "[Next xx]",
+    "back": "[Back xx]",
+    "skip": "[Skip xx]",
+    "confirm": "[Confirm xxx]",
+    "retry": "[Retry xx]",
+    "close": "[Close xx]",
+    "search": "[Search xxx]",
+    "share": "[Share xx]",
+    "copy": "[Copy xx]"
+  },
+  "status": {
+    "loading": "[Loading… xxxx]",
+    "saving": "[Saving… xxx]",
+    "offline": "[Offline xxx]",
+    "online": "[Online xxx]",
+    "syncing": "[Syncing… xxxx]"
+  },
+  "time": {
+    "today": "[Today xx]",
+    "tomorrow": "[Tomorrow xxxx]",
+    "yesterday": "[Yesterday xxxx]",
+    "thisWeek": "[This week xxxx]",
+    "daysAgo": "[{count, plural, one {# day ago} other {# days ago}}]",
+    "hoursAgo": "[{count, plural, one {# hour ago} other {# hours ago}}]",
+    "minutesAgo": "[{count, plural, one {# minute ago} other {# minutes ago}}]",
+    "justNow": "[Just now xxxx]"
+  }
+}

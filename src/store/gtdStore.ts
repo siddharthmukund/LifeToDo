@@ -40,7 +40,7 @@ interface GTDState {
   loadSettings: () => Promise<void>
 
   // ── Inbox mutations ───────────────────────────────────────────────────────
-  addInboxItem: (text: string, source: 'voice' | 'text' | 'share') => Promise<InboxItem>
+  addInboxItem: (text: string, source: 'voice' | 'text', nlpMetadata?: { dueDate: Date | null, projects: string[], contexts: string[] }) => Promise<InboxItem>
   markInboxProcessed: (id: string) => Promise<void>
   deleteInboxItem: (id: string) => Promise<void>
 
@@ -132,7 +132,7 @@ export const useGTDStore = create<GTDState>((set, get) => ({
 
   // ── Inbox mutations ────────────────────────────────────────────────────────
 
-  addInboxItem: async (text, source) => {
+  addInboxItem: async (text, source, nlpMetadata) => {
     const item: InboxItem = {
       id: crypto.randomUUID(),
       text: text.trim(),
@@ -140,6 +140,7 @@ export const useGTDStore = create<GTDState>((set, get) => ({
       source,
       status: 'raw',
       syncStatus: 'local',
+      nlpMetadata,
     }
     await db.inbox_items.add(item)
     set(s => ({
@@ -193,9 +194,9 @@ export const useGTDStore = create<GTDState>((set, get) => ({
     await db.actions.update(id, { status: 'complete', completedAt: now, updatedAt: now })
     set(s => ({ actions: s.actions.filter(a => a.id !== id) }))
     void track('next_action_completed', {
-      energy:       action?.energy       ?? 'medium',
+      energy: action?.energy ?? 'medium',
       timeEstimate: action?.timeEstimate ?? 0,
-      hasProject:   Boolean(action?.projectId),
+      hasProject: Boolean(action?.projectId),
     })
     if (action?.timeEstimate && action.timeEstimate <= 5) {
       void track('two_minute_completed')

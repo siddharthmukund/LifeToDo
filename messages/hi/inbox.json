@@ -1,0 +1,35 @@
+{
+    "title": "इनबॉक्स",
+    "badge": "{count, plural, =0 {खाली} one {# आइटम} other {# आइटम}}",
+    "capture": {
+        "placeholder": "आपके दिमाग में क्या चल रहा है?",
+        "voiceButton": {
+            "start": "Voice capture शुरू करें",
+            "stop": "रिकॉर्डिंग रोकें",
+            "unavailable": "Voice capture उपलब्ध नहीं है — टेक्स्ट का इस्तेमाल करें",
+            "processing": "आवाज़ प्रोसेस हो रही है"
+        },
+        "voiceStatus": {
+            "listening": "सुन रहे हैं…",
+            "listeningTranscript": "सुन रहे हैं — \"{transcript}\"",
+            "processing": "ऑडियो प्रोसेस हो रहा है"
+        },
+        "brainDump": {
+            "title": "Brain Dump",
+            "instruction": "अपने दिमाग में जो भी है, यहां paste करें — हम sort कर देंगे।",
+            "result": "Brain dump से {count, plural, one {# task extract हुआ} other {# tasks extract हुए}}"
+        }
+    },
+    "smartCapture": {
+        "groupLabel": "AI सुझाव",
+        "confirmed": "Confirm किया: {field}",
+        "suggested": "सुझाव: {field}"
+    },
+    "emptyState": {
+        "title": "इनबॉक्स ज़ीरो!",
+        "description": "प्रोसेस करने के लिए कुछ नहीं है। शांति का आनंद लें।"
+    },
+    "coachInsight": {
+        "label": "AI coaching insight"
+    }
+}

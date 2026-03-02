@@ -23,7 +23,7 @@ export function EnergyToggle({ value, onChange, className }: EnergyToggleProps) 
       role="group"
       aria-label="Filter by energy level"
     >
-      <span className="text-xs text-gtd-muted flex-shrink-0">Energy:</span>
+      <span className="text-xs text-content-secondary flex-shrink-0">Energy:</span>
       <div className="flex gap-1.5">
         {LEVELS.map(level => {
           const cfg     = ENERGY_CONFIG[level]
@@ -38,8 +38,8 @@ export function EnergyToggle({ value, onChange, className }: EnergyToggleProps) 
                 'relative flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium',
                 'transition-colors duration-200 select-none',
                 active
-                  ? 'text-white shadow-md'
-                  : 'bg-white/5 text-gtd-muted hover:bg-white/10',
+                  ? 'text-content-primary shadow-md'
+                  : 'bg-overlay-hover text-content-secondary hover:bg-overlay-hover',
               )}
               style={active ? { backgroundColor: cfg.color } : undefined}
               aria-pressed={active}
@@ -61,7 +61,7 @@ export function EnergyToggle({ value, onChange, className }: EnergyToggleProps) 
       {value && (
         <button
           onClick={() => onChange(null)}
-          className="text-xs text-gtd-muted hover:text-gtd-danger transition-colors"
+          className="text-xs text-content-secondary hover:text-status-error transition-colors"
           aria-label="Clear energy filter"
         >
           ✕

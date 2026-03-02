@@ -20,14 +20,14 @@ export function useInbox() {
   }, [loadInbox])
 
   return {
-    items:            inboxItems,
-    count:            inboxCount,
-    addItem:          addInboxItem,
-    processItem:      markInboxProcessed,
-    deleteItem:       deleteInboxItem,
+    items: inboxItems,
+    count: inboxCount,
+    addItem: addInboxItem,
+    processItem: markInboxProcessed,
+    deleteItem: deleteInboxItem,
     clarifyingItemId,
-    startClarify:     setClarifyingItem,
-    stopClarify:      () => setClarifyingItem(null),
-    refresh:          loadInbox,
+    startClarify: setClarifyingItem,
+    stopClarify: () => setClarifyingItem(null),
+    refresh: loadInbox,
   }
 }

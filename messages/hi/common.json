@@ -1,0 +1,35 @@
+{
+    "actions": {
+        "save": "सेव करें",
+        "cancel": "रद्द करें",
+        "delete": "डिलीट करें",
+        "edit": "एडिट करें",
+        "done": "हो गया",
+        "next": "आगे",
+        "back": "पीछे",
+        "skip": "छोड़ें",
+        "confirm": "कन्फर्म करें",
+        "retry": "दोबारा कोशिश करें",
+        "close": "बंद करें",
+        "search": "खोजें",
+        "share": "शेयर करें",
+        "copy": "कॉपी करें"
+    },
+    "status": {
+        "loading": "लोड हो रहा है…",
+        "saving": "सेव हो रहा है…",
+        "offline": "ऑफ़लाइन",
+        "online": "ऑनलाइन",
+        "syncing": "सिंक हो रहा है…"
+    },
+    "time": {
+        "today": "आज",
+        "tomorrow": "कल",
+        "yesterday": "कल",
+        "thisWeek": "इस हफ्ते",
+        "daysAgo": "{count, plural, one {# दिन पहले} other {# दिन पहले}}",
+        "hoursAgo": "{count, plural, one {# घंटे पहले} other {# घंटे पहले}}",
+        "minutesAgo": "{count, plural, one {# मिनट पहले} other {# मिनट पहले}}",
+        "justNow": "अभी-अभी"
+    }
+}

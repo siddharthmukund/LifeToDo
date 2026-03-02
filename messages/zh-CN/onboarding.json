@@ -1,0 +1,14 @@
+{
+    "welcome": {
+        "title": "Welcome to Life To Do",
+        "subtitle": "Get things out of your head and into a trusted system."
+    },
+    "steps": {
+        "capture": "Capture everything. If it's on your mind, put it in the Inbox.",
+        "clarify": "Process your inbox. Decide what the very next action is.",
+        "organize": "Put it where it belongs. Projects, Someday/Maybe, or Trash.",
+        "review": "Review weekly. Keep your system clean and trusted.",
+        "engage": "Do. Pick the best action based on your context and energy."
+    },
+    "finish": "Start My System"
+}

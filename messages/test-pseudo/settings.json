@@ -1,0 +1,17 @@
+{
+  "title": "[Settings xxxx]",
+  "preferences": "[Preferences xxxxx]",
+  "account": "[Account xxx]",
+  "appearance": "[Appearance xxxx]",
+  "language": {
+    "label": "[Language xxxx]",
+    "description": "[Change the language of the application. xxxxxxxxxxxxxxxx]"
+  },
+  "theme": {
+    "light": "[Light Mode xxxx]",
+    "dark": "[Dark Mode xxxx]",
+    "system": "[System Default xxxxxx]"
+  },
+  "adhdMode": "[ADHD Assistance Mode xxxxxxxx]",
+  "notifications": "[Push Notifications xxxxxxxx]"
+}

@@ -1,0 +1,35 @@
+{
+    "title": "Inbox",
+    "badge": "{count, plural, =0 {Empty} one {# item} other {# items}}",
+    "capture": {
+        "placeholder": "What's on your mind?",
+        "voiceButton": {
+            "start": "Start voice capture",
+            "stop": "Stop recording",
+            "unavailable": "Voice capture unavailable — switch to text input",
+            "processing": "Processing voice input"
+        },
+        "voiceStatus": {
+            "listening": "Listening…",
+            "listeningTranscript": "Listening — \"{transcript}\"",
+            "processing": "Processing audio"
+        },
+        "brainDump": {
+            "title": "Brain Dump",
+            "instruction": "Paste everything on your mind — we'll sort it out.",
+            "result": "{count, plural, one {Extracted # task} other {Extracted # tasks}} from your brain dump"
+        }
+    },
+    "smartCapture": {
+        "groupLabel": "AI suggestions",
+        "confirmed": "Confirmed: {field}",
+        "suggested": "Suggested: {field}"
+    },
+    "emptyState": {
+        "title": "Inbox Zero!",
+        "description": "Nothing to process. Enjoy the calm."
+    },
+    "coachInsight": {
+        "label": "AI coaching insight"
+    }
+}

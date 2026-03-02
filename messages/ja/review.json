@@ -1,0 +1,19 @@
+{
+    "title": "Weekly Review",
+    "start": "Start Review",
+    "steps": {
+        "getClear": "Get Clear",
+        "getCurrent": "Get Current",
+        "getCreative": "Get Creative"
+    },
+    "questions": {
+        "emptyHead": "What has your attention?",
+        "inboxZero": "Is your inbox completely processed?",
+        "nextActions": "Are all next actions still relevant?",
+        "waitingFor": "Are you waiting on anything?"
+    },
+    "completion": {
+        "congrats": "Great job!",
+        "summary": "You are ready for the week ahead."
+    }
+}

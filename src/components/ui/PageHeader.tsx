@@ -16,15 +16,15 @@ export function PageHeader({ title, subtitle, right, below, className }: PageHea
   return (
     <div
       className={cn(
-        'sticky top-0 z-10 bg-gtd-bg/95 backdrop-blur-xl border-b border-white/5 px-5 pt-12 pb-4',
+        'sticky top-0 z-10 bg-surface-base/95 backdrop-blur-xl border-b border-border-subtle px-5 pt-12 pb-4',
         className,
       )}
     >
       <div className="flex items-start justify-between gap-3 mb-1">
         <div className="min-w-0">
-          <h1 className="text-2xl font-bold text-gtd-text leading-tight">{title}</h1>
+          <h1 className="text-2xl font-bold text-content-primary leading-tight">{title}</h1>
           {subtitle && (
-            <p className="text-sm text-gtd-muted mt-0.5 truncate">{subtitle}</p>
+            <p className="text-sm text-content-secondary mt-0.5 truncate">{subtitle}</p>
           )}
         </div>
         {right && <div className="flex-shrink-0 mt-1">{right}</div>}

@@ -7,11 +7,13 @@
 import { db } from '@/lib/db'
 import type { AnalyticsEvent } from '@/types'
 import type { GTDEventName, EventProps } from './events'
+import { processXPEvent } from '../gamification/xpMiddleware'
+import { handleHapticForEvent } from '../native/haptics/hapticMap'
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const FLUSH_INTERVAL_MS = 30_000   // 30 seconds
-const MAX_QUEUE         = 50       // flush early if queue fills up
-const PRUNE_AFTER_DAYS  = 90       // delete events older than this
+const MAX_QUEUE = 50       // flush early if queue fills up
+const PRUNE_AFTER_DAYS = 90       // delete events older than this
 
 // ── In-memory queue ───────────────────────────────────────────────────────────
 let queue: AnalyticsEvent[] = []
@@ -28,13 +30,19 @@ export async function track(name: GTDEventName, props?: EventProps): Promise<voi
   if (typeof window === 'undefined') return
 
   const event: AnalyticsEvent = {
-    id:    crypto.randomUUID(),
+    id: crypto.randomUUID(),
     name,
-    ts:    Date.now(),
+    ts: Date.now(),
     ...(props ? { props } : {}),
   }
 
   queue.push(event)
+
+  // Asynchronously process XP without awaiting to not block UI
+  processXPEvent(name, props).catch(() => { });
+
+  // Fire haptic feedback for mapped GTD events (no-op on web)
+  handleHapticForEvent(name, props);
 
   if (queue.length >= MAX_QUEUE) {
     await flush()

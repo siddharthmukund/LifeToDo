@@ -7,11 +7,13 @@
 const RADIUS       = 45
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS   // ≈ 282.74
 
+// Returns CSS custom-property strings so the ring colour automatically adapts
+// to the active theme without any JS re-render. SVG inline styles accept var().
 function scoreColor(score: number): string {
-  if (score >= 90) return '#22c55e'   // green-500
-  if (score >= 70) return '#00E5CC'   // primary cyan
-  if (score >= 40) return '#eab308'   // yellow-500
-  return '#ef4444'                     // red-500
+  if (score >= 90) return 'var(--status-ok-fg)'    // green  → adapts per theme
+  if (score >= 70) return 'var(--primary-ink)'      // cyan   → adapts per theme
+  if (score >= 40) return 'var(--status-warn-fg)'   // yellow → adapts per theme
+  return 'var(--status-danger-fg)'                   // red    → adapts per theme
 }
 
 function gradeLabel(score: number): string {
@@ -63,7 +65,7 @@ export function HealthScoreRing({
             fill="none"
             stroke="currentColor"
             strokeWidth={strokeWidth}
-            className="text-white/10"
+            className="text-content-primary/10"
           />
           {/* Progress arc */}
           <circle
@@ -88,7 +90,7 @@ export function HealthScoreRing({
           >
             {score}
           </span>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-0.5">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-content-muted mt-0.5">
             {label ?? 'Score'}
           </span>
         </div>

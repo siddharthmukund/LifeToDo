@@ -1,0 +1,22 @@
+{
+    "network": {
+        "offline": "You're offline. Changes saved locally.",
+        "timeout": "The request timed out. Please try again."
+    },
+    "auth": {
+        "invalidCredentials": "The email or password you entered is incorrect.",
+        "sessionExpired": "Your session has expired. Please sign in again."
+    },
+    "data": {
+        "saveFailed": "Could not save. Please try again.",
+        "loadFailed": "Failed to load data.",
+        "quotaExceeded": "Storage quota exceeded. Please clear some space."
+    },
+    "ai": {
+        "generationFailed": "The AI coach is taking a break. Try again later.",
+        "rateLimit": "You're asking too many questions too fast! Give it a minute."
+    },
+    "general": {
+        "unknown": "An unexpected error occurred."
+    }
+}

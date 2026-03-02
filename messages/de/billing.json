@@ -1,0 +1,19 @@
+{
+    "title": "Subscription",
+    "upgrade": "Upgrade to Pro",
+    "pricing": {
+        "monthly": "{price}/month",
+        "yearly": "{price}/year"
+    },
+    "features": {
+        "aiCoach": "Full AI Coach access",
+        "advancedStats": "Advanced analytics & heatmaps",
+        "cloudSync": "Real-time cloud sync across devices"
+    },
+    "status": {
+        "active": "Active",
+        "trial": "Trial ends in {days} days",
+        "canceled": "Canceled"
+    },
+    "manage": "Manage Subscription"
+}

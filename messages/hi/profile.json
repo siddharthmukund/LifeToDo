@@ -1,0 +1,12 @@
+{
+    "title": "प्रोफाइल",
+    "data": "आपका डेटा",
+    "exportData": "मेरा डेटा एक्सपोर्ट करें",
+    "deleteAccount": "अकाउंट डिलीट करें",
+    "achievements": "बैज और उपलब्धियां",
+    "stats": {
+        "tasksCompleted": "पूरे किए गए टास्क",
+        "currentStreak": "मौजूदा स्ट्रीक",
+        "level": "लेवल"
+    }
+}

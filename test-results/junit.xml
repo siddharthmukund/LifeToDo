@@ -1,0 +1,293 @@
+<testsuites id="" name="" tests="7" failures="7" skipped="0" errors="0" time="68.79332">
+<testsuite name="00-setup.spec.ts" timestamp="2026-03-02T15:59:02.569Z" hostname="chromium" tests="1" failures="1" skipped="0" time="30.294" errors="0">
+<testcase name="Test Infrastructure Validation › playwright fixture loads and page mounts" classname="00-setup.spec.ts" time="30.294">
+<failure message="00-setup.spec.ts:4:9 playwright fixture loads and page mounts" type="FAILURE">
+<![CDATA[  [chromium] › 00-setup.spec.ts:4:9 › Test Infrastructure Validation › playwright fixture loads and page mounts 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Keyboard|Type/i })
+
+
+       8 |         // Check for the main capture input existence to verify React hydrated successfully
+       9 |         // Explicitly open text mode since Voice orb defaults to primary visibility
+    > 10 |         await page.getByRole('button', { name: /Keyboard|Type/i }).click();
+         |                                                                    ^
+      11 |
+      12 |         const input = page.getByPlaceholder('What\'s on your mind?');
+      13 |         await expect(input).toBeVisible();
+        at /Users/siddharth/Documents/Claude/Life To Do/tests/e2e/specs/00-setup.spec.ts:10:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../test-results/00-setup-Test-Infrastructu-df713-xture-loads-and-page-mounts-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../../test-results/00-setup-Test-Infrastructu-df713-xture-loads-and-page-mounts-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../test-results/00-setup-Test-Infrastructu-df713-xture-loads-and-page-mounts-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|00-setup-Test-Infrastructu-df713-xture-loads-and-page-mounts-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|00-setup-Test-Infrastructu-df713-xture-loads-and-page-mounts-chromium/video.webm]]
+
+[[ATTACHMENT|00-setup-Test-Infrastructu-df713-xture-loads-and-page-mounts-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="01-capture.spec.ts" timestamp="2026-03-02T15:59:02.569Z" hostname="chromium" tests="6" failures="6" skipped="0" time="181.328" errors="0">
+<testcase name="Quick Capture › captures task with Enter key" classname="01-capture.spec.ts" time="30.307">
+<failure message="01-capture.spec.ts:4:9 captures task with Enter key" type="FAILURE">
+<![CDATA[  [chromium] › 01-capture.spec.ts:4:9 › Quick Capture › captures task with Enter key ───────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Keyboard|Type/i })
+
+
+       7 |
+       8 |         // Find capture input
+    >  9 |         await page.getByRole('button', { name: /Keyboard|Type/i }).click();
+         |                                                                    ^
+      10 |         const input = page.getByPlaceholder('What\'s on your mind?');
+      11 |         await expect(input).toBeVisible();
+      12 |
+        at /Users/siddharth/Documents/Claude/Life To Do/tests/e2e/specs/01-capture.spec.ts:9:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../test-results/01-capture-Quick-Capture-captures-task-with-Enter-key-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../../test-results/01-capture-Quick-Capture-captures-task-with-Enter-key-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../test-results/01-capture-Quick-Capture-captures-task-with-Enter-key-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|01-capture-Quick-Capture-captures-task-with-Enter-key-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|01-capture-Quick-Capture-captures-task-with-Enter-key-chromium/video.webm]]
+
+[[ATTACHMENT|01-capture-Quick-Capture-captures-task-with-Enter-key-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Quick Capture › captures task with button click" classname="01-capture.spec.ts" time="30.299">
+<failure message="01-capture.spec.ts:29:9 captures task with button click" type="FAILURE">
+<![CDATA[  [chromium] › 01-capture.spec.ts:29:9 › Quick Capture › captures task with button click ───────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Keyboard|Type/i })
+
+
+      30 |         await page.goto('/inbox');
+      31 |
+    > 32 |         await page.getByRole('button', { name: /Keyboard|Type/i }).click();
+         |                                                                    ^
+      33 |         const input = page.getByPlaceholder('What\'s on your mind?');
+      34 |         await input.fill('Call dentist');
+      35 |
+        at /Users/siddharth/Documents/Claude/Life To Do/tests/e2e/specs/01-capture.spec.ts:32:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../test-results/01-capture-Quick-Capture-captures-task-with-button-click-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../../test-results/01-capture-Quick-Capture-captures-task-with-button-click-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../test-results/01-capture-Quick-Capture-captures-task-with-button-click-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|01-capture-Quick-Capture-captures-task-with-button-click-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|01-capture-Quick-Capture-captures-task-with-button-click-chromium/video.webm]]
+
+[[ATTACHMENT|01-capture-Quick-Capture-captures-task-with-button-click-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Quick Capture › does not capture empty task" classname="01-capture.spec.ts" time="30.292">
+<failure message="01-capture.spec.ts:44:9 does not capture empty task" type="FAILURE">
+<![CDATA[  [chromium] › 01-capture.spec.ts:44:9 › Quick Capture › does not capture empty task ───────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Keyboard|Type/i })
+
+
+      45 |         await page.goto('/inbox');
+      46 |
+    > 47 |         await page.getByRole('button', { name: /Keyboard|Type/i }).click();
+         |                                                                    ^
+      48 |         const input = page.getByPlaceholder('What\'s on your mind?');
+      49 |
+      50 |         // Press Enter on empty input
+        at /Users/siddharth/Documents/Claude/Life To Do/tests/e2e/specs/01-capture.spec.ts:47:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../test-results/01-capture-Quick-Capture-does-not-capture-empty-task-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../../test-results/01-capture-Quick-Capture-does-not-capture-empty-task-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../test-results/01-capture-Quick-Capture-does-not-capture-empty-task-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|01-capture-Quick-Capture-does-not-capture-empty-task-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|01-capture-Quick-Capture-does-not-capture-empty-task-chromium/video.webm]]
+
+[[ATTACHMENT|01-capture-Quick-Capture-does-not-capture-empty-task-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Quick Capture › trims whitespace from task" classname="01-capture.spec.ts" time="30.292">
+<failure message="01-capture.spec.ts:62:9 trims whitespace from task" type="FAILURE">
+<![CDATA[  [chromium] › 01-capture.spec.ts:62:9 › Quick Capture › trims whitespace from task ────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Keyboard|Type/i })
+
+
+      63 |         await page.goto('/inbox');
+      64 |
+    > 65 |         await page.getByRole('button', { name: /Keyboard|Type/i }).click();
+         |                                                                    ^
+      66 |         const input = page.getByPlaceholder('What\'s on your mind?');
+      67 |         await input.fill('  Buy milk  ');
+      68 |         await input.press('Enter');
+        at /Users/siddharth/Documents/Claude/Life To Do/tests/e2e/specs/01-capture.spec.ts:65:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../test-results/01-capture-Quick-Capture-trims-whitespace-from-task-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../../test-results/01-capture-Quick-Capture-trims-whitespace-from-task-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../test-results/01-capture-Quick-Capture-trims-whitespace-from-task-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|01-capture-Quick-Capture-trims-whitespace-from-task-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|01-capture-Quick-Capture-trims-whitespace-from-task-chromium/video.webm]]
+
+[[ATTACHMENT|01-capture-Quick-Capture-trims-whitespace-from-task-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Smart Capture › parses &quot;tomorrow&quot; date expression" classname="01-capture.spec.ts" time="30.07">
+<failure message="01-capture.spec.ts:76:9 parses &quot;tomorrow&quot; date expression" type="FAILURE">
+<![CDATA[  [chromium] › 01-capture.spec.ts:76:9 › Smart Capture › parses "tomorrow" date expression ─────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Keyboard|Type/i })
+
+
+      77 |         await page.goto('/inbox');
+      78 |
+    > 79 |         await page.getByRole('button', { name: /Keyboard|Type/i }).click();
+         |                                                                    ^
+      80 |         const input = page.getByPlaceholder('What\'s on your mind?');
+      81 |         await input.fill('Email boss tomorrow');
+      82 |         await input.press('Enter');
+        at /Users/siddharth/Documents/Claude/Life To Do/tests/e2e/specs/01-capture.spec.ts:79:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../test-results/01-capture-Smart-Capture-parses-tomorrow-date-expression-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../../test-results/01-capture-Smart-Capture-parses-tomorrow-date-expression-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../test-results/01-capture-Smart-Capture-parses-tomorrow-date-expression-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|01-capture-Smart-Capture-parses-tomorrow-date-expression-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|01-capture-Smart-Capture-parses-tomorrow-date-expression-chromium/video.webm]]
+
+[[ATTACHMENT|01-capture-Smart-Capture-parses-tomorrow-date-expression-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Brain Dump › extracts multiple tasks from paragraph" classname="01-capture.spec.ts" time="30.068">
+<failure message="01-capture.spec.ts:102:9 extracts multiple tasks from paragraph" type="FAILURE">
+<![CDATA[  [chromium] › 01-capture.spec.ts:102:9 › Brain Dump › extracts multiple tasks from paragraph ──────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /More/i })
+
+
+      106 |         const brainDumpBtn = page.getByRole('button', { name: /Brain Dump/i });
+      107 |         if (await brainDumpBtn.isHidden()) {
+    > 108 |             await page.getByRole('button', { name: /More/i }).click();
+          |                                                               ^
+      109 |         }
+      110 |         await brainDumpBtn.click();
+      111 |
+        at /Users/siddharth/Documents/Claude/Life To Do/tests/e2e/specs/01-capture.spec.ts:108:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../../test-results/01-capture-Brain-Dump-extracts-multiple-tasks-from-paragraph-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../../test-results/01-capture-Brain-Dump-extracts-multiple-tasks-from-paragraph-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../../test-results/01-capture-Brain-Dump-extracts-multiple-tasks-from-paragraph-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|01-capture-Brain-Dump-extracts-multiple-tasks-from-paragraph-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|01-capture-Brain-Dump-extracts-multiple-tasks-from-paragraph-chromium/video.webm]]
+
+[[ATTACHMENT|01-capture-Brain-Dump-extracts-multiple-tasks-from-paragraph-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

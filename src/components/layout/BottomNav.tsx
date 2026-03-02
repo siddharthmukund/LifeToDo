@@ -2,6 +2,7 @@
 // BottomNav — persistent 5-tab navigation.
 // Inbox tab: blue badge for unprocessed count.
 // Review tab: amber badge when stale items need attention.
+// iCCW #13: aria-label on <nav>, aria-current="page" on active link, sr-only badge text.
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -25,8 +26,9 @@ export function BottomNav() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto z-40 bg-background-dark/95 
-                 border-t border-primary/10 backdrop-blur-xl pb-6 pt-3 px-6 safe-area-bottom"
+      aria-label="Main navigation"
+      className="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto z-40 bg-surface-base/95
+                 border-t border-border-default backdrop-blur-xl pb-6 pt-3 px-6 safe-area-bottom"
     >
       <div className="flex items-center justify-between gap-2">
         {TABS.map(({ href, icon: Icon, label, badge }) => {
@@ -39,37 +41,63 @@ export function BottomNav() {
             <Link
               key={href}
               href={href}
+              aria-current={active ? 'page' : undefined}
               className={cn(
                 'flex flex-1 flex-col items-center gap-1 relative',
                 'transition-colors duration-150 select-none pb-2',
-                active ? 'text-primary' : 'text-slate-500 hover:text-slate-300',
+                // Minimum 44px touch target vertically via padding
+                'min-h-[44px] justify-center',
+                active ? 'text-primary-ink' : 'text-content-secondary hover:text-content-primary',
               )}
             >
               <div className="relative flex items-center justify-center h-8">
-                <Icon size={26} strokeWidth={active ? 2.5 : 2} className={active ? 'fill-primary/20' : ''} />
+                <Icon
+                  size={26}
+                  strokeWidth={active ? 2.5 : 2}
+                  className={active ? 'fill-primary/20' : ''}
+                  aria-hidden="true"
+                />
 
                 {/* Blue badge — unprocessed inbox count */}
                 {inboxBadge !== null && (
-                  <span className="absolute -top-1.5 -right-2 min-w-[16px] h-4 flex items-center
-                                   justify-center px-1 text-[10px] font-bold
-                                   bg-primary text-background-dark rounded-full">
+                  <div
+                    className="absolute top-1 right-2 w-4 h-4 flex items-center
+                                 justify-center px-1 text-[10px] font-bold
+                                 bg-primary text-on-brand rounded-full"
+                    aria-hidden="true"
+                  >
                     {inboxBadge > 99 ? '99+' : inboxBadge}
-                  </span>
+                  </div>
                 )}
 
                 {/* Amber badge — stale items needing review */}
                 {staleBadge !== null && (
-                  <span className="absolute -top-1.5 -right-2 min-w-[16px] h-4 flex items-center
-                                   justify-center px-1 text-[10px] font-bold
-                                   bg-yellow-500 text-background-dark rounded-full">
+                  <div
+                    className="absolute top-1 right-2 w-4 h-4 flex items-center
+                                 justify-center px-1 text-[10px] font-bold
+                                 bg-yellow-500 text-on-brand rounded-full"
+                    aria-hidden="true"
+                  >
                     {staleBadge > 99 ? '99+' : staleBadge}
-                  </span>
+                  </div>
                 )}
               </div>
 
               <span className="text-[10px] font-bold uppercase tracking-tighter">
                 {label}
               </span>
+
+              {/* Screen-reader-only badge descriptions */}
+              {inboxBadge !== null && (
+                <span className="sr-only">
+                  {inboxBadge === 1 ? '1 unprocessed item' : `${inboxBadge > 99 ? '99+' : inboxBadge} unprocessed items`}
+                </span>
+              )}
+              {staleBadge !== null && (
+                <span className="sr-only">
+                  {staleBadge === 1 ? '1 item needs review' : `${staleBadge > 99 ? '99+' : staleBadge} items need review`}
+                </span>
+              )}
             </Link>
           )
         })}

@@ -1,0 +1,35 @@
+{
+    "actions": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "done": "Done",
+        "next": "Next",
+        "back": "Back",
+        "skip": "Skip",
+        "confirm": "Confirm",
+        "retry": "Retry",
+        "close": "Close",
+        "search": "Search",
+        "share": "Share",
+        "copy": "Copy"
+    },
+    "status": {
+        "loading": "Loading…",
+        "saving": "Saving…",
+        "offline": "Offline",
+        "online": "Online",
+        "syncing": "Syncing…"
+    },
+    "time": {
+        "today": "Today",
+        "tomorrow": "Tomorrow",
+        "yesterday": "Yesterday",
+        "thisWeek": "This week",
+        "daysAgo": "{count, plural, one {# day ago} other {# days ago}}",
+        "hoursAgo": "{count, plural, one {# hour ago} other {# hours ago}}",
+        "minutesAgo": "{count, plural, one {# minute ago} other {# minutes ago}}",
+        "justNow": "Just now"
+    }
+}

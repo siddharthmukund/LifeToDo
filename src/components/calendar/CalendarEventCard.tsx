@@ -33,18 +33,18 @@ export function CalendarEventCard({ action, startAt, onClick, compact = false }:
         compact ? 'py-1' : 'py-2',
       )}
     >
-      <p className={cn('font-medium text-white truncate', compact ? 'text-xs' : 'text-sm')}>
+      <p className={cn('font-medium text-content-primary truncate', compact ? 'text-xs' : 'text-sm')}>
         {action.text}
       </p>
       {!compact && (
         <div className="flex items-center gap-2 mt-1">
           {timeLabel && (
-            <span className="flex items-center gap-1 text-[10px] text-slate-400">
+            <span className="flex items-center gap-1 text-[10px] text-content-secondary">
               <Clock size={10} />
               {timeLabel}
             </span>
           )}
-          <span className="flex items-center gap-1 text-[10px] text-slate-400">
+          <span className="flex items-center gap-1 text-[10px] text-content-secondary">
             <Zap size={10} />
             {action.timeEstimate}m
           </span>

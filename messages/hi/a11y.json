@@ -1,0 +1,14 @@
+{
+    "announce": {
+        "taskCompleted": "टास्क पूरा हुआ: {title}",
+        "taskAdded": "टास्क जोड़ा गया: {title}",
+        "inboxZero": "इनबॉक्स खाली है — आपने इनबॉक्स ज़ीरो हासिल कर लिया है!",
+        "suggestionsAvailable": "{count, plural, one {# सुझाव उपलब्ध है} other {# सुझाव उपलब्ध हैं}}",
+        "positionChanged": "{title}, {total} में से {position} स्थान पर",
+        "reorderStarted": "रीऑर्डर मोड। मूव करने के लिए एरो कीज़ (arrow keys), कन्फर्म करने के लिए Enter, और रद्द करने के लिए Escape का इस्तेमाल करें।",
+        "reorderConfirmed": "{title} को {position} स्थान पर ले जाया गया",
+        "reorderCancelled": "रीऑर्डर रद्द किया गया",
+        "routeChanged": "{screen} पर नेविगेट किया गया",
+        "allItemsClarified": "सभी आइटम clarify कर लिए गए हैं"
+    }
+}

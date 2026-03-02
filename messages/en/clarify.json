@@ -1,0 +1,22 @@
+{
+    "title": "Clarify",
+    "emptyState": {
+        "title": "All caught up!",
+        "description": "Your inbox is completely clear."
+    },
+    "flow": {
+        "isActionable": "Is it actionable?",
+        "yes": "Yes",
+        "no": "No",
+        "delete": "Trash It",
+        "someday": "Someday/Maybe",
+        "reference": "Reference",
+        "twoMinuteRule": "Will it take less than 2 minutes?",
+        "doItNow": "Do it now",
+        "delegate": "Delegate it",
+        "defer": "Defer it",
+        "whatIsNextAction": "What is the very next action?",
+        "whatIsProject": "Is this part of a larger project?"
+    },
+    "coachSocratic": "Consider breaking this down into smaller, defined steps."
+}

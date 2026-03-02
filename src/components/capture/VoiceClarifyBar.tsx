@@ -42,14 +42,14 @@ export function VoiceClarifyBar({ projectNames, onConfirm, onSkip }: VoiceClarif
     >
       {/* Prompt */}
       {!result && (
-        <p className="text-xs text-gtd-accent mb-3 text-center">
+        <p className="text-xs text-primary-ink-ink mb-3 text-center">
           Keep talking to clarify — project, context, energy, time estimate
         </p>
       )}
 
       {/* Live transcript */}
       {isListening && transcript && (
-        <p className="text-xs text-gtd-muted italic mb-3 text-center">"{transcript}"</p>
+        <p className="text-xs text-content-secondary italic mb-3 text-center">"{transcript}"</p>
       )}
 
       {/* Parsed result chips */}
@@ -82,7 +82,7 @@ export function VoiceClarifyBar({ projectNames, onConfirm, onSkip }: VoiceClarif
           {isListening
             ? <VoiceWave status={status} audioLevel={audioLevel} barCount={7} />
             : !result
-            ? <p className="text-xs text-gtd-muted">Tap mic to speak clarification</p>
+            ? <p className="text-xs text-content-secondary">Tap mic to speak clarification</p>
             : null}
         </div>
 
@@ -93,8 +93,8 @@ export function VoiceClarifyBar({ projectNames, onConfirm, onSkip }: VoiceClarif
               onClick={isListening ? stopListening : startListening}
               className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors
                 ${isListening
-                  ? 'bg-gtd-danger text-white'
-                  : 'bg-gtd-accent/20 text-gtd-accent hover:bg-gtd-accent/30'}`}
+                  ? 'bg-status-error/15 text-content-primary'
+                  : 'bg-gtd-accent/20 text-primary-ink-ink hover:bg-gtd-accent/30'}`}
             >
               <Mic size={18} />
             </button>
@@ -104,7 +104,7 @@ export function VoiceClarifyBar({ projectNames, onConfirm, onSkip }: VoiceClarif
           {result && (
             <button
               onClick={() => onConfirm(result)}
-              className="flex items-center gap-1.5 px-3 py-2 bg-gtd-success/20 text-gtd-success
+              className="flex items-center gap-1.5 px-3 py-2 bg-status-success/15/20 text-status-success
                          rounded-xl text-xs font-medium border border-gtd-success/30"
             >
               <Check size={14} /> Apply
@@ -115,7 +115,7 @@ export function VoiceClarifyBar({ projectNames, onConfirm, onSkip }: VoiceClarif
           <button
             onClick={onSkip}
             className="w-8 h-8 rounded-full flex items-center justify-center
-                       text-gtd-muted hover:text-gtd-text hover:bg-white/5 transition-colors"
+                       text-content-secondary hover:text-content-primary hover:bg-overlay-hover transition-colors"
           >
             <X size={16} />
           </button>
@@ -129,10 +129,10 @@ export function VoiceClarifyBar({ projectNames, onConfirm, onSkip }: VoiceClarif
 type ChipColor = 'accent' | 'muted' | 'energy' | 'warning'
 
 const CHIP_STYLES: Record<ChipColor, string> = {
-  accent:  'bg-gtd-accent/20 text-gtd-accent-light border-gtd-accent/30',
-  muted:   'bg-white/8 text-gtd-text border-white/10',
-  energy:  'bg-gtd-warning/20 text-gtd-warning border-gtd-warning/30',
-  warning: 'bg-gtd-danger/10 text-gtd-danger border-gtd-danger/20',
+  accent:  'bg-gtd-accent/20 text-primary-ink-ink-light border-gtd-accent/30',
+  muted:   'bg-overlay-hover text-content-primary border-border-default',
+  energy:  'bg-status-warning/10/20 text-status-warning border-gtd-warning/30',
+  warning: 'bg-status-error/15/10 text-status-error border-gtd-danger/20',
 }
 
 function Chip({ children, color }: { children: React.ReactNode; color: ChipColor }) {

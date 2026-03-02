@@ -1,0 +1,19 @@
+{
+    "title": "सब्सक्रिप्शन",
+    "upgrade": "Pro में अपग्रेड करें",
+    "pricing": {
+        "monthly": "{price}/महीना",
+        "yearly": "{price}/साल"
+    },
+    "features": {
+        "aiCoach": "Full AI Coach एक्सेस",
+        "advancedStats": "एडवांस्ड एनालिटिक्स और हीटमैप्स",
+        "cloudSync": "सभी डिवाइस पर रियल-टाइम क्लाउड सिंक"
+    },
+    "status": {
+        "active": "एक्टिव",
+        "trial": "Trial {days} दिनों में खत्म होगा",
+        "canceled": "कैंसिल कर दिया गया"
+    },
+    "manage": "सब्सक्रिप्शन मैनेज करें"
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  network_security_config.xml
+  Allows cleartext traffic to localhost only (Capacitor live-reload dev).
+  Production traffic to lifetodo.app goes over HTTPS (default behaviour).
+-->
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">10.0.2.2</domain>
+    </domain-config>
+</network-security-config>

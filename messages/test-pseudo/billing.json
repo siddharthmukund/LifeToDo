@@ -1,0 +1,19 @@
+{
+  "title": "[Subscription xxxxx]",
+  "upgrade": "[Upgrade to Pro xxxxxx]",
+  "pricing": {
+    "monthly": "[{price}/month]",
+    "yearly": "[{price}/year]"
+  },
+  "features": {
+    "aiCoach": "[Full AI Coach access xxxxxxxx]",
+    "advancedStats": "[Advanced analytics & heatmaps xxxxxxxxxxxx]",
+    "cloudSync": "[Real-time cloud sync across devices xxxxxxxxxxxxxx]"
+  },
+  "status": {
+    "active": "[Active xxx]",
+    "trial": "[Trial ends in {days} days]",
+    "canceled": "[Canceled xxxx]"
+  },
+  "manage": "[Manage Subscription xxxxxxxx]"
+}

@@ -39,16 +39,16 @@ export function ShareModal({ action, open, onClose }: ShareModalProps) {
     <Modal open={open} onClose={onClose} title="Share Action">
       <div className="space-y-5">
         {/* Action preview */}
-        <div className="bg-card-elevated rounded-xl p-3 border border-white/8">
-          <p className="text-sm text-white font-medium">{action.text}</p>
-          <p className="text-xs text-slate-500 mt-1">
+        <div className="bg-surface-elevated rounded-xl p-3 border border-border-subtle">
+          <p className="text-sm text-content-primary font-medium">{action.text}</p>
+          <p className="text-xs text-content-muted mt-1">
             {action.energy} energy · {action.timeEstimate} min
           </p>
         </div>
 
         {/* Optional delegation */}
         <div className="space-y-1.5">
-          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 flex items-center gap-1.5">
+          <label className="text-[10px] font-bold uppercase tracking-widest text-content-muted flex items-center gap-1.5">
             <UserCheck size={11} /> Delegate to (optional)
           </label>
           <input
@@ -56,13 +56,13 @@ export function ShareModal({ action, open, onClose }: ShareModalProps) {
             value={delegateTo}
             onChange={e => setDelegateTo(e.target.value)}
             placeholder="Person's name…"
-            className="w-full bg-card-elevated border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-primary/50"
+            className="w-full bg-surface-elevated border border-border-default rounded-xl px-3 py-2.5 text-sm text-content-primary placeholder:text-content-muted focus:outline-none focus:border-primary/50"
           />
         </div>
 
         {/* Method indicator */}
         {lastMethod === 'clipboard' && (
-          <p className="text-xs text-slate-500 flex items-center gap-1.5">
+          <p className="text-xs text-content-muted flex items-center gap-1.5">
             <Copy size={11} /> Copied to clipboard
           </p>
         )}

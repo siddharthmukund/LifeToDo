@@ -38,8 +38,13 @@
   ],
   "exclude": [
     "node_modules",
+    "functions",
     "**/*.stories.tsx",
     "**/*.stories.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
     ".storybook"
   ]
 }

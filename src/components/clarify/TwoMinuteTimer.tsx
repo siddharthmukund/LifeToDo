@@ -45,9 +45,9 @@ export function TwoMinuteTimer({ onDone, onExpire, actionText }: TwoMinuteTimerP
   return (
     <div className="flex flex-col items-center gap-6">
       {/* Action text */}
-      <div className="bg-gtd-surface rounded-xl px-4 py-3 w-full border border-white/10">
-        <p className="text-xs text-gtd-muted mb-1">Do it now:</p>
-        <p className="text-sm font-medium text-gtd-text">{actionText}</p>
+      <div className="bg-surface-card rounded-xl px-4 py-3 w-full border border-border-default">
+        <p className="text-xs text-content-secondary mb-1">Do it now:</p>
+        <p className="text-sm font-medium text-content-primary">{actionText}</p>
       </div>
 
       {/* Circular timer */}
@@ -61,7 +61,7 @@ export function TwoMinuteTimer({ onDone, onExpire, actionText }: TwoMinuteTimerP
             cy="50"
             r={r}
             fill="none"
-            stroke={urgent ? '#EF4444' : '#6366F1'}
+            stroke={urgent ? 'var(--status-danger-fg)' : 'var(--primary)'}
             strokeWidth="6"
             strokeLinecap="round"
             strokeDasharray={circumference}
@@ -74,12 +74,12 @@ export function TwoMinuteTimer({ onDone, onExpire, actionText }: TwoMinuteTimerP
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span
             className={`text-2xl font-bold font-mono tabular-nums
-              ${urgent ? 'text-gtd-danger' : 'text-gtd-text'}`}
+              ${urgent ? 'text-status-error' : 'text-content-primary'}`}
           >
             {minutes}:{String(seconds).padStart(2, '0')}
           </span>
           {urgent && (
-            <span className="text-xs text-gtd-danger mt-0.5">hurry!</span>
+            <span className="text-xs text-status-error mt-0.5">hurry!</span>
           )}
         </div>
       </div>
@@ -88,7 +88,7 @@ export function TwoMinuteTimer({ onDone, onExpire, actionText }: TwoMinuteTimerP
       <div className="flex flex-col gap-3 w-full">
         <button
           onClick={onDone}
-          className="w-full py-3.5 rounded-xl bg-gtd-success/20 text-gtd-success
+          className="w-full py-3.5 rounded-xl bg-status-success/15/20 text-status-success
                      border border-gtd-success/30 font-semibold text-sm
                      active:scale-95 transition-transform"
         >
@@ -96,8 +96,8 @@ export function TwoMinuteTimer({ onDone, onExpire, actionText }: TwoMinuteTimerP
         </button>
         <button
           onClick={onExpire}
-          className="w-full py-3 rounded-xl bg-white/5 text-gtd-muted
-                     border border-white/10 text-sm
+          className="w-full py-3 rounded-xl bg-overlay-hover text-content-secondary
+                     border border-border-default text-sm
                      active:scale-95 transition-transform"
         >
           Needs more time →

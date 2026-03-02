@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- App Identity -->
+    <key>CFBundleDisplayName</key>
+    <string>Life To Do</string>
+    <key>CFBundleIdentifier</key>
+    <string>app.lifetodo</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleExecutable</key>
+    <string>App</string>
+
+    <!-- iOS requirements -->
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UIRequiredDeviceCapabilities</key>
+    <array><string>armv7</string></array>
+    <key>UIMainStoryboardFile</key>
+    <string>Main</string>
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+
+    <!-- Status bar -->
+    <key>UIStatusBarHidden</key>
+    <false/>
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <true/>
+
+    <!-- Orientations -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+    </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <!-- Privacy usage descriptions — required for App Store -->
+    <key>NSFaceIDUsageDescription</key>
+    <string>Use Face ID to unlock Life To Do and protect your GTD data.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>Voice capture lets you add items to your inbox hands-free.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Voice capture uses the microphone to transcribe your thoughts.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Attach images to inbox items from your photo library.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Capture whiteboard photos directly into your inbox.</string>
+
+    <!-- Universal Links / Associated Domains -->
+    <key>com.apple.developer.associated-domains</key>
+    <array>
+        <string>applinks:lifetodo.app</string>
+        <string>webcredentials:lifetodo.app</string>
+    </array>
+
+    <!-- Custom URL scheme (lifetodo://) -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>app.lifetodo</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>lifetodo</string>
+            </array>
+        </dict>
+    </array>
+
+    <!-- App Group for Share Extension communication -->
+    <key>com.apple.security.application-groups</key>
+    <array>
+        <string>group.app.lifetodo</string>
+    </array>
+
+    <!-- Background modes: remote push + background fetch -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
+</dict>
+</plist>

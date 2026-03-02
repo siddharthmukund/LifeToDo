@@ -1,0 +1,15 @@
+{
+  "coach": {
+    "consent": {
+      "title": "[Enable AI Coach xxxxxx]",
+      "description": "[The AI Coach runs locally where possible, and securely processes context via the cloud for deep reasoning. xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]",
+      "accept": "[Enable AI features xxxxxxxx]"
+    },
+    "greeting": "[Hi, I'm your AI GTD Coach. How can I help clarify your thoughts today? xxxxxxxxxxxxxxxxxxxxxxxxxxxx]",
+    "suggestions": {
+      "label": "[AI suggests: xxxxx]"
+    },
+    "processing": "[The Coach is thinking... xxxxxxxxxx]",
+    "error": "[The Coach needs a moment to rest. Try again. xxxxxxxxxxxxxxxxxx]"
+  }
+}

@@ -1,0 +1,57 @@
+{
+    "xp": {
+        "label": "XP",
+        "earned": "+{amount} XP",
+        "progress": "Level {level} के लिए {current}/{required} XP"
+    },
+    "level": {
+        "current": "Level {level}",
+        "name": {
+            "1": "शुरुआत",
+            "5": "आदत बना रहे हैं",
+            "10": "GTD प्रैक्टिशनर",
+            "20": "GTD मास्टर",
+            "30": "माइंड लाइक वॉटर"
+        }
+    },
+    "streak": {
+        "current": "{count, plural, one {#-दिन की स्ट्रीक} other {#-दिन की स्ट्रीक}}",
+        "milestone": "{days}-दिन की स्ट्रीक! 🔥"
+    },
+    "achievements": {
+        "inboxZeroHero": {
+            "name": "इनबॉक्स ज़ीरो हीरो",
+            "description": "अपना inbox {count, plural, one {# बार} other {# बार}} खाली करें"
+        },
+        "weeklyWarrior": {
+            "name": "साप्ताहिक योद्धा",
+            "description": "लगातार {count, plural, one {# weekly review} other {# weekly reviews}} पूरी करें"
+        },
+        "clarityKing": {
+            "name": "स्पष्टता के राजा",
+            "description": "{count, plural, one {# आइटम} other {# आइटम}} clarify करें"
+        },
+        "streakMaster": {
+            "name": "स्ट्रीक मास्टर",
+            "description": "{count, plural, one {#-दिन} other {#-दिन}} की स्ट्रीक बनाएं"
+        }
+    },
+    "challenges": {
+        "clarifyFive": {
+            "title": "क्विक क्लैरिफ़ायर",
+            "description": "आज {count, plural, one {# आइटम} other {# आइटम}} clarify करें",
+            "reward": "+{xp} XP"
+        },
+        "inboxSweep": {
+            "title": "इनबॉक्स स्वीप",
+            "description": "इनबॉक्स को खाली करें",
+            "reward": "+{xp} XP"
+        }
+    },
+    "celebration": {
+        "levelUp": "Level {level} अनलॉक किया! 🎉",
+        "achievementUnlocked": "Achievement अनलॉक: {name}",
+        "streakMilestone": "{count}-दिन की स्ट्रीक पूरी हुई! 🔥",
+        "challengeComplete": "Challenge पूरा हुआ: {title}"
+    }
+}

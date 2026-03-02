@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace "app.lifetodo"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "app.lifetodo"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    signingConfigs {
+        release {
+            // Set via environment variables on CI — never commit keystore passwords
+            def keystoreFile = System.getenv("KEYSTORE_FILE") ?: "release.keystore"
+            def keystorePass = System.getenv("KEYSTORE_PASSWORD") ?: ""
+            def keyAlias     = System.getenv("KEY_ALIAS") ?: "lifetodo"
+            def keyPass      = System.getenv("KEY_PASSWORD") ?: ""
+
+            storeFile      file(keystoreFile)
+            storePassword  keystorePass
+            keyAlias       keyAlias
+            keyPassword    keyPass
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Capacitor core
+    implementation project(':capacitor-android')
+    implementation project(':capacitor-cordova-android-plugins')
+
+    // Firebase (FCM)
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // Google Play Billing
+    implementation 'com.android.billingclient:billing:6.2.0'
+
+    // Android-X
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+    implementation 'androidx.biometric:biometric:1.1.0'
+}
+
+apply plugin: 'com.google.gms.google-services'

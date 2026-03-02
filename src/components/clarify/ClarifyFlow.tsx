@@ -9,6 +9,9 @@ import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { TwoMinuteTimer } from './TwoMinuteTimer'
 import { Button } from '@/components/ui/Button'
 import { useGTDStore } from '@/store/gtdStore'
+import { ClarifyAssistant } from '@/components/ai/ClarifyAssistant'
+import { useFeatureFlag } from '@/flags/useFeatureFlag'
+import { Sparkles } from 'lucide-react'
 import type { InboxItem, ClarifyDecision, EnergyLevel, TimeEstimate } from '@/types'
 
 type Step =
@@ -41,14 +44,24 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
   const [step, setStep] = useState<Step>('actionable')
   const [direction, setDirection] = useState(1) // 1=forward, -1=back
 
-  // Collected decision data
-  const [contextId, setContextId] = useState('ctx-anywhere')
+  const contexts = useGTDStore(s => s.contexts)
+
+  // Auto-apply NLP context if it maps to a user defined context
+  const initialContextId = item.nlpMetadata?.contexts?.[0]
+    ? contexts.find(c => c.name.toLowerCase() === item.nlpMetadata!.contexts[0].toLowerCase())?.id ?? 'ctx-anywhere'
+    : 'ctx-anywhere'
+
+  const [contextId, setContextId] = useState(initialContextId)
   const [energy, setEnergy] = useState<EnergyLevel>('medium')
   const [time, setTime] = useState<TimeEstimate>(15)
-  const [projectName, setProjectName] = useState('')
+  // Auto-apply project NLP string as the name
+  const [projectName, setProjectName] = useState(item.nlpMetadata?.projects?.[0] ?? '')
   const [nextActionText, setNextActionText] = useState(item.text)
+  // Pass the due date parsed into the actual payload directly down
+  const dueDateFromNlp = item.nlpMetadata?.dueDate ?? null
 
-  const contexts = useGTDStore(s => s.contexts)
+  const isAiEnabled = useFeatureFlag('ai_coach')
+  const [showCoach, setShowCoach] = useState(false)
 
   function go(nextStep: Step) {
     setDirection(1)
@@ -60,6 +73,7 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
       contextId,
       energy,
       timeEstimate: time,
+      scheduledDate: dueDateFromNlp ? dueDateFromNlp : undefined,
       ...decision,
     } as ClarifyDecision)
   }
@@ -74,11 +88,25 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
     <div className="flex flex-col h-full">
       {/* Item being clarified */}
       <div className="mb-8 px-2 mt-4">
-        <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2">Processing Item</p>
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-primary-ink">Processing Item</p>
+          {isAiEnabled && (
+            <button
+              onClick={() => setShowCoach(true)}
+              className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full hover:bg-indigo-100 transition-colors active:scale-95"
+            >
+              <Sparkles size={12} /> Ask Coach
+            </button>
+          )}
+        </div>
         <div className="glass-card rounded-2xl p-5 border-l-4 border-l-primary">
-          <p className="text-lg font-bold text-white leading-tight italic">&ldquo;{item.text}&rdquo;</p>
+          <p className="text-lg font-bold text-content-primary leading-tight italic">&ldquo;{item.text}&rdquo;</p>
         </div>
       </div>
+
+      {showCoach && (
+        <ClarifyAssistant taskText={item.text} onClose={() => setShowCoach(false)} />
+      )}
 
       {/* Decision steps */}
       <div className="flex-1 relative overflow-hidden">
@@ -161,11 +189,11 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
           {/* ── ASSIGN ACTION ─────────────────────────────────────────────── */}
           {step === 'assign_action' && (
             <Step key="assign_action" custom={direction} variants={variants}>
-              <p className="text-lg font-bold text-gtd-text mb-4">Organise this action</p>
+              <p className="text-lg font-bold text-content-primary mb-4">Organise this action</p>
 
               {/* Context */}
               <label className="block mb-6">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3 block">Context</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-content-muted mb-3 block">Context</span>
                 <div className="flex flex-wrap gap-2">
                   {(contexts.length > 0 ? contexts : Object.keys(CONTEXTS_LABELS).map(id => ({ id, name: CONTEXTS_LABELS[id], emoji: '', isDefault: true, sortOrder: 0 }))).map(ctx => (
                     <button
@@ -173,8 +201,8 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
                       onClick={() => setContextId(ctx.id)}
                       className={`px-4 py-2.5 rounded-full text-sm font-bold transition-all active:scale-95 border
                         ${contextId === ctx.id
-                          ? 'bg-primary text-background-dark border-transparent shadow-glow-accent'
-                          : 'bg-card-dark text-slate-400 border-white/5 hover:border-white/10'}`}
+                          ? 'bg-primary text-content-inverse border-transparent shadow-glow-accent'
+                          : 'bg-surface-card text-content-secondary border-border-subtle hover:border-border-default'}`}
                     >
                       {ctx.emoji} {ctx.name}
                     </button>
@@ -184,7 +212,7 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
 
               {/* Energy */}
               <label className="block mb-4">
-                <span className="text-xs text-gtd-muted mb-2 block">Energy required</span>
+                <span className="text-xs text-content-secondary mb-2 block">Energy required</span>
                 <div className="flex gap-2">
                   {(['high', 'medium', 'low'] as EnergyLevel[]).map(e => (
                     <button
@@ -192,10 +220,10 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
                       onClick={() => setEnergy(e)}
                       className={`flex-1 py-2.5 rounded-xl text-sm font-bold capitalize transition-all active:scale-95 border-2
                         ${energy === e
-                          ? e === 'high' ? 'bg-red-500/10 text-red-500 border-red-500/30'
-                            : e === 'medium' ? 'bg-yellow-500/10 text-yellow-500 border-yellow-500/30'
-                              : 'bg-primary/10 text-primary border-primary/30'
-                          : 'bg-card-dark text-slate-500 border-white/5 hover:border-white/10'}`}
+                          ? e === 'high' ? 'bg-status-error/10 text-status-error border-status-danger'
+                            : e === 'medium' ? 'bg-status-warning/10 text-status-warning border-status-warn'
+                              : 'bg-primary/10 text-primary-ink border-primary/30'
+                          : 'bg-surface-card text-content-muted border-border-subtle hover:border-border-default'}`}
                     >
                       {e === 'high' ? '⚡' : e === 'medium' ? '🔸' : '🌱'} {e}
                     </button>
@@ -205,7 +233,7 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
 
               {/* Time */}
               <label className="block mb-6">
-                <span className="text-xs text-gtd-muted mb-2 block">Time estimate</span>
+                <span className="text-xs text-content-secondary mb-2 block">Time estimate</span>
                 <div className="flex gap-2">
                   {([5, 15, 30, 60, 90] as TimeEstimate[]).map(t => (
                     <button
@@ -213,8 +241,8 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
                       onClick={() => setTime(t)}
                       className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all active:scale-95 border
                         ${time === t
-                          ? 'bg-primary text-background-dark border-transparent shadow-glow-accent'
-                          : 'bg-card-dark text-slate-500 border-white/5 hover:border-white/10'}`}
+                          ? 'bg-primary text-content-inverse border-transparent shadow-glow-accent'
+                          : 'bg-surface-card text-content-muted border-border-subtle hover:border-border-default'}`}
                     >
                       {t < 60 ? `${t}m` : `${t / 60}h`}
                     </button>
@@ -234,28 +262,28 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
           {/* ── CREATE PROJECT ─────────────────────────────────────────────── */}
           {step === 'create_project' && (
             <Step key="create_project" custom={direction} variants={variants}>
-              <p className="text-xl font-display font-bold text-white mb-2">Name this project</p>
-              <p className="text-sm font-medium text-slate-400 mb-6">
+              <p className="text-xl font-display font-bold text-content-primary mb-2">Name this project</p>
+              <p className="text-sm font-medium text-content-secondary mb-6">
                 What is the successful outcome you're driving toward?
               </p>
               <input
                 value={projectName}
                 onChange={e => setProjectName(e.target.value)}
                 placeholder="e.g. Launch redesigned website"
-                className="w-full bg-card-dark border border-white/10 rounded-2xl
-                           px-5 py-4 text-base font-medium text-white placeholder-slate-500
+                className="w-full bg-surface-card border border-border-default rounded-2xl
+                           px-5 py-4 text-base font-medium text-content-primary placeholder-slate-500
                            focus:outline-none focus:border-primary/50 mb-6 shadow-inner"
                 autoFocus
               />
-              <p className="text-sm font-medium text-slate-400 mb-2">
+              <p className="text-sm font-medium text-content-secondary mb-2">
                 What's the very next physical action?
               </p>
               <input
                 value={nextActionText}
                 onChange={e => setNextActionText(e.target.value)}
                 placeholder="e.g. Draft homepage copy in Notion"
-                className="w-full bg-card-dark border border-white/10 rounded-2xl
-                           px-5 py-4 text-base font-medium text-white placeholder-slate-500
+                className="w-full bg-surface-card border border-border-default rounded-2xl
+                           px-5 py-4 text-base font-medium text-content-primary placeholder-slate-500
                            focus:outline-none focus:border-primary/50 mb-8 shadow-inner"
               />
               <Button
@@ -309,7 +337,7 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
       {/* Skip */}
       <button
         onClick={onSkip}
-        className="mt-6 mb-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 text-center hover:text-white transition-colors"
+        className="mt-6 mb-4 text-[10px] font-bold uppercase tracking-widest text-content-muted text-center hover:text-content-primary transition-colors"
       >
         Skip this item for now
       </button>
@@ -344,8 +372,8 @@ function Step({
 function Question({ q, sub }: { q: string; sub: string }) {
   return (
     <div className="mb-8 px-2">
-      <h2 className="text-2xl font-display font-bold text-white mb-2 leading-tight">{q}</h2>
-      <p className="text-sm font-medium text-slate-400 leading-relaxed">{sub}</p>
+      <h2 className="text-2xl font-display font-bold text-content-primary mb-2 leading-tight">{q}</h2>
+      <p className="text-sm font-medium text-content-secondary leading-relaxed">{sub}</p>
     </div>
   )
 }
@@ -362,9 +390,9 @@ function AnswerBtn({
   variant?: 'primary' | 'secondary' | 'danger'
 }) {
   const styles = {
-    primary: 'bg-primary/10 text-primary border-2 border-primary/30 hover:bg-primary/20 shadow-glow-accent',
-    secondary: 'bg-card-dark text-slate-300 border-2 border-white/5 hover:border-white/10',
-    danger: 'bg-red-500/10 text-red-500 border-2 border-red-500/20 hover:bg-red-500/20',
+    primary: 'bg-primary/10 text-primary-ink border-2 border-primary/30 hover:bg-primary/20 shadow-glow-accent',
+    secondary: 'bg-surface-card text-content-primary border-2 border-border-subtle hover:border-border-default',
+    danger: 'bg-status-error/10 text-status-error border-2 border-status-danger hover:bg-status-error/20',
   }
 
   return (

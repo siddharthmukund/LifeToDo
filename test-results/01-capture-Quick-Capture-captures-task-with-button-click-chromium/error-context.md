@@ -1,0 +1,70 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - link "Skip to navigation" [ref=e3] [cursor=pointer]:
+    - /url: "#bottom-nav"
+  - status [ref=e4]
+  - alert [ref=e5]
+  - generic [ref=e6]:
+    - navigation "Sidebar navigation" [ref=e7]:
+      - img [ref=e10]
+      - link "Today" [ref=e12] [cursor=pointer]:
+        - /url: /
+        - img [ref=e13]
+        - generic [ref=e15]: Today
+      - link "Inbox" [ref=e16] [cursor=pointer]:
+        - /url: /inbox
+        - img [ref=e17]
+        - generic [ref=e20]: Inbox
+      - link "Projects" [ref=e21] [cursor=pointer]:
+        - /url: /projects
+        - img [ref=e22]
+        - generic [ref=e24]: Projects
+      - link "Waiting" [ref=e25] [cursor=pointer]:
+        - /url: /waiting
+        - img [ref=e26]
+        - generic [ref=e29]: Waiting
+      - link "Review" [ref=e30] [cursor=pointer]:
+        - /url: /review
+        - img [ref=e31]
+        - generic [ref=e33]: Review
+      - link "Insights" [ref=e34] [cursor=pointer]:
+        - /url: /insights
+        - img [ref=e35]
+        - generic [ref=e36]: Insights
+      - link "Settings" [ref=e37] [cursor=pointer]:
+        - /url: /settings
+        - img [ref=e38]
+        - generic [ref=e41]: Settings
+    - main [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e44]:
+          - heading "Inbox" [level=1] [ref=e45]
+          - button [ref=e46] [cursor=pointer]:
+            - img [ref=e47]
+        - generic [ref=e51]:
+          - paragraph [ref=e52]: Unprocessed
+          - heading "0" [level=2] [ref=e53]
+          - generic [ref=e54]:
+            - generic [ref=e55]: "1"
+            - generic [ref=e57]: "50"
+        - generic [ref=e59]:
+          - status [ref=e60]
+          - generic [ref=e61]:
+            - button "Start voice capture" [ref=e64] [cursor=pointer]:
+              - img [ref=e65]
+            - generic [ref=e69]:
+              - paragraph [ref=e70]: Start voice capture
+              - button [active] [ref=e71] [cursor=pointer]: ⌨️ Keyboard
+        - generic [ref=e75]:
+          - generic [ref=e76]: 📭
+          - generic [ref=e77]:
+            - heading "Inbox Zero" [level=3] [ref=e78]
+            - paragraph [ref=e79]: Your mind is clear. Tap the mic above to capture anything on your mind right now.
+  - button "Open Next.js Dev Tools" [ref=e85] [cursor=pointer]:
+    - img [ref=e86]
+  - alert [ref=e89]
+```

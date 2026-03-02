@@ -59,19 +59,19 @@ export function CalendarView() {
         <div className="flex items-center justify-between">
           <button
             onClick={() => { setWeekStart(w => addDays(w, -7)) }}
-            className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white/10"
+            className="w-8 h-8 rounded-xl bg-overlay-hover flex items-center justify-center hover:bg-overlay-hover"
           >
-            <ChevronLeft size={16} className="text-slate-400" />
+            <ChevronLeft size={16} className="text-content-secondary" />
           </button>
-          <p className="text-xs font-bold text-slate-400">
+          <p className="text-xs font-bold text-content-secondary">
             {weekStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} –{' '}
             {addDays(weekStart, 6).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
           </p>
           <button
             onClick={() => { setWeekStart(w => addDays(w, 7)) }}
-            className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white/10"
+            className="w-8 h-8 rounded-xl bg-overlay-hover flex items-center justify-center hover:bg-overlay-hover"
           >
-            <ChevronRight size={16} className="text-slate-400" />
+            <ChevronRight size={16} className="text-content-secondary" />
           </button>
         </div>
 
@@ -88,15 +88,15 @@ export function CalendarView() {
                 onClick={() => setSelected(day)}
                 className={[
                   'flex flex-col items-center gap-1 py-2 rounded-xl transition-all',
-                  isSelected ? 'bg-primary/20 border border-primary/30' : 'hover:bg-white/5',
+                  isSelected ? 'bg-primary/20 border border-primary/30' : 'hover:bg-overlay-hover',
                 ].join(' ')}
               >
-                <span className="text-[9px] font-bold uppercase text-slate-500">
+                <span className="text-[9px] font-bold uppercase text-content-muted">
                   {DAY_LABELS[day.getDay()]}
                 </span>
                 <span className={[
                   'text-sm font-bold',
-                  isToday ? 'text-primary' : isSelected ? 'text-white' : 'text-slate-300',
+                  isToday ? 'text-primary-ink' : isSelected ? 'text-content-primary' : 'text-content-primary',
                 ].join(' ')}>
                   {day.getDate()}
                 </span>
@@ -111,7 +111,7 @@ export function CalendarView() {
         {/* Events for selected day */}
         <div className="space-y-2">
           {selectedActions.length === 0 ? (
-            <p className="text-xs text-slate-500 text-center py-4">
+            <p className="text-xs text-content-muted text-center py-4">
               No scheduled actions for this day
             </p>
           ) : (

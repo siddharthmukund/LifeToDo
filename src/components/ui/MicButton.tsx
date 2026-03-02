@@ -56,29 +56,32 @@ export function MicButton({ status, onClick, size = 'md', label, className }: Mi
         onClick={onClick}
         whileTap={{ scale: 0.93 }}
         disabled={isBusy}
-        aria-label={label ?? (isActive ? 'Stop recording' : 'Start voice capture')}
+        aria-label={label ?? (isActive ? 'Stop recording' : isBusy ? 'Processing voice input' : 'Start voice capture')}
+        aria-pressed={isActive}
+        aria-busy={isBusy}
         className={cn(
           'relative z-10 rounded-full flex items-center justify-center',
           'transition-all duration-250 select-none focus-visible:outline-none',
           'min-h-[44px] min-w-[44px]', // WCAG touch target floor
           dim.button,
           isActive
-            ? 'bg-primary/15 border-2 border-primary text-primary shadow-glow-primary active-glow'
+            ? 'bg-primary/15 border-2 border-primary text-primary-ink shadow-glow-primary active-glow'
             : isBusy
-            ? 'bg-card-dark border border-primary/30 text-primary/60 cursor-not-allowed'
-            : 'bg-card-dark border border-white/8 text-slate-400 hover:border-primary/40 hover:text-primary shadow-card',
+            ? 'bg-surface-card border border-primary/30 text-primary-ink/60 cursor-not-allowed'
+            : 'bg-surface-card border border-border-subtle text-content-secondary hover:border-primary/40 hover:text-primary-ink shadow-card',
         )}
       >
         {/* Spinner when processing */}
         {isBusy ? (
           <span
+            aria-hidden="true"
             className="block rounded-full border-2 border-primary/30 border-t-primary animate-spin"
             style={{ width: dim.icon, height: dim.icon }}
           />
         ) : isActive ? (
-          <MicOff size={dim.icon} strokeWidth={2} />
+          <MicOff size={dim.icon} strokeWidth={2} aria-hidden="true" />
         ) : (
-          <Mic size={dim.icon} strokeWidth={1.75} />
+          <Mic size={dim.icon} strokeWidth={1.75} aria-hidden="true" />
         )}
       </motion.button>
     </div>

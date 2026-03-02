@@ -1,5 +1,5 @@
 // EmptyState — guided zero-data screen.
-// Uses new design tokens: text-white (primary text), text-slate-400 (body).
+// Uses new design tokens: text-content-primary (primary text), text-content-secondary (body).
 
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
@@ -25,8 +25,8 @@ export function EmptyState({ icon, title, description, action, className }: Empt
     >
       <div className="text-6xl animate-bounce-in">{icon}</div>
       <div className="space-y-2">
-        <h3 className="text-xl font-display font-bold text-white">{title}</h3>
-        <p className="text-sm font-medium text-slate-400 leading-relaxed max-w-xs mx-auto">
+        <h3 className="text-xl font-display font-bold text-content-primary">{title}</h3>
+        <p className="text-sm font-medium text-content-secondary leading-relaxed max-w-xs mx-auto">
           {description}
         </p>
       </div>

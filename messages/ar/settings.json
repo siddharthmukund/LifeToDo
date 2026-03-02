@@ -1,0 +1,17 @@
+{
+    "title": "Settings",
+    "preferences": "Preferences",
+    "account": "Account",
+    "appearance": "Appearance",
+    "language": {
+        "label": "Language",
+        "description": "Change the language of the application."
+    },
+    "theme": {
+        "light": "Light Mode",
+        "dark": "Dark Mode",
+        "system": "System Default"
+    },
+    "adhdMode": "ADHD Assistance Mode",
+    "notifications": "Push Notifications"
+}

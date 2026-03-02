@@ -10,9 +10,9 @@ import Link                    from 'next/link'
 import { getNextActionWidgetData, type NextActionWidgetData } from './widgetDataProvider'
 
 const ENERGY_COLORS: Record<string, string> = {
-  high:   'text-primary',
+  high:   'text-primary-ink',
   medium: 'text-accent',
-  low:    'text-green-400',
+  low:    'text-status-success',
 }
 
 export function NextActionWidget() {
@@ -24,23 +24,23 @@ export function NextActionWidget() {
 
   if (!data) {
     return (
-      <div className="bg-card-dark rounded-2xl border border-white/8 p-4 flex items-center gap-3">
-        <Zap size={18} className="text-slate-500" />
-        <p className="text-sm text-slate-500">Nothing active — great job!</p>
+      <div className="bg-surface-card rounded-2xl border border-border-subtle p-4 flex items-center gap-3">
+        <Zap size={18} className="text-content-muted" />
+        <p className="text-sm text-content-muted">Nothing active — great job!</p>
       </div>
     )
   }
 
   return (
     <Link href="/" className="block">
-      <div className="bg-card-dark rounded-2xl border border-primary/15 p-4 hover:border-primary/30 transition-colors">
-        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Next Action</p>
-        <p className="text-sm font-medium text-white line-clamp-2 mb-3">{data.text}</p>
+      <div className="bg-surface-card rounded-2xl border border-primary/15 p-4 hover:border-primary/30 transition-colors">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-content-muted mb-2">Next Action</p>
+        <p className="text-sm font-medium text-content-primary line-clamp-2 mb-3">{data.text}</p>
         <div className="flex items-center gap-3">
-          <span className={`flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest ${ENERGY_COLORS[data.energy] ?? 'text-slate-400'}`}>
+          <span className={`flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest ${ENERGY_COLORS[data.energy] ?? 'text-content-secondary'}`}>
             <Zap size={10} /> {data.energy}
           </span>
-          <span className="flex items-center gap-1 text-[10px] text-slate-400">
+          <span className="flex items-center gap-1 text-[10px] text-content-secondary">
             <Clock size={10} /> {data.timeEstimate}m
           </span>
         </div>

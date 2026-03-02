@@ -16,9 +16,9 @@ interface InboxItemCardProps {
 }
 
 const SOURCE_ICONS = {
-  voice: { icon: Mic, color: 'text-primary' },
-  text: { icon: Keyboard, color: 'text-slate-500' },
-  share: { icon: Share2, color: 'text-yellow-500' },
+  voice: { icon: Mic, color: 'text-primary-ink' },
+  text: { icon: Keyboard, color: 'text-content-muted' },
+  share: { icon: Share2, color: 'text-status-warning' },
 }
 
 export function InboxItemCard({ item, onClarify, onTrash }: InboxItemCardProps) {
@@ -61,8 +61,8 @@ export function InboxItemCard({ item, onClarify, onTrash }: InboxItemCardProps) 
         className="absolute inset-0 flex items-center justify-start pl-5
                    bg-red-500 rounded-2xl pointer-events-none"
       >
-        <Trash2 size={22} className="text-white" />
-        <span className="ml-2 text-white text-sm font-bold tracking-wider">Trash</span>
+        <Trash2 size={22} className="text-content-primary" />
+        <span className="ml-2 text-content-primary text-sm font-bold tracking-wider">Trash</span>
       </motion.div>
 
       {/* Right hint (clarify) */}
@@ -71,8 +71,8 @@ export function InboxItemCard({ item, onClarify, onTrash }: InboxItemCardProps) 
         className="absolute inset-0 flex items-center justify-end pr-5
                    bg-primary rounded-2xl pointer-events-none"
       >
-        <span className="mr-2 text-background-dark text-sm font-bold tracking-wider">Clarify</span>
-        <Zap size={22} className="text-background-dark" />
+        <span className="mr-2 text-content-inverse text-sm font-bold tracking-wider">Clarify</span>
+        <Zap size={22} className="text-content-inverse" />
       </motion.div>
 
       {/* Draggable card */}
@@ -87,25 +87,25 @@ export function InboxItemCard({ item, onClarify, onTrash }: InboxItemCardProps) 
         whileTap={{ scale: 0.98 }}
       >
         <div className="flex items-start justify-between gap-4">
-          <h3 className="text-base font-bold leading-tight text-slate-100 line-clamp-2 italic pr-4">
+          <h3 className="text-base font-bold leading-tight text-content-primary line-clamp-2 italic pr-4">
             &ldquo;{item.text}&rdquo;
           </h3>
 
           <button
             onClick={handleClarifyClick}
-            className="relative flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-primary/30 bg-primary/10 text-primary transition-all active:scale-95 shadow-glow-accent hover:bg-primary/20"
+            className="relative flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-primary/30 bg-primary/10 text-primary-ink transition-all active:scale-95 shadow-glow-accent hover:bg-primary/20"
             aria-label="Clarify this item"
             onPointerDown={(e) => e.stopPropagation()}
           >
             <Zap size={20} className="fill-primary/20" />
-            <span className="absolute -right-1 -top-1 pointer-events-none rounded-full bg-card-dark p-0.5">
+            <span className="absolute -right-1 -top-1 pointer-events-none rounded-full bg-surface-card p-0.5">
               <span className="block size-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(43,238,108,0.8)]"></span>
             </span>
           </button>
         </div>
 
         <div className="mt-3 flex items-center justify-between">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-content-muted">
             {timeAgo(item.capturedAt)}
           </span>
           <div className={`flex items-center gap-1 ${color} opacity-70`}>

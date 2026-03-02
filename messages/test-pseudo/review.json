@@ -1,0 +1,19 @@
+{
+  "title": "[Weekly Review xxxxxx]",
+  "start": "[Start Review xxxxx]",
+  "steps": {
+    "getClear": "[Get Clear xxxx]",
+    "getCurrent": "[Get Current xxxxx]",
+    "getCreative": "[Get Creative xxxxx]"
+  },
+  "questions": {
+    "emptyHead": "[What has your attention? xxxxxxxxxx]",
+    "inboxZero": "[Is your inbox completely processed? xxxxxxxxxxxxxx]",
+    "nextActions": "[Are all next actions still relevant? xxxxxxxxxxxxxxx]",
+    "waitingFor": "[Are you waiting on anything? xxxxxxxxxxxx]"
+  },
+  "completion": {
+    "congrats": "[Great job! xxxx]",
+    "summary": "[You are ready for the week ahead. xxxxxxxxxxxxxx]"
+  }
+}

@@ -45,8 +45,8 @@ export function ContextChip({
         'text-sm font-medium transition-all duration-200 select-none',
         'min-h-[44px] px-4', // touch target
         active
-          ? 'bg-primary text-background-dark font-bold shadow-glow-accent'
-          : 'bg-card-dark border border-white/8 text-slate-400 hover:border-primary/30 hover:text-slate-200',
+          ? 'bg-primary text-content-inverse font-bold shadow-glow-accent'
+          : 'bg-surface-card border border-border-subtle text-content-secondary hover:border-primary/30 hover:text-slate-200',
         readOnly && 'cursor-default',
         !readOnly && !active && 'cursor-pointer active:scale-95',
         className,
@@ -58,7 +58,7 @@ export function ContextChip({
         <span
           className={cn(
             'ml-0.5 rounded-full px-1.5 py-0.5 text-[10px] font-bold',
-            active ? 'bg-background-dark/30 text-background-dark' : 'bg-white/10 text-slate-400',
+            active ? 'bg-surface-base/30 text-content-inverse' : 'bg-overlay-hover text-content-secondary',
           )}
         >
           {count}

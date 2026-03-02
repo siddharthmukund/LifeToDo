@@ -1,0 +1,14 @@
+{
+    "announce": {
+        "taskCompleted": "Task completed: {title}",
+        "taskAdded": "Task added: {title}",
+        "inboxZero": "Inbox is empty \u2014 you've reached inbox zero!",
+        "suggestionsAvailable": "{count, plural, one {# suggestion available} other {# suggestions available}}",
+        "positionChanged": "{title}, position {position} of {total}",
+        "reorderStarted": "Reorder mode. Use arrow keys to move, Enter to confirm, Escape to cancel.",
+        "reorderConfirmed": "{title} moved to position {position}",
+        "reorderCancelled": "Reorder cancelled",
+        "routeChanged": "Navigated to {screen}",
+        "allItemsClarified": "All items clarified"
+    }
+}

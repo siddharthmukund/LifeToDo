@@ -1,0 +1,52 @@
+{
+    "coach": {
+        "consent": {
+            "title": "AI Coach चालू करें",
+            "description": "AI Coach आपको tasks clarify करने, priorities सेट करने, और GTD में बेहतर होने में मदद करता है। यह आपके tasks को analyze करता है और सुझाव देता है।",
+            "privacy": "आपका data encrypted है और कभी training के लिए इस्तेमाल नहीं होता।",
+            "enable": "AI Coach चालू करें",
+            "disable": "बाद में"
+        },
+        "labels": {
+            "suggestion": "AI सुझाव",
+            "insight": "AI insight",
+            "coaching": "AI coaching",
+            "analyzing": "Analyze हो रहा है…"
+        },
+        "suggestions": {
+            "clarifyThis": "इसे clarify करें",
+            "splitIntoSubtasks": "Sub-tasks में बांटें",
+            "setDeadline": "Deadline लगाएं",
+            "addContext": "Context जोड़ें",
+            "considerDelegating": "Delegate करने पर विचार करें"
+        },
+        "errors": {
+            "failed": "AI सुझाव नहीं मिल सका। कृपया दोबारा कोशिश करें।",
+            "offline": "AI Coach ऑफ़लाइन काम नहीं करता।",
+            "rateLimited": "बहुत सारे requests। कुछ देर में कोशिश करें।"
+        }
+    },
+    "smartCapture": {
+        "parsing": "Parse हो रहा है…",
+        "confirmations": {
+            "title": "Title confirm है?",
+            "date": "Date confirm है?",
+            "time": "Time confirm है?",
+            "context": "Context confirm है?",
+            "project": "Project confirm है?"
+        },
+        "suggestions": {
+            "dateDetected": "Date detect हुआ: {date}",
+            "timeDetected": "Time detect हुआ: {time}",
+            "contextDetected": "Context detect हुआ: {context}",
+            "projectDetected": "Project detect हुआ: {project}"
+        }
+    },
+    "brainDump": {
+        "title": "Brain Dump",
+        "placeholder": "अपने दिमाग में जो भी है, यहां paste करें — हम sort कर देंगे",
+        "processing": "Tasks extract हो रहे हैं…",
+        "result": "{count, plural, one {# task extract हुआ} other {# tasks extract हुए}}",
+        "nothingFound": "कोई tasks नहीं मिले। कुछ और विस्तार से लिखें?"
+    }
+}

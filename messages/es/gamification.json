@@ -1,0 +1,37 @@
+{
+    "xp": {
+        "label": "XP",
+        "earned": "+{amount} XP",
+        "progress": "{current}/{required} XP to Level {level}"
+    },
+    "level": {
+        "current": "Level {level}",
+        "name": {
+            "1": "Getting Started",
+            "5": "Building Habits",
+            "10": "GTD Practitioner",
+            "20": "GTD Master",
+            "30": "Mind Like Water"
+        }
+    },
+    "streak": {
+        "current": "{count, plural, one {#-day streak} other {#-day streak}}",
+        "milestone": "{days}-day streak!"
+    },
+    "achievements": {
+        "inboxZeroHero": {
+            "name": "Inbox Zero Hero",
+            "description": "Clear your inbox {count, plural, one {# time} other {# times}}"
+        },
+        "weeklyWarrior": {
+            "name": "Weekly Warrior",
+            "description": "Complete {count, plural, one {# weekly review} other {# weekly reviews}} in a row"
+        }
+    },
+    "challenges": {
+        "clarifyFive": {
+            "title": "Quick Clarifier",
+            "description": "Clarify {count, plural, one {# item} other {# items}} today"
+        }
+    }
+}

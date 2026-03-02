@@ -1,0 +1,17 @@
+{
+  "title": "[Projects xxxx]",
+  "create": "[New Project xxxxx]",
+  "emptyState": {
+    "title": "[No active projects xxxxxxxx]",
+    "description": "[Projects are outcomes that require more than one action step. xxxxxxxxxxxxxxxxxxxxxxxxx]"
+  },
+  "details": {
+    "outcome": "[Successful Outcome: xxxxxxxx]",
+    "nextAction": "[Next Action: xxxxx]"
+  },
+  "status": {
+    "active": "[Active xxx]",
+    "completed": "[Completed xxxx]",
+    "onHold": "[On Hold xxx]"
+  }
+}

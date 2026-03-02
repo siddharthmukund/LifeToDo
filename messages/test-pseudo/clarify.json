@@ -1,0 +1,22 @@
+{
+  "title": "[Clarify xxx]",
+  "emptyState": {
+    "title": "[All caught up! xxxxxx]",
+    "description": "[Your inbox is completely clear. xxxxxxxxxxxxx]"
+  },
+  "flow": {
+    "isActionable": "[Is it actionable? xxxxxxx]",
+    "yes": "[Yes xx]",
+    "no": "[No x]",
+    "delete": "[Trash It xxxx]",
+    "someday": "[Someday/Maybe xxxxxx]",
+    "reference": "[Reference xxxx]",
+    "twoMinuteRule": "[Will it take less than 2 minutes? xxxxxxxxxxxxxx]",
+    "doItNow": "[Do it now xxxx]",
+    "delegate": "[Delegate it xxxxx]",
+    "defer": "[Defer it xxxx]",
+    "whatIsNextAction": "[What is the very next action? xxxxxxxxxxxx]",
+    "whatIsProject": "[Is this part of a larger project? xxxxxxxxxxxxxx]"
+  },
+  "coachSocratic": "[Consider breaking this down into smaller, defined steps. xxxxxxxxxxxxxxxxxxxxxxx]"
+}

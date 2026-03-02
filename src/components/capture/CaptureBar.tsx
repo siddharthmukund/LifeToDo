@@ -3,24 +3,29 @@
 // Voice is the hero (large pulsing mic button). Text input as fallback.
 // After a successful capture, optionally enters clarify mode (voice enrichment).
 // Single responsibility: capture + optional one-shot clarification.
+// iCCW #13: mic area converted to <button>, aria-live status region, keyboard-accessible.
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mic, MicOff, Send, X, Zap } from 'lucide-react'
+import { Mic } from 'lucide-react'
 import { useVoiceCapture } from '@/hooks/useVoiceCapture'
 import { VoiceWave } from './VoiceWave'
 import { VoiceClarifyBar } from './VoiceClarifyBar'
 import { db } from '@/lib/db'
 import { cn } from '@/lib/utils'
 import type { VoiceClarifyResult } from '@/types'
+import { SmartInputBar } from '../ai/SmartInputBar'
+import { useTranslations } from 'next-intl'
 
 interface CaptureBarProps {
   /** Called when capture (+ optional clarify) is complete. */
-  onCapture: (text: string, source: 'voice' | 'text', clarify?: VoiceClarifyResult) => void
+  onCapture: (text: string, source: 'voice' | 'text', clarify?: VoiceClarifyResult, nlpMetadata?: { dueDate: Date | null, projects: string[], contexts: string[] }) => void
   className?: string
 }
 
 export function CaptureBar({ onCapture, className }: CaptureBarProps) {
+  const tInbox = useTranslations('inbox.capture')
+  const tCommon = useTranslations('common.actions')
   const [textMode, setTextMode] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const [clarifyMode, setClarifyMode] = useState(false)
@@ -32,7 +37,7 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
   // Pre-load active project names for fuzzy matching in VoiceClarifyBar
   const loadProjectNames = useCallback(async () => {
     try {
-      const projects = await db.projects.filter(p => p.status === 'active').toArray()
+      const projects = await db.projects.filter((p: any) => p.status === 'active').toArray()
       const names: Record<string, string> = {}
       for (const p of projects) names[p.id] = p.name
       setProjectNames(names)
@@ -41,11 +46,14 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
     }
   }, [])
 
+  const [nlpMeta, setNlpMeta] = useState<{ dueDate: Date | null, projects: string[], contexts: string[] } | undefined>()
+
   /** Enter voice-clarify mode after a successful initial capture. */
-  function enterClarifyMode(text: string, source: 'voice' | 'text') {
+  function enterClarifyMode(text: string, source: 'voice' | 'text', meta?: { dueDate: Date | null, projects: string[], contexts: string[] }) {
     setCapturedText(text)
     setCapturedSource(source)
-    setClarifyMode(true)
+    setNlpMeta(meta)
+    if (source === 'voice') setClarifyMode(true) // Skip clarify bar on manual text for now
     setTextMode(false)
     setInputValue('')
     void loadProjectNames()
@@ -59,18 +67,18 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
 
   const handleClarifyConfirm = useCallback(
     (result: VoiceClarifyResult) => {
-      onCapture(capturedText, capturedSource, result)
+      onCapture(capturedText, capturedSource, result, nlpMeta)
       exitClarifyMode()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [capturedText, capturedSource, onCapture],
+    [capturedText, capturedSource, nlpMeta, onCapture],
   )
 
   const handleClarifySkip = useCallback(() => {
-    onCapture(capturedText, capturedSource)
+    onCapture(capturedText, capturedSource, undefined, nlpMeta)
     exitClarifyMode()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [capturedText, capturedSource, onCapture])
+  }, [capturedText, capturedSource, nlpMeta, onCapture])
 
   // ── Voice capture hook ────────────────────────────────────────────────────
   const {
@@ -87,12 +95,12 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
     if (status === 'idle' && transcript === '') setTextMode(false)
   }, [status, transcript])
 
-  // ── Handlers ──────────────────────────────────────────────────────────────
   function handleTextSubmit(e?: React.FormEvent) {
     e?.preventDefault()
     const trimmed = inputValue.trim()
     if (!trimmed) return
     enterClarifyMode(trimmed, 'text')
+    setTimeout(() => { onCapture(trimmed, 'text') }, 10)
   }
 
   function handleMicClick() {
@@ -112,9 +120,38 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
     setTimeout(() => inputRef.current?.focus(), 100)
   }
 
+  // Derive descriptive aria-label for the mic button based on current state
+  const micAriaLabel = isListening
+    ? tInbox('voiceButton.stop')
+    : isProcessing
+      ? tInbox('voiceButton.processing')
+      : isSupported
+        ? tInbox('voiceButton.start')
+        : tInbox('voiceButton.unavailable')
+
+  // Status text announced to screen readers via the aria-live region
+  const statusText = isListening
+    ? transcript ? tInbox('voiceStatus.listeningTranscript', { transcript }) : tInbox('voiceStatus.listening')
+    : isProcessing
+      ? tInbox('voiceStatus.processing')
+      : errorMessage ?? ''
+
   // ── Render ────────────────────────────────────────────────────────────────
   return (
     <div className={cn('w-full flex flex-col items-center justify-center', className)}>
+
+      {/*
+        aria-live="polite" status region — announces voice state to screen readers.
+        Visually hidden but always present so AT picks up state changes.
+      */}
+      <div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {statusText}
+      </div>
 
       {/* Voice Orb Area */}
       <AnimatePresence mode="wait">
@@ -126,60 +163,70 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
             exit={{ opacity: 0, scale: 0.9 }}
             className="w-full flex flex-col items-center gap-6 my-10"
           >
-            {/* Massive Mic Button */}
-            <motion.div
-              className="relative cursor-pointer select-none"
-              onClick={handleMicClick}
-              whileTap={{ scale: 0.95 }}
-            >
+            {/* Massive Mic Button — semantic <button> for keyboard + AT */}
+            <div className="relative select-none">
               {/* Outer decorative ring */}
               <motion.div
+                aria-hidden="true"
                 className="absolute inset-0 rounded-full border border-primary/10"
                 animate={isListening ? { scale: [1.1, 1.4, 1.1], opacity: [0.5, 0.1, 0.5] } : { scale: 1.25 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
               />
 
-              {/* Inner animated glow when listening */}
+              {/* Inner glow when listening */}
               {isListening && (
                 <motion.div
+                  aria-hidden="true"
                   className="absolute inset-0 rounded-full bg-primary/20 blur-xl"
                   animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                 />
               )}
 
-              {/* Core Button Area */}
-              <div className={cn(
-                "relative flex size-36 md:size-40 items-center justify-center rounded-full transition-all duration-300",
-                isListening
-                  ? "bg-primary/20 text-primary border border-primary/50 shadow-[0_0_40px_rgba(43,238,108,0.3)]"
-                  : "bg-card-dark text-slate-500 border border-white/5 hover:border-primary/30 shadow-2xl"
-              )}>
-
+              {/* Core interactive button — replaces the non-interactive <motion.div> */}
+              <button
+                type="button"
+                onClick={handleMicClick}
+                disabled={isProcessing}
+                aria-label={micAriaLabel}
+                aria-pressed={isListening}
+                className={cn(
+                  'relative flex size-36 md:size-40 items-center justify-center rounded-full',
+                  'transition-all duration-300 cursor-pointer',
+                  'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:ring-offset-2',
+                  isListening
+                    ? 'bg-primary/20 text-primary-ink border border-primary/50 shadow-[0_0_40px_rgba(43,238,108,0.3)]'
+                    : 'bg-surface-card text-content-secondary border border-border-default hover:border-brand shadow-card',
+                  isProcessing && 'opacity-60 cursor-not-allowed',
+                )}
+              >
                 {isListening ? (
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
                     <VoiceWave status={status} audioLevel={audioLevel} barCount={7} />
                   </div>
                 ) : (
-                  <Mic size={48} className="opacity-50" strokeWidth={1.5} />
+                  <Mic size={48} className="opacity-50" strokeWidth={1.5} aria-hidden="true" />
                 )}
-              </div>
-            </motion.div>
+              </button>
+            </div>
 
-            {/* Transcript & Status */}
-            <div className="text-center space-y-2 h-20 flex flex-col items-center justify-start">
+            {/* Transcript & Status (visual only — aria-live region handles AT) */}
+            <div
+              className="text-center space-y-2 h-20 flex flex-col items-center justify-start"
+              aria-hidden="true"
+            >
               <AnimatePresence mode="wait">
                 {isListening ? (
                   <motion.div
                     key="listening-status"
                     initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
                   >
-                    <p className="text-primary font-bold text-xs pos uppercase tracking-[0.2em] mb-2 animate-pulse">
-                      Listening...
+                    <p className="text-primary-ink font-bold text-xs uppercase tracking-[0.2em] mb-2 animate-pulse">
+                      {tInbox('voiceStatus.listening')}
                     </p>
                     {transcript && (
-                      <h3 className="text-slate-100 text-lg md:text-xl font-bold leading-tight px-8 font-display italic">
-                        "{transcript}"
+                      <h3 className="text-content-primary text-lg md:text-xl font-bold leading-tight px-8 font-display italic">
+                        &ldquo;{transcript}&rdquo;
                       </h3>
                     )}
                   </motion.div>
@@ -190,32 +237,34 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
                     className="flex flex-col items-center"
                   >
                     <div className="size-5 rounded-full border-2 border-primary/30 border-t-primary animate-spin mb-2" />
-                    <p className="text-primary text-xs uppercase tracking-widest font-bold">Processing audio</p>
+                    <p className="text-primary-ink text-xs uppercase tracking-widest font-bold">{tInbox('voiceStatus.processing')}</p>
                   </motion.div>
                 ) : (
                   <motion.div
                     key="idle-status"
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                   >
-                    <p className="text-slate-500 text-sm font-medium mb-2">Tap to voice capture</p>
+                    <p className="text-content-secondary text-sm font-medium mb-2">{tInbox('voiceButton.start')}</p>
                     <button
                       autoFocus
+                      type="button"
                       onClick={handleTextModeOpen}
-                      className="text-xs font-bold uppercase tracking-widest text-primary/70 hover:text-primary transition-colors px-4 py-2"
+                      className="text-xs font-bold uppercase tracking-widest text-primary-ink/70 hover:text-primary-ink transition-colors px-4 py-2 min-h-[44px]"
                     >
-                      or type
+                      {tInbox('voiceButton.start').toLowerCase().includes('tap') ? 'OR TYPE' : '⌨️ Keyboard'}
                     </button>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
-            {/* Error message */}
+            {/* Error — role="alert" triggers immediate assertive announcement */}
             <AnimatePresence>
               {errorMessage && (
                 <motion.div
                   initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                  className="px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-xl text-xs text-red-500 text-center mt-2 max-w-[80%]"
+                  role="alert"
+                  className="px-4 py-2 bg-status-error/10 border border-status-danger rounded-xl text-xs text-status-error text-center mt-2 max-w-[80%]"
                 >
                   {errorMessage}
                 </motion.div>
@@ -224,49 +273,31 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
           </motion.div>
         ) : (
           /* Text Input Mode */
-          <motion.form
+          <motion.div
             key="text-input"
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}
             className="w-full max-w-[90%] flex flex-col gap-3 my-10"
-            onSubmit={handleTextSubmit}
           >
-            <div className="w-full flex items-center gap-2 bg-card-dark border border-white/10
-                            rounded-2xl px-4 py-4 focus-within:border-primary/50 shadow-2xl transition-colors">
-              <input
-                ref={inputRef}
-                value={inputValue}
-                onChange={e => setInputValue(e.target.value)}
-                placeholder="Capture anything on your mind…"
-                className="flex-1 bg-transparent text-slate-100 placeholder-slate-500 text-base outline-none"
-                autoComplete="off"
-                autoCorrect="on"
-                autoFocus
-              />
-              {inputValue && (
-                <button type="button" onClick={() => setInputValue('')} className="text-slate-500 hover:text-slate-300">
-                  <X size={20} />
-                </button>
-              )}
-            </div>
+            <SmartInputBar
+              placeholder={tInbox('placeholder')}
+              autoFocus
+              onCapture={async (cleanText, meta) => {
+                enterClarifyMode(cleanText, 'text', meta);
+                onCapture(cleanText, 'text', undefined, meta);
+              }}
+            />
 
             <div className="flex justify-between items-center px-2">
               <button
                 type="button"
                 onClick={() => { setTextMode(false); setInputValue('') }}
-                className="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-300 px-2 py-2"
+                aria-label={tCommon('cancel')}
+                className="text-xs font-bold uppercase tracking-widest text-content-secondary hover:text-content-primary px-2 py-2 min-h-[44px]"
               >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                disabled={!inputValue.trim()}
-                className="px-6 py-2.5 rounded-full bg-primary text-background-dark font-bold text-sm
-                           disabled:opacity-30 disabled:saturate-0 flex items-center gap-2 active:scale-95 transition-all shadow-glow-accent"
-              >
-                Capture <Zap size={18} />
+                {tCommon('cancel')}
               </button>
             </div>
-          </motion.form>
+          </motion.div>
         )}
       </AnimatePresence>
 

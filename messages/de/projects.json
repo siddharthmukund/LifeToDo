@@ -1,0 +1,17 @@
+{
+    "title": "Projects",
+    "create": "New Project",
+    "emptyState": {
+        "title": "No active projects",
+        "description": "Projects are outcomes that require more than one action step."
+    },
+    "details": {
+        "outcome": "Successful Outcome:",
+        "nextAction": "Next Action:"
+    },
+    "status": {
+        "active": "Active",
+        "completed": "Completed",
+        "onHold": "On Hold"
+    }
+}

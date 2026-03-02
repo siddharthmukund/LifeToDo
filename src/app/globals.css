@@ -1,7 +1,9 @@
 /* ─────────────────────────────────────────────────────────────────────────────
    Life To Do — Global Styles + CSS Design Tokens
    Tokens extracted from Figma screen exports (25 screens, Feb 2026).
-   Update hex values here; tailwind.config.ts reads them via var().
+   iCCW #5: Full semantic token system — dark baseline + [data-theme="light"]
+   overrides. All glass utilities now CSS-var driven. Zero component re-renders
+   on theme switch.
 ───────────────────────────────────────────────────────────────────────────── */
 
 /* ── Manrope font (geometric sans-serif, matches Figma type treatment) ────── */
@@ -16,40 +18,197 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design tokens ──────────────────────────────────────────────────────────
-   Source of truth for all colors. Every CSS var maps to a Tailwind token
-   in tailwind.config.ts. Change here, takes effect everywhere.
+/* ── Design tokens — Dark theme baseline (default) ──────────────────────────
+   Source of truth for all colours. Tailwind tokens in tailwind.config.ts
+   reference these vars via var(). Light overrides in [data-theme="light"].
 ────────────────────────────────────────────────────────────────────────────── */
 :root {
-  /* Primary — bright cyan. Hero CTAs, active states, progress fills.        */
-  /* Extracted from: all 25 screens — #00E5CC dominant across every view.    */
+  /* ── Brand ──────────────────────────────────────────────────────────────── */
   --primary: #00E5CC;
-
-  /* Accent — rich purple. Secondary actions, focus timer, alternative paths. */
+  /* cyan — fills: buttons, icons, progress arcs      */
+  --primary-ink: #00E5CC;
+  /* cyan as text on dark bg; overridden → #007A6E light */
   --accent: #9D4EDD;
+  /* purple — secondary actions, upgrade nudges        */
 
-  /* App shell — dark navy. Extracted from purple-theme screens.             */
-  --background-dark: #0F0F1A;
+  /* ── Surface ─────────────────────────────────────────────────────────────── */
+  --surface-base: #0F0F1A;
+  /* app shell / page background                 */
+  --surface-card: #1A1A2E;
+  /* default card / panel surface                */
+  --surface-elevated: #232342;
+  /* active card, modal body, focused inputs     */
 
-  /* Card surface — slightly elevated navy. All task cards, modal panels.    */
-  --card-dark: #1A1A2E;
+  /* ── Text ────────────────────────────────────────────────────────────────── */
+  --text-primary: #F5F5F5;
+  /* main body, headings                           */
+  --text-secondary: #94A3B8;
+  /* labels, descriptions  (≈ slate-400)           */
+  --text-tertiary: #64748B;
+  /* captions, timestamps  (≈ slate-500)           */
+  --text-on-brand: #0F0F1A;
+  /* text on primary-filled buttons (stays dark)   */
 
-  /* Elevated surface — active cards, focused inputs, modals over cards.     */
-  --card-elevated: #232342;
+  /* ── Border ──────────────────────────────────────────────────────────────── */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  /* dividers, skeleton borders   */
+  --border-default: rgba(255, 255, 255, 0.10);
+  /* card borders, input outlines */
+  --border-brand: rgba(0, 229, 204, 0.20);
+  /* focus rings, active items    */
 
-  /* ── Legacy variable aliases (keep for backward compat) ───────────────── */
-  --gtd-bg:      var(--background-dark);
-  --gtd-surface: var(--card-dark);
-  --gtd-border:  rgba(255, 255, 255, 0.07);
-  --gtd-accent:  var(--primary);
-  --gtd-text:    #F5F5F5;
-  --gtd-muted:   #64748B;
+  /* ── Interactive overlays ────────────────────────────────────────────────── */
+  --overlay-hover: rgba(255, 255, 255, 0.05);
+  /* row / button hover tint      */
+  --overlay-active: rgba(0, 229, 204, 0.10);
+  /* pressed / selected fill      */
+  --overlay-dim: rgba(0, 0, 0, 0.20);
+  /* modal backdrop, dark scrim   */
+
+  /* ── Status ──────────────────────────────────────────────────────────────── */
+  --status-ok-fg: #4ADE80;
+  --status-ok-bg: rgba(34, 197, 94, 0.15);
+  --status-ok-border: rgba(34, 197, 94, 0.25);
+  --status-warn-fg: #FACC15;
+  --status-warn-bg: rgba(234, 179, 8, 0.10);
+  --status-warn-border: rgba(234, 179, 8, 0.20);
+  --status-danger-fg: #F87171;
+  --status-danger-bg: rgba(239, 68, 68, 0.15);
+  --status-danger-border: rgba(239, 68, 68, 0.20);
+
+  /* ── Glass utility vars (consumed by .glass-* classes below) ─────────────── */
+  --glass-card-bg: rgba(0, 229, 204, 0.04);
+  --glass-card-border: rgba(0, 229, 204, 0.10);
+  --glass-purple-bg: rgba(157, 78, 221, 0.05);
+  --glass-purple-border: rgba(157, 78, 221, 0.12);
+  --glass-panel-bg: rgba(15, 15, 26, 0.88);
+  --glass-panel-border: rgba(255, 255, 255, 0.06);
+  --glass-header-bg: rgba(15, 15, 26, 0.95);
+  --glass-header-border: rgba(0, 229, 204, 0.10);
+
+  /* ── Shadow vars (consumed by tailwind.config.ts boxShadow) ──────────────── */
+  --glow-primary-shadow: rgba(0, 229, 204, 0.30);
+  --glow-primary-shadow-lg: rgba(0, 229, 204, 0.40);
+  --glow-accent-shadow: rgba(0, 229, 204, 0.30);
+  --glow-purple-shadow: rgba(157, 78, 221, 0.40);
+  --glow-success-shadow: rgba(34, 197, 94, 0.30);
+  --glow-warning-shadow: rgba(255, 184, 77, 0.30);
+  --active-glow-box: 0 0 20px rgba(0, 229, 204, 0.40);
+  --active-glow-purple-box: 0 0 24px rgba(157, 78, 221, 0.50);
+
+  /* ── Shimmer vars ────────────────────────────────────────────────────────── */
+  --shimmer-base: rgba(255, 255, 255, 0.03);
+  --shimmer-peak: rgba(255, 255, 255, 0.08);
+
+  /* ── Legacy aliases ──────────────────────────────────────────────────────────
+     Components still on old class names continue to work unchanged.
+     Deliverable 4 migrates them to semantic names.                            */
+  --background-dark: var(--surface-base);
+  --card-dark: var(--surface-card);
+  --card-elevated: var(--surface-elevated);
+  --gtd-bg: var(--surface-base);
+  --gtd-surface: var(--surface-card);
+  --gtd-border: var(--border-subtle);
+  --gtd-accent: var(--primary);
+  --gtd-text: var(--text-primary);
+  --gtd-muted: var(--text-secondary);
+}
+
+/* ── Light theme overrides ──────────────────────────────────────────────────
+   Applied when <html data-theme="light"> — set by the FOUC script in
+   layout.tsx before first paint, then kept in sync by useTheme hook.
+   Only tokens that DIFFER from the dark baseline are listed.
+────────────────────────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  /* Surface */
+  --surface-base: #F4F6FB;
+  --surface-card: #FFFFFF;
+  --surface-elevated: #EDF1F9;
+
+  /* Text */
+  --text-primary: #0F0F1A;
+  --text-secondary: #4B5563;
+  /* D5: #9CA3AF on #FFF = 2.54:1 (FAIL). Fixed to #5C6A7A → 5.53:1 (PASS) */
+  --text-tertiary: #5C6A7A;
+  /* D5: #FFFFFF on #00E5CC = 1.61:1 (FAIL). Fixed to dark navy → 11.85:1 (PASS) */
+  --text-on-brand: #0F0F1A;
+
+  /* Brand text — accessible dark teal, 5.24:1 on white (WCAG AA ✓) */
+  --primary-ink: #007A6E;
+
+  /* Borders — dark-on-light */
+  --border-subtle: rgba(15, 15, 26, 0.08);
+  --border-default: rgba(15, 15, 26, 0.12);
+  --border-brand: rgba(0, 122, 110, 0.25);
+
+  /* Overlays */
+  --overlay-hover: rgba(15, 15, 26, 0.04);
+  --overlay-active: rgba(0, 229, 204, 0.08);
+  --overlay-dim: rgba(15, 15, 26, 0.08);
+
+  /* Status — darker accessible hues on white */
+  --status-ok-fg: #15803D;
+  --status-warn-fg: #B45309;
+  --status-danger-fg: #DC2626;
+
+  /* Status Surfaces */
+  --status-ok-bg: rgba(21, 128, 61, 0.10);
+  --status-ok-border: rgba(21, 128, 61, 0.20);
+  --status-warn-bg: rgba(180, 83, 9, 0.06);
+  --status-warn-border: rgba(180, 83, 9, 0.15);
+  --status-danger-bg: rgba(220, 38, 38, 0.10);
+  --status-danger-border: rgba(220, 38, 38, 0.20);
+
+  /* Glass — lighter tints for light surfaces */
+  --glass-card-bg: rgba(0, 185, 164, 0.06);
+  --glass-card-border: rgba(0, 185, 164, 0.22);
+  --glass-purple-bg: rgba(157, 78, 221, 0.07);
+  --glass-purple-border: rgba(157, 78, 221, 0.22);
+  --glass-panel-bg: rgba(255, 255, 255, 0.92);
+  /* Changed from blueish to clean white */
+  --glass-panel-border: rgba(15, 15, 26, 0.10);
+  --glass-header-bg: rgba(244, 246, 251, 0.95);
+  --glass-header-border: rgba(15, 15, 26, 0.08);
+
+  /* Shadows — reduced intensity on light */
+  --glow-primary-shadow: rgba(0, 185, 164, 0.20);
+  --glow-primary-shadow-lg: rgba(0, 185, 164, 0.28);
+  --glow-accent-shadow: rgba(0, 185, 164, 0.20);
+  --glow-purple-shadow: rgba(157, 78, 221, 0.20);
+  --glow-success-shadow: rgba(34, 197, 94, 0.20);
+  --glow-warning-shadow: rgba(255, 184, 77, 0.20);
+  --active-glow-box: 0 0 20px rgba(0, 185, 164, 0.20);
+  --active-glow-purple-box: 0 0 24px rgba(157, 78, 221, 0.25);
+
+  /* Shimmer */
+  --shimmer-base: rgba(15, 15, 26, 0.03);
+  --shimmer-peak: rgba(15, 15, 26, 0.08);
+}
+
+/* ADHD Mode overrides for Light Theme (Warmer surface, lower contrast) */
+[data-theme="light"][data-adhd="true"] {
+  --surface-base: #FAF8F5;
+  /* Warm cream */
+  --text-primary: #2D3748;
+  /* Off-black */
+  --primary: #00BFAE;
+  /* Desaturated primary */
+}
+
+/* ADHD Mode overrides for Dark Theme (Softer surface, lower contrast) */
+[data-theme="dark"][data-adhd="true"] {
+  --surface-base: #161626;
+  /* Less stark dark */
+  --text-primary: #E2E8F0;
+  /* Off-white */
+  --primary: #00C8B3;
+  /* Less saturated cyan */
 }
 
 /* ── Base reset + defaults ──────────────────────────────────────────────── */
 html {
-  background-color: var(--background-dark);
-  color: var(--gtd-text);
+  background-color: var(--surface-base);
+  color: var(--text-primary);
   font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -60,7 +219,7 @@ html {
 }
 
 body {
-  background-color: var(--background-dark);
+  background-color: var(--surface-base);
   overscroll-behavior: none;
   /* iOS tap highlight removed globally */
   -webkit-tap-highlight-color: transparent;
@@ -71,64 +230,101 @@ body {
 /* ── ADHD Mode — cognitive-load overrides ───────────────────────────────────
    Applied via .adhd-mode class on the root <div> in ClientLayout.
    1.5× font scale on ALL standard text size classes automatically.
-   No individual component changes required.
+   No individual component changes required. Works on both themes.
 ────────────────────────────────────────────────────────────────────────────── */
-.adhd-mode .text-\[10px\] { font-size: 0.875rem; line-height: 1.25rem; }
-.adhd-mode .text-xs  { font-size: 1rem;      line-height: 1.5rem;  }
-.adhd-mode .text-sm  { font-size: 1.125rem;  line-height: 1.75rem; }
-.adhd-mode .text-base{ font-size: 1.3125rem; line-height: 1.875rem;}
-.adhd-mode .text-lg  { font-size: 1.5rem;    line-height: 2rem;    }
-.adhd-mode .text-xl  { font-size: 1.6875rem; line-height: 2.25rem; }
-.adhd-mode .text-2xl { font-size: 2rem;      line-height: 2.5rem;  }
-.adhd-mode .text-3xl { font-size: 2.5rem;    line-height: 3rem;    }
+.adhd-mode .text-\[10px\] {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.adhd-mode .text-xs {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.adhd-mode .text-sm {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.adhd-mode .text-base {
+  font-size: 1.3125rem;
+  line-height: 1.875rem;
+}
+
+.adhd-mode .text-lg {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.adhd-mode .text-xl {
+  font-size: 1.6875rem;
+  line-height: 2.25rem;
+}
+
+.adhd-mode .text-2xl {
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+
+.adhd-mode .text-3xl {
+  font-size: 2.5rem;
+  line-height: 3rem;
+}
 
 /* Thicker borders for better contrast in ADHD mode */
-.adhd-mode .border   { border-width: 2px !important; }
-.adhd-mode .border-b { border-bottom-width: 2px !important; }
-.adhd-mode .border-t { border-top-width: 2px !important; }
+.adhd-mode .border {
+  border-width: 2px !important;
+}
 
-/* ── Glass surfaces — extracted from Figma elevation patterns ───────────── */
+.adhd-mode .border-b {
+  border-bottom-width: 2px !important;
+}
 
-/* glass-card: the standard task card surface.
-   Figma: dark navy tinted with subtle cyan, 1px border at ~10% primary.    */
+.adhd-mode .border-t {
+  border-top-width: 2px !important;
+}
+
+/* ── Glass surfaces — CSS-var driven for full theme adaptability ────────── */
+
+/* glass-card: the standard task card surface. */
 .glass-card {
-  background: rgba(0, 229, 204, 0.04);
-  border: 1px solid rgba(0, 229, 204, 0.10);
+  background: var(--glass-card-bg);
+  border: 1px solid var(--glass-card-border);
 }
 
-/* glass-card-purple: alternative surface for accent/secondary contexts.     */
+/* glass-card-purple: alternative surface for accent/secondary contexts. */
 .glass-card-purple {
-  background: rgba(157, 78, 221, 0.05);
-  border: 1px solid rgba(157, 78, 221, 0.12);
+  background: var(--glass-purple-bg);
+  border: 1px solid var(--glass-purple-border);
 }
 
-/* glass-panel: heavy frosted-glass overlay for bottom sheets + modals.
-   Figma: near-background color at 85% opacity, heavy backdrop blur.         */
+/* glass-panel: heavy frosted-glass overlay for bottom sheets + modals. */
 .glass-panel {
-  background: rgba(15, 15, 26, 0.88);
+  background: var(--glass-panel-bg);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-panel-border);
 }
 
-/* glass-header: sticky header surfaces.                                      */
+/* glass-header: sticky header surfaces. */
 .glass-header {
-  background: rgba(15, 15, 26, 0.95);
+  background: var(--glass-header-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 229, 204, 0.10);
+  border-bottom: 1px solid var(--glass-header-border);
 }
 
 /* ── Glow effects ───────────────────────────────────────────────────────── */
 
 /* active-glow: applied to active primary elements (mic button, active CTA). */
 .active-glow {
-  box-shadow: 0 0 20px rgba(0, 229, 204, 0.40);
+  box-shadow: var(--active-glow-box);
 }
 
-/* active-glow-purple: focus timer ring, secondary accent glow.               */
+/* active-glow-purple: focus timer ring, secondary accent glow. */
 .active-glow-purple {
-  box-shadow: 0 0 24px rgba(157, 78, 221, 0.50);
+  box-shadow: var(--active-glow-purple-box);
 }
 
 /* ── Scrollbar utilities ────────────────────────────────────────────────── */
@@ -137,6 +333,7 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .custom-scrollbar::-webkit-scrollbar,
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
@@ -153,9 +350,17 @@ body {
 
 /* ── Page transition ────────────────────────────────────────────────────── */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0);   }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 .animate-fade-in {
   animation: fadeIn 0.25s ease-out both;
 }
@@ -163,60 +368,113 @@ body {
 /* ── Mic recording ring animation ───────────────────────────────────────── */
 /* Used by MicButton component when recording is active.                      */
 @keyframes pulseRing {
-  0%   { transform: scale(1);   opacity: 0.55; }
-  80%  { transform: scale(1.7); opacity: 0;    }
-  100% { transform: scale(1.7); opacity: 0;    }
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+
+  80% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
 }
+
 .animate-pulse-ring {
   animation: pulseRing 1.5s ease-out infinite;
 }
+
 .animate-pulse-ring-2 {
   animation: pulseRing 1.5s ease-out 0.5s infinite;
 }
 
 /* ── Bounce-in ──────────────────────────────────────────────────────────── */
 @keyframes bounceIn {
-  0%   { transform: scale(0.8); opacity: 0; }
-  70%  { transform: scale(1.05); }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  70% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
+
 .animate-bounce-in {
   animation: bounceIn 0.4s ease-out both;
 }
 
 /* ── Slide up ───────────────────────────────────────────────────────────── */
 @keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to   { transform: translateY(0);    opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
+
 .animate-slide-up {
   animation: slideUp 0.3s ease-out both;
 }
 
 /* ── Shimmer skeleton ───────────────────────────────────────────────────── */
 @keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position:  200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
+
 .animate-shimmer {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.03) 0%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
+  background: linear-gradient(90deg,
+      var(--shimmer-base) 0%,
+      var(--shimmer-peak) 50%,
+      var(--shimmer-base) 100%);
   background-size: 200% 100%;
   animation: shimmer 1.8s linear infinite;
 }
 
 /* ── Line clamp ─────────────────────────────────────────────────────────── */
-.line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
-.line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-.line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
 
 /* ── Skeleton / loading states ──────────────────────────────────────────── */
 .skeleton {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--overlay-hover);
   border-radius: 0.5rem;
 }
 
@@ -246,12 +504,12 @@ a,
 /* ── Text selection ─────────────────────────────────────────────────────── */
 ::selection {
   background: rgba(0, 229, 204, 0.25);
-  color: #FFFFFF;
+  color: var(--text-primary);
 }
 
 /* ── Gradient text utility ──────────────────────────────────────────────── */
 .text-gradient-primary {
-  background: linear-gradient(135deg, var(--primary) 0%, #00BFAE 100%);
+  background: linear-gradient(135deg, var(--primary-ink) 0%, #00BFAE 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -267,7 +525,7 @@ a,
 /* ── Divider ────────────────────────────────────────────────────────────── */
 .divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--border-subtle);
 }
 
 /* ── Progress bar fill (reusable gradient) ──────────────────────────────── */
@@ -275,14 +533,107 @@ a,
   background: linear-gradient(90deg, var(--primary) 0%, #00BFAE 100%);
 }
 
-/* ── Swipe hint — right edge fade on scrollable lists ──────────────────── */
+/* ── Swipe hint — screen edge fade on scrollable lists ──────────────────── */
 .swipe-hint::after {
   content: '';
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   top: 0;
   bottom: 0;
   width: 2rem;
-  background: linear-gradient(to right, transparent, var(--background-dark));
+  background: linear-gradient(to inline-end, transparent, var(--surface-base));
   pointer-events: none;
+}
+
+/* ── iCCW #13 — Accessibility: prefers-reduced-motion ──────────────────────
+   Suppresses all CSS-driven animations (keyframes, transitions) when the OS
+   reports a vestibular / motion sensitivity preference.
+
+   Framer Motion components are handled separately via useReducedMotion() +
+   SafeAnimation. This block covers utility classes like .animate-*, CSS
+   scroll-behavior, backdrop-filter transitions, and Tailwind transition-*.
+
+   Note: transform: none is intentionally NOT set globally — it would break
+   fixed/sticky positioning. Instead we only stop motion.
+────────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  /* 1. Disable all keyframe animations */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+  }
+
+  /* 2. Disable CSS transitions (layout & colour shifts still allowed via opacity) */
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  /* 3. Disable smooth scrolling — instant jumps are less disorienting */
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  /* 4. Named animation classes — make them no-ops */
+  .animate-fade-in,
+  .animate-bounce-in,
+  .animate-slide-up,
+  .animate-pulse-ring,
+  .animate-pulse-ring-2,
+  .animate-spin,
+  .animate-pulse,
+  .animate-pulse-slow {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  /* 5. Shimmer skeleton — replace with a static colour */
+  .animate-shimmer {
+    animation: none !important;
+    background: var(--overlay-hover) !important;
+  }
+}
+
+/* ── iCCW #13 — Accessibility: forced-colors (Windows High Contrast) ───────
+   Override decoration that would disappear in forced-colors mode.
+   Focus indicators and meaningful borders are preserved via system colours.
+────────────────────────────────────────────────────────────────────────────── */
+@media (forced-colors: active) {
+  /* Ensure focus ring is visible against system background */
+  :focus-visible {
+    outline: 3px solid ButtonText !important;
+    outline-offset: 3px !important;
+  }
+
+  /* Preserve glass card borders — they carry structural meaning */
+  .glass-card,
+  .glass-panel,
+  .glass-header {
+    border: 1px solid ButtonText !important;
+    background: Canvas !important;
+  }
+
+  /* Keep badge text legible */
+  .bg-primary,
+  .bg-yellow-500,
+  .bg-status-error {
+    background: Highlight !important;
+    color: HighlightText !important;
+  }
+
+  /* Progress fills need to be visible in HC mode */
+  [role="progressbar"] > * {
+    background: Highlight !important;
+  }
+
+  /* Skip link needs to appear against forced background */
+  a.skip-link:focus {
+    background: Highlight !important;
+    color: HighlightText !important;
+  }
 }

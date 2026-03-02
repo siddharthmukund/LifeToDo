@@ -26,16 +26,16 @@ export function InboxCountWidget() {
     <Link href="/inbox" className="block">
       <div className={[
         'rounded-2xl border p-4 hover:border-primary/30 transition-colors',
-        isInboxZero ? 'bg-green-500/10 border-green-500/20' : 'bg-card-dark border-white/8',
+        isInboxZero ? 'bg-green-500/10 border-green-500/20' : 'bg-surface-card border-border-subtle',
       ].join(' ')}>
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Inbox</p>
-          <Inbox size={14} className={isInboxZero ? 'text-green-400' : 'text-primary'} />
+          <p className="text-[10px] font-bold uppercase tracking-widest text-content-muted">Inbox</p>
+          <Inbox size={14} className={isInboxZero ? 'text-status-success' : 'text-primary-ink'} />
         </div>
-        <p className={`text-3xl font-display font-bold leading-none mb-1 ${isInboxZero ? 'text-green-400' : 'text-white'}`}>
+        <p className={`text-3xl font-display font-bold leading-none mb-1 ${isInboxZero ? 'text-status-success' : 'text-content-primary'}`}>
           {count}
         </p>
-        <p className="text-[10px] text-slate-500">
+        <p className="text-[10px] text-content-muted">
           {isInboxZero ? '🎉 Inbox Zero!' : `item${count !== 1 ? 's' : ''} to process`}
           {lastCapLabel && !isInboxZero && ` · last: ${lastCapLabel}`}
         </p>

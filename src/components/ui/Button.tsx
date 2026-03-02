@@ -17,19 +17,20 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<Variant, string> = {
   primary:
-    'bg-primary text-background-dark font-bold hover:bg-primary/90 active:scale-95 shadow-glow-accent',
+    'bg-primary text-content-inverse font-bold hover:bg-primary/90 active:scale-95 shadow-glow-accent',
   secondary:
-    'bg-card-dark text-white border border-white/10 font-semibold hover:border-primary/30 hover:bg-card-elevated active:scale-95',
+    'bg-surface-card text-content-primary border border-border-default font-semibold hover:border-primary/30 hover:bg-surface-elevated active:scale-95',
   ghost:
-    'text-slate-400 font-medium hover:text-white hover:bg-white/5 active:scale-95',
+    'text-content-secondary font-medium hover:text-content-primary hover:bg-overlay-hover active:scale-95',
   danger:
-    'bg-red-500/15 text-red-400 border border-red-500/30 font-medium hover:bg-red-500/25 active:scale-95',
+    'bg-status-error/15 text-status-error border border-status-danger font-medium hover:bg-red-500/25 active:scale-95',
   success:
-    'bg-green-500/15 text-green-400 border border-green-500/30 font-medium hover:bg-green-500/25 active:scale-95',
+    'bg-status-success/15 text-status-success border border-status-ok font-medium hover:bg-green-500/25 active:scale-95',
 }
 
 const sizes: Record<Size, string> = {
-  sm: 'px-4  py-2    text-xs   rounded-xl   min-h-[36px]',
+  // iCCW #13: min-h raised from 36px → 44px to meet WCAG 2.5.8 touch-target minimum.
+  sm: 'px-4  py-2    text-xs   rounded-xl   min-h-[44px]',
   md: 'px-5  py-2.5  text-sm   rounded-2xl  min-h-[44px]',
   lg: 'px-6  py-3.5  text-base rounded-2xl  min-h-[52px]',
 }
