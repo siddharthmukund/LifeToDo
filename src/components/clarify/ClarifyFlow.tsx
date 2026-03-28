@@ -6,6 +6,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { TwoMinuteTimer } from './TwoMinuteTimer'
 import { Button } from '@/components/ui/Button'
 import { useGTDStore } from '@/store/gtdStore'
@@ -42,11 +43,11 @@ const CONTEXTS_LABELS: Record<string, string> = {
 
 export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
   const [step, setStep] = useState<Step>('actionable')
-  const [direction, setDirection] = useState(1) // 1=forward, -1=back
+  const [direction, setDirection] = useState(1)
 
+  const t = useTranslations('clarify')
   const contexts = useGTDStore(s => s.contexts)
 
-  // Auto-apply NLP context if it maps to a user defined context
   const initialContextId = item.nlpMetadata?.contexts?.[0]
     ? contexts.find(c => c.name.toLowerCase() === item.nlpMetadata!.contexts[0].toLowerCase())?.id ?? 'ctx-anywhere'
     : 'ctx-anywhere'
@@ -54,10 +55,8 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
   const [contextId, setContextId] = useState(initialContextId)
   const [energy, setEnergy] = useState<EnergyLevel>('medium')
   const [time, setTime] = useState<TimeEstimate>(15)
-  // Auto-apply project NLP string as the name
   const [projectName, setProjectName] = useState(item.nlpMetadata?.projects?.[0] ?? '')
   const [nextActionText, setNextActionText] = useState(item.text)
-  // Pass the due date parsed into the actual payload directly down
   const dueDateFromNlp = item.nlpMetadata?.dueDate ?? null
 
   const isAiEnabled = useFeatureFlag('ai_coach')
@@ -89,13 +88,15 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
       {/* Item being clarified */}
       <div className="mb-8 px-2 mt-4">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-primary-ink">Processing Item</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-primary-ink">
+            {t('flow.processingItem')}
+          </p>
           {isAiEnabled && (
             <button
               onClick={() => setShowCoach(true)}
               className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full hover:bg-indigo-100 transition-colors active:scale-95"
             >
-              <Sparkles size={12} /> Ask Coach
+              <Sparkles size={12} /> {t('flow.askCoach')}
             </button>
           )}
         </div>
@@ -114,86 +115,69 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
 
           {/* ── ACTIONABLE? ──────────────────────────────────────────────── */}
           {step === 'actionable' && (
-            <Step key="actionable" custom={direction} variants={variants}>
-              <Question
-                q="Is this actionable?"
-                sub="Is there something you can physically do to move this forward?"
-              />
+            <FlowStep key="actionable" custom={direction} variants={variants}>
+              <Question q={t('flow.isActionable.question')} sub={t('flow.isActionable.hint')} />
               <Answers>
-                <AnswerBtn label="✅ Yes, I can act on it" onClick={() => go('two_min')} />
-                <AnswerBtn label="🗂 No, it's not actionable" onClick={() => go('non_actionable')} variant="secondary" />
+                <AnswerBtn label={t('flow.isActionable.yes')} onClick={() => go('two_min')} />
+                <AnswerBtn label={t('flow.isActionable.no')} onClick={() => go('non_actionable')} variant="secondary" />
               </Answers>
-            </Step>
+            </FlowStep>
           )}
 
           {/* ── 2-MINUTE RULE ─────────────────────────────────────────────── */}
           {step === 'two_min' && (
-            <Step key="two_min" custom={direction} variants={variants}>
-              <Question
-                q="Will this take less than 2 minutes?"
-                sub="If you can do it faster than filing it, do it now."
-              />
+            <FlowStep key="two_min" custom={direction} variants={variants}>
+              <Question q={t('flow.twoMinute.question')} sub={t('flow.twoMinute.hint')} />
               <Answers>
-                <AnswerBtn label="⚡ Yes — do it now" onClick={() => go('timer')} />
-                <AnswerBtn label="⏳ No, needs more time" onClick={() => go('delegate')} variant="secondary" />
+                <AnswerBtn label={t('flow.twoMinute.yes')} onClick={() => go('timer')} />
+                <AnswerBtn label={t('flow.twoMinute.no')} onClick={() => go('delegate')} variant="secondary" />
               </Answers>
-            </Step>
+            </FlowStep>
           )}
 
           {/* ── 2-MIN TIMER ───────────────────────────────────────────────── */}
           {step === 'timer' && (
-            <Step key="timer" custom={direction} variants={variants}>
+            <FlowStep key="timer" custom={direction} variants={variants}>
               <TwoMinuteTimer
                 actionText={item.text}
                 onDone={() => emit({ destination: 'complete' })}
                 onExpire={() => go('delegate')}
               />
-            </Step>
+            </FlowStep>
           )}
 
           {/* ── DELEGATE? ─────────────────────────────────────────────────── */}
           {step === 'delegate' && (
-            <Step key="delegate" custom={direction} variants={variants}>
-              <Question
-                q="Can someone else do this?"
-                sub="Are you the right person, or are you waiting on someone?"
-              />
+            <FlowStep key="delegate" custom={direction} variants={variants}>
+              <Question q={t('flow.delegate.question')} sub={t('flow.delegate.hint')} />
               <Answers>
-                <AnswerBtn
-                  label="👤 Yes — delegate / waiting for"
-                  onClick={() => emit({ destination: 'waiting_for' })}
-                />
-                <AnswerBtn
-                  label="🙋 No — this is mine"
-                  onClick={() => go('single_or_project')}
-                  variant="secondary"
-                />
+                <AnswerBtn label={t('flow.delegate.yes')} onClick={() => emit({ destination: 'waiting_for' })} />
+                <AnswerBtn label={t('flow.delegate.no')} onClick={() => go('single_or_project')} variant="secondary" />
               </Answers>
-            </Step>
+            </FlowStep>
           )}
 
           {/* ── SINGLE OR PROJECT? ────────────────────────────────────────── */}
           {step === 'single_or_project' && (
-            <Step key="single_or_project" custom={direction} variants={variants}>
-              <Question
-                q="Single action or multi-step project?"
-                sub="A project = anything that takes more than one action to complete."
-              />
+            <FlowStep key="single_or_project" custom={direction} variants={variants}>
+              <Question q={t('flow.projectOrAction.question')} sub={t('flow.projectOrAction.hint')} />
               <Answers>
-                <AnswerBtn label="⚡ Single next action" onClick={() => go('assign_action')} />
-                <AnswerBtn label="📁 Multi-step project" onClick={() => go('create_project')} variant="secondary" />
+                <AnswerBtn label={t('flow.projectOrAction.singleAction')} onClick={() => go('assign_action')} />
+                <AnswerBtn label={t('flow.projectOrAction.project')} onClick={() => go('create_project')} variant="secondary" />
               </Answers>
-            </Step>
+            </FlowStep>
           )}
 
           {/* ── ASSIGN ACTION ─────────────────────────────────────────────── */}
           {step === 'assign_action' && (
-            <Step key="assign_action" custom={direction} variants={variants}>
-              <p className="text-lg font-bold text-content-primary mb-4">Organise this action</p>
+            <FlowStep key="assign_action" custom={direction} variants={variants}>
+              <p className="text-lg font-bold text-content-primary mb-4">{t('flow.organise.heading')}</p>
 
               {/* Context */}
               <label className="block mb-6">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-content-muted mb-3 block">Context</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-content-muted mb-3 block">
+                  {t('flow.organise.context')}
+                </span>
                 <div className="flex flex-wrap gap-2">
                   {(contexts.length > 0 ? contexts : Object.keys(CONTEXTS_LABELS).map(id => ({ id, name: CONTEXTS_LABELS[id], emoji: '', isDefault: true, sortOrder: 0 }))).map(ctx => (
                     <button
@@ -212,7 +196,7 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
 
               {/* Energy */}
               <label className="block mb-4">
-                <span className="text-xs text-content-secondary mb-2 block">Energy required</span>
+                <span className="text-xs text-content-secondary mb-2 block">{t('flow.organise.energy')}</span>
                 <div className="flex gap-2">
                   {(['high', 'medium', 'low'] as EnergyLevel[]).map(e => (
                     <button
@@ -225,7 +209,7 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
                               : 'bg-primary/10 text-primary-ink border-primary/30'
                           : 'bg-surface-card text-content-muted border-border-subtle hover:border-border-default'}`}
                     >
-                      {e === 'high' ? '⚡' : e === 'medium' ? '🔸' : '🌱'} {e}
+                      {e === 'high' ? '⚡' : e === 'medium' ? '🔸' : '🌱'} {t(`energy.${e}`)}
                     </button>
                   ))}
                 </div>
@@ -233,18 +217,18 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
 
               {/* Time */}
               <label className="block mb-6">
-                <span className="text-xs text-content-secondary mb-2 block">Time estimate</span>
+                <span className="text-xs text-content-secondary mb-2 block">{t('flow.organise.timeEstimate')}</span>
                 <div className="flex gap-2">
-                  {([5, 15, 30, 60, 90] as TimeEstimate[]).map(t => (
+                  {([5, 15, 30, 60, 90] as TimeEstimate[]).map(mins => (
                     <button
-                      key={t}
-                      onClick={() => setTime(t)}
+                      key={mins}
+                      onClick={() => setTime(mins)}
                       className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all active:scale-95 border
-                        ${time === t
+                        ${time === mins
                           ? 'bg-primary text-content-inverse border-transparent shadow-glow-accent'
                           : 'bg-surface-card text-content-muted border-border-subtle hover:border-border-default'}`}
                     >
-                      {t < 60 ? `${t}m` : `${t / 60}h`}
+                      {mins < 60 ? `${mins}m` : `${mins / 60}h`}
                     </button>
                   ))}
                 </div>
@@ -254,34 +238,30 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
                 fullWidth
                 onClick={() => emit({ destination: 'next_action', contextId, energy, timeEstimate: time })}
               >
-                Add to Next Actions →
+                {t('flow.organise.addToNextActions')}
               </Button>
-            </Step>
+            </FlowStep>
           )}
 
           {/* ── CREATE PROJECT ─────────────────────────────────────────────── */}
           {step === 'create_project' && (
-            <Step key="create_project" custom={direction} variants={variants}>
-              <p className="text-xl font-display font-bold text-content-primary mb-2">Name this project</p>
-              <p className="text-sm font-medium text-content-secondary mb-6">
-                What is the successful outcome you're driving toward?
-              </p>
+            <FlowStep key="create_project" custom={direction} variants={variants}>
+              <p className="text-xl font-display font-bold text-content-primary mb-2">{t('flow.newProject.heading')}</p>
+              <p className="text-sm font-medium text-content-secondary mb-6">{t('flow.newProject.outcomeHint')}</p>
               <input
                 value={projectName}
                 onChange={e => setProjectName(e.target.value)}
-                placeholder="e.g. Launch redesigned website"
+                placeholder={t('flow.newProject.outcomePlaceholder')}
                 className="w-full bg-surface-card border border-border-default rounded-2xl
                            px-5 py-4 text-base font-medium text-content-primary placeholder-slate-500
                            focus:outline-none focus:border-primary/50 mb-6 shadow-inner"
                 autoFocus
               />
-              <p className="text-sm font-medium text-content-secondary mb-2">
-                What's the very next physical action?
-              </p>
+              <p className="text-sm font-medium text-content-secondary mb-2">{t('flow.newProject.nextActionHint')}</p>
               <input
                 value={nextActionText}
                 onChange={e => setNextActionText(e.target.value)}
-                placeholder="e.g. Draft homepage copy in Notion"
+                placeholder={t('flow.newProject.nextActionPlaceholder')}
                 className="w-full bg-surface-card border border-border-default rounded-2xl
                            px-5 py-4 text-base font-medium text-content-primary placeholder-slate-500
                            focus:outline-none focus:border-primary/50 mb-8 shadow-inner"
@@ -300,35 +280,21 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
                   })
                 }
               >
-                Create Project + Next Action →
+                {t('flow.newProject.create')}
               </Button>
-            </Step>
+            </FlowStep>
           )}
 
           {/* ── NON-ACTIONABLE ─────────────────────────────────────────────── */}
           {step === 'non_actionable' && (
-            <Step key="non_actionable" custom={direction} variants={variants}>
-              <Question
-                q="What is it?"
-                sub="Everything has a home. Choose the right one."
-              />
+            <FlowStep key="non_actionable" custom={direction} variants={variants}>
+              <Question q={t('flow.nonActionable.heading')} sub={t('flow.nonActionable.hint')} />
               <Answers>
-                <AnswerBtn
-                  label="📚 Reference — keep it"
-                  onClick={() => emit({ destination: 'reference' })}
-                />
-                <AnswerBtn
-                  label="🌙 Someday / Maybe"
-                  onClick={() => emit({ destination: 'someday' })}
-                  variant="secondary"
-                />
-                <AnswerBtn
-                  label="🗑 Trash it"
-                  onClick={() => emit({ destination: 'trash' })}
-                  variant="danger"
-                />
+                <AnswerBtn label={t('flow.nonActionable.reference')} onClick={() => emit({ destination: 'reference' })} />
+                <AnswerBtn label={t('flow.nonActionable.someday')} onClick={() => emit({ destination: 'someday' })} variant="secondary" />
+                <AnswerBtn label={t('flow.nonActionable.trash')} onClick={() => emit({ destination: 'trash' })} variant="danger" />
               </Answers>
-            </Step>
+            </FlowStep>
           )}
 
         </AnimatePresence>
@@ -339,7 +305,7 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
         onClick={onSkip}
         className="mt-6 mb-4 text-[10px] font-bold uppercase tracking-widest text-content-muted text-center hover:text-content-primary transition-colors"
       >
-        Skip this item for now
+        {t('flow.skip')}
       </button>
     </div>
   )
@@ -347,7 +313,7 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
 
 // ── Sub-components ─────────────────────────────────────────────────────────
 
-function Step({
+function FlowStep({
   children, custom, variants,
 }: {
   children: React.ReactNode

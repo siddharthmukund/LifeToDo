@@ -1,0 +1,17 @@
+{
+    "tabs": {
+        "today": "Today",
+        "inbox": "Inbox",
+        "projects": "Projects",
+        "waiting": "Waiting",
+        "review": "Review",
+        "insights": "Insights",
+        "settings": "Settings"
+    },
+    "aria": {
+        "sidebar": "Sidebar navigation",
+        "main": "Main navigation",
+        "inboxBadge": "{count, plural, one {# unprocessed item} other {# unprocessed items}}",
+        "staleBadge": "{count, plural, one {# item needs review} other {# items need review}}"
+    }
+}

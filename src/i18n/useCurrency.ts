@@ -1,43 +1,51 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
+import { LOCALE_METADATA } from './config';
 
 export function useCurrency() {
     const locale = useLocale();
-    const t = useTranslations('billing');
+    const meta = LOCALE_METADATA[locale as keyof typeof LOCALE_METADATA] ?? LOCALE_METADATA.en;
+    const intlLocale = locale === 'hi' ? 'hi-IN' : locale === 'ar' ? 'ar-SA' : locale === 'ja' ? 'ja-JP' : locale === 'zh-CN' ? 'zh-CN' : locale === 'pt-BR' ? 'pt-BR' : `${locale}-${locale.toUpperCase()}`;
 
     return {
         format: (amount: number, currency?: string) => {
-            const currencyCode = currency || (locale === 'hi' ? 'INR' : 'USD');
+            const currencyCode = currency ?? meta.currency;
 
-            if (currencyCode === 'INR' && amount % 1 === 0) {
-                return new Intl.NumberFormat(locale === 'hi' ? 'hi-IN' : 'en-US', {
-                    style: 'currency',
-                    currency: currencyCode,
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                }).format(amount);
-            }
+            // No decimals for whole amounts in zero-decimal-display currencies (JPY, INR when whole)
+            const isWholeAmount = amount % 1 === 0;
+            const noDecimals = currencyCode === 'JPY' || (currencyCode === 'INR' && isWholeAmount);
 
-            return new Intl.NumberFormat(locale === 'hi' ? 'hi-IN' : 'en-US', {
+            return new Intl.NumberFormat(intlLocale, {
                 style: 'currency',
                 currency: currencyCode,
+                ...(noDecimals && { minimumFractionDigits: 0, maximumFractionDigits: 0 }),
             }).format(amount);
         },
 
         subscription: (amount: number, period: 'month' | 'year') => {
-            const formatted = new Intl.NumberFormat(locale === 'hi' ? 'hi-IN' : 'en-US', {
+            const currencyCode = meta.currency;
+            const isWholeAmount = amount % 1 === 0;
+            const noDecimals = currencyCode === 'JPY' || (currencyCode === 'INR' && isWholeAmount);
+
+            const formatted = new Intl.NumberFormat(intlLocale, {
                 style: 'currency',
-                currency: 'USD', // Temporary fallback, logic can be updated
+                currency: currencyCode,
+                ...(noDecimals && { minimumFractionDigits: 0, maximumFractionDigits: 0 }),
             }).format(amount);
 
-            const periodText = period === 'month' ? t('pricing.monthly').split('/')[1] : t('pricing.yearly').split('/')[1];
-            // Since we interpolate in Hindi as {price}/महीना, let's just use the direct pricing format from billing
-            // A more robust way:
-            if (locale === 'hi') {
-                return period === 'month' ? `${formatted}/महीना` : `${formatted}/साल`;
-            }
-            return `${formatted}/${period}`;
+            const periodSuffix: Record<string, { month: string; year: string }> = {
+                hi: { month: 'महीना', year: 'साल' },
+                ar: { month: 'شهر', year: 'سنة' },
+                de: { month: 'Monat', year: 'Jahr' },
+                es: { month: 'mes', year: 'año' },
+                ja: { month: '月', year: '年' },
+                'pt-BR': { month: 'mês', year: 'ano' },
+                'zh-CN': { month: '月', year: '年' },
+            };
+
+            const suffix = periodSuffix[locale]?.[period] ?? period;
+            return `${formatted}/${suffix}`;
         },
     };
 }

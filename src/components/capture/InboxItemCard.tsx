@@ -5,6 +5,7 @@
 
 import { useRef } from 'react'
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { Mic, Keyboard, Share2, Zap, Trash2 } from 'lucide-react'
 import type { InboxItem } from '@/types'
 import { timeAgo } from '@/lib/utils'
@@ -24,6 +25,7 @@ const SOURCE_ICONS = {
 export function InboxItemCard({ item, onClarify, onTrash }: InboxItemCardProps) {
   const x = useMotionValue(0)
   const hasActed = useRef(false)
+  const t = useTranslations('inbox.item')
 
   // Hint icon opacity
   const trashOpacity = useTransform(x, [-120, -30], [1, 0])
@@ -35,15 +37,12 @@ export function InboxItemCard({ item, onClarify, onTrash }: InboxItemCardProps) 
     if (hasActed.current) return
 
     if (info.offset.x > 100) {
-      // Swipe right → clarify
       hasActed.current = true
       animate(x, 400, { duration: 0.2 }).then(() => onClarify(item.id))
     } else if (info.offset.x < -100) {
-      // Swipe left → trash
       hasActed.current = true
       animate(x, -400, { duration: 0.2 }).then(() => onTrash(item.id))
     } else {
-      // Snap back
       animate(x, 0, { type: 'spring', stiffness: 500, damping: 40 })
     }
   }
@@ -62,7 +61,7 @@ export function InboxItemCard({ item, onClarify, onTrash }: InboxItemCardProps) 
                    bg-red-500 rounded-2xl pointer-events-none"
       >
         <Trash2 size={22} className="text-content-primary" />
-        <span className="ml-2 text-content-primary text-sm font-bold tracking-wider">Trash</span>
+        <span className="ml-2 text-content-primary text-sm font-bold tracking-wider">{t('trash')}</span>
       </motion.div>
 
       {/* Right hint (clarify) */}
@@ -71,7 +70,7 @@ export function InboxItemCard({ item, onClarify, onTrash }: InboxItemCardProps) 
         className="absolute inset-0 flex items-center justify-end pr-5
                    bg-primary rounded-2xl pointer-events-none"
       >
-        <span className="mr-2 text-content-inverse text-sm font-bold tracking-wider">Clarify</span>
+        <span className="mr-2 text-content-inverse text-sm font-bold tracking-wider">{t('clarify')}</span>
         <Zap size={22} className="text-content-inverse" />
       </motion.div>
 
@@ -94,7 +93,7 @@ export function InboxItemCard({ item, onClarify, onTrash }: InboxItemCardProps) 
           <button
             onClick={handleClarifyClick}
             className="relative flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-primary/30 bg-primary/10 text-primary-ink transition-all active:scale-95 shadow-glow-accent hover:bg-primary/20"
-            aria-label="Clarify this item"
+            aria-label={t('clarifyAriaLabel')}
             onPointerDown={(e) => e.stopPropagation()}
           >
             <Zap size={20} className="fill-primary/20" />

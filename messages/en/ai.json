@@ -1,15 +1,62 @@
 {
     "coach": {
         "consent": {
-            "title": "Enable AI Coach",
-            "description": "The AI Coach runs locally where possible, and securely processes context via the cloud for deep reasoning.",
-            "accept": "Enable AI features"
+            "title": "AI Features",
+            "description": "Life To Do uses AI to help you capture, clarify, and review your tasks. When you use AI features, your task text is sent to {providerName} for processing.",
+            "privacy": "Your data is not stored or used for training. Task details, projects, and inbox contents are processed and discarded. You can turn AI off anytime in Settings.",
+            "enable": "Enable AI Features",
+            "dismiss": "Not now"
         },
         "greeting": "Hi, I'm your AI GTD Coach. How can I help clarify your thoughts today?",
-        "suggestions": {
-            "label": "AI suggests:"
+        "labels": {
+            "suggestion": "AI suggests:",
+            "insight": "AI insight",
+            "coaching": "AI coaching",
+            "analyzing": "Analyzing…"
         },
+        "suggestions": {
+            "clarifyThis": "Clarify this",
+            "splitIntoSubtasks": "Split into sub-tasks",
+            "setDeadline": "Set a deadline",
+            "addContext": "Add context",
+            "considerDelegating": "Consider delegating"
+        },
+        "errors": {
+            "offline": "AI features require internet. Your GTD tools work fine offline.",
+            "rateLimited": "You've been busy! AI features will be back shortly.",
+            "timeout": "Taking too long — you can fill this in manually.",
+            "authError": "AI configuration issue. Please check settings.",
+            "providerError": "AI is having a moment — try again in a few seconds.",
+            "parseError": "AI response was unclear — try rephrasing."
+        },
+        "retry": "Retry",
         "processing": "The Coach is thinking...",
-        "error": "The Coach needs a moment to rest. Try again."
+        "error": "The Coach needs a moment to rest. Try again.",
+        "offline": {
+            "message": "{feature} requires an internet connection"
+        }
+    },
+    "smartCapture": {
+        "parsing": "Parsing…",
+        "confirmations": {
+            "title": "Confirm title?",
+            "date": "Confirm date?",
+            "time": "Confirm time?",
+            "context": "Confirm context?",
+            "project": "Confirm project?"
+        },
+        "suggestions": {
+            "dateDetected": "Date detected: {date}",
+            "timeDetected": "Time detected: {time}",
+            "contextDetected": "Context detected: {context}",
+            "projectDetected": "Project detected: {project}"
+        }
+    },
+    "brainDump": {
+        "title": "Brain Dump",
+        "placeholder": "Paste everything on your mind here — we'll sort it out",
+        "processing": "Extracting tasks…",
+        "result": "{count, plural, one {# task extracted} other {# tasks extracted}}",
+        "nothingFound": "No tasks found. Try writing in more detail?"
     }
 }

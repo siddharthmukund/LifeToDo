@@ -1,5 +1,6 @@
 'use client';
 import { AlertCircle, RefreshCw } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import type { AIError } from '@/ai/types';
 
 interface Props {
@@ -8,20 +9,26 @@ interface Props {
   compact?: boolean;
 }
 
-const ERROR_MESSAGES: Record<string, string> = {
-  OFFLINE: 'AI features require internet. Your GTD tools work fine offline.',
-  RATE_LIMITED: "You've been busy! AI features will be back shortly.",
-  TIMEOUT: 'Taking too long — you can fill this in manually.',
-  AUTH_ERROR: 'AI configuration issue. Please check settings.',
-  PROVIDER_ERROR: 'AI is having a moment — try again in a few seconds.',
-  PARSE_ERROR: 'AI response was unclear — try rephrasing.',
-};
-
 export function AIErrorBanner({ error, onRetry, compact = false }: Props) {
+  const t = useTranslations('ai.coach');
+
   if (!error) return null;
 
-  const code = typeof error === 'string' ? 'PROVIDER_ERROR' : (error as { code?: string }).code ?? 'PROVIDER_ERROR';
-  const message = ERROR_MESSAGES[code] ?? (typeof error === 'string' ? error : (error as Error).message ?? 'AI unavailable');
+  const code = typeof error === 'string' ? 'providerError' : ((error as { code?: string }).code ?? 'PROVIDER_ERROR');
+
+  const errorKey: Record<string, string> = {
+    OFFLINE: 'errors.offline',
+    RATE_LIMITED: 'errors.rateLimited',
+    TIMEOUT: 'errors.timeout',
+    AUTH_ERROR: 'errors.authError',
+    PROVIDER_ERROR: 'errors.providerError',
+    PARSE_ERROR: 'errors.parseError',
+  };
+
+  const messageKey = errorKey[code];
+  const message = messageKey
+    ? t(messageKey)
+    : (typeof error === 'string' ? error : (error as Error).message ?? t('errors.providerError'));
 
   if (compact) {
     return (
@@ -40,7 +47,7 @@ export function AIErrorBanner({ error, onRetry, compact = false }: Props) {
       </div>
       {onRetry && (
         <button onClick={onRetry} className="flex items-center gap-1 text-xs text-primary hover:underline flex-shrink-0">
-          <RefreshCw className="w-3 h-3" /> Retry
+          <RefreshCw className="w-3 h-3" /> {t('retry')}
         </button>
       )}
     </div>

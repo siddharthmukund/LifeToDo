@@ -5,6 +5,7 @@
 
 import { useRef, useState } from 'react'
 import { motion, useMotionValue, animate } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { Check } from 'lucide-react'
 import type { Action } from '@/types'
 import { useGTDStore } from '@/store/gtdStore'
@@ -22,24 +23,22 @@ export function ActionCard({ action, onComplete, projectName }: ActionCardProps)
   const hasActed = useRef(false)
   const [completing, setCompleting] = useState(false)
   const { announceAction } = useAnnounce()
+  const t = useTranslations('engage')
 
   const contexts = useGTDStore(s => s.contexts)
   const context = contexts.find(c => c.id === action.contextId)
 
-  // A task is stale if it hasn't been updated in 7 days
   const isStale = Date.now() - new Date(action.updatedAt).getTime() > 7 * 24 * 60 * 60 * 1000
 
-  // Energy dictates border color
   const borderColorName =
     action.energy === 'high'   ? 'border-l-primary' :
     action.energy === 'medium' ? 'border-l-yellow-500' :
                                  'border-l-slate-700/50'
 
-  // Screen-reader-friendly energy label (non-color indicator)
   const energyLabel =
-    action.energy === 'high'   ? 'High energy' :
-    action.energy === 'medium' ? 'Medium energy' :
-    action.energy === 'low'    ? 'Low energy' : ''
+    action.energy === 'high'   ? t('filter.high') :
+    action.energy === 'medium' ? t('filter.medium') :
+    action.energy === 'low'    ? t('filter.low') : ''
 
   function handleComplete() {
     if (hasActed.current) return
@@ -64,7 +63,7 @@ export function ActionCard({ action, onComplete, projectName }: ActionCardProps)
     }
   }
 
-  const contextLabel = projectName || (context ? `${context.emoji || ''} ${context.name}` : 'Unknown')
+  const contextLabel = projectName || (context ? `${context.emoji || ''} ${context.name}` : '')
 
   return (
     <div className="relative overflow-hidden rounded-2xl mb-3">
@@ -74,7 +73,7 @@ export function ActionCard({ action, onComplete, projectName }: ActionCardProps)
         aria-hidden="true"
       >
         <Check size={22} className="text-on-brand" />
-        <span className="ml-2 text-on-brand text-sm font-bold">Done!</span>
+        <span className="ml-2 text-on-brand text-sm font-bold">{t('action.done')}</span>
       </div>
 
       {/* Draggable card */}
@@ -85,7 +84,6 @@ export function ActionCard({ action, onComplete, projectName }: ActionCardProps)
         dragElastic={0.4}
         onDragEnd={handleDragEnd}
         animate={completing ? { scale: 0.95, opacity: 0 } : {}}
-        // aria-hidden on the drag wrapper — the complete button is the keyboard path
         aria-hidden="true"
         className={cn(
           'relative glass-card flex items-start gap-4 rounded-2xl p-4 transition-all',
@@ -100,7 +98,7 @@ export function ActionCard({ action, onComplete, projectName }: ActionCardProps)
             </span>
             {isStale && (
               <span className="rounded bg-status-warning/10 px-1.5 py-0.5 text-[8px] font-bold text-status-warning animate-pulse-slow">
-                STALE
+                {t('action.stale')}
               </span>
             )}
           </div>
@@ -123,13 +121,11 @@ export function ActionCard({ action, onComplete, projectName }: ActionCardProps)
       {/*
         Keyboard-accessible complete button — visible to AT, visually hidden.
         Provides a swipe alternative for keyboard and switch-access users.
-        (WCAG 2.5.1: all functionality available via pointer must also be
-         available via keyboard / single pointer.)
       */}
       <button
         type="button"
         onClick={handleComplete}
-        aria-label={`Complete task: ${action.text}${energyLabel ? `, ${energyLabel}` : ''}${isStale ? ', stale' : ''}, in ${contextLabel}`}
+        aria-label={`Complete task: ${action.text}${energyLabel ? `, ${energyLabel}` : ''}${isStale ? `, ${t('action.staleLabel')}` : ''}${contextLabel ? `, ${t('action.contextLabel')} ${contextLabel}` : ''}`}
         className={cn(
           'absolute inset-0 w-full opacity-0',
           'focus-visible:opacity-100',
@@ -142,8 +138,9 @@ export function ActionCard({ action, onComplete, projectName }: ActionCardProps)
         <span className="sr-only">
           {action.text}
           {energyLabel && ` — ${energyLabel}`}
-          {isStale && ' — stale task'}
-          {`. Context: ${contextLabel}. Press Enter or Space to mark as complete.`}
+          {isStale && ` — ${t('action.staleLabel')}`}
+          {contextLabel && `. ${t('action.contextLabel')} ${contextLabel}.`}
+          {` ${t('action.pressToComplete')}`}
         </span>
       </button>
     </div>

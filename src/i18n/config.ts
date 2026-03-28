@@ -33,7 +33,7 @@ export const i18nConfig = {
   },
 
   namespaces: [
-    'common', 'inbox', 'clarify', 'engage', 'review', 'projects',
+    'common', 'navigation', 'inbox', 'clarify', 'engage', 'review', 'projects',
     'settings', 'auth', 'profile', 'gamification', 'ai', 'push',
     'a11y', 'errors', 'onboarding', 'billing',
   ] as const,

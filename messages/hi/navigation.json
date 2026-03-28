@@ -1,0 +1,17 @@
+{
+    "tabs": {
+        "today": "आज",
+        "inbox": "इनबॉक्स",
+        "projects": "प्रोजेक्ट्स",
+        "waiting": "इंतज़ार",
+        "review": "रिव्यू",
+        "insights": "इंसाइट्स",
+        "settings": "सेटिंग्स"
+    },
+    "aria": {
+        "sidebar": "साइडबार नेविगेशन",
+        "main": "मुख्य नेविगेशन",
+        "inboxBadge": "{count, plural, one {# अनप्रोसेस्ड आइटम} other {# अनप्रोसेस्ड आइटम}}",
+        "staleBadge": "{count, plural, one {# आइटम को रिव्यू की ज़रूरत है} other {# आइटम को रिव्यू की ज़रूरत है}}"
+    }
+}

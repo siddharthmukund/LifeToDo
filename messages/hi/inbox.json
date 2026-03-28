@@ -31,5 +31,10 @@
     },
     "coachInsight": {
         "label": "AI coaching insight"
+    },
+    "item": {
+        "trash": "डिलीट करें",
+        "clarify": "Clarify",
+        "clarifyAriaLabel": "इस item को clarify करें"
     }
 }

@@ -1,6 +1,21 @@
 {
     "title": "साप्ताहिक रिव्यू",
     "start": "रिव्यू शुरू करें",
+    "building": "आपका review तैयार हो रहा है…",
+    "streakLabel": "streak",
+    "stepsLabel": "steps",
+    "history": "आपकी review history",
+    "intentions": {
+        "heading": "इस हफ्ते के इरादे",
+        "question": "अगले हफ्ते के 3 सबसे ज़रूरी काम क्या हैं?",
+        "placeholder": "इरादा {number}…",
+        "setButton": "इरादे सेट करें"
+    },
+    "goToToday": "आज पर जाएं →",
+    "markReviewed": "रिव्यू हो गया ✓",
+    "completeReview": "🔥 रिव्यू पूरा करें",
+    "weekStreak": "हफ्ते {count} की streak!",
+    "keepItAlive": "आपके पास एक भरोसेमंद system है। इसे जारी रखें।",
     "steps": {
         "getClear": "स्पष्ट हों",
         "getCurrent": "अपडेट हों",
@@ -11,6 +26,14 @@
         "inboxZero": "क्या आपका इनबॉक्स पूरी तरह खाली है?",
         "nextActions": "क्या सभी 'next actions' अभी भी ज़रूरी हैं?",
         "waitingFor": "क्या आप किसी चीज़ का इंतज़ार कर रहे हैं?"
+    },
+    "needsAttention": {
+        "heading": "ध्यान देने की ज़रूरत है",
+        "inboxStale": "{count, plural, one {inbox item} other {inbox items}} 7 दिन से पुराने हैं",
+        "somedayStale": "{count, plural, one {someday item} other {someday items}} 30+ दिनों में review नहीं हुए",
+        "waitingFollowUp": "{count, plural, one {waiting-for item को} other {waiting-for items को}} follow-up चाहिए",
+        "processButton": "Process करें →",
+        "reviewButton": "Review करें →"
     },
     "completion": {
         "congrats": "बहुत खूब!",

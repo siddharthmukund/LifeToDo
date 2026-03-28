@@ -1,6 +1,21 @@
 {
     "title": "Weekly Review",
     "start": "Start Review",
+    "building": "Building your review…",
+    "streakLabel": "streak",
+    "stepsLabel": "steps",
+    "history": "Your review history",
+    "intentions": {
+        "heading": "This week's intentions",
+        "question": "What are the 3 most important outcomes for next week?",
+        "placeholder": "Intention {number}…",
+        "setButton": "Set Intentions"
+    },
+    "goToToday": "Go to Today →",
+    "markReviewed": "Mark as reviewed ✓",
+    "completeReview": "🔥 Complete Review",
+    "weekStreak": "Week {count} streak!",
+    "keepItAlive": "You have a trusted system. Keep it alive.",
     "steps": {
         "getClear": "Get Clear",
         "getCurrent": "Get Current",
@@ -11,6 +26,14 @@
         "inboxZero": "Is your inbox completely processed?",
         "nextActions": "Are all next actions still relevant?",
         "waitingFor": "Are you waiting on anything?"
+    },
+    "needsAttention": {
+        "heading": "Needs Attention",
+        "inboxStale": "{count, plural, one {inbox item} other {inbox items}} older than 7 days",
+        "somedayStale": "{count, plural, one {someday item} other {someday items}} not reviewed in 30+ days",
+        "waitingFollowUp": "{count, plural, one {waiting-for item needs} other {waiting-for items need}} a follow-up",
+        "processButton": "Process →",
+        "reviewButton": "Review →"
     },
     "completion": {
         "congrats": "Great job!",

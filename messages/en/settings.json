@@ -12,6 +12,57 @@
         "dark": "Dark Mode",
         "system": "System Default"
     },
-    "adhdMode": "ADHD Assistance Mode",
-    "notifications": "Push Notifications"
+    "adhdMode": {
+        "label": "ADHD Assistance Mode",
+        "description": "Limits lists to 7 items · 1.5× larger font",
+        "active": "Active — 7-item pages · 1.5× font scale"
+    },
+    "notifications": "Push Notifications",
+    "weeklyReview": {
+        "label": "Weekly Review",
+        "reviewDay": "Review day",
+        "reviewTime": "Review time"
+    },
+    "accessibility": "Accessibility",
+    "contexts": {
+        "label": "Contexts",
+        "addPlaceholder": "Add context (e.g. @phone)",
+        "addButton": "Add"
+    },
+    "data": {
+        "label": "Data & Export",
+        "description": "All data is stored locally on your device. Free tier included.",
+        "exportJson": "Export as JSON"
+    },
+    "subscription": {
+        "label": "Subscription",
+        "active": "Pro plan active",
+        "free": "Free — upgrade to Pro"
+    },
+    "yourData": "Your data",
+    "deleteAccount": "Delete account",
+    "profile": "Profile",
+    "signIn": "Sign in",
+    "manageProfile": "Manage your profile",
+    "createAccount": "Create account or sign in",
+    "notificationPreferences": {
+        "weeklyReminder": "Weekly review reminder",
+        "weeklyReminderDesc": "Nudge on your review day",
+        "inboxZero": "Inbox zero celebration",
+        "inboxZeroDesc": "Celebrate clearing your inbox",
+        "alwaysOn": "Always on",
+        "outsideHours": "Notifications outside your working hours won't be sent"
+    },
+    "gtdPreferences": {
+        "label": "GTD Preferences",
+        "defaultEnergy": "Default energy level",
+        "staleNudge": "Stale inbox nudge",
+        "staleNudgeDesc": "Alert when inbox items are unprocessed for longer than:",
+        "daysSuffix": "d",
+        "waitingFollowUp": "Waiting-for follow-up",
+        "waitingFollowUpDesc": "Nudge after no update for:",
+        "twoMinuteRule": "2-minute rule",
+        "twoMinuteRuleDesc": "Auto-suggest \"do it now\" for tasks under:",
+        "minutesSuffix": "m"
+    }
 }

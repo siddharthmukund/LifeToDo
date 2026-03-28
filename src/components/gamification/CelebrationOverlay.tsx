@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { useCelebration } from '@/gamification/useCelebration';
 import { CELEBRATION_DURATIONS, ADHD_DURATIONS } from '@/gamification/celebrations';
 import { ACHIEVEMENTS } from '@/gamification/achievements';
@@ -9,6 +10,7 @@ import { LEVEL_DEFINITIONS } from '@/gamification/levels';
 
 export function CelebrationOverlay() {
     const { currentEvent, dismissCurrent, intensity, isEnabled } = useCelebration();
+    const t = useTranslations('gamification.celebration');
 
     useEffect(() => {
         if (!currentEvent || !isEnabled) return;
@@ -52,11 +54,10 @@ export function CelebrationOverlay() {
                     >
                         <span className="text-6xl mb-4">✨</span>
                         <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
-                            Inbox Zero!
+                            {t('inboxZero.title')}
                         </h2>
-                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">Mind like water.</p>
+                        <p className="mt-2 text-zinc-500 dark:text-zinc-400">{t('inboxZero.subtitle')}</p>
                     </motion.div>
-                    {/* Confetti simulation (simplified for now without extra deps) */}
                 </motion.div>
             )}
 
@@ -76,8 +77,8 @@ export function CelebrationOverlay() {
                         <div className="w-24 h-24 bg-blue-500/20 rounded-full flex items-center justify-center mb-6 ring-4 ring-blue-500/30">
                             <span className="text-5xl">🪞</span>
                         </div>
-                        <h2 className="text-3xl font-bold text-white mb-2">Review Complete</h2>
-                        <p className="text-blue-200">System aligned and ready for the week.</p>
+                        <h2 className="text-3xl font-bold text-white mb-2">{t('weeklyReview.title')}</h2>
+                        <p className="text-blue-200">{t('weeklyReview.subtitle')}</p>
                     </motion.div>
                 </motion.div>
             )}
@@ -114,17 +115,15 @@ export function CelebrationOverlay() {
                         </div>
 
                         <h2 className="text-2xl font-bold text-white mb-2">
-                            {LEVEL_DEFINITIONS.find(l => l.level === currentEvent.newLevel)?.title || 'Level Up!'}
+                            {LEVEL_DEFINITIONS.find(l => l.level === currentEvent.newLevel)?.title || t('levelUp')}
                         </h2>
-                        <p className="text-zinc-400 mb-8">
-                            Your GTD mastery grows stronger.
-                        </p>
+                        <p className="text-zinc-400 mb-8">{t('levelUpCard.masteryGrows')}</p>
 
                         <button
                             onClick={dismissCurrent}
                             className="w-full py-3 bg-white text-black font-semibold rounded-xl hover:bg-zinc-200 transition-colors"
                         >
-                            Continue
+                            {t('continue')}
                         </button>
                     </motion.div>
                 </motion.div>

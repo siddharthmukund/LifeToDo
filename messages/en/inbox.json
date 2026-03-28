@@ -31,5 +31,10 @@
     },
     "coachInsight": {
         "label": "AI coaching insight"
+    },
+    "item": {
+        "trash": "Trash",
+        "clarify": "Clarify",
+        "clarifyAriaLabel": "Clarify this item"
     }
 }

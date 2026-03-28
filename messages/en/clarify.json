@@ -5,7 +5,55 @@
         "description": "Your inbox is completely clear."
     },
     "flow": {
-        "isActionable": "Is it actionable?",
+        "processingItem": "Processing Item",
+        "askCoach": "Ask Coach",
+        "skip": "Skip this item for now",
+        "isActionable": {
+            "question": "Is this actionable?",
+            "hint": "Is there something you can physically do to move this forward?",
+            "yes": "✅ Yes, I can act on it",
+            "no": "🗂 No, it's not actionable"
+        },
+        "twoMinute": {
+            "question": "Will this take less than 2 minutes?",
+            "hint": "If you can do it faster than filing it, do it now.",
+            "yes": "⚡ Yes — do it now",
+            "no": "⏳ No, needs more time"
+        },
+        "delegate": {
+            "question": "Can someone else do this?",
+            "hint": "Are you the right person, or are you waiting on someone?",
+            "yes": "👤 Yes — delegate / waiting for",
+            "no": "🙋 No — this is mine"
+        },
+        "projectOrAction": {
+            "question": "Single action or multi-step project?",
+            "hint": "A project is anything that takes more than one action to complete.",
+            "singleAction": "⚡ Single next action",
+            "project": "📁 Multi-step project"
+        },
+        "organise": {
+            "heading": "Organise this action",
+            "context": "Context",
+            "energy": "Energy required",
+            "timeEstimate": "Time estimate",
+            "addToNextActions": "Add to Next Actions →"
+        },
+        "newProject": {
+            "heading": "Name this project",
+            "outcomeHint": "What does 'done' look like?",
+            "outcomePlaceholder": "e.g. Launch redesigned website",
+            "nextActionHint": "What's the very first physical action?",
+            "nextActionPlaceholder": "e.g. Draft homepage copy in Notion",
+            "create": "Create Project + Next Action →"
+        },
+        "nonActionable": {
+            "heading": "What is it?",
+            "hint": "Everything has a home. Choose the right one.",
+            "reference": "📚 Reference — keep it",
+            "someday": "🌙 Someday / Maybe",
+            "trash": "🗑 Trash it"
+        },
         "yes": "Yes",
         "no": "No",
         "delete": "Trash It",
@@ -13,10 +61,22 @@
         "reference": "Reference",
         "twoMinuteRule": "Will it take less than 2 minutes?",
         "doItNow": "Do it now",
-        "delegate": "Delegate it",
+        "delegateIt": "Delegate it",
         "defer": "Defer it",
         "whatIsNextAction": "What is the very next action?",
         "whatIsProject": "Is this part of a larger project?"
+    },
+    "energy": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+    },
+    "timeOptions": {
+        "5m": "5 min",
+        "15m": "15 min",
+        "30m": "30 min",
+        "1h": "1 hour",
+        "2h": "2 hours"
     },
     "coachSocratic": "Consider breaking this down into smaller, defined steps."
 }

@@ -1,5 +1,6 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { Sparkles } from 'lucide-react';
 import { getLevelDefinition } from '@/gamification/levelCalculator';
 
@@ -11,6 +12,8 @@ interface Props {
 }
 
 export function LevelUpModal({ oldLevel, newLevel, onDismiss, intensity }: Props) {
+  const t = useTranslations('gamification.levelUp');
+
   if (intensity === 'none') { onDismiss(); return null; }
 
   const newDef = getLevelDefinition(newLevel);
@@ -49,7 +52,7 @@ export function LevelUpModal({ oldLevel, newLevel, onDismiss, intensity }: Props
           {/* Sparkle header */}
           <div className="flex items-center gap-1.5 text-primary">
             <Sparkles size={14} />
-            <span className="text-xs font-bold uppercase tracking-widest">Level Up!</span>
+            <span className="text-xs font-bold uppercase tracking-widest">{t('header')}</span>
             <Sparkles size={14} />
           </div>
 
@@ -60,7 +63,7 @@ export function LevelUpModal({ oldLevel, newLevel, onDismiss, intensity }: Props
             <p className="text-lg font-bold text-primary">{newDef.title}</p>
             {oldLevel > 0 && (
               <p className="text-sm text-content-muted">
-                You levelled up from {oldLevel} → <strong>{newLevel}</strong>
+                {t('levelledUp', { oldLevel, newLevel })}
               </p>
             )}
           </div>
@@ -69,7 +72,7 @@ export function LevelUpModal({ oldLevel, newLevel, onDismiss, intensity }: Props
             onClick={onDismiss}
             className="w-full py-3 bg-primary text-white rounded-2xl font-bold text-sm hover:bg-primary/90 active:scale-95 transition-all"
           >
-            Keep Going 🚀
+            {t('keepGoing')}
           </button>
         </motion.div>
       </motion.div>

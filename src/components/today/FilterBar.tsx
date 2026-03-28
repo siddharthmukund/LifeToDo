@@ -1,25 +1,26 @@
 'use client'
+import { useTranslations } from 'next-intl'
 import { useGTDStore } from '@/store/gtdStore'
-import type { EnergyLevel, TimeEstimate } from '@/types'
+import type { EnergyLevel } from '@/types'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import { X } from 'lucide-react'
 
-const ENERGY_STEPS: { value: EnergyLevel | null; label: string; pct: number }[] = [
-  { value: null, label: 'Any', pct: 0 },
-  { value: 'low', label: 'Low', pct: 33.33 },
-  { value: 'medium', label: 'Medium', pct: 66.66 },
-  { value: 'high', label: 'High', pct: 100 },
-]
-
 export function FilterBar() {
   const { contexts, filters, setFilter, clearFilters } = useGTDStore()
+  const t = useTranslations('engage.filter')
+
+  const ENERGY_STEPS: { value: EnergyLevel | null; labelKey: string; pct: number }[] = [
+    { value: null, labelKey: 'any', pct: 0 },
+    { value: 'low', labelKey: 'low', pct: 33.33 },
+    { value: 'medium', labelKey: 'medium', pct: 66.66 },
+    { value: 'high', labelKey: 'high', pct: 100 },
+  ]
 
   const hasFilters = filters.contextId || filters.energy || filters.maxTime
 
-  // Current energy step index
   const activeEnergyStep = ENERGY_STEPS.findIndex(s => s.value === filters.energy)
-  const energyLabel = ENERGY_STEPS[activeEnergyStep]?.label ?? 'Any'
+  const energyLabel = t(ENERGY_STEPS[activeEnergyStep]?.labelKey ?? 'any')
   const energyPct = ENERGY_STEPS[activeEnergyStep]?.pct ?? 0
 
   return (
@@ -27,13 +28,13 @@ export function FilterBar() {
       {/* Context Chips row */}
       <div className="px-2">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-content-secondary">Context</h2>
+          <h2 className="text-xs font-bold uppercase tracking-widest text-content-secondary">{t('context')}</h2>
           {hasFilters && (
             <button
               onClick={clearFilters}
               className="text-[10px] font-bold uppercase tracking-widest text-primary-ink hover:text-primary-ink/80 flex items-center gap-1"
             >
-              Clear All <X size={12} />
+              {t('clearAll')} <X size={12} />
             </button>
           )}
         </div>
@@ -41,7 +42,7 @@ export function FilterBar() {
           <Chip
             active={!filters.contextId}
             onClick={() => setFilter('contextId', null)}
-            label="All Contexts"
+            label={t('allContexts')}
           />
           {contexts.map(ctx => (
             <Chip
@@ -60,7 +61,7 @@ export function FilterBar() {
       {/* Energy Filter Slider */}
       <div className="px-2">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-content-secondary">Energy Filter</h2>
+          <h2 className="text-xs font-bold uppercase tracking-widest text-content-secondary">{t('energyFilter')}</h2>
           <span className="text-primary-ink text-xs font-bold">{energyLabel}</span>
         </div>
 
@@ -83,7 +84,7 @@ export function FilterBar() {
           <div className="absolute inset-x-0 -top-4 -bottom-4 flex justify-between">
             {ENERGY_STEPS.map((step) => (
               <div
-                key={step.label}
+                key={step.labelKey}
                 className="flex-1 h-full"
                 onClick={() => setFilter('energy', step.value)}
               />
@@ -94,14 +95,14 @@ export function FilterBar() {
         <div className="mt-4 flex justify-between text-[10px] font-bold uppercase tracking-widest text-content-secondary">
           {ENERGY_STEPS.map((step, idx) => (
             <span
-              key={step.label}
+              key={step.labelKey}
               className={cn(
                 "cursor-pointer transition-colors px-2 -mx-2",
                 activeEnergyStep === idx ? "text-primary-ink" : "hover:text-content-primary"
               )}
               onClick={() => setFilter('energy', step.value)}
             >
-              {step.label}
+              {t(step.labelKey)}
             </span>
           ))}
         </div>

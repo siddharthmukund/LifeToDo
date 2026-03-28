@@ -9,5 +9,38 @@
         "title": "रडार",
         "insight": "आपकी GTD Health {score}% है"
     },
-    "cta": "शुरू करें"
+    "cta": "शुरू करें",
+    "today": {
+        "heading": "Focus",
+        "nextAction": "अगला काम",
+        "inboxZero": "हो गया — Inbox Zero! 🚀",
+        "allClear": "सब क्लियर है",
+        "doneToday": "आज पूरे हुए",
+        "needsClarifying": "clarify करने की ज़रूरत है",
+        "goToInbox": "Inbox जाएं",
+        "waitingFor": "इंतज़ार",
+        "seeAll": "सब देखें →",
+        "previousPage": "पिछला पेज",
+        "nextPage": "अगला पेज"
+    },
+    "filter": {
+        "any": "कोई भी",
+        "low": "कम",
+        "medium": "मध्यम",
+        "high": "उच्च",
+        "context": "Context",
+        "clearAll": "सब साफ़ करें",
+        "allContexts": "सभी Contexts",
+        "energyFilter": "Energy Filter",
+        "clearEnergyFilter": "Energy filter हटाएं",
+        "noActionsForEnergy": "कोई {energy} energy actions नहीं",
+        "noActionsMatch": "कोई action आपके filters से match नहीं करता…"
+    },
+    "action": {
+        "done": "हो गया!",
+        "stale": "STALE",
+        "staleLabel": "पुराना task",
+        "contextLabel": "Context:",
+        "pressToComplete": "complete करने के लिए Enter या Space दबाएं।"
+    }
 }

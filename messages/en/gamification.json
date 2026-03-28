@@ -26,12 +26,49 @@
         "weeklyWarrior": {
             "name": "Weekly Warrior",
             "description": "Complete {count, plural, one {# weekly review} other {# weekly reviews}} in a row"
+        },
+        "clarityKing": {
+            "name": "Clarity King",
+            "description": "Clarify {count, plural, one {# item} other {# items}}"
+        },
+        "streakMaster": {
+            "name": "Streak Master",
+            "description": "Build a {count, plural, one {#-day} other {#-day}} streak"
         }
     },
     "challenges": {
         "clarifyFive": {
             "title": "Quick Clarifier",
-            "description": "Clarify {count, plural, one {# item} other {# items}} today"
+            "description": "Clarify {count, plural, one {# item} other {# items}} today",
+            "reward": "+{xp} XP"
+        },
+        "inboxSweep": {
+            "title": "Inbox Sweep",
+            "description": "Clear your inbox",
+            "reward": "+{xp} XP"
         }
+    },
+    "celebration": {
+        "levelUp": "Level {level} unlocked! 🎉",
+        "achievementUnlocked": "Achievement unlocked: {name}",
+        "streakMilestone": "{count}-day streak complete! 🔥",
+        "challengeComplete": "Challenge complete: {title}",
+        "inboxZero": {
+            "title": "Inbox Zero!",
+            "subtitle": "Mind like water."
+        },
+        "weeklyReview": {
+            "title": "Review Complete",
+            "subtitle": "System aligned and ready for the week."
+        },
+        "levelUpCard": {
+            "masteryGrows": "Your GTD mastery grows stronger."
+        },
+        "continue": "Continue"
+    },
+    "levelUp": {
+        "header": "Level Up!",
+        "levelledUp": "You levelled up from {oldLevel} → {newLevel}",
+        "keepGoing": "Keep Going 🚀"
     }
 }

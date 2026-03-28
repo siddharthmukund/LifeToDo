@@ -5,7 +5,55 @@
         "description": "आपका इनबॉक्स पूरी तरह खाली है।"
     },
     "flow": {
-        "isActionable": "क्या इस पर काम किया जा सकता है?",
+        "processingItem": "Item Process हो रहा है",
+        "askCoach": "Coach से पूछें",
+        "skip": "इसे अभी के लिए छोड़ें",
+        "isActionable": {
+            "question": "क्या इस पर काम किया जा सकता है?",
+            "hint": "क्या कोई ऐसी चीज़ है जो आप physically कर सकते हैं?",
+            "yes": "✅ हाँ, मैं यह कर सकता/सकती हूँ",
+            "no": "🗂 नहीं, यह actionable नहीं है"
+        },
+        "twoMinute": {
+            "question": "क्या इसमें 2 मिनट से कम लगेंगे?",
+            "hint": "अगर file करने से कम समय लगे, तो अभी कर दो।",
+            "yes": "⚡ हाँ — अभी करें",
+            "no": "⏳ नहीं, ज़्यादा समय चाहिए"
+        },
+        "delegate": {
+            "question": "क्या कोई और यह कर सकता है?",
+            "hint": "क्या आप सही इंसान हैं, या किसी का इंतज़ार कर रहे हैं?",
+            "yes": "👤 हाँ — delegate / waiting for",
+            "no": "🙋 नहीं — यह मेरा काम है"
+        },
+        "projectOrAction": {
+            "question": "एक action या multi-step project?",
+            "hint": "Project = कोई भी काम जिसमें एक से ज़्यादा steps हों।",
+            "singleAction": "⚡ अगला single action",
+            "project": "📁 Multi-step project"
+        },
+        "organise": {
+            "heading": "इस action को organize करें",
+            "context": "Context",
+            "energy": "कितनी energy चाहिए",
+            "timeEstimate": "कितना समय लगेगा",
+            "addToNextActions": "Next Actions में जोड़ें →"
+        },
+        "newProject": {
+            "heading": "Project का नाम रखें",
+            "outcomeHint": "'done' कैसा दिखेगा?",
+            "outcomePlaceholder": "जैसे: नई website launch करना",
+            "nextActionHint": "पहला physical action क्या है?",
+            "nextActionPlaceholder": "जैसे: Notion में homepage copy draft करें",
+            "create": "Project + Next Action बनाएं →"
+        },
+        "nonActionable": {
+            "heading": "यह क्या है?",
+            "hint": "हर चीज़ की एक जगह होती है। सही जगह चुनें।",
+            "reference": "📚 Reference — रखें",
+            "someday": "🌙 शायद कभी",
+            "trash": "🗑 डिलीट करें"
+        },
         "yes": "हाँ",
         "no": "नहीं",
         "delete": "डिलीट करें",
@@ -13,10 +61,22 @@
         "reference": "रेफ़रेंस",
         "twoMinuteRule": "क्या इसमें 2 मिनट से कम लगेंगे?",
         "doItNow": "अभी करें",
-        "delegate": "किसी और को दें",
+        "delegateIt": "किसी और को दें",
         "defer": "बाद के लिए टालें",
         "whatIsNextAction": "अगला कदम क्या है?",
         "whatIsProject": "क्या यह किसी बड़े प्रोजेक्ट का हिस्सा है?"
+    },
+    "energy": {
+        "high": "उच्च",
+        "medium": "मध्यम",
+        "low": "कम"
+    },
+    "timeOptions": {
+        "5m": "5 मिनट",
+        "15m": "15 मिनट",
+        "30m": "30 मिनट",
+        "1h": "1 घंटा",
+        "2h": "2 घंटे"
     },
     "coachSocratic": "इसे छोटे और स्पष्ट कदमों में बांटने पर विचार करें।"
 }

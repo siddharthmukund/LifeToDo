@@ -12,6 +12,57 @@
         "dark": "डार्क मोड",
         "system": "सिस्टम डिफ़ॉल्ट"
     },
-    "adhdMode": "ADHD Assistance मोड",
-    "notifications": "पुश नोटिफिकेशन्स"
+    "adhdMode": {
+        "label": "ADHD Assistance मोड",
+        "description": "Lists 7 items तक सीमित · 1.5× बड़ा font",
+        "active": "Active — 7-item pages · 1.5× font scale"
+    },
+    "notifications": "पुश नोटिफिकेशन्स",
+    "weeklyReview": {
+        "label": "साप्ताहिक रिव्यू",
+        "reviewDay": "Review का दिन",
+        "reviewTime": "Review का समय"
+    },
+    "accessibility": "Accessibility",
+    "contexts": {
+        "label": "Contexts",
+        "addPlaceholder": "Context जोड़ें (जैसे @phone)",
+        "addButton": "जोड़ें"
+    },
+    "data": {
+        "label": "Data & Export",
+        "description": "सारा data आपके device पर locally स्टोर होता है। Free tier शामिल है।",
+        "exportJson": "JSON में export करें"
+    },
+    "subscription": {
+        "label": "Subscription",
+        "active": "Pro plan active है",
+        "free": "Free — Pro में upgrade करें"
+    },
+    "yourData": "आपका data",
+    "deleteAccount": "अकाउंट डिलीट करें",
+    "profile": "प्रोफ़ाइल",
+    "signIn": "साइन इन करें",
+    "manageProfile": "अपनी profile manage करें",
+    "createAccount": "अकाउंट बनाएं या साइन इन करें",
+    "notificationPreferences": {
+        "weeklyReminder": "साप्ताहिक review reminder",
+        "weeklyReminderDesc": "Review के दिन reminder",
+        "inboxZero": "Inbox zero celebration",
+        "inboxZeroDesc": "Inbox खाली होने पर celebration",
+        "alwaysOn": "हमेशा on",
+        "outsideHours": "Working hours के बाहर notifications नहीं भेजी जाएंगी"
+    },
+    "gtdPreferences": {
+        "label": "GTD Preferences",
+        "defaultEnergy": "Default energy level",
+        "staleNudge": "Stale inbox nudge",
+        "staleNudgeDesc": "जब inbox items इससे ज़्यादा समय से unprocessed हों:",
+        "daysSuffix": "दिन",
+        "waitingFollowUp": "Waiting-for follow-up",
+        "waitingFollowUpDesc": "इतने समय बाद update न हो तो nudge करें:",
+        "twoMinuteRule": "2-मिनट का नियम",
+        "twoMinuteRuleDesc": "इससे कम समय के tasks के लिए \"अभी करें\" suggest करें:",
+        "minutesSuffix": "मिनट"
+    }
 }

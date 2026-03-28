@@ -6,29 +6,31 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { Inbox, Zap, FolderOpen, Calendar, Settings, Clock, BarChart2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useGTDStore } from '@/store/gtdStore'
 import { useStaleItems } from '@/hooks/useStaleItems'
 
-const TABS = [
-  { href: '/', icon: Zap, label: 'Today', badge: null },
-  { href: '/inbox', icon: Inbox, label: 'Inbox', badge: 'inbox' },
-  { href: '/projects', icon: FolderOpen, label: 'Projects', badge: null },
-  { href: '/waiting', icon: Clock, label: 'Waiting', badge: null },
-  { href: '/review', icon: Calendar, label: 'Review', badge: 'stale' },
-  { href: '/insights', icon: BarChart2, label: 'Insights', badge: null },
-  { href: '/settings', icon: Settings, label: 'Settings', badge: null },
+const TAB_DEFS = [
+  { href: '/', icon: Zap, key: 'today' as const, badge: null },
+  { href: '/inbox', icon: Inbox, key: 'inbox' as const, badge: 'inbox' },
+  { href: '/projects', icon: FolderOpen, key: 'projects' as const, badge: null },
+  { href: '/waiting', icon: Clock, key: 'waiting' as const, badge: null },
+  { href: '/review', icon: Calendar, key: 'review' as const, badge: 'stale' },
+  { href: '/insights', icon: BarChart2, key: 'insights' as const, badge: null },
+  { href: '/settings', icon: Settings, key: 'settings' as const, badge: null },
 ] as const
 
 export function SideNav() {
   const pathname = usePathname()
   const inboxCount = useGTDStore(s => s.inboxCount)
   const stale = useStaleItems()
+  const t = useTranslations('navigation')
 
   return (
     <nav
-      aria-label="Sidebar navigation"
+      aria-label={t('aria.sidebar')}
       className="fixed left-0 top-0 bottom-0 w-[76px] hidden lg:flex flex-col items-center
                  bg-surface-base/95 backdrop-blur-xl border-r border-border-default
                  py-8 z-40 shadow-card gap-1"
@@ -41,16 +43,17 @@ export function SideNav() {
       </div>
 
       {/* Navigation items */}
-      {TABS.map(({ href, icon: Icon, label, badge }) => {
+      {TAB_DEFS.map(({ href, icon: Icon, key, badge }) => {
         const active = pathname === href
+        const label = t(`tabs.${key}`)
         const inboxBadge = badge === 'inbox' && inboxCount > 0 ? inboxCount : null
         const staleBadge = badge === 'stale' && stale.total > 0 ? stale.total : null
 
         // Build accessible label including badge info
         const badgeText = inboxBadge !== null
-          ? `, ${inboxBadge > 99 ? '99 plus' : inboxBadge} unprocessed items`
+          ? `, ${t('aria.inboxBadge', { count: inboxBadge > 99 ? 99 : inboxBadge })}`
           : staleBadge !== null
-            ? `, ${staleBadge > 99 ? '99 plus' : staleBadge} items need review`
+            ? `, ${t('aria.staleBadge', { count: staleBadge > 99 ? 99 : staleBadge })}`
             : ''
 
         return (

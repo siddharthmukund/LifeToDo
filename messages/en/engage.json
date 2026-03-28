@@ -9,5 +9,38 @@
         "title": "Radar",
         "insight": "Your GTD Health is at {score}%"
     },
-    "cta": "Engage"
+    "cta": "Engage",
+    "today": {
+        "heading": "Focus",
+        "nextAction": "next action",
+        "inboxZero": "done — inbox zero! 🚀",
+        "allClear": "All clear",
+        "doneToday": "done today",
+        "needsClarifying": "items need clarifying",
+        "goToInbox": "Go to Inbox",
+        "waitingFor": "Waiting For",
+        "seeAll": "See all →",
+        "previousPage": "Previous page",
+        "nextPage": "Next page"
+    },
+    "filter": {
+        "any": "Any",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "context": "Context",
+        "clearAll": "Clear All",
+        "allContexts": "All Contexts",
+        "energyFilter": "Energy Filter",
+        "clearEnergyFilter": "Clear energy filter",
+        "noActionsForEnergy": "No {energy} energy actions",
+        "noActionsMatch": "No actions match your filters…"
+    },
+    "action": {
+        "done": "Done!",
+        "stale": "STALE",
+        "staleLabel": "stale task",
+        "contextLabel": "Context:",
+        "pressToComplete": "Press Enter or Space to mark as complete."
+    }
 }

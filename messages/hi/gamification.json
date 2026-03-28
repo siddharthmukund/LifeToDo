@@ -52,6 +52,23 @@
         "levelUp": "Level {level} अनलॉक किया! 🎉",
         "achievementUnlocked": "Achievement अनलॉक: {name}",
         "streakMilestone": "{count}-दिन की स्ट्रीक पूरी हुई! 🔥",
-        "challengeComplete": "Challenge पूरा हुआ: {title}"
+        "challengeComplete": "Challenge पूरा हुआ: {title}",
+        "inboxZero": {
+            "title": "इनबॉक्स ज़ीरो!",
+            "subtitle": "दिमाग शांत हो गया।"
+        },
+        "weeklyReview": {
+            "title": "रिव्यू पूरा हो गया",
+            "subtitle": "System aligned और अगले हफ्ते के लिए तैयार।"
+        },
+        "levelUpCard": {
+            "masteryGrows": "तुम्हारी GTD mastery बढ़ रही है।"
+        },
+        "continue": "जारी रखें"
+    },
+    "levelUp": {
+        "header": "Level Up!",
+        "levelledUp": "{oldLevel} से {newLevel} तक level up! 🎉",
+        "keepGoing": "जारी रखो 🚀"
     }
 }
