@@ -73,5 +73,74 @@
   },
   "overdue": {
     "waiting": "यह काफी समय से wait कर रहा है। अभी भी ज़रूरी है?"
+  },
+  "garden": {
+    "title": "आपका Garden",
+    "resting": "आराम में है — जब आएंगे, बढ़ेगा।",
+    "recovering": "वापस आ गया, बढ़ रहा है! 🌿",
+    "growing": "बढ़ रहा है…",
+    "blooming": "खिल रहा है! 🌸",
+    "thriving": "इस हफ्ते लहलहा रहा है! 🌺"
+  },
+  "guidedReview": {
+    "title": "10 मिनट का Review",
+    "subtitle": "5 steps। हो जाएगा।",
+    "stepOf": "Step {step} of {total}",
+    "minutes": "~10 मिनट",
+    "back": "वापस",
+    "next": "अगला →",
+    "saveLater": "Save करें — बाद में पूरा करें",
+    "finish": "🌸 हो गया!",
+    "gardenBlooms": "आपका garden खिल गया!",
+    "step1": {
+      "title": "Inbox साफ़ करें",
+      "question": "क्या आपका inbox खाली है?",
+      "count": "{count, plural, one {# item} other {# items}} process करने हैं",
+      "goToInbox": "Inbox जाएं →",
+      "markDone": "हाँ, खाली है ✓"
+    },
+    "step2": {
+      "title": "Stale काम",
+      "question": "जो काम काफी समय से नहीं हिले।",
+      "noStale": "कुछ stale नहीं। बढ़िया।",
+      "inboxStale": "{count, plural, one {# inbox item} other {# inbox items}} 7 दिन से पुराने",
+      "somedayStale": "{count, plural, one {# someday item} other {# someday items}} 30+ दिनों में review नहीं",
+      "waitingStale": "{count, plural, one {# waiting-for item को} other {# waiting-for items को}} follow-up चाहिए",
+      "processInbox": "Inbox Process करें →",
+      "allClear": "सब clear ✓"
+    },
+    "step3": {
+      "title": "Projects जाँचें",
+      "question": "किसी project को नया next action चाहिए?",
+      "stuckCount": "{count, plural, one {# project} other {# projects}} बिना next action के",
+      "allGood": "सभी projects में next action है ✓",
+      "goToProjects": "Projects जाएं →"
+    },
+    "step4": {
+      "title": "अगला हफ्ता",
+      "question": "अगले हफ्ते 1-3 focus areas क्या हैं?",
+      "placeholder": "Focus area {number}…",
+      "optional": "वैकल्पिक"
+    },
+    "step5": {
+      "title": "हफ्ते की जीत",
+      "question": "इस हफ्ते किस बात पर गर्व है?",
+      "placeholder": "मुझे गर्व है कि मैंने…",
+      "skip": "इसे छोड़ें"
+    }
+  },
+  "evening": {
+    "title": "शाम की जाँच",
+    "subtitle": "एक मिनट में loop बंद करें।",
+    "morning3Heading": "आज के Morning 3",
+    "morning3Done": "{total} में से {done} हो गए",
+    "morning3AllDone": "आज सब 3 हो गए! 🌟",
+    "morning3None": "कल के लिए तैयार।",
+    "captureHeading": "कल के लिए कुछ दिमाग में है?",
+    "capturePlaceholder": "लिख दें…",
+    "captureSave": "Save करें",
+    "captureSaved": "Save हो गया ✓",
+    "closing": "शुभ रात्रि। सब कुछ system में safe है। 🌙",
+    "done": "शुभ स्वप्न"
   }
 }

@@ -73,5 +73,74 @@
   },
   "overdue": {
     "waiting": "This has been waiting. Still relevant?"
+  },
+  "garden": {
+    "title": "Your Garden",
+    "resting": "Resting — comes back when you do.",
+    "recovering": "Back and growing! 🌿",
+    "growing": "Growing…",
+    "blooming": "In bloom! 🌸",
+    "thriving": "Thriving this week! 🌺"
+  },
+  "guidedReview": {
+    "title": "10-Minute Review",
+    "subtitle": "5 steps. You've got this.",
+    "stepOf": "Step {step} of {total}",
+    "minutes": "~10 min",
+    "back": "Back",
+    "next": "Next →",
+    "saveLater": "Save progress — finish later",
+    "finish": "🌸 Done!",
+    "gardenBlooms": "Your garden just bloomed!",
+    "step1": {
+      "title": "Clear Inbox",
+      "question": "Is your inbox empty?",
+      "count": "{count, plural, one {# item} other {# items}} to process",
+      "goToInbox": "Go to Inbox →",
+      "markDone": "Yes, it's empty ✓"
+    },
+    "step2": {
+      "title": "Stale Stuff",
+      "question": "Things that haven't moved in a while.",
+      "noStale": "Nothing stale. Nice.",
+      "inboxStale": "{count, plural, one {# inbox item} other {# inbox items}} older than 7 days",
+      "somedayStale": "{count, plural, one {# someday item} other {# someday items}} not reviewed in 30+ days",
+      "waitingStale": "{count, plural, one {# waiting-for item needs} other {# waiting-for items need}} a follow-up",
+      "processInbox": "Process Inbox →",
+      "allClear": "All clear ✓"
+    },
+    "step3": {
+      "title": "Projects Check",
+      "question": "Any projects need a new next action?",
+      "stuckCount": "{count, plural, one {# project} other {# projects}} without a next action",
+      "allGood": "All projects have next actions ✓",
+      "goToProjects": "Go to Projects →"
+    },
+    "step4": {
+      "title": "Next Week",
+      "question": "What are 1-3 things you want to focus on?",
+      "placeholder": "Focus area {number}…",
+      "optional": "Optional"
+    },
+    "step5": {
+      "title": "Win of the Week",
+      "question": "What are you proud of this week?",
+      "placeholder": "I'm proud that I…",
+      "skip": "Skip this one"
+    }
+  },
+  "evening": {
+    "title": "Evening Check-In",
+    "subtitle": "A minute to close the loop.",
+    "morning3Heading": "Morning 3 today",
+    "morning3Done": "{done} of {total} done",
+    "morning3AllDone": "You did all 3 today! 🌟",
+    "morning3None": "Ready for tomorrow.",
+    "captureHeading": "Anything on your mind for tomorrow?",
+    "capturePlaceholder": "Jot it down…",
+    "captureSave": "Save",
+    "captureSaved": "Saved ✓",
+    "closing": "Good night. Everything's safe in the system. 🌙",
+    "done": "Sweet dreams"
   }
 }

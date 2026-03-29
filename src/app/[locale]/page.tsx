@@ -19,6 +19,7 @@ import {
   WelcomeBack,
   TransitionNudge,
   DailyWinCounter,
+  GardenView,
   shouldShowWelcomeBack,
   stampLastActive,
   MORNING3_DATE_KEY,
@@ -234,11 +235,12 @@ export default function TodayPage() {
       <div className="flex flex-col h-full animate-fade-in">
         {/* Slim ADHD header */}
         <div className="sticky top-0 z-10 bg-surface-base/95 backdrop-blur-xl
-                        border-b border-border-default px-6 pt-14 pb-3">
+                        border-b border-border-default px-6 pt-14 pb-3 space-y-3">
           <DailyWinCounter
             count={doneToday}
             total={morning3Actions.length}
           />
+          <GardenView />
         </div>
 
         {/* Transition nudge overlay */}

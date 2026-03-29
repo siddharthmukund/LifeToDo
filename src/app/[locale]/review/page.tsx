@@ -17,9 +17,12 @@ import { useTranslations } from 'next-intl'
 import { ReviewChat } from '@/components/ai/ReviewChat'
 import { useFeatureFlag } from '@/flags/useFeatureFlag'
 import { WeeklyReviewDashboard } from '@/components/review/WeeklyReviewDashboard'
+import { GuidedReview } from '@/components/adhd/GuidedReview'
+import { useADHDMode } from '@/hooks/useADHDMode'
 
 export default function ReviewPage() {
   const t = useTranslations('review')
+  const { isADHDMode } = useADHDMode()
   const { data, isLoading, completedIds, isAllDone, completeSection, finalize } = useWeeklyReview()
   const stale = useStaleItems()
   const [intentions, setIntentions] = useState(['', '', ''])
@@ -50,6 +53,11 @@ export default function ReviewPage() {
   // if we already have review history, show dashboard shortcut
   if (finalStreak === null && data && data.pastReviews) {
     return <WeeklyReviewDashboard data={data.pastReviews} />
+  }
+
+  // ── ADHD Mode: guided 5-step review ─────────────────────────────────────
+  if (isADHDMode) {
+    return <GuidedReview />
   }
 
   // ── Loading ──────────────────────────────────────────────────────────────
