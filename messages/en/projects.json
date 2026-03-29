@@ -1,9 +1,18 @@
 {
     "title": "Projects",
     "create": "New Project",
+    "newButton": "New",
+    "noNextAction": "No next action",
+    "addNextAction": "+ Add next action",
+    "archive": "Archive",
+    "tasks": "tasks",
+    "active": "active",
+    "stuck": "stuck",
+    "promptNextAction": "What is the very next physical action?",
     "emptyState": {
         "title": "No active projects",
-        "description": "Projects are outcomes that require more than one action step."
+        "description": "A project is any goal requiring more than one action. Create one to track your outcomes.",
+        "action": "Create first project"
     },
     "details": {
         "outcome": "Successful Outcome:",
@@ -13,5 +22,14 @@
         "active": "Active",
         "completed": "Completed",
         "onHold": "On Hold"
+    },
+    "form": {
+        "nameLabel": "Project name *",
+        "namePlaceholder": "e.g. Launch new website",
+        "outcomeLabel": "Desired outcome",
+        "outcomePlaceholder": "What does 'done' look like?",
+        "nextActionLabel": "First next action *",
+        "nextActionPlaceholder": "What's the very first physical action?",
+        "createButton": "Create Project"
     }
 }

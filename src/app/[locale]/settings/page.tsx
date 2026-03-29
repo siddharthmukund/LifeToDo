@@ -17,10 +17,12 @@ import { GTDPreferences } from '@/components/settings/GTDPreferences'
 import { WorkingHoursEditor } from '@/components/settings/WorkingHoursEditor'
 import { ConsentManager } from '@/components/settings/ConsentManager'
 import { GamificationSettings } from '@/components/gamification/GamificationSettings'
+import { useTranslations } from 'next-intl'
 
 const DAYS = [0, 1, 2, 3, 4, 5, 6]
 
 export default function SettingsPage() {
+  const t = useTranslations('settings')
   const { contexts, settings, updateSettings, addContext, deleteContext } = useGTDStore()
   const { user } = useAuth()
   const [newCtx, setNewCtx] = useState('')
@@ -44,7 +46,7 @@ export default function SettingsPage() {
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-display font-bold text-content-primary flex items-center gap-2">
             <Settings size={22} className="text-primary-ink fill-primary/20" />
-            Settings
+            {t('title')}
           </h1>
           <ThemeToggle />
         </div>
@@ -55,11 +57,11 @@ export default function SettingsPage() {
         {/* ── Weekly Review ───────────────────────────────────────────────── */}
         <section>
           <h2 className="text-[10px] font-bold uppercase tracking-widest text-content-secondary mb-3 px-1">
-            Weekly Review
+            {t('weeklyReview.label')}
           </h2>
           <div className="bg-surface-card rounded-2xl border border-border-default p-5 space-y-5">
             <div>
-              <p className="text-sm font-medium text-content-primary mb-3">Review day</p>
+              <p className="text-sm font-medium text-content-primary mb-3">{t('weeklyReview.reviewDay')}</p>
               <div className="flex gap-1.5">
                 {DAYS.map(d => (
                   <button
@@ -77,7 +79,7 @@ export default function SettingsPage() {
             </div>
             <div>
               <p className="text-sm font-medium text-content-primary mb-2">
-                Review time
+                {t('weeklyReview.reviewTime')}
                 {settings?.reviewTime && (
                   <span className="ml-2 text-primary-ink text-xs font-bold">
                     {formatTime12h(settings.reviewTime)}
@@ -103,7 +105,7 @@ export default function SettingsPage() {
         {/* ── Accessibility / ADHD Mode ───────────────────────────────────── */}
         <section>
           <h2 className="text-[10px] font-bold uppercase tracking-widest text-content-secondary mb-3 px-1">
-            Accessibility
+            {t('accessibility')}
           </h2>
           <div className="bg-surface-card rounded-2xl border border-border-default p-5">
             <div className="flex items-center justify-between">
@@ -112,8 +114,8 @@ export default function SettingsPage() {
                   A
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-content-primary">ADHD Mode</p>
-                  <p className="text-xs text-content-secondary mt-0.5">Limits lists to 7 items · 1.5× larger font</p>
+                  <p className="text-sm font-medium text-content-primary">{t('adhdMode.label')}</p>
+                  <p className="text-xs text-content-secondary mt-0.5">{t('adhdMode.description')}</p>
                 </div>
               </div>
               <button
@@ -130,7 +132,7 @@ export default function SettingsPage() {
             {settings?.adhdMode && (
               <div className="mt-4 flex items-center gap-2 px-3 py-2.5 rounded-xl bg-primary/10 border border-primary/20">
                 <Zap size={14} className="text-primary-ink flex-shrink-0" />
-                <p className="text-xs font-bold text-primary-ink">Active — 7-item pages · 1.5× font scale</p>
+                <p className="text-xs font-bold text-primary-ink">{t('adhdMode.active')}</p>
               </div>
             )}
           </div>
@@ -151,7 +153,7 @@ export default function SettingsPage() {
         {/* ── Contexts ────────────────────────────────────────────────────── */}
         <section>
           <h2 className="text-[10px] font-bold uppercase tracking-widest text-content-secondary mb-3 px-1">
-            Contexts
+            {t('contexts.label')}
           </h2>
           <div className="bg-surface-card rounded-2xl border border-border-default divide-y divide-border-subtle">
             {contexts.map(ctx => (
@@ -180,7 +182,7 @@ export default function SettingsPage() {
                     setNewCtx('')
                   }
                 }}
-                placeholder="Add context (e.g. @phone)"
+                placeholder={t('contexts.addPlaceholder')}
                 className="flex-1 bg-transparent text-sm text-content-primary placeholder-content-muted outline-none"
               />
               {newCtx.trim() && (
@@ -188,7 +190,7 @@ export default function SettingsPage() {
                   onClick={() => { addContext(newCtx.trim()); setNewCtx('') }}
                   className="text-xs text-primary-ink font-bold hover:text-primary-ink/80 transition-colors"
                 >
-                  Add
+                  {t('contexts.addButton')}
                 </button>
               )}
             </div>
@@ -203,12 +205,11 @@ export default function SettingsPage() {
         {/* ── Data & Export ───────────────────────────────────────────────── */}
         <section>
           <h2 className="text-[10px] font-bold uppercase tracking-widest text-content-secondary mb-3 px-1">
-            Data & Export
+            {t('data.label')}
           </h2>
           <div className="bg-surface-card rounded-2xl border border-border-default p-5 space-y-4">
             <p className="text-xs text-content-secondary leading-relaxed">
-              All data is stored locally on your device using IndexedDB.
-              Export a JSON snapshot anytime — free tier included.
+              {t('data.description')}
             </p>
             <Button
               variant="secondary"
@@ -216,7 +217,7 @@ export default function SettingsPage() {
               loading={exporting}
               onClick={handleExport}
             >
-              <Download size={16} /> Export as JSON
+              <Download size={16} /> {t('data.exportJson')}
             </Button>
           </div>
         </section>
@@ -229,7 +230,7 @@ export default function SettingsPage() {
         {/* ── Account ─────────────────────────────────────────────────────── */}
         <section>
           <h2 className="text-[10px] font-bold uppercase tracking-widest text-content-secondary mb-3 px-1">
-            Account
+            {t('account')}
           </h2>
           <div className="bg-surface-card rounded-2xl border border-border-default overflow-hidden divide-y divide-border-subtle">
             {/* Profile row */}
@@ -239,10 +240,10 @@ export default function SettingsPage() {
                 <User size={17} className="text-content-secondary" />
                 <div>
                   <p className="text-sm font-medium text-content-primary">
-                    {user ? (user.displayName ?? user.email ?? 'Profile') : 'Sign in'}
+                    {user ? (user.displayName ?? user.email ?? t('profile')) : t('signIn')}
                   </p>
                   <p className="text-xs text-content-secondary">
-                    {user ? 'Manage your profile' : 'Create account or sign in'}
+                    {user ? t('manageProfile') : t('createAccount')}
                   </p>
                 </div>
               </div>
@@ -255,9 +256,9 @@ export default function SettingsPage() {
               <div className="flex items-center gap-3">
                 <Star size={17} className="text-content-secondary" />
                 <div>
-                  <p className="text-sm font-medium text-content-primary">Subscription</p>
+                  <p className="text-sm font-medium text-content-primary">{t('subscription.label')}</p>
                   <p className="text-xs text-content-secondary">
-                    {settings?.tier === 'pro' ? 'Pro plan active' : 'Free — upgrade to Pro'}
+                    {settings?.tier === 'pro' ? t('subscription.active') : t('subscription.free')}
                   </p>
                 </div>
               </div>
@@ -269,7 +270,7 @@ export default function SettingsPage() {
               className="flex items-center justify-between px-5 py-4 hover:bg-overlay-hover transition-colors">
               <div className="flex items-center gap-3">
                 <Database size={17} className="text-content-secondary" />
-                <p className="text-sm font-medium text-content-primary">Your data</p>
+                <p className="text-sm font-medium text-content-primary">{t('yourData')}</p>
               </div>
               <ChevronRight size={15} className="text-content-muted" />
             </Link>
@@ -280,7 +281,7 @@ export default function SettingsPage() {
                 className="flex items-center justify-between px-5 py-4 hover:bg-overlay-hover transition-colors">
                 <div className="flex items-center gap-3">
                   <Trash size={17} className="text-status-danger/70" />
-                  <p className="text-sm font-medium text-status-danger">Delete account</p>
+                  <p className="text-sm font-medium text-status-danger">{t('deleteAccount')}</p>
                 </div>
                 <ChevronRight size={15} className="text-content-muted" />
               </Link>

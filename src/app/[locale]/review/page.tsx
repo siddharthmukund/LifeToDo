@@ -13,12 +13,13 @@ import { useStaleItems } from '@/hooks/useStaleItems'
 import { db } from '@/lib/db'
 import type { ReviewSection } from '@/types'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { ReviewChat } from '@/components/ai/ReviewChat'
 import { useFeatureFlag } from '@/flags/useFeatureFlag'
-
-const PHASE_LABELS = { get_clear: 'Get Clear', get_current: 'Get Current', get_creative: 'Get Creative' }
+import { WeeklyReviewDashboard } from '@/components/review/WeeklyReviewDashboard'
 
 export default function ReviewPage() {
+  const t = useTranslations('review')
   const { data, isLoading, completedIds, isAllDone, completeSection, finalize } = useWeeklyReview()
   const stale = useStaleItems()
   const [intentions, setIntentions] = useState(['', '', ''])
@@ -46,13 +47,18 @@ export default function ReviewPage() {
     }
   }, [finalStreak])
 
+  // if we already have review history, show dashboard shortcut
+  if (finalStreak === null && data && data.pastReviews) {
+    return <WeeklyReviewDashboard data={data.pastReviews} />
+  }
+
   // ── Loading ──────────────────────────────────────────────────────────────
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="flex flex-col items-center gap-4">
           <Loader2 size={36} className="text-primary-ink animate-spin" />
-          <p className="text-sm font-bold uppercase tracking-widest text-content-secondary">Building your review…</p>
+          <p className="text-sm font-bold uppercase tracking-widest text-content-secondary">{t('building')}</p>
         </div>
       </div>
     )
@@ -70,14 +76,14 @@ export default function ReviewPage() {
         >
           🔥
         </motion.div>
-        <h1 className="text-3xl font-display font-bold text-content-primary mb-2">Week {finalStreak} streak!</h1>
-        <p className="text-content-secondary font-medium mb-8">You have a trusted system. Keep it alive.</p>
+        <h1 className="text-3xl font-display font-bold text-content-primary mb-2">{t('weekStreak', { count: finalStreak })}</h1>
+        <p className="text-content-secondary font-medium mb-8">{t('keepItAlive')}</p>
 
         {/* Streak calendar */}
         {reviewDates.length > 0 && (
           <div className="w-full max-w-sm mb-8">
             <p className="text-[10px] font-bold text-content-secondary uppercase tracking-widest mb-3 text-left">
-              Your review history
+              {t('history')}
             </p>
             <StreakCalendar completedDates={reviewDates} weeks={6} />
           </div>
@@ -87,7 +93,7 @@ export default function ReviewPage() {
         {intentions.filter(Boolean).length > 0 && (
           <div className="w-full max-w-sm glass-card rounded-2xl p-6 mb-8 text-left border-l-4 border-l-primary">
             <p className="text-[10px] font-bold text-content-secondary uppercase tracking-widest mb-4">
-              This week&rsquo;s intentions
+              {t('intentions.heading')}
             </p>
             {intentions.filter(Boolean).map((intent, i) => (
               <div key={i} className="flex items-start gap-3 mb-3 last:mb-0">
@@ -99,7 +105,7 @@ export default function ReviewPage() {
         )}
 
         <Link href="/" className="w-full max-w-sm">
-          <Button fullWidth size="lg">Go to Today →</Button>
+          <Button fullWidth size="lg">{t('goToToday')}</Button>
         </Link>
       </div>
     )
@@ -124,13 +130,13 @@ export default function ReviewPage() {
             <div>
               <h1 className="text-2xl font-display font-bold text-content-primary flex items-center gap-2">
                 <RefreshCw size={22} className="text-primary-ink" />
-                Weekly Review
+                {t('title')}
               </h1>
               <p className="text-[10px] font-bold uppercase tracking-widest text-content-secondary mt-1.5">
                 ~{data.estimatedMinutes} min · {data.totalItems} items
                 {data.currentStreak > 0 && (
                   <span className="ml-2 inline-flex items-center gap-1 text-status-warning">
-                    <Flame size={13} /> {data.currentStreak} streak
+                    <Flame size={13} /> {data.currentStreak} {t('streakLabel')}
                   </span>
                 )}
               </p>
@@ -139,7 +145,7 @@ export default function ReviewPage() {
           <ProgressBar
             value={completedCount}
             max={data.sections.length}
-            label={`${completedCount}/${data.sections.length} steps`}
+            label={`${completedCount}/${data.sections.length} ${t('stepsLabel')}`}
             showLabel
             size="sm"
           />
@@ -157,7 +163,7 @@ export default function ReviewPage() {
               <div className="flex items-center gap-2 mb-4">
                 <AlertTriangle size={18} className="text-status-warning flex-shrink-0" />
                 <p className="text-[10px] font-bold text-status-warning uppercase tracking-widest">
-                  Needs Attention ({stale.total})
+                  {t('needsAttention.heading')} ({stale.total})
                 </p>
               </div>
               <div className="space-y-3">
@@ -165,24 +171,24 @@ export default function ReviewPage() {
                   <Link href="/inbox" className="block">
                     <div className="flex items-center justify-between text-base font-medium py-1">
                       <span className="text-content-primary">
-                        📥 {stale.inbox} inbox item{stale.inbox !== 1 ? 's' : ''} older than 7 days
+                        📥 {t('needsAttention.inboxStale', { count: stale.inbox })}
                       </span>
-                      <span className="text-primary-ink text-xs font-bold uppercase tracking-wider ml-3 flex-shrink-0">Process →</span>
+                      <span className="text-primary-ink text-xs font-bold uppercase tracking-wider ml-3 flex-shrink-0">{t('needsAttention.processButton')}</span>
                     </div>
                   </Link>
                 )}
                 {stale.someday > 0 && (
                   <div className="text-base font-medium py-1 text-content-secondary">
-                    ☁️ {stale.someday} someday item{stale.someday !== 1 ? 's' : ''} not reviewed in 30+ days
+                    ☁️ {t('needsAttention.somedayStale', { count: stale.someday })}
                   </div>
                 )}
                 {stale.waitingFor > 0 && (
                   <Link href="/waiting" className="block">
                     <div className="flex items-center justify-between text-base font-medium py-1">
                       <span className="text-content-secondary">
-                        👤 {stale.waitingFor} waiting-for item{stale.waitingFor !== 1 ? 's' : ''} need a follow-up
+                        👤 {t('needsAttention.waitingFollowUp', { count: stale.waitingFor })}
                       </span>
-                      <span className="text-primary-ink text-xs font-bold uppercase tracking-wider ml-3 flex-shrink-0">Review →</span>
+                      <span className="text-primary-ink text-xs font-bold uppercase tracking-wider ml-3 flex-shrink-0">{t('needsAttention.reviewButton')}</span>
                     </div>
                   </Link>
                 )}
@@ -194,7 +200,7 @@ export default function ReviewPage() {
           {(['get_clear', 'get_current', 'get_creative'] as const).map(phase => (
             <div key={phase}>
               <p className="text-[10px] font-bold text-content-secondary uppercase tracking-widest mb-4 px-2">
-                {PHASE_LABELS[phase]}
+                {phase === 'get_clear' ? t('steps.getClear') : phase === 'get_current' ? t('steps.getCurrent') : t('steps.getCreative')}
               </p>
               <div className="space-y-2">
                 {grouped[phase].map(section => (
@@ -216,9 +222,9 @@ export default function ReviewPage() {
               animate={{ opacity: 1, y: 0 }}
               className="space-y-5 pt-4 border-t border-border-default"
             >
-              <p className="text-[10px] font-bold text-content-secondary uppercase tracking-widest px-2">Set Intentions</p>
+              <p className="text-[10px] font-bold text-content-secondary uppercase tracking-widest px-2">{t('intentions.setButton')}</p>
               <p className="text-base font-medium text-content-primary px-2 mb-2">
-                What are the 3 most important outcomes for next week?
+                {t('intentions.question')}
               </p>
               {intentions.map((val, i) => (
                 <input
@@ -229,13 +235,13 @@ export default function ReviewPage() {
                     next[i] = e.target.value
                     setIntentions(next)
                   }}
-                  placeholder={`Intention ${i + 1}…`}
+                  placeholder={t('intentions.placeholder', { number: i + 1 })}
                   className="w-full bg-surface-card border border-border-default rounded-2xl px-5 py-4 text-base font-medium text-content-primary placeholder-content-muted focus:outline-none focus:border-brand shadow-inner"
                 />
               ))}
               <div className="pt-4">
                 <Button fullWidth size="lg" loading={finishing} onClick={handleFinish}>
-                  🔥 Complete Review
+                  {t('completeReview')}
                 </Button>
               </div>
             </motion.div>
@@ -262,6 +268,7 @@ function SectionCard({
   completed: boolean
   onComplete: () => void
 }) {
+  const t = useTranslations('review')
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -331,7 +338,7 @@ function SectionCard({
                   onClick={onComplete}
                   className="mt-5 text-[10px] font-bold uppercase tracking-widest text-primary-ink hover:underline hover:text-primary-ink/80 transition-colors"
                 >
-                  Mark as reviewed ✓
+                  {t('markReviewed')}
                 </button>
               )}
             </div>

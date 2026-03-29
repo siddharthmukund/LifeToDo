@@ -1,9 +1,18 @@
 {
     "title": "प्रोजेक्ट्स",
     "create": "नया प्रोजेक्ट",
+    "newButton": "नया",
+    "noNextAction": "कोई next action नहीं",
+    "addNextAction": "+ Next action जोड़ें",
+    "archive": "Archive करें",
+    "tasks": "tasks",
+    "active": "active",
+    "stuck": "stuck",
+    "promptNextAction": "सबसे अगला physical action क्या है?",
     "emptyState": {
         "title": "कोई एक्टिव प्रोजेक्ट नहीं",
-        "description": "प्रोजेक्ट्स वो काम हैं जिन्हें पूरा करने के लिए एक से ज़्यादा steps चाहिए होते हैं।"
+        "description": "प्रोजेक्ट वो काम है जिसे पूरा करने के लिए एक से ज़्यादा steps चाहिए। एक बनाएं और अपने goals track करें।",
+        "action": "पहला प्रोजेक्ट बनाएं"
     },
     "details": {
         "outcome": "सफल परिणाम:",
@@ -13,5 +22,14 @@
         "active": "एक्टिव",
         "completed": "पूरा हो गया",
         "onHold": "होल्ड पर"
+    },
+    "form": {
+        "nameLabel": "प्रोजेक्ट का नाम *",
+        "namePlaceholder": "जैसे, नई वेबसाइट लॉन्च करें",
+        "outcomeLabel": "मनचाहा परिणाम",
+        "outcomePlaceholder": "'Done' कैसा दिखेगा?",
+        "nextActionLabel": "पहला next action *",
+        "nextActionPlaceholder": "सबसे पहला physical action क्या है?",
+        "createButton": "प्रोजेक्ट बनाएं"
     }
 }

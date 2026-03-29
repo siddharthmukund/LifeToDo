@@ -18,8 +18,10 @@ import { useGTDStore } from '@/store/gtdStore'
 import { db } from '@/lib/db'
 import { ADHD_MAX_ITEMS } from '@/constants/gtd'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 export default function TodayPage() {
+  const t = useTranslations('engage')
   const { actions, waitingFor, filters, setFilter, completeAction, refresh } = useActions()
   const inboxCount = useGTDStore(s => s.inboxCount)
   const adhdMode = useGTDStore(s => s.settings?.adhdMode)
@@ -93,12 +95,12 @@ export default function TodayPage() {
           <div>
             <h1 className="text-2xl font-display font-bold text-content-primary flex items-center gap-2">
               <Zap size={22} className="text-primary-ink fill-primary/20" />
-              Focus
+              {t('today.heading')}
             </h1>
             <p className="text-[10px] font-bold uppercase tracking-widest text-content-secondary mt-1 mb-2">
               {totalItems > 0
-                ? `${totalItems} next action${totalItems !== 1 ? 's' : ''}${doneToday > 0 ? ` · ${doneToday} done` : ''}`
-                : doneToday > 0 ? `${doneToday} done — inbox zero! 🚀` : 'All clear'}
+                ? `${totalItems} ${t('today.nextAction')}${totalItems !== 1 ? 's' : ''}${doneToday > 0 ? ` · ${doneToday} ${t('today.doneToday')}` : ''}`
+                : doneToday > 0 ? `${doneToday} ${t('today.inboxZero')}` : t('today.allClear')}
             </p>
             <XPBar />
           </div>
@@ -111,7 +113,7 @@ export default function TodayPage() {
               value={doneToday}
               max={totalForProgress}
               showLabel={doneToday > 0}
-              label={`${doneToday} done today`}
+              label={`${doneToday} ${t('today.doneToday')}`}
               size="sm"
             />
           </div>
@@ -123,7 +125,7 @@ export default function TodayPage() {
             <div className="mt-4 flex items-center gap-2 px-4 py-2.5 bg-status-warning/10
                             border border-status-warn rounded-xl text-sm font-bold text-status-warning active:scale-95 transition-transform">
               <AlertCircle size={16} />
-              <span>{inboxCount} items need clarifying</span>
+              <span>{inboxCount} {t('today.needsClarifying')}</span>
               <span className="ml-auto">→</span>
             </div>
           </Link>
@@ -167,7 +169,7 @@ export default function TodayPage() {
               onClick={() => setPage(p => Math.max(0, p - 1))}
               disabled={page === 0}
               className="p-3 rounded-full bg-surface-card text-content-secondary border border-border-subtle disabled:opacity-30 hover:bg-overlay-hover transition-colors active:scale-95"
-              aria-label="Previous page"
+              aria-label={t('today.previousPage')}
             >
               <ChevronLeft size={20} />
             </button>
@@ -178,7 +180,7 @@ export default function TodayPage() {
               onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
               disabled={page >= totalPages - 1}
               className="p-3 rounded-full bg-surface-card text-content-secondary border border-border-subtle disabled:opacity-30 hover:bg-overlay-hover transition-colors active:scale-95"
-              aria-label="Next page"
+              aria-label={t('today.nextPage')}
             >
               <ChevronRight size={20} />
             </button>
@@ -190,11 +192,11 @@ export default function TodayPage() {
           <div className="pt-8">
             <EmptyState
               icon={filters.energy ? '⚡' : '🚀'}
-              title={filters.energy ? `No ${filters.energy} energy actions` : "You're clear"}
+              title={filters.energy ? t('filter.noActionsForEnergy', { energy: filters.energy }) : t('today.allClear')}
               description={
                 filters.energy
                   ? `No actions match the ${filters.energy} energy level. Try a different level or clear the filter.`
-                  : 'No next actions match your filters. Try broadening your search or capture something new.'
+                  : t('filter.noActionsMatch')
               }
               action={
                 filters.energy ? (
@@ -202,11 +204,11 @@ export default function TodayPage() {
                     onClick={() => handleEnergyChange(null)}
                     className="text-sm font-bold text-primary-ink hover:underline"
                   >
-                    Clear energy filter
+                    {t('filter.clearEnergyFilter')}
                   </button>
                 ) : (
                   <Link href="/inbox">
-                    <Button variant="secondary" size="sm">Go to Inbox</Button>
+                    <Button variant="secondary" size="sm">{t('today.goToInbox')}</Button>
                   </Link>
                 )
               }
@@ -219,10 +221,10 @@ export default function TodayPage() {
           <div className="pt-6">
             <div className="flex items-center justify-between mb-4 px-2">
               <p className="text-[10px] font-bold text-content-secondary uppercase tracking-widest">
-                Waiting For ({waitingFor.length})
+                {t('today.waitingFor')} ({waitingFor.length})
               </p>
               <Link href="/waiting" className="text-[10px] font-bold text-primary-ink uppercase tracking-widest hover:text-primary-ink/80 transition-colors">
-                See all →
+                {t('today.seeAll')}
               </Link>
             </div>
             <div className="space-y-3">

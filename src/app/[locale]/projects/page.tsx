@@ -12,8 +12,10 @@ import { EmptyState } from '@/components/ui/EmptyState'
 import { ProgressBar } from '@/components/ui/ProgressBar'
 import { useProjects } from '@/hooks/useProjects'
 import { useGTDStore } from '@/store/gtdStore'
+import { useTranslations } from 'next-intl'
 
 export default function ProjectsPage() {
+  const t = useTranslations('projects')
   const { projects, projectsWithWarning, addProject, archiveProject } = useProjects()
   const { addAction, updateProject } = useGTDStore()
 
@@ -58,19 +60,19 @@ export default function ProjectsPage() {
           <div>
             <h1 className="text-2xl font-display font-bold text-content-primary flex items-center gap-2">
               <FolderOpen size={22} className="text-primary-ink fill-primary/20" />
-              Projects
+              {t('title')}
             </h1>
             <p className="text-[10px] font-bold uppercase tracking-widest text-content-muted mt-1">
-              {projects.length} active
+              {projects.length} {t('active')}
               {projectsWithWarning.length > 0 && (
                 <span className="text-status-warning ml-2">
-                  · {projectsWithWarning.length} stuck
+                  · {projectsWithWarning.length} {t('stuck')}
                 </span>
               )}
             </p>
           </div>
           <Button size="sm" onClick={() => setShowNew(true)}>
-            <Plus size={16} /> New
+            <Plus size={16} /> {t('newButton')}
           </Button>
         </div>
       </div>
@@ -97,7 +99,7 @@ export default function ProjectsPage() {
                   <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest
                                   text-status-warning mb-3 bg-status-warning/10 w-fit px-2.5 py-1 rounded-lg border border-status-warn">
                     <AlertTriangle size={12} />
-                    No next action
+                    {t('noNextAction')}
                   </div>
                 )}
 
@@ -115,7 +117,7 @@ export default function ProjectsPage() {
                     <ProgressBar
                       value={p.completedActions}
                       max={p.totalActions}
-                      label={`${p.completedActions} / ${p.totalActions} tasks · ${pct}%`}
+                      label={`${p.completedActions} / ${p.totalActions} ${t('tasks')} · ${pct}%`}
                       showLabel
                       size="sm"
                       color={pct >= 100 ? 'success' : pct >= 50 ? 'accent' : 'warning'}
@@ -134,7 +136,7 @@ export default function ProjectsPage() {
                   <button
                     className="mt-3 text-sm font-bold text-primary-ink hover:underline hover:text-primary-ink/80 transition-colors"
                     onClick={async () => {
-                      const text = prompt('What is the very next physical action?')
+                      const text = prompt(t('promptNextAction'))
                       if (!text?.trim()) return
                       const action = await addAction({
                         text:         text.trim(),
@@ -147,7 +149,7 @@ export default function ProjectsPage() {
                       await updateProject(p.id, { nextActionId: action.id })
                     }}
                   >
-                    + Add next action
+                    {t('addNextAction')}
                   </button>
                 )}
 
@@ -158,7 +160,7 @@ export default function ProjectsPage() {
                     className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest
                                text-content-muted hover:text-status-error transition-colors"
                   >
-                    <Archive size={14} /> Archive
+                    <Archive size={14} /> {t('archive')}
                   </button>
                 </div>
               </motion.div>
@@ -171,11 +173,11 @@ export default function ProjectsPage() {
           <div className="pt-8">
             <EmptyState
               icon="📁"
-              title="No active projects"
-              description="A project is any goal requiring more than one action. Create one to track your outcomes."
+              title={t('emptyState.title')}
+              description={t('emptyState.description')}
               action={
                 <Button size="sm" onClick={() => setShowNew(true)}>
-                  Create first project
+                  {t('emptyState.action')}
                 </Button>
               }
             />
@@ -184,16 +186,16 @@ export default function ProjectsPage() {
       </div>
 
       {/* ── New project modal ──────────────────────────────────────────────── */}
-      <Modal open={showNew} onClose={() => setShowNew(false)} title="New Project">
+      <Modal open={showNew} onClose={() => setShowNew(false)} title={t('create')}>
         <div className="space-y-6">
           <div>
             <label className="block text-[10px] font-bold uppercase tracking-widest text-content-muted mb-2">
-              Project name *
+              {t('form.nameLabel')}
             </label>
             <input
               value={newName}
               onChange={e => setNewName(e.target.value)}
-              placeholder="e.g. Launch new website"
+              placeholder={t('form.namePlaceholder')}
               className="w-full bg-surface-card border border-border-default rounded-2xl px-5 py-4
                          text-base font-medium text-content-primary placeholder-slate-500
                          focus:outline-none focus:border-primary/50 shadow-inner"
@@ -202,12 +204,12 @@ export default function ProjectsPage() {
           </div>
           <div>
             <label className="block text-[10px] font-bold uppercase tracking-widest text-content-muted mb-2">
-              Desired outcome
+              {t('form.outcomeLabel')}
             </label>
             <input
               value={newOutcome}
               onChange={e => setNewOutcome(e.target.value)}
-              placeholder="What does 'done' look like?"
+              placeholder={t('form.outcomePlaceholder')}
               className="w-full bg-surface-card border border-border-default rounded-2xl px-5 py-4
                          text-base font-medium text-content-primary placeholder-slate-500
                          focus:outline-none focus:border-primary/50 shadow-inner"
@@ -215,12 +217,12 @@ export default function ProjectsPage() {
           </div>
           <div>
             <label className="block text-[10px] font-bold uppercase tracking-widest text-content-muted mb-2">
-              First next action *
+              {t('form.nextActionLabel')}
             </label>
             <input
               value={newNextAction}
               onChange={e => setNewNextAction(e.target.value)}
-              placeholder="What's the very first physical action?"
+              placeholder={t('form.nextActionPlaceholder')}
               className="w-full bg-surface-card border border-border-default rounded-2xl px-5 py-4
                          text-base font-medium text-content-primary placeholder-slate-500
                          focus:outline-none focus:border-primary/50 shadow-inner"
@@ -233,7 +235,7 @@ export default function ProjectsPage() {
             loading={saving}
             onClick={handleCreate}
           >
-            Create Project
+            {t('form.createButton')}
           </Button>
         </div>
       </Modal>
