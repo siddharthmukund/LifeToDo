@@ -108,8 +108,8 @@ Hindi dates:
 Also parse English dates (many Indians use English dates):
 - "tomorrow", "next Monday", "in 3 days" etc.
 
-Current date: 2026-03-02
-Day of week: सोमवार
+Current date: 2026-03-03
+Day of week: मंगलवार
 
 Context markers to recognize:
 - @work, @office, @home, @errands, @ऑफ़िस, @घर (Hindi contexts)

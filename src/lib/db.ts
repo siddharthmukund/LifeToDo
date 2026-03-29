@@ -188,6 +188,20 @@ export const db = new GTDDatabase()
 
 // ── Convenience Query Helpers ───────────────────────────────────────────────
 
+/**
+ * Query unprocessed inbox items with optional context/energy filters.
+ * Used by the store to keep filtering logic out of components.
+ */
+export async function queryInbox(filters?: { contextId?: string | null; energy?: string | null }): Promise<InboxItem[]> {
+  let collection = db.inbox_items.where('status').anyOf(['raw', 'clarifying'])
+  const results = await collection.reverse().sortBy('capturedAt')
+  if (!filters) return results
+  return results.filter(i => {
+    if (filters.contextId && i.nlpMetadata?.contexts?.length && !i.nlpMetadata.contexts.includes(filters.contextId)) return false
+    return true
+  })
+}
+
 /** All unprocessed inbox items, newest first */
 export async function getInboxItems(): Promise<InboxItem[]> {
   return db.inbox_items

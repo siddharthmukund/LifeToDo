@@ -117,12 +117,14 @@ export function useWeeklyReview() {
       5
     )
 
+    const history = await db.reviews.orderBy('completedAt').toArray()
     setData({
       sections,
       totalItems,
       estimatedMinutes,
       lastReviewDate: lastReview?.completedAt ?? null,
       currentStreak:  lastReview?.streakCount ?? 0,
+      pastReviews: history,
     })
     setIsLoading(false)
   }, [])
@@ -164,5 +166,7 @@ export function useWeeklyReview() {
     completeSection,
     finalize,
     refresh: generate,
+    // convenience for dashboards
+    pastReviews: data?.pastReviews ?? [],
   }
 }

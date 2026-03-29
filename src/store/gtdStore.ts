@@ -6,7 +6,7 @@
 // iCCW #4: analytics track() calls added to key mutations (fire-and-forget).
 
 import { create } from 'zustand'
-import { db } from '@/lib/db'
+import { db, queryInbox } from '@/lib/db'
 import { track } from '@/analytics/tracker'
 import type {
   Action,
@@ -15,6 +15,7 @@ import type {
   InboxItem,
   Project,
   Settings,
+  EnergyLevel,
 } from '@/types'
 
 interface GTDState {
@@ -27,6 +28,7 @@ interface GTDState {
 
   // ── UI State ──────────────────────────────────────────────────────────────
   filters: ActionFilters
+  inboxFilters: { contextId: string | null; energy: EnergyLevel | null }
   inboxCount: number        // badge on nav tab
   isCapturing: boolean
   clarifyingItemId: string | null // which inbox item is in ClarifyFlow
@@ -62,6 +64,8 @@ interface GTDState {
   // ── Filter setters ────────────────────────────────────────────────────────
   setFilter: (key: keyof ActionFilters, value: ActionFilters[keyof ActionFilters]) => void
   clearFilters: () => void
+  setInboxFilter: (key: keyof GTDState['inboxFilters'], value: string | null) => void
+  clearInboxFilters: () => void
   setIsCapturing: (v: boolean) => void
   setClarifyingItem: (id: string | null) => void
 }
@@ -73,6 +77,7 @@ export const useGTDStore = create<GTDState>((set, get) => ({
   contexts: [],
   settings: null,
   filters: { contextId: null, energy: null, maxTime: null },
+  inboxFilters: { contextId: null, energy: null },
   inboxCount: 0,
   isCapturing: false,
   clarifyingItemId: null,
@@ -85,9 +90,7 @@ export const useGTDStore = create<GTDState>((set, get) => ({
   },
 
   loadInbox: async () => {
-    const items = await db.inbox_items
-      .where('status').anyOf(['raw', 'clarifying'])
-      .reverse().sortBy('capturedAt')
+    const items = await queryInbox(get().inboxFilters)
     set({ inboxItems: items, inboxCount: items.length })
   },
 
@@ -281,6 +284,11 @@ export const useGTDStore = create<GTDState>((set, get) => ({
 
   clearFilters: () =>
     set({ filters: { contextId: null, energy: null, maxTime: null } }),
+
+  setInboxFilter: (key, value) =>
+    set(s => ({ inboxFilters: { ...s.inboxFilters, [key]: value } })),
+  clearInboxFilters: () =>
+    set({ inboxFilters: { contextId: null, energy: null } }),
 
   setIsCapturing: (v) => set({ isCapturing: v }),
 

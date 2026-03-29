@@ -24,7 +24,7 @@ const APP_SHELL     = [
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_VERSION)
-      .then(cache => cache.addAll(APP_SHELL))
+      .then(cache => cache.addAll([...APP_SHELL, '/_next/data/BUILD_ID/index.json']))
       .then(() => self.skipWaiting())
   )
 })
@@ -67,6 +67,7 @@ self.addEventListener('fetch', event => {
   // Static assets: cache-first
   if (
     url.pathname.startsWith('/_next/static/') ||
+    url.pathname.startsWith('/assets/') ||
     url.pathname.endsWith('.js')  ||
     url.pathname.endsWith('.css') ||
     url.pathname.endsWith('.png') ||

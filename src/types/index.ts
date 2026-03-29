@@ -296,6 +296,8 @@ export interface WeeklyReviewData {
   estimatedMinutes: number
   lastReviewDate: Date | null
   currentStreak: number
+  /** optional history used by dashboard */
+  pastReviews?: Review[]
 }
 
 // ── Filter Types ────────────────────────────────────────────────────────────

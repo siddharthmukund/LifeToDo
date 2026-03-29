@@ -13,6 +13,9 @@ export function useInbox() {
     deleteInboxItem,
     clarifyingItemId,
     setClarifyingItem,
+    inboxFilters,
+    setInboxFilter,
+    clearInboxFilters,
   } = useGTDStore()
 
   useEffect(() => {
@@ -29,5 +32,8 @@ export function useInbox() {
     startClarify: setClarifyingItem,
     stopClarify: () => setClarifyingItem(null),
     refresh: loadInbox,
+    filters: inboxFilters,
+    setFilter: setInboxFilter,
+    clearFilters: clearInboxFilters,
   }
 }
