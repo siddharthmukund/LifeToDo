@@ -22,7 +22,8 @@ export function updateStreak(
     currentStreakDays: number,
     lastActiveDateStr: string | null,
     graceUsedToday: boolean,
-    currentDate: Date = new Date()
+    currentDate: Date = new Date(),
+    isADHDMode: boolean = false
 ): { newStreakDays: number; graceUsed: boolean; reset: boolean; activeDateStr: string } {
     const todayStr = currentDate.toISOString().split('T')[0];
 
@@ -49,10 +50,18 @@ export function updateStreak(
             return { newStreakDays: currentStreakDays + 1, graceUsed: true, reset: false, activeDateStr: todayStr };
         } else {
             // Reset
+            if (isADHDMode) {
+                // In ADHD mode, we forgive missed days entirely
+                return { newStreakDays: currentStreakDays, graceUsed: false, reset: false, activeDateStr: todayStr };
+            }
             return { newStreakDays: 1, graceUsed: false, reset: true, activeDateStr: todayStr };
         }
     } else {
         // Missed multiple days, reset
+        if (isADHDMode) {
+            // In ADHD mode, we forgive missed days entirely and resume streak where they left off
+            return { newStreakDays: currentStreakDays, graceUsed: false, reset: false, activeDateStr: todayStr };
+        }
         return { newStreakDays: 1, graceUsed: false, reset: true, activeDateStr: todayStr };
     }
 }

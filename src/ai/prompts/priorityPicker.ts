@@ -2,6 +2,7 @@ export function buildPriorityPickerPrompt(
   tasks: Array<{ index: number; title: string; context?: string; dueDate?: string; energy?: string; estimatedMinutes?: number }>,
   currentEnergy: string,
   excludeIndices: number[],
+  isADHDMode: boolean = false
 ): string {
   const available = tasks.filter((t) => !excludeIndices.includes(t.index));
   const taskList = available
@@ -25,7 +26,7 @@ Priority order: 1) Due today/overdue 2) Energy match 3) Shorter tasks 4) Momentu
 RULES:
 - Pick exactly one task
 - pickedTaskIndex: the number from the list
-- reason: ONE encouraging sentence <20 words
+- reason: ${isADHDMode ? 'highly direct, simple command like "Do this one next." (<8 words)' : 'ONE encouraging sentence <20 words'}
 - confidence: 0.0-1.0
 
 Respond ONLY with valid JSON.`;

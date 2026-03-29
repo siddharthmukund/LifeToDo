@@ -18,6 +18,10 @@ export type GTDEventName =
   | 'energy_filter_used'          // user filters by energy level
   | 'adhd_mode_toggled'           // ADHD mode turned on or off
   | 'voice_capture_used'          // voice capture triggered
+  | 'morning_3_completed'         // User completes the morning 3 card picker
+  | 'focus_timer_started'         // User initiates an ADHD focus timer
+  | 'welcome_back_sweep'          // User clears backlog via welcome back modal
+  | 'brain_dump_adhd'             // User runs the enhanced adhd brain dump
 
 /** Optional metadata per event — scalar, non-identifying */
 export type EventProps = Record<string, string | number | boolean>

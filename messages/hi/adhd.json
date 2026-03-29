@@ -1,0 +1,77 @@
+{
+  "morning": {
+    "greeting": "सुप्रभात! आज के लिए 3 काम चुनें।",
+    "aiSuggesting": "ये रहे मेरे सुझाव…",
+    "swapPrompt": "इन्हें बदल सकते हैं",
+    "confirm": "आपका दिन तैयार है। जब चाहें शुरू करें।",
+    "skip": "Skip करें — सब दिखाएं",
+    "pickingFor": "आज के लिए 3 चुन रहे हैं"
+  },
+  "engage": {
+    "doThisNext": "यह करें अभी।",
+    "focus": "Focus",
+    "skip": "आज नहीं",
+    "skipConfirm": "कोई बात नहीं — सही समय पर वापस आएगा।",
+    "doneOf": "{total} में से {done} हो गए",
+    "allDone": "आपके Morning 3 हो गए!",
+    "allDoneSubtitle": "कुछ और करना है, या आज के लिए काफी है?",
+    "keepGoing": "जारी रखें",
+    "callItAWin": "आज के लिए काफी है ✓"
+  },
+  "focus": {
+    "title": "Focus करने के लिए तैयार?",
+    "subtitle": "समय चुनें।",
+    "start": "चलते हैं। Clock मैं देखूंगा — आप काम करें।",
+    "done": "बहुत खूब। एक सांस लो।",
+    "timeRemaining": "{minutes}:{seconds} बाकी",
+    "cancel": "Cancel"
+  },
+  "transition": {
+    "heading": "शाबाश!",
+    "subtitle": "एक पल रुको।",
+    "ready": "अगले काम के लिए तैयार?",
+    "break": "Break लो — मैं यहाँ हूं।"
+  },
+  "deadline": {
+    "aimFor": "{date} तक करने की कोशिश",
+    "noDate": "कोई deadline नहीं"
+  },
+  "winCounter": {
+    "zero": "जब चाहें शुरू करें।",
+    "one": "आज {count} काम पूरा ✓",
+    "other": "आज {count} काम पूरे ✓",
+    "allClear": "सब हो गया! देखो तुम्हें। 🌱"
+  },
+  "welcomeBack": {
+    "greeting": "अरे! वापस आए, अच्छा लगा। 🌿",
+    "sweepPrompt": "कुछ काम जमा हो गए हैं। 2 मिनट की quick sweep?",
+    "sweepStart": "Sweep करें",
+    "sweepSkip": "सब दिखाएं",
+    "keepQuestion": "अभी भी ज़रूरी है?",
+    "keep": "रखें",
+    "archive": "Archive करें",
+    "reschedule": "Reschedule करें",
+    "archived": "{count} पुराने {count, plural, one {item को} other {items को}} हटाया।",
+    "allCleared": "सब clear! कुछ urgent नहीं है।",
+    "morning3Prompt": "Morning 3 चुनना चाहते हैं?",
+    "morning3Yes": "हाँ, 3 चुनते हैं",
+    "morning3Skip": "Inbox जाएं"
+  },
+  "capture": {
+    "added": "जोड़ दिया ✓ — जब चाहें organize करें।",
+    "brainDumpPrompt": "Overwhelmed हो? सब यहाँ dump करो।",
+    "brainDumpDone": "सब दिमाग से निकलकर यहाँ safe है। सांस लो। 🧠→📱",
+    "processLater": "जब चाहें process करें — सब safe है।"
+  },
+  "streaks": {
+    "growing": "{count} दिन बढ़ रहे हैं 🌱",
+    "brokenShort": "आज से नई streak। आपका garden तैयार है।",
+    "brokenLong": "नई शुरुआत! आपका garden फिर बढ़ने को तैयार है।"
+  },
+  "review": {
+    "prompt": "Sunday check-in? बस 10 मिनट। भविष्य का आप शुक्रगुज़ार होगा।"
+  },
+  "overdue": {
+    "waiting": "यह काफी समय से wait कर रहा है। अभी भी ज़रूरी है?"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "morning": {
+    "greeting": "Good morning! Pick 3 things for today.",
+    "aiSuggesting": "Here's what I'd suggest…",
+    "swapPrompt": "Swap any of these",
+    "confirm": "Your day is set. Start whenever you're ready.",
+    "skip": "Skip — show me everything",
+    "pickingFor": "Picking your 3 for today"
+  },
+  "engage": {
+    "doThisNext": "Do this next.",
+    "focus": "Focus",
+    "skip": "Not today",
+    "skipConfirm": "No worries — it'll come back when the time is right.",
+    "doneOf": "{done} of {total} done",
+    "allDone": "Your Morning 3 is done.",
+    "allDoneSubtitle": "Anything else, or call it a win?",
+    "keepGoing": "Keep going",
+    "callItAWin": "Call it a win ✓"
+  },
+  "focus": {
+    "title": "Ready to focus?",
+    "subtitle": "Pick your time.",
+    "start": "Let's go. I'll keep the clock — you focus.",
+    "done": "Nice. Take a breath.",
+    "timeRemaining": "{minutes}:{seconds} left",
+    "cancel": "Cancel"
+  },
+  "transition": {
+    "heading": "Nice work.",
+    "subtitle": "Take a moment.",
+    "ready": "Ready for the next one?",
+    "break": "Take a break — I'll be here."
+  },
+  "deadline": {
+    "aimFor": "Aim for {date}",
+    "noDate": "No deadline"
+  },
+  "winCounter": {
+    "zero": "Ready when you are.",
+    "one": "{count} thing done today ✓",
+    "other": "{count} things done today ✓",
+    "allClear": "All done! Look at you. 🌱"
+  },
+  "welcomeBack": {
+    "greeting": "Hey! Glad you're back. 🌿",
+    "sweepPrompt": "A few things piled up. Quick 2-minute sweep?",
+    "sweepStart": "Let's sweep",
+    "sweepSkip": "Show me everything",
+    "keepQuestion": "Still relevant?",
+    "keep": "Keep",
+    "archive": "Archive",
+    "reschedule": "Reschedule",
+    "archived": "Moved {count} old {count, plural, one {item} other {items}} out of your way.",
+    "allCleared": "All caught up! Nothing urgent is waiting.",
+    "morning3Prompt": "Want to pick your Morning 3?",
+    "morning3Yes": "Yes, let's pick 3",
+    "morning3Skip": "Go to inbox"
+  },
+  "capture": {
+    "added": "Added ✓ — organize whenever you're ready.",
+    "brainDumpPrompt": "Feeling overwhelmed? Dump it all here.",
+    "brainDumpDone": "All out of your head and safe here. Breathe. 🧠→📱",
+    "processLater": "Process them whenever — they're safe."
+  },
+  "streaks": {
+    "growing": "{count} days growing 🌱",
+    "brokenShort": "New streak starts today. Your garden's ready.",
+    "brokenLong": "Starting fresh! Your garden's ready to grow again."
+  },
+  "review": {
+    "prompt": "Sunday check-in? 10 minutes, tops. Future you will be glad."
+  },
+  "overdue": {
+    "waiting": "This has been waiting. Still relevant?"
+  }
+}
