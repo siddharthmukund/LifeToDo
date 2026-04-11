@@ -112,53 +112,58 @@ export function InboxSection() {
   }
 
   return (
-    <div className="flex flex-col h-full animate-fade-in pb-8">
-      <header className="flex items-center justify-between px-6 pt-14 pb-6">
-        <h1 className="font-display text-2xl font-bold tracking-tight text-content-primary">
+    <div className="flex flex-col h-full animate-fade-in">
+
+      {/* ── TopAppBar ──────────────────────────────────────────────────────── */}
+      <header className="sticky top-0 z-30 glass-header px-6 min-h-[4rem] flex items-center justify-between">
+        <h1 className="font-display text-[1.75rem] font-extrabold tracking-tight text-[#37f6dd]">
           Inbox
         </h1>
-        <button className="relative rounded-full bg-surface-card p-2 text-primary-ink border border-border-default active:scale-95 transition-transform shadow-glow-accent">
-          <Settings2 size={20} />
+        <button className="relative p-2 rounded-full hover:bg-white/5 transition-colors active:scale-95">
+          <Settings2 size={20} className="text-[#aba9b9]" />
           {items.length > 0 && (
-            <span className="absolute right-2 top-2 size-2 rounded-full bg-primary border-2 border-surface-card" />
+            <span className="absolute right-1.5 top-1.5 size-2 rounded-full bg-[#37f6dd]" />
           )}
         </button>
       </header>
 
-      <EnergyContextFilter />
-
-      <div className="px-6 flex justify-between items-end mb-6">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-widest text-primary-ink mb-1">
-            Unprocessed
-          </p>
-          <h2 className="text-4xl font-display font-bold text-content-primary leading-none mb-3">
+      {/* ── Velocity stat ──────────────────────────────────────────────────── */}
+      <div className="px-6 pt-6 pb-2">
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#aba9b9] mb-1">Velocity Overview</p>
+        <div className="flex items-end gap-4 mb-3">
+          <span className="text-[3.5rem] font-extrabold tracking-tighter leading-none text-[#e9e6f7]">
             {items.length}
-            {items.length > 0 && (
-              <span className="text-lg text-content-secondary ml-1">items</span>
-            )}
-          </h2>
-          <XPBar />
+          </span>
+          <div className="pb-2">
+            <p className="text-[#aba9b9] leading-tight">
+              Actions pending
+            </p>
+          </div>
         </div>
-        {items.length > 0 && (
-          <button
-            onClick={() => setClarifyingId(items[0].id)}
-            className="text-xs font-bold uppercase tracking-widest text-content-secondary border border-border-default rounded-full px-4 py-2 hover:bg-overlay-hover transition-colors active:scale-95"
-          >
-            Process All
-          </button>
-        )}
+        <XPBar />
       </div>
 
-      <div className="px-6 z-20">
+      {/* ── Capture bar ────────────────────────────────────────────────────── */}
+      <div className="px-6 pb-4 z-20">
         <CaptureBar onCapture={handleCapture} />
       </div>
 
-      <div className="flex-1 px-6 custom-scrollbar relative z-10 mt-4">
+      <EnergyContextFilter />
+
+      {/* ── Items list ─────────────────────────────────────────────────────── */}
+      <div className="flex-1 px-6 custom-scrollbar relative z-10 mt-2">
         {items.length > 0 && (
-          <h3 className="text-[10px] font-bold uppercase tracking-widest text-content-secondary mb-4 sticky top-0 bg-surface-base/90 backdrop-blur pb-2 pt-2 z-20">
-            Recent Captures
-          </h3>
+          <div className="flex items-center justify-between mb-3 sticky top-0 bg-[#0d0d18]/90 backdrop-blur-xl pt-2 pb-2 z-20">
+            <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#aba9b9]">
+              Recent Captures
+            </h3>
+            <button
+              onClick={() => setClarifyingId(items[0].id)}
+              className="text-[10px] font-bold uppercase tracking-widest text-[#37f6dd] border border-[#37f6dd]/20 rounded-full px-3 py-1.5 hover:bg-[#37f6dd]/10 transition-colors active:scale-95"
+            >
+              Process All
+            </button>
+          </div>
         )}
 
         <div className="space-y-3">

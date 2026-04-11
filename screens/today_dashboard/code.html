@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Life To Do - Today Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#490006",
+              "tertiary-fixed": "#0cbefb",
+              "on-surface-variant": "#aba9b9",
+              "on-tertiary": "#003f57",
+              "on-primary": "#00594e",
+              "surface-container-lowest": "#000000",
+              "secondary": "#c57eff",
+              "surface-variant": "#242434",
+              "primary-container": "#00e5cc",
+              "on-surface": "#e9e6f7",
+              "inverse-on-surface": "#555461",
+              "error-dim": "#d7383b",
+              "surface-tint": "#37f6dd",
+              "on-secondary-container": "#e6c3ff",
+              "surface-bright": "#2b2a3c",
+              "error-container": "#9f0519",
+              "surface-container-high": "#1e1e2d",
+              "on-secondary-fixed": "#510085",
+              "surface-container-highest": "#242434",
+              "primary-fixed": "#37f6dd",
+              "secondary-dim": "#c57eff",
+              "tertiary": "#59caff",
+              "primary-fixed-dim": "#11e8cf",
+              "background": "#0d0d18",
+              "on-background": "#e9e6f7",
+              "error": "#ff716c",
+              "on-primary-container": "#004d44",
+              "on-tertiary-container": "#003549",
+              "primary": "#37f6dd",
+              "secondary-fixed": "#e7c5ff",
+              "inverse-primary": "#006b5f",
+              "on-tertiary-fixed": "#001a27",
+              "surface": "#0d0d18",
+              "inverse-surface": "#fcf8ff",
+              "on-secondary": "#340058",
+              "on-primary-fixed": "#00443c",
+              "tertiary-container": "#0cbefb",
+              "tertiary-fixed-dim": "#00afe8",
+              "tertiary-dim": "#00afe8",
+              "on-secondary-fixed-variant": "#7520b5",
+              "surface-dim": "#0d0d18",
+              "on-error-container": "#ffa8a3",
+              "secondary-container": "#6a0baa",
+              "surface-container": "#181826",
+              "surface-container-low": "#12121e",
+              "secondary-fixed-dim": "#deb3ff",
+              "outline": "#757482",
+              "on-primary-fixed-variant": "#006358",
+              "primary-dim": "#11e8cf",
+              "on-tertiary-fixed-variant": "#003e55",
+              "outline-variant": "#474754"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .glass-card {
+        background: rgba(24, 24, 38, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .neon-glow-primary {
+        box-shadow: 0 0 20px rgba(0, 229, 204, 0.4);
+      }
+      .neon-glow-secondary {
+        box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .pulse-ring {
+        animation: pulse 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+      }
+      @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.5; }
+        100% { transform: scale(1.5); opacity: 0; }
+      }
+      body {
+        background-color: #0d0d18;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body text-on-surface antialiased select-none">
+<!-- Top App Bar -->
+<header class="sticky top-0 w-full z-50 bg-[#0d0d18]/95 backdrop-blur-xl flex items-center justify-between px-6 py-4 max-w-[430px] mx-auto">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full overflow-hidden border border-primary/20 bg-surface-container">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Portrait of a professional man with short hair and minimalist aesthetic in soft cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJbdlqMjuBPSfvPvfQsnqUaqYR2ePZK3gIX199GoAJ47az7HCnbWnSPmfa3Py6LBVBNj5lo0nozQt07B3O9o5cE2hYEIkLRx0pB75EhCsk3fYQQpG6NaO_ZubrbRJQFH1j9ahiGsVLLHsxomYCy7s8ZRiNtEb2bzWZCIanEmQyh10BM0ER6_OWEOfIA4J7__Nq6dGPklsY716FOGDbF53i9-w6fgjYVp7AcyTlTpSIjRoKJOgdO6Fy6wvO4xuXK0ry2VAOsAY3xQ"/>
+</div>
+<h1 class="font-manrope text-[#e9e6f7] font-extrabold text-xl tracking-tight">Life To Do</h1>
+</div>
+<button class="text-[#e9e6f7] hover:bg-[#242434] transition-colors p-2 rounded-full active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="max-w-[430px] mx-auto px-6 pt-4 pb-40 min-h-screen">
+<!-- Action Cards Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-on-surface-variant font-label text-xs uppercase tracking-[0.2em] font-bold">Today's Focus</h2>
+<span class="text-primary font-label text-xs font-bold">4 Tasks</span>
+</div>
+<!-- Card 1: High Energy -->
+<div class="glass-card rounded-xl p-5 flex items-center gap-4 border-l-4 border-l-primary transition-all active:scale-[0.98]">
+<div class="flex-grow">
+<h3 class="text-body-lg font-bold text-on-surface mb-1">Finalize Launch Plan</h3>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant" data-icon="business_center">business_center</span>
+<span class="text-label-md text-on-surface-variant">🏢 Office</span>
+</div>
+</div>
+<button class="h-11 w-11 rounded-xl border-2 border-primary/10 bg-primary/5 text-primary flex items-center justify-center hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined" data-icon="check">check</span>
+</button>
+</div>
+<!-- Card 2: Medium Energy -->
+<div class="glass-card rounded-xl p-5 flex items-center gap-4 border-l-4 border-l-tertiary transition-all active:scale-[0.98]">
+<div class="flex-grow">
+<h3 class="text-body-lg font-bold text-on-surface mb-1">Update Stakeholders</h3>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant" data-icon="home">home</span>
+<span class="text-label-md text-on-surface-variant">🏠 Home</span>
+</div>
+</div>
+<button class="h-11 w-11 rounded-xl border-2 border-outline-variant text-on-surface-variant flex items-center justify-center hover:border-tertiary/40 hover:text-tertiary transition-all">
+<span class="material-symbols-outlined" data-icon="check">check</span>
+</button>
+</div>
+<!-- Card 3: Low Energy -->
+<div class="glass-card rounded-xl p-5 flex items-center gap-4 border-l-4 border-l-outline-variant transition-all active:scale-[0.98]">
+<div class="flex-grow">
+<h3 class="text-body-lg font-bold text-on-surface mb-1 text-on-surface/80">Review Backlog</h3>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant" data-icon="business_center">business_center</span>
+<span class="text-label-md text-on-surface-variant">🏢 Office</span>
+</div>
+</div>
+<button class="h-11 w-11 rounded-xl border-2 border-outline-variant text-on-surface-variant flex items-center justify-center hover:border-outline hover:text-on-surface transition-all">
+<span class="material-symbols-outlined" data-icon="check">check</span>
+</button>
+</div>
+<!-- Card 4: High Energy -->
+<div class="glass-card rounded-xl p-5 flex items-center gap-4 border-l-4 border-l-primary transition-all active:scale-[0.98]">
+<div class="flex-grow">
+<h3 class="text-body-lg font-bold text-on-surface mb-1">Design System Review</h3>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant" data-icon="laptop_mac">laptop_mac</span>
+<span class="text-label-md text-on-surface-variant">💻 Studio</span>
+</div>
+</div>
+<button class="h-11 w-11 rounded-xl border-2 border-primary/10 bg-primary/5 text-primary flex items-center justify-center hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined" data-icon="check">check</span>
+</button>
+</div>
+</section>
+<!-- Capture Bar (Hero Voice Input) -->
+<section class="mt-16 flex flex-col items-center justify-center space-y-6">
+<div class="relative flex items-center justify-center">
+<!-- Pulsing Rings -->
+<div class="absolute w-40 h-40 rounded-full border-2 border-primary/20 pulse-ring"></div>
+<div class="absolute w-52 h-52 rounded-full border border-primary/10 pulse-ring" style="animation-delay: 0.5s;"></div>
+<!-- Main Orb -->
+<button class="relative h-36 w-36 rounded-full bg-primary/20 backdrop-blur-2xl flex items-center justify-center neon-glow-primary border border-primary/40 group active:scale-90 transition-transform duration-200">
+<div class="h-28 w-28 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-on-primary-container text-4xl" data-icon="mic" style="font-variation-settings: 'FILL' 1;">mic</span>
+</div>
+</button>
+</div>
+<div class="text-center space-y-2">
+<p class="text-primary font-medium italic opacity-80 animate-pulse tracking-wide">Listening for your next idea...</p>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 mx-auto px-4 py-2 rounded-full bg-surface-container-high/50 text-xs font-bold uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm" data-icon="keyboard">keyboard</span>
+                    Or Type
+                </button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-50 rounded-t-lg bg-[#0d0d18]/95 backdrop-blur-xl border-t border-gray-500/10 shadow-[0_-4px_20px_rgba(0,229,204,0.1)] flex justify-around items-center h-16 px-4">
+<!-- Bolt (Active) -->
+<a class="text-[#00e5cc] shadow-[0_0_20px_rgba(0,229,204,0.4)] active:scale-90 touch-none h-[44px] w-[44px] flex items-center justify-center transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</a>
+<!-- Inbox -->
+<a class="text-[#474754] hover:text-[#37f6dd] active:scale-90 touch-none h-[44px] w-[44px] flex items-center justify-center transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="inbox">inbox</span>
+</a>
+<!-- Folder -->
+<a class="text-[#474754] hover:text-[#37f6dd] active:scale-90 touch-none h-[44px] w-[44px] flex items-center justify-center transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="folder">folder</span>
+</a>
+<!-- Event Note -->
+<a class="text-[#474754] hover:text-[#37f6dd] active:scale-90 touch-none h-[44px] w-[44px] flex items-center justify-center transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+</a>
+<!-- Settings -->
+<a class="text-[#474754] hover:text-[#37f6dd] active:scale-90 touch-none h-[44px] w-[44px] flex items-center justify-center transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</a>
+</nav>
+<!-- Background Decorative Gradient -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
+<div class="absolute top-[-10%] right-[-10%] w-[60%] h-[40%] bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[5%] left-[-10%] w-[50%] h-[50%] bg-secondary/5 blur-[120px] rounded-full"></div>
+</div>
+</body></html>

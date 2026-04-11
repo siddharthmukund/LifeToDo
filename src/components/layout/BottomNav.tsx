@@ -29,10 +29,14 @@ export function BottomNav() {
   return (
     <nav
       aria-label={t('aria.main')}
-      className="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto z-40 bg-surface-base/95
-                 border-t border-border-default backdrop-blur-xl pb-6 pt-3 px-6 safe-area-bottom"
+      className={cn(
+        'fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto z-40',
+        'glass-panel border-t border-border-subtle',
+        'shadow-glow-primary',
+        'flex justify-around items-center h-20 px-2 safe-area-bottom pb-4',
+        'rounded-t-[8px]',
+      )}
     >
-      <div className="flex items-center justify-between gap-2">
         {TAB_DEFS.map(({ href, icon: Icon, key, badge }) => {
           const active = pathname === href
           const label = t(`tabs.${key}`)
@@ -46,27 +50,28 @@ export function BottomNav() {
               href={href}
               aria-current={active ? 'page' : undefined}
               className={cn(
-                'flex flex-1 flex-col items-center gap-1 relative',
-                'transition-colors duration-150 select-none pb-2',
-                // Minimum 44px touch target vertically via padding
-                'min-h-[44px] justify-center',
-                active ? 'text-primary-ink' : 'text-content-secondary hover:text-content-primary',
+                'flex flex-col items-center justify-center gap-1 relative select-none',
+                'min-h-[56px] min-w-[56px] px-2 rounded-2xl',
+                'transition-all duration-200 ease-out active:scale-90',
+                active
+                  ? 'text-primary drop-shadow-[0_0_8px_var(--primary-ink)]'
+                  : 'text-content-muted hover:text-primary/80',
               )}
             >
-              <div className="relative flex items-center justify-center h-8">
+              <div className="relative flex items-center justify-center h-7">
                 <Icon
-                  size={26}
+                  size={24}
                   strokeWidth={active ? 2.5 : 2}
-                  className={active ? 'fill-primary/20' : ''}
+                  className={active ? 'text-primary' : ''}
                   aria-hidden="true"
                 />
 
                 {/* Blue badge — unprocessed inbox count */}
                 {inboxBadge !== null && (
                   <div
-                    className="absolute top-1 right-2 w-4 h-4 flex items-center
-                                 justify-center px-1 text-[10px] font-bold
-                                 bg-primary text-on-brand rounded-full"
+                    className="absolute -top-1 -right-1 min-w-[16px] h-4 flex items-center
+                                 justify-center px-1 text-[9px] font-bold
+                                 bg-primary text-content-inverse rounded-full ring-2 ring-surface-base"
                     aria-hidden="true"
                   >
                     {inboxBadge > 99 ? '99+' : inboxBadge}
@@ -76,9 +81,9 @@ export function BottomNav() {
                 {/* Amber badge — stale items needing review */}
                 {staleBadge !== null && (
                   <div
-                    className="absolute top-1 right-2 w-4 h-4 flex items-center
-                                 justify-center px-1 text-[10px] font-bold
-                                 bg-yellow-500 text-on-brand rounded-full"
+                    className="absolute -top-1 -right-1 min-w-[16px] h-4 flex items-center
+                                 justify-center px-1 text-[9px] font-bold
+                                 bg-status-warning text-content-inverse rounded-full ring-2 ring-surface-base"
                     aria-hidden="true"
                   >
                     {staleBadge > 99 ? '99+' : staleBadge}
@@ -86,7 +91,10 @@ export function BottomNav() {
                 )}
               </div>
 
-              <span className="text-[10px] font-bold uppercase tracking-tighter">
+              <span className={cn(
+                'text-[9px] font-bold uppercase tracking-widest',
+                active ? 'text-primary' : 'text-content-muted',
+              )}>
                 {label}
               </span>
 
@@ -104,7 +112,6 @@ export function BottomNav() {
             </Link>
           )
         })}
-      </div>
     </nav>
   )
 }

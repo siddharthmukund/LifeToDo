@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed-variant": "#7f2a13",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#2d0050",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "on-tertiary-container": "#74220b",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-fixed": "#f1dbff",
+                        "primary": "#006b5c",
+                        "outline-variant": "#bbcac4",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#68fadd",
+                        "on-secondary-fixed-variant": "#680eac",
+                        "secondary-fixed-dim": "#deb7ff",
+                        "primary-container": "#00bfa5",
+                        "outline": "#6c7a76",
+                        "on-surface-variant": "#3c4a46",
+                        "tertiary-fixed": "#ffdbd2",
+                        "primary-fixed-dim": "#44ddc1",
+                        "secondary-container": "#b86dfd",
+                        "tertiary-fixed-dim": "#ffb4a1",
+                        "surface-bright": "#f8f9fa",
+                        "surface-variant": "#e1e3e4",
+                        "surface-container-low": "#f3f4f5",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-fixed": "#00201a",
+                        "on-tertiary-fixed": "#3c0800",
+                        "on-background": "#191c1d",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary-container": "#fe896a",
+                        "on-secondary-container": "#410070",
+                        "on-primary-fixed-variant": "#005145",
+                        "inverse-primary": "#44ddc1",
+                        "surface-tint": "#006b5c",
+                        "surface": "#f8f9fa",
+                        "surface-container": "#edeeef",
+                        "on-primary-container": "#00473c",
+                        "secondary": "#8234c6",
+                        "tertiary": "#9f4128",
+                        "surface-dim": "#d9dadb",
+                        "background": "#f8f9fa"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#F8F9FA]/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,107,92,0.04)]">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#006B5C] dark:text-[#00BFA5]">arrow_back</span>
+<span class="text-xl font-extrabold tracking-tighter text-[#006B5C] dark:text-[#00BFA5] font-['Manrope']">Life To Do</span>
+</div>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary-container/20">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a professional man with a friendly expression in a brightly lit studio setting with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk0hkvci_Qi-QFkfTnD63mEXFL-HWGvSMjiz5QN67iINKMKfFIZ-n9YOnOM9UzXiDJ4ve_N48bKrdjjjv5Te7gAGkrtLwr7HXTUfnqRXN6D6QarT5DxDN_zQ-cCURg3GCmZLtzwEuMJwbV7lfxS3Wom0M-sGIKKxLnA7H6ST80G-P0cw7f-vxgz46PLQDD6tFCHE4Ewsioxv4xYtPM5A31gb1WeXKk3IyTbmNN5I8pYfF5l8YXYeH4yhq7BlbIFvhyiJq46K9K7Q"/>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto space-y-10">
+<!-- Profile Header -->
+<section class="relative space-y-6">
+<div class="flex items-center gap-6">
+<div class="relative">
+<div class="h-24 w-24 rounded-[2rem] overflow-hidden shadow-2xl shadow-primary/10 ring-4 ring-white">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of Alexander, a man in his early 30s with short hair, smiling confidently against a minimalist light grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxDKLxQ6KKBpndCfZTQI8PPPIxELQbE8Pi1OUYJcPaQ608EEt56xpSnCcp1q7uvM341tjYq5yjwJiINjCYquDH3-p4XcZYyQLqf1xhWeq_xXX1GTDI2lgvwWdeMpuARMRBDZIEP6ZnRXvE8LT8WaLPd9zTHU7hqHfHBkjurbXwJJmDwog1bK9FQ_LfOQxcVTsHJGMqyfCnk6wuveo3-xPMxO1w9KI77_0JygLst7TJm8ltSfWh1B5PNq311QjO-lJ02QhMg2ub9A"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-gradient-to-br from-primary to-primary-container p-1.5 rounded-xl shadow-lg border-2 border-white">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="space-y-1">
+<h1 class="text-3xl font-extrabold tracking-tight text-on-surface">Alexander</h1>
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Premium Member</span>
+</div>
+</div>
+</div>
+<!-- Profile Action Bento -->
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card p-4 rounded-3xl border border-white/40 shadow-sm flex flex-col justify-between h-28 hover:bg-white transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary">edit_square</span>
+<span class="font-bold text-sm">Edit Profile</span>
+</div>
+<div class="glass-card p-4 rounded-3xl border border-white/40 shadow-sm flex flex-col justify-between h-28 hover:bg-white transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-secondary">share</span>
+<span class="font-bold text-sm">Share Stats</span>
+</div>
+</div>
+</section>
+<!-- Settings Groups -->
+<div class="space-y-12">
+<!-- Account Group -->
+<section class="space-y-4">
+<h2 class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-outline ml-2">Account</h2>
+<div class="bg-surface-container-low rounded-[2.5rem] p-2 space-y-1">
+<div class="flex items-center justify-between p-4 px-6 bg-surface-container-lowest rounded-[2rem] shadow-sm hover:translate-x-1 transition-transform cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-2xl bg-primary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<span class="font-semibold text-on-surface">Personal Information</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 px-6 bg-surface-container-lowest rounded-[2rem] shadow-sm hover:translate-x-1 transition-transform cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-2xl bg-primary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">shield</span>
+</div>
+<span class="font-semibold text-on-surface">Security &amp; Privacy</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 px-6 bg-surface-container-lowest rounded-[2rem] shadow-sm hover:translate-x-1 transition-transform cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-2xl bg-primary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<span class="font-semibold text-on-surface">Subscription Plan</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- GTD Preferences -->
+<section class="space-y-4">
+<h2 class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-outline ml-2">GTD Preferences</h2>
+<div class="bg-surface-container-low rounded-[2.5rem] p-2 space-y-1">
+<div class="flex items-center justify-between p-4 px-6 bg-surface-container-lowest rounded-[2rem] shadow-sm hover:translate-x-1 transition-transform cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-2xl bg-secondary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">bolt</span>
+</div>
+<span class="font-semibold text-on-surface">Next Action Workflow</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 px-6 bg-surface-container-lowest rounded-[2rem] shadow-sm hover:translate-x-1 transition-transform cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-2xl bg-secondary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">view_agenda</span>
+</div>
+<span class="font-semibold text-on-surface">Context Management</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Appearance -->
+<section class="space-y-4">
+<h2 class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-outline ml-2">Appearance</h2>
+<div class="bg-surface-container-low rounded-[2.5rem] p-2">
+<div class="flex items-center justify-between p-4 px-6 bg-surface-container-lowest rounded-[2rem] shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-2xl bg-primary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">dark_mode</span>
+</div>
+<span class="font-semibold text-on-surface">Dark Mode</span>
+</div>
+<div class="w-12 h-6 bg-surface-container-high rounded-full relative p-1 cursor-pointer">
+<div class="w-4 h-4 bg-primary-container rounded-full absolute left-1 top-1 shadow-md"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- App Integrations -->
+<section class="space-y-4">
+<h2 class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-outline ml-2">App Integrations</h2>
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card p-6 rounded-[2rem] border border-white/40 shadow-sm flex items-center gap-4 hover:bg-white transition-colors cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-surface flex items-center justify-center border border-outline-variant/30">
+<span class="material-symbols-outlined text-xs">calendar_month</span>
+</div>
+<span class="font-bold text-xs uppercase tracking-tight">Calendar</span>
+</div>
+<div class="glass-card p-6 rounded-[2rem] border border-white/40 shadow-sm flex items-center gap-4 hover:bg-white transition-colors cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-surface flex items-center justify-center border border-outline-variant/30">
+<span class="material-symbols-outlined text-xs">mail</span>
+</div>
+<span class="font-bold text-xs uppercase tracking-tight">Email</span>
+</div>
+</div>
+</section>
+<!-- Log Out -->
+<button class="w-full py-5 rounded-[2rem] bg-error/5 text-error font-extrabold tracking-widest uppercase text-xs border border-error/10 hover:bg-error/10 transition-colors">
+                Sign Out Alexander
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl shadow-[0_-8px_30px_rgba(0,0,0,0.04)] rounded-t-[2rem]">
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#8234C6] transition-all active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined mb-1">add_circle</span>
+<span class="font-['Manrope'] font-bold text-[10px] uppercase tracking-widest">Capture</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#8234C6] transition-all active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined mb-1">search</span>
+<span class="font-['Manrope'] font-bold text-[10px] uppercase tracking-widest">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#8234C6] transition-all active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined mb-1">archive</span>
+<span class="font-['Manrope'] font-bold text-[10px] uppercase tracking-widest">Archive</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-gradient-to-br from-[#006B5C] to-[#00BFA5] text-white rounded-2xl px-5 py-2 active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined mb-1">settings</span>
+<span class="font-['Manrope'] font-bold text-[10px] uppercase tracking-widest">Settings</span>
+</div>
+</nav>
+</body></html>

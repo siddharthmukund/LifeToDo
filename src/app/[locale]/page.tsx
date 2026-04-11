@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Zap, AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Zap, AlertCircle, ChevronLeft, ChevronRight, Mic, Plus, Keyboard } from 'lucide-react'
 import { ActionCard } from '@/components/today/ActionCard'
 import { FilterBar } from '@/components/today/FilterBar'
 import { ProgressBar } from '@/components/ui/ProgressBar'
@@ -34,6 +34,7 @@ import { ADHD_MAX_ITEMS } from '@/constants/gtd'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import type { Action } from '@/types'
+import { platform } from '@/native/platform'
 
 export default function TodayPage() {
   const t = useTranslations('engage')
@@ -309,170 +310,114 @@ export default function TodayPage() {
     )
   }
 
-  // ── Default / ADHD fallback: standard paginated list ──────────────────────
+  // ── Default / ADHD fallback: mockups reconciled layout ────────────────────
   return (
-    <div className="flex flex-col h-full animate-fade-in">
+    <div className="flex flex-col h-full animate-fade-in relative bg-surface-base">
 
-      {/* ── Sticky header ──────────────────────────────────────────────────── */}
-      <div className="sticky top-0 z-10 bg-surface-base/95 backdrop-blur-xl border-b border-border-default px-6 pt-14 pb-4">
-        <div className="flex items-start justify-between gap-3 mb-1">
-          <div>
-            <h1 className="text-2xl font-display font-bold text-content-primary flex items-center gap-2">
-              <Zap size={22} className="text-primary-ink fill-primary/20" />
-              {t('today.heading')}
-            </h1>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-content-secondary mt-1 mb-2">
-              {totalItems > 0
-                ? `${totalItems} ${t('today.nextAction')}${totalItems !== 1 ? 's' : ''}${doneToday > 0 ? ` · ${doneToday} ${t('today.doneToday')}` : ''}`
-                : doneToday > 0 ? `${doneToday} ${t('today.inboxZero')}` : t('today.allClear')}
-            </p>
-            <XPBar />
+      {/* ── TopAppBar ──────────────────────────────────────────────────────── */}
+      <header className="sticky top-0 w-full z-50 flex justify-between items-center px-6 min-h-[4rem] glass-header">
+        <h1 className="font-display text-[1.75rem] font-extrabold tracking-tight text-[#37f6dd]">
+          Today
+        </h1>
+        <Link href="/inbox" aria-label="Add task">
+          <div className="w-10 h-10 rounded-xl bg-[#37f6dd] text-[#0d0d18] flex items-center justify-center shadow-[0_0_16px_rgba(55,246,221,0.4)] active:scale-90 transition-transform">
+            <Plus size={22} strokeWidth={2.5} />
           </div>
-        </div>
+        </Link>
+      </header>
 
-        {/* ADHD win counter (fallback list view) */}
-        {isADHDMode && (
-          <div className="mt-3">
-            <DailyWinCounter count={doneToday} />
-          </div>
-        )}
+      {/* ── Scrollable Body ────────────────────────────────────────────────── */}
+      <main className="flex-1 overflow-y-auto px-6 pt-6 pb-32 space-y-8 custom-scrollbar">
 
-        {/* Progress bar */}
-        {totalForProgress > 0 && !isADHDMode && (
-          <div className="mt-4">
-            <ProgressBar
-              value={doneToday}
-              max={totalForProgress}
-              showLabel={doneToday > 0}
-              label={`${doneToday} ${t('today.doneToday')}`}
-              size="sm"
-            />
-          </div>
-        )}
-
-        {/* Inbox nudge */}
-        {inboxCount > 3 && (
-          <Link href="/inbox">
-            <div className="mt-4 flex items-center gap-2 px-4 py-2.5 bg-status-warning/10
-                            border border-status-warn rounded-xl text-sm font-bold text-status-warning active:scale-95 transition-transform">
-              <AlertCircle size={16} />
-              <span>{inboxCount} {t('today.needsClarifying')}</span>
-              <span className="ml-auto">→</span>
-            </div>
-          </Link>
-        )}
-
-        {/* AI Bottleneck Coach — hidden in ADHD mode to reduce clutter */}
-        {!isADHDMode && (
-          <div className="mt-4">
-            <InsightWidget />
-          </div>
-        )}
-
-        {/* Filters row */}
-        <div className="mt-6">
-          <FilterBar />
-        </div>
-      </div>
-
-      {/* ── Action list ────────────────────────────────────────────────────── */}
-      <div className="flex-1 overflow-y-auto px-6 py-6 space-y-3 custom-scrollbar">
-        <AnimatePresence initial={false}>
-          {visibleActions.map((action, i) => (
-            <motion.div
-              key={action.id}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, x: 300, transition: { duration: 0.2 } }}
-              transition={{ delay: i * 0.04 }}
-            >
-              <ActionCard
-                action={action}
-                onComplete={handleComplete}
-                projectName={action.projectId ? projectNames[action.projectId] : undefined}
-              />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-
-        {/* ADHD pagination controls */}
-        {isADHDMode && totalPages > 1 && (
-          <div className="flex items-center justify-center gap-6 pt-4 pb-2">
-            <button
-              onClick={() => setPage(p => Math.max(0, p - 1))}
-              disabled={page === 0}
-              className="p-3 rounded-full bg-surface-card text-content-secondary border border-border-subtle disabled:opacity-30 hover:bg-overlay-hover transition-colors active:scale-95"
-              aria-label={t('today.previousPage')}
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <span className="text-xs font-bold uppercase tracking-widest text-content-secondary tabular-nums">
-              {page + 1} / {totalPages}
+        {/* Stat + XP */}
+        <section>
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#aba9b9] mb-1">
+            Today&rsquo;s Focus
+          </p>
+          <div className="flex items-end gap-4 mb-3">
+            <span className="text-[3.5rem] font-extrabold tracking-tighter leading-none text-[#e9e6f7]">
+              {totalItems}
             </span>
-            <button
-              onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
-              disabled={page >= totalPages - 1}
-              className="p-3 rounded-full bg-surface-card text-content-secondary border border-border-subtle disabled:opacity-30 hover:bg-overlay-hover transition-colors active:scale-95"
-              aria-label={t('today.nextPage')}
-            >
-              <ChevronRight size={20} />
-            </button>
+            <div className="pb-2 text-[#aba9b9] leading-tight text-sm">
+              {totalItems === 1 ? 'action' : 'actions'} pending
+              {doneToday > 0 && (
+                <p className="text-[#37f6dd] font-bold text-xs">{doneToday} completed today</p>
+              )}
+            </div>
           </div>
-        )}
+          <XPBar />
+          {totalForProgress > 0 && !isADHDMode && (
+            <div className="mt-3">
+              <ProgressBar value={doneToday} max={totalForProgress} showLabel size="sm" label={`${doneToday} done`} />
+            </div>
+          )}
+          <div className="mt-4">
+            <FilterBar />
+          </div>
+        </section>
 
-        {/* Empty state */}
+        {/* Action Cards */}
+        <section className="grid grid-cols-1 gap-4">
+          <AnimatePresence initial={false}>
+            {visibleActions.map((action, i) => (
+              <motion.div
+                key={action.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, x: 300, transition: { duration: 0.2 } }}
+                transition={{ delay: i * 0.04 }}
+              >
+                <ActionCard
+                  action={action}
+                  onComplete={handleComplete}
+                  projectName={action.projectId ? projectNames[action.projectId] : undefined}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </section>
+
+        {/* Empty State */}
         {visibleActions.length === 0 && (
-          <div className="pt-8">
-            <EmptyState
-              icon={filters.energy ? '⚡' : '🚀'}
-              title={filters.energy ? t('filter.noActionsForEnergy', { energy: filters.energy }) : t('today.allClear')}
-              description={
-                filters.energy
-                  ? `No actions match the ${filters.energy} energy level. Try a different level or clear the filter.`
-                  : t('filter.noActionsMatch')
-              }
-              action={
-                filters.energy ? (
-                  <button
-                    onClick={() => handleEnergyChange(null)}
-                    className="text-sm font-bold text-primary-ink hover:underline"
-                  >
-                    {t('filter.clearEnergyFilter')}
-                  </button>
-                ) : (
-                  <Link href="/inbox">
-                    <Button variant="secondary" size="sm">{t('today.goToInbox')}</Button>
-                  </Link>
-                )
-              }
-            />
-          </div>
+          <EmptyState
+            icon={filters.energy ? '⚡' : '🚀'}
+            title={filters.energy ? t('filter.noActionsForEnergy', { energy: filters.energy }) : t('today.allClear')}
+            description={t('filter.noActionsMatch')}
+            action={<Link href="/inbox"><Button variant="secondary" size="sm">{t('today.goToInbox')}</Button></Link>}
+          />
         )}
 
-        {/* Waiting For section */}
-        {waitingFor.length > 0 && (
-          <div className="pt-6">
-            <div className="flex items-center justify-between mb-4 px-2">
-              <p className="text-[10px] font-bold text-content-secondary uppercase tracking-widest">
-                {t('today.waitingFor')} ({waitingFor.length})
-              </p>
-              <Link href="/waiting" className="text-[10px] font-bold text-primary-ink uppercase tracking-widest hover:text-primary-ink/80 transition-colors">
-                {t('today.seeAll')}
+        {/* Capture Orb */}
+        {!isADHDMode && (
+          <section className="flex flex-col items-center justify-center py-10 relative">
+            <div className="relative flex items-center justify-center w-36 h-36">
+              {!platform.isAndroid() && (
+                <>
+                  <div className="absolute inset-0 rounded-full border-2 border-[#37f6dd]/20 scale-150 animate-pulse-ring pointer-events-none" />
+                  <div className="absolute inset-0 rounded-full border border-[#37f6dd]/10 scale-[1.8] animate-pulse-ring-2 pointer-events-none" />
+                </>
+              )}
+              <Link
+                href="/inbox"
+                className="relative z-10 w-full h-full rounded-full bg-[#37f6dd]/20 border border-[#37f6dd]/40 shadow-[0_0_40px_rgba(55,246,221,0.4)] flex items-center justify-center active:scale-90 transition-transform duration-300"
+                aria-label="Add new task"
+              >
+                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#37f6dd] to-[#00e5cc] flex items-center justify-center shadow-[0_0_20px_rgba(55,246,221,0.6)]">
+                  <Mic className="text-[#0d0d18]" size={40} strokeWidth={1.5} />
+                </div>
               </Link>
             </div>
-            <div className="space-y-3">
-              {waitingFor.map(a => (
-                <div key={a.id} className="glass-card px-5 py-4 rounded-2xl border-l-4 border-l-status-warning">
-                  <p className="text-sm font-medium text-content-primary">{a.text}</p>
-                  {a.waitingFor && (
-                    <p className="text-xs font-bold text-status-warning mt-2 tracking-wide">👤 {a.waitingFor.person}</p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+            <p className="mt-16 font-bold tracking-widest text-[11px] uppercase text-[#37f6dd]/60 animate-pulse">
+              Tap to Capture a Thought
+            </p>
+            <Link href="/inbox" className="mt-4 flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#181826] border border-[#474754] text-[#aba9b9] text-xs font-bold uppercase tracking-widest hover:border-[#37f6dd]/40 transition-colors active:scale-95">
+              <Plus size={14} />
+              Add task
+            </Link>
+          </section>
         )}
-      </div>
+
+      </main>
     </div>
   )
 }

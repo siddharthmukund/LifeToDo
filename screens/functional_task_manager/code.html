@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Functional Task Manager</title>
+  
+  <!-- React & ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    :root {
+      --bg-color: #FAFAFA;
+      --accent: #2196F3;
+      --radius: 8px; /* 6-8px requested */
+    }
+    body {
+      background-color: #e5e5e5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    #app-container {
+      width: 100%;
+      max-width: 430px;
+      height: 100vh;
+      background-color: var(--bg-color);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px; /* 16px padding requested */
+      padding-bottom: 80px; /* space for bottom nav */
+    }
+    .custom-rounded {
+      border-radius: var(--radius);
+    }
+    .accent-bg {
+      background-color: var(--accent);
+      color: white;
+    }
+    .accent-text {
+      color: var(--accent);
+    }
+    
+    /* Hide scrollbar */
+    ::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // --- Data Management ---
+    const STORAGE_KEY = 'functional_tasks_key';
+    const getTasks = () => {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) return JSON.parse(saved);
+      // Default dummy items
+      return [
+        { id: 1, title: 'Learn React Hooks', desc: 'Finish the documentation', priority: 'High', date: '2026-04-01', completed: false },
+        { id: 2, title: 'Grocery Run', desc: 'Milk, Eggs, Bread', priority: 'Medium', date: '2026-03-31', completed: true },
+        { id: 3, title: 'Gym Session', desc: 'Leg day routine', priority: 'Low', date: '2026-03-31', completed: false },
+      ];
+    };
+
+    // --- Components ---
+
+    const DashboardTab = ({ tasks }) => {
+      const activeTasks = tasks.filter(t => !t.completed);
+      const recentTasks = activeTasks.slice(0, 5); // top 5
+      
+      return (
+        <div className="animate-fade-in">
+          <h2 className="text-2xl font-bold mb-4 text-gray-800">Dashboard</h2>
+          
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="bg-white p-4 custom-rounded shadow-sm border border-gray-100 flex flex-col items-center">
+              <span className="text-3xl font-bold accent-text">{tasks.length}</span>
+              <span className="text-xs text-gray-500 font-medium">Total Tasks</span>
+            </div>
+            <div className="bg-white p-4 custom-rounded shadow-sm border border-gray-100 flex flex-col items-center">
+              <span className="text-3xl font-bold text-green-500">{tasks.filter(t=>t.completed).length}</span>
+              <span className="text-xs text-gray-500 font-medium">Completed</span>
+            </div>
+          </div>
+
+          <h3 className="text-lg font-semibold text-gray-700 mb-3">Priority Overview</h3>
+          <div className="bg-white p-4 custom-rounded shadow-sm border border-gray-100 mb-6">
+            {recentTasks.length === 0 ? (
+              <p className="text-gray-500 text-sm italic">No active tasks! You are all caught up.</p>
+            ) : (
+              <ul className="space-y-3">
+                {recentTasks.map(t => (
+                  <li key={t.id} className="flex items-start gap-3 border-b border-gray-50 pb-2 last:border-0 last:pb-0">
+                    <div className={`w-2 h-2 mt-1.5 rounded-full flex-shrink-0 ${t.priority === 'High' ? 'bg-red-400' : t.priority === 'Medium' ? 'bg-yellow-400' : 'bg-blue-400'}`}></div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-800 leading-tight">{t.title}</p>
+                      <p className="text-xs text-gray-500">{t.date}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      );
+    };
+
+    const AnalyticsTab = ({ tasks }) => {
+      const chartRef = useRef(null);
+      const chartInstance = useRef(null);
+
+      useEffect(() => {
+        if (!chartRef.current) return;
+        
+        const completed = tasks.filter(t => t.completed).length;
+        const pending = tasks.length - completed;
+
+        if (chartInstance.current) {
+          chartInstance.current.destroy();
+        }
+
+        const ctx = chartRef.current.getContext('2d');
+        chartInstance.current = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Completed', 'Pending'],
+            datasets: [{
+              data: [completed, pending],
+              backgroundColor: ['#4CAF50', '#2196F3'],
+              borderWidth: 0,
+              hoverOffset: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '70%',
+            plugins: {
+              legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8 } }
+            }
+          }
+        });
+
+        return () => {
+          if (chartInstance.current) chartInstance.current.destroy();
+        }
+      }, [tasks]);
+
+      return (
+        <div className="animate-fade-in flex flex-col h-full">
+          <h2 className="text-2xl font-bold mb-4 text-gray-800">Analytics</h2>
+          
+          <div className="bg-white p-4 custom-rounded shadow-sm border border-gray-100 flex-1 flex flex-col mb-4">
+            <h3 className="text-sm font-semibold text-gray-700 mb-4 text-center">Completion Rate</h3>
+            <div className="relative flex-1 min-h-[220px]">
+              <canvas ref={chartRef}></canvas>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none mb-6">
+                 <span className="text-2xl font-bold text-gray-700">
+                    {tasks.length > 0 ? Math.round((tasks.filter(t=>t.completed).length / tasks.length) * 100) : 0}%
+                 </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-4 custom-rounded shadow-sm border border-gray-100 mb-2">
+            <h3 className="text-sm font-semibold text-gray-700 mb-2">Weekly Progress</h3>
+            <div className="w-full bg-gray-100 custom-rounded h-3 overflow-hidden">
+               <div className="accent-bg h-full" style={{width: `${tasks.length > 0 ? (tasks.filter(t=>t.completed).length / tasks.length) * 100 : 0}%`}}></div>
+            </div>
+            <p className="text-xs text-gray-500 mt-2 text-right">Great job keeping up!</p>
+          </div>
+        </div>
+      );
+    };
+
+    const TasksTab = ({ tasks, toggleTask, deleteTask }) => {
+      // Sort: incomplete first, then by High -> Low
+      const displayTasks = [...tasks].sort((a,b) => {
+        if(a.completed !== b.completed) return a.completed ? 1 : -1;
+        const pMap = { High: 3, Medium: 2, Low: 1 };
+        return (pMap[b.priority] || 0) - (pMap[a.priority] || 0);
+      });
+
+      return (
+        <div className="animate-fade-in relative min-h-full">
+          <h2 className="text-2xl font-bold mb-4 text-gray-800">My Tasks</h2>
+          
+          {displayTasks.length === 0 ? (
+            <div className="flex flex-col items-center justify-center mt-20 text-gray-400">
+              <i className="ph ph-list-dashes text-5xl mb-3"></i>
+              <p>No tasks yet. Tap the + to add one!</p>
+            </div>
+          ) : (
+            <div className="space-y-3 pb-20">
+              {displayTasks.map(t => (
+                <div key={t.id} className={`bg-white p-4 custom-rounded shadow-sm border flex gap-3 transition-opacity ${t.completed ? 'opacity-60 border-gray-100' : 'border-gray-200'}`}>
+                  <button 
+                    onClick={() => toggleTask(t.id)}
+                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 ${t.completed ? 'bg-green-500 border-green-500' : 'border-gray-300'}`}
+                  >
+                    {t.completed && <i className="ph-bold ph-check text-white text-xs"></i>}
+                  </button>
+                  <div className="flex-1 min-w-0">
+                    <h4 className={`text-base font-medium truncate ${t.completed ? 'text-gray-500 line-through' : 'text-gray-900'}`}>{t.title}</h4>
+                    {t.desc && <p className="text-sm text-gray-500 truncate mt-0.5">{t.desc}</p>}
+                    <div className="flex items-center gap-2 mt-2">
+                       <span className={`text-[10px] font-bold uppercase px-2 py-0.5 custom-rounded ${t.priority === 'High'? 'bg-red-100 text-red-700' : t.priority === 'Medium' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-700'}`}>
+                         {t.priority}
+                       </span>
+                       <span className="text-xs text-gray-400 flex items-center gap-1">
+                         <i className="ph ph-calendar"></i> {t.date}
+                       </span>
+                    </div>
+                  </div>
+                  <button onClick={() => deleteTask(t.id)} className="text-gray-400 hover:text-red-500 self-start p-1">
+                    <i className="ph ph-trash text-lg"></i>
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    const App = () => {
+      const [activeTab, setActiveTab] = useState('dashboard');
+      const [tasks, setTasks] = useState(getTasks);
+      const [isModalOpen, setIsModalOpen] = useState(false);
+
+      // Form states
+      const [title, setTitle] = useState('');
+      const [desc, setDesc] = useState('');
+      const [priority, setPriority] = useState('Medium');
+      const [date, setDate] = useState('');
+
+      useEffect(() => {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+      }, [tasks]);
+
+      const handleToggle = (id) => {
+        setTasks(prev => prev.map(t => t.id === id ? { ...t, completed: !t.completed } : t));
+      };
+
+      const handleDelete = (id) => {
+        setTasks(prev => prev.filter(t => t.id !== id));
+      };
+
+      const handleAddSubmit = (e) => {
+        e.preventDefault();
+        if(!title.trim()) return;
+        
+        const newTask = {
+          id: Date.now(),
+          title,
+          desc,
+          priority,
+          date: date || new Date().toISOString().split('T')[0],
+          completed: false
+        };
+        
+        setTasks(prev => [newTask, ...prev]);
+        setIsModalOpen(false);
+        setTitle('');
+        setDesc('');
+        setPriority('Medium');
+        setDate('');
+      };
+
+      // Bottom Nav Item
+      const NavItem = ({ id, icon, label }) => {
+        const isActive = activeTab === id;
+        return (
+          <button 
+            onClick={() => setActiveTab(id)}
+            className={`flex flex-col items-center justify-center w-full py-2 transition-colors ${isActive ? 'accent-text' : 'text-gray-500'}`}
+          >
+            <i className={`ph${isActive ? '-fill' : ''} ph-${icon} text-2xl mb-1`}></i>
+            <span className="text-[10px] font-medium">{label}</span>
+          </button>
+        );
+      }
+
+      return (
+        <div id="app-container">
+          {/* Header */}
+          <header className="bg-white px-4 py-4 border-b border-gray-100 flex justify-between items-center shadow-sm z-10">
+            <h1 className="text-xl font-bold flex items-center gap-2">
+              <div className="w-8 h-8 custom-rounded accent-bg flex items-center justify-center">
+                 <i className="ph-bold ph-check text-white"></i>
+              </div>
+              <span className="text-gray-800">TaskFlow</span>
+            </h1>
+            <div className="w-8 h-8 rounded-full bg-gray-200 border border-gray-300"></div>
+          </header>
+
+          {/* Main Content Area */}
+          <main className="main-content relative scroll-smooth">
+            {activeTab === 'dashboard' && <DashboardTab tasks={tasks} />}
+            {activeTab === 'analytics' && <AnalyticsTab tasks={tasks} />}
+            {activeTab === 'tasks' && <TasksTab tasks={tasks} toggleTask={handleToggle} deleteTask={handleDelete} />}
+          </main>
+
+          {/* Floating Action Button (Tasks Tab Only) */}
+          {activeTab === 'tasks' && (
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="absolute bottom-24 right-6 w-14 h-14 custom-rounded accent-bg shadow-lg flex items-center justify-center hover:bg-blue-600 transition-transform active:scale-95 z-20"
+            >
+              <i className="ph-bold ph-plus text-white text-2xl"></i>
+            </button>
+          )}
+
+          {/* Add Task Modal */}
+          {isModalOpen && (
+            <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/40 backdrop-blur-sm transition-opacity">
+              <div className="bg-white w-full rounded-t-2xl p-6 pb-8 animate-slide-up shadow-2xl">
+                <div className="flex justify-between items-center mb-5">
+                  <h3 className="text-xl font-bold text-gray-800">New Task</h3>
+                  <button onClick={() => setIsModalOpen(false)} className="text-gray-400 p-2 rounded-full hover:bg-gray-100">
+                    <i className="ph-bold ph-x"></i>
+                  </button>
+                </div>
+                
+                <form onSubmit={handleAddSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 mb-1">TASK TITLE</label>
+                    <input 
+                      type="text" 
+                      value={title}
+                      onChange={e=>setTitle(e.target.value)}
+                      placeholder="e.g., Buy Groceries"
+                      className="w-full bg-gray-50 border border-gray-200 custom-rounded px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-600 mb-1">DESCRIPTION (OPTIONAL)</label>
+                    <textarea 
+                      value={desc}
+                      onChange={e=>setDesc(e.target.value)}
+                      placeholder="Details about the task..."
+                      className="w-full bg-gray-50 border border-gray-200 custom-rounded px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 h-20 resize-none"
+                    ></textarea>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="flex-1">
+                      <label className="block text-xs font-semibold text-gray-600 mb-1">PRIORITY</label>
+                      <select 
+                        value={priority}
+                        onChange={e=>setPriority(e.target.value)}
+                        className="w-full bg-gray-50 border border-gray-200 custom-rounded px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500"
+                      >
+                        <option>High</option>
+                        <option>Medium</option>
+                        <option>Low</option>
+                      </select>
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-xs font-semibold text-gray-600 mb-1">DUE DATE</label>
+                      <input 
+                        type="date"
+                        value={date}
+                        onChange={e=>setDate(e.target.value)}
+                        className="w-full bg-gray-50 border border-gray-200 custom-rounded px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500"
+                      />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full accent-bg text-white font-semibold py-3 custom-rounded mt-4 active:scale-95 transition-transform shadow-md">
+                    Save Task
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* Bottom Navigation */}
+          <nav className="absolute bottom-0 w-full bg-white border-t border-gray-200 flex justify-around items-center h-16 pb-safe z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.02)]">
+            <NavItem id="dashboard" icon="squares-four" label="Dashboard" />
+            <NavItem id="analytics" icon="chart-pie-slice" label="Analytics" />
+            <NavItem id="tasks" icon="list-checks" label="Tasks" />
+          </nav>
+
+          <style dangerouslySetInnerHTML={{__html: `
+            @keyframes slideUp {
+              from { transform: translateY(100%); }
+              to { transform: translateY(0); }
+            }
+            .animate-slide-up {
+              animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            @keyframes fadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+            .animate-fade-in {
+              animation: fadeIn 0.2s ease-out;
+            }
+          `}} />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

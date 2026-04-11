@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Life To Do - Review</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-container": "#004d44",
+            "error": "#ff716c",
+            "on-tertiary-fixed": "#001a27",
+            "error-dim": "#d7383b",
+            "secondary-fixed-dim": "#deb3ff",
+            "secondary": "#c57eff",
+            "on-error": "#490006",
+            "on-error-container": "#ffa8a3",
+            "primary-container": "#00e5cc",
+            "outline": "#757482",
+            "secondary-dim": "#c57eff",
+            "primary-fixed-dim": "#11e8cf",
+            "on-tertiary-fixed-variant": "#003e55",
+            "surface-container-low": "#12121e",
+            "secondary-fixed": "#e7c5ff",
+            "surface-container-lowest": "#000000",
+            "surface": "#0d0d18",
+            "surface-container": "#181826",
+            "on-background": "#e9e6f7",
+            "inverse-primary": "#006b5f",
+            "tertiary-fixed": "#0cbefb",
+            "on-secondary": "#340058",
+            "inverse-on-surface": "#555461",
+            "on-primary-fixed-variant": "#006358",
+            "on-secondary-fixed": "#510085",
+            "error-container": "#9f0519",
+            "surface-container-high": "#1e1e2d",
+            "surface-tint": "#37f6dd",
+            "on-secondary-container": "#e6c3ff",
+            "on-surface": "#e9e6f7",
+            "background": "#0d0d18",
+            "on-tertiary-container": "#003549",
+            "secondary-container": "#6a0baa",
+            "surface-bright": "#2b2a3c",
+            "tertiary": "#59caff",
+            "surface-variant": "#242434",
+            "on-primary-fixed": "#00443c",
+            "tertiary-fixed-dim": "#00afe8",
+            "surface-container-highest": "#242434",
+            "primary": "#37f6dd",
+            "primary-fixed": "#37f6dd",
+            "tertiary-container": "#0cbefb",
+            "on-primary": "#00594e",
+            "tertiary-dim": "#00afe8",
+            "on-surface-variant": "#aba9b9",
+            "on-secondary-fixed-variant": "#7520b5",
+            "primary-dim": "#11e8cf",
+            "surface-dim": "#0d0d18",
+            "outline-variant": "#474754",
+            "on-tertiary": "#003f57",
+            "inverse-surface": "#fcf8ff"
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .neon-glow-primary {
+      box-shadow: 0 0 20px rgba(0, 229, 204, 0.4);
+    }
+    .neon-glow-secondary {
+      box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+    }
+    .glass-border {
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    body {
+      background-color: #0d0d18;
+      color: #e9e6f7;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-950/60 backdrop-blur-xl shadow-[0_0_20px_rgba(0,229,204,0.1)]">
+<div class="flex items-center h-16 px-6 w-full max-w-5xl mx-auto">
+<button class="mr-4 active:scale-95 transition-transform cubic-bezier(0.22,1,0.36,1) text-[#00E5CC]">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Manrope'] font-bold tracking-tight text-[1.75rem] text-[#00E5CC]">Life To Do</h1>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-5xl mx-auto space-y-10">
+<!-- Weekly Reflection Section -->
+<section>
+<div class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary/20 to-surface-container glass-border p-8 backdrop-blur-xl neon-glow-primary">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="space-y-2">
+<span class="font-label font-bold text-[0.75rem] uppercase tracking-wider text-primary">System Pulse</span>
+<h2 class="font-headline font-extrabold text-4xl md:text-5xl tracking-tight leading-tight">Weekly Reflection</h2>
+<p class="text-on-surface-variant text-lg max-w-md">Your velocity is peaking. You've cleared the fog on your most vital objectives this week.</p>
+</div>
+<div class="flex flex-col items-center justify-center bg-surface-container-highest/50 backdrop-blur-md px-8 py-6 rounded-3xl border border-white/5">
+<span class="font-headline font-extrabold text-[3.5rem] leading-none text-primary">14</span>
+<span class="font-label font-bold text-[0.75rem] uppercase tracking-widest text-on-surface/60 mt-2">Actions Completed</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Horizon Review Bento Grid -->
+<section class="space-y-6">
+<div class="flex items-baseline justify-between">
+<h3 class="font-headline font-bold text-[1.375rem] text-on-surface">Horizon Review</h3>
+<span class="text-on-surface-variant text-sm">Next milestones</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Next 7 Days -->
+<div class="group bg-surface-container glass-border rounded-[1.5rem] p-6 backdrop-blur-xl hover:bg-surface-container-highest transition-all duration-300">
+<div class="flex justify-between items-start mb-8">
+<div class="p-3 bg-primary/10 rounded-xl">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_view_week">calendar_view_week</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<h4 class="font-headline font-bold text-xl mb-1">Next 7 Days</h4>
+<p class="text-[0.75rem] font-bold text-primary uppercase tracking-widest">24 Actions</p>
+</div>
+<!-- Next 30 Days -->
+<div class="group bg-surface-container glass-border rounded-[1.5rem] p-6 backdrop-blur-xl hover:bg-surface-container-highest transition-all duration-300">
+<div class="flex justify-between items-start mb-8">
+<div class="p-3 bg-tertiary/10 rounded-xl">
+<span class="material-symbols-outlined text-tertiary" data-icon="date_range">date_range</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<h4 class="font-headline font-bold text-xl mb-1">Next 30 Days</h4>
+<p class="text-[0.75rem] font-bold text-tertiary uppercase tracking-widest">58 Actions</p>
+</div>
+<!-- Someday/Maybe -->
+<div class="group bg-surface-container glass-border rounded-[1.5rem] p-6 backdrop-blur-xl hover:bg-surface-container-highest transition-all duration-300">
+<div class="flex justify-between items-start mb-8">
+<div class="p-3 bg-secondary/10 rounded-xl">
+<span class="material-symbols-outlined text-secondary" data-icon="visibility">visibility</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<h4 class="font-headline font-bold text-xl mb-1">Someday/Maybe</h4>
+<p class="text-[0.75rem] font-bold text-secondary uppercase tracking-widest">127 Ideas</p>
+</div>
+</div>
+</section>
+<!-- Someday/Maybe Highlight Section -->
+<section class="space-y-6">
+<div class="flex items-center gap-3">
+<div class="w-1 h-6 bg-secondary rounded-full"></div>
+<h3 class="font-headline font-bold text-[1.375rem] text-on-surface">Someday/Maybe Highlights</h3>
+</div>
+<div class="space-y-4">
+<!-- Action Card 1 -->
+<div class="bg-surface-container glass-border rounded-[1.5rem] p-6 backdrop-blur-xl flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-full border-2 border-secondary/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary" data-icon="brush">brush</span>
+</div>
+<div>
+<h5 class="font-body font-medium text-lg text-on-surface">Start oil painting course for beginners</h5>
+<p class="text-sm text-on-surface-variant">Last touched: 4 months ago</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-full bg-secondary text-on-secondary font-bold text-sm active:scale-95 transition-transform neon-glow-secondary">
+              Activate
+            </button>
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-full border border-outline-variant/20 text-error font-bold text-sm active:scale-95 transition-transform hover:bg-error/10">
+              Delete
+            </button>
+</div>
+</div>
+<!-- Action Card 2 -->
+<div class="bg-surface-container glass-border rounded-[1.5rem] p-6 backdrop-blur-xl flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-full border-2 border-secondary/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary" data-icon="language">language</span>
+</div>
+<div>
+<h5 class="font-body font-medium text-lg text-on-surface">Research Tokyo itinerary for hypothetical trip</h5>
+<p class="text-sm text-on-surface-variant">Last touched: 2 months ago</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-full bg-secondary text-on-secondary font-bold text-sm active:scale-95 transition-transform neon-glow-secondary">
+              Activate
+            </button>
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-full border border-outline-variant/20 text-error font-bold text-sm active:scale-95 transition-transform hover:bg-error/10">
+              Delete
+            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Contextual Stats -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-low p-4 rounded-2xl border border-white/5">
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-1">Focus Score</p>
+<p class="text-2xl font-extrabold text-on-surface">88%</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl border border-white/5">
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-1">Inbox Zero</p>
+<p class="text-2xl font-extrabold text-on-surface">3 Days</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl border border-white/5">
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-1">Review Streak</p>
+<p class="text-2xl font-extrabold text-on-surface">12 Wks</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl border border-white/5">
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-1">Energy Map</p>
+<p class="text-2xl font-extrabold text-on-surface">High</p>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-2xl border-t border-white/5 bg-[#12121e]/80 backdrop-blur-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+<div class="flex justify-around items-center h-20 px-4 pb-safe">
+<!-- Inbox -->
+<a class="flex flex-col items-center justify-center text-[#474754] hover:text-[#37f6dd] transition-all duration-300 active:scale-90 cubic-bezier(0.22,1,0.36,1)" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="inbox">inbox</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem] uppercase tracking-wider">Inbox</span>
+</a>
+<!-- Projects -->
+<a class="flex flex-col items-center justify-center text-[#474754] hover:text-[#37f6dd] transition-all duration-300 active:scale-90 cubic-bezier(0.22,1,0.36,1)" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="rocket_launch">rocket_launch</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem] uppercase tracking-wider">Projects</span>
+</a>
+<!-- Review (Active) -->
+<a class="flex flex-col items-center justify-center text-[#00E5CC] drop-shadow-[0_0_10px_rgba(0,229,204,0.4)] scale-110 active:scale-90 transition-transform cubic-bezier(0.22,1,0.36,1)" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="event_note">event_note</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem] uppercase tracking-wider">Review</span>
+</a>
+<!-- Someday -->
+<a class="flex flex-col items-center justify-center text-[#474754] hover:text-[#37f6dd] transition-all duration-300 active:scale-90 cubic-bezier(0.22,1,0.36,1)" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="visibility">visibility</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem] uppercase tracking-wider">Someday</span>
+</a>
+</div>
+</nav>
+</body></html>

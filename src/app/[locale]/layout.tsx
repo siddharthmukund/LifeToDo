@@ -110,6 +110,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         {/* FOUC-prevention — sets data-theme before CSS resolves */}
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script dangerouslySetInnerHTML={{ __html: FOUC_SCRIPT }} />
+        {/* Material Symbols Outlined — used for nav + UI icons matching screen designs */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+        />
       </head>
       <body>
         {/*

@@ -1,0 +1,40 @@
+// Top-level build file — configuration shared by all sub-projects/modules.
+
+buildscript {
+    ext {
+        androidxActivityVersion      = '1.7.0'
+        androidxAppCompatVersion     = '1.6.1'
+        androidxCoordinatorLayout    = '1.2.0'
+        androidxCoreVersion          = '1.10.0'
+        androidxFragmentVersion      = '1.5.7'
+        coreSplashScreenVersion      = '1.0.1'
+        kotlinVersion                = '1.9.0'
+        googleServicesVersion        = '4.4.0'
+        firebaseCrashlyticsGradleVersion = '2.9.9'
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "com.google.gms:google-services:$googleServicesVersion"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:$firebaseCrashlyticsGradleVersion"
+    }
+}
+
+apply from: "variables.gradle"
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

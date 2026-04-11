@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Velocity - Date Picker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-fixed-dim": "#00afe8",
+            "secondary-fixed": "#e7c5ff",
+            "surface-container": "#181826",
+            "surface-container-high": "#1e1e2d",
+            "inverse-surface": "#fcf8ff",
+            "outline-variant": "#474754",
+            "on-tertiary-fixed": "#001a27",
+            "inverse-primary": "#006b5f",
+            "primary-fixed-dim": "#11e8cf",
+            "primary": "#37f6dd",
+            "surface-bright": "#2b2a3c",
+            "on-primary": "#00594e",
+            "secondary-container": "#6a0baa",
+            "on-primary-container": "#004d44",
+            "on-surface-variant": "#aba9b9",
+            "on-surface": "#e9e6f7",
+            "error-container": "#9f0519",
+            "secondary-dim": "#c57eff",
+            "on-tertiary-container": "#003549",
+            "on-secondary-container": "#e6c3ff",
+            "tertiary": "#59caff",
+            "surface-container-lowest": "#000000",
+            "on-secondary-fixed": "#510085",
+            "tertiary-container": "#0cbefb",
+            "outline": "#757482",
+            "primary-dim": "#11e8cf",
+            "tertiary-dim": "#00afe8",
+            "surface-tint": "#37f6dd",
+            "on-secondary-fixed-variant": "#7520b5",
+            "surface-dim": "#0d0d18",
+            "inverse-on-surface": "#555461",
+            "surface-container-highest": "#242434",
+            "on-error": "#490006",
+            "secondary": "#c57eff",
+            "surface-container-low": "#12121e",
+            "error-dim": "#d7383b",
+            "primary-fixed": "#37f6dd",
+            "surface-variant": "#242434",
+            "on-primary-fixed": "#00443c",
+            "on-secondary": "#340058",
+            "on-tertiary": "#003f57",
+            "surface": "#0d0d18",
+            "secondary-fixed-dim": "#deb3ff",
+            "on-tertiary-fixed-variant": "#003e55",
+            "on-error-container": "#ffa8a3",
+            "on-background": "#e9e6f7",
+            "background": "#0d0d18",
+            "on-primary-fixed-variant": "#006358",
+            "error": "#ff716c",
+            "primary-container": "#00e5cc",
+            "tertiary-fixed": "#0cbefb"
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    body { font-family: 'Manrope', sans-serif; }
+    .glass-card {
+      background: rgba(24, 24, 38, 0.7);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .neon-glow-primary {
+      box-shadow: 0 0 20px rgba(0, 229, 204, 0.4);
+    }
+    .neon-glow-secondary {
+      box-shadow: 0 0 15px rgba(197, 126, 255, 0.3);
+    }
+    .fluid-transition {
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex items-center justify-center p-4">
+<!-- Modal Overlay -->
+<div class="fixed inset-0 bg-[#0F0F1A]/80 backdrop-blur-xl z-40"></div>
+<!-- Date Picker Modal Container -->
+<div class="relative z-50 w-full max-w-2xl glass-card rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col">
+<!-- Header -->
+<header class="flex justify-between items-center px-8 py-8">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest fluid-transition hover:bg-surface-bright active:scale-95">
+<span class="material-symbols-outlined text-on-surface text-xl">close</span>
+</button>
+<h1 class="text-2xl font-extrabold tracking-tight text-on-surface">Select Date Range</h1>
+</div>
+<button class="text-primary font-bold tracking-wide fluid-transition hover:text-primary-container uppercase text-sm">
+        Reset
+      </button>
+</header>
+<!-- Main Content Area: Bento Style Layout -->
+<main class="px-8 pb-10 space-y-8">
+<!-- Quick Selects Chips -->
+<section>
+<div class="flex flex-wrap gap-3">
+<button class="px-5 py-2.5 rounded-full bg-secondary-container/20 border border-secondary/30 text-secondary text-sm font-bold fluid-transition hover:bg-secondary-container/40 hover:neon-glow-secondary active:scale-95">
+            Next 7 Days
+          </button>
+<button class="px-5 py-2.5 rounded-full bg-secondary-container/20 border border-secondary/30 text-secondary text-sm font-bold fluid-transition hover:bg-secondary-container/40 hover:neon-glow-secondary active:scale-95">
+            Next 30 Days
+          </button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container-highest border border-white/5 text-on-surface-variant text-sm font-bold fluid-transition hover:border-secondary/30 hover:text-secondary active:scale-95">
+            Next 90 Days
+          </button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container-highest border border-white/5 text-on-surface-variant text-sm font-bold fluid-transition hover:border-secondary/30 hover:text-secondary active:scale-95">
+            Custom
+          </button>
+</div>
+</section>
+<!-- Calendar View -->
+<section class="grid grid-cols-1 md:grid-cols-1 gap-8">
+<div class="bg-surface-container-low rounded-[2rem] p-6 border border-white/5">
+<!-- Calendar Month Nav -->
+<div class="flex justify-between items-center mb-8 px-2">
+<h2 class="text-xl font-bold tracking-tight">September 2024</h2>
+<div class="flex gap-2">
+<button class="p-2 rounded-xl bg-surface-container-highest fluid-transition hover:bg-surface-bright">
+<span class="material-symbols-outlined text-on-surface">chevron_left</span>
+</button>
+<button class="p-2 rounded-xl bg-surface-container-highest fluid-transition hover:bg-surface-bright">
+<span class="material-symbols-outlined text-on-surface">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Weekdays -->
+<div class="grid grid-cols-7 mb-4">
+<div class="text-center text-[10px] font-extrabold uppercase tracking-widest text-outline">Sun</div>
+<div class="text-center text-[10px] font-extrabold uppercase tracking-widest text-outline">Mon</div>
+<div class="text-center text-[10px] font-extrabold uppercase tracking-widest text-outline">Tue</div>
+<div class="text-center text-[10px] font-extrabold uppercase tracking-widest text-outline">Wed</div>
+<div class="text-center text-[10px] font-extrabold uppercase tracking-widest text-outline">Thu</div>
+<div class="text-center text-[10px] font-extrabold uppercase tracking-widest text-outline">Fri</div>
+<div class="text-center text-[10px] font-extrabold uppercase tracking-widest text-outline">Sat</div>
+</div>
+<!-- Calendar Grid -->
+<div class="grid grid-cols-7 gap-y-2">
+<!-- Row 1 -->
+<div class="h-12 flex items-center justify-center text-outline/30 font-medium">25</div>
+<div class="h-12 flex items-center justify-center text-outline/30 font-medium">26</div>
+<div class="h-12 flex items-center justify-center text-outline/30 font-medium">27</div>
+<div class="h-12 flex items-center justify-center text-outline/30 font-medium">28</div>
+<div class="h-12 flex items-center justify-center text-outline/30 font-medium">29</div>
+<div class="h-12 flex items-center justify-center text-outline/30 font-medium">30</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">1</div>
+<!-- Row 2 -->
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">2</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">3</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">4</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">5</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">6</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">7</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">8</div>
+<!-- Row 3: Selection Starts -->
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">9</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">10</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">11</div>
+<!-- Start Date Endpoint -->
+<div class="h-12 flex items-center justify-center relative">
+<div class="absolute inset-y-1 left-1/2 right-0 bg-primary/20"></div>
+<div class="relative z-10 w-10 h-10 rounded-full bg-primary text-on-primary font-bold flex items-center justify-center neon-glow-primary">12</div>
+</div>
+<!-- Selection Mid -->
+<div class="h-12 flex items-center justify-center bg-primary/20 text-primary font-bold">13</div>
+<div class="h-12 flex items-center justify-center bg-primary/20 text-primary font-bold">14</div>
+<div class="h-12 flex items-center justify-center bg-primary/20 text-primary font-bold">15</div>
+<!-- Row 4: Selection Cont -->
+<div class="h-12 flex items-center justify-center bg-primary/20 text-primary font-bold">16</div>
+<div class="h-12 flex items-center justify-center bg-primary/20 text-primary font-bold">17</div>
+<div class="h-12 flex items-center justify-center bg-primary/20 text-primary font-bold">18</div>
+<!-- End Date Endpoint -->
+<div class="h-12 flex items-center justify-center relative">
+<div class="absolute inset-y-1 left-0 right-1/2 bg-primary/20"></div>
+<div class="relative z-10 w-10 h-10 rounded-full bg-primary text-on-primary font-bold flex items-center justify-center neon-glow-primary">19</div>
+</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">20</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">21</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">22</div>
+<!-- Row 5 -->
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">23</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">24</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">25</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">26</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">27</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">28</div>
+<div class="h-12 flex items-center justify-center text-on-surface font-medium hover:bg-surface-container-highest rounded-xl cursor-pointer fluid-transition">29</div>
+</div>
+</div>
+</section>
+<!-- Selection Meta Display -->
+<section class="flex flex-col md:flex-row gap-4 items-center justify-between p-6 bg-surface-container rounded-[1.5rem] border border-white/5">
+<div class="flex flex-col">
+<span class="text-[10px] font-extrabold uppercase tracking-widest text-outline">Start Date</span>
+<span class="text-lg font-bold text-on-surface">Sept 12, 2024</span>
+</div>
+<div class="w-8 h-px bg-outline-variant hidden md:block"></div>
+<div class="flex flex-col items-center md:items-end">
+<span class="text-[10px] font-extrabold uppercase tracking-widest text-outline">End Date</span>
+<span class="text-lg font-bold text-on-surface">Sept 19, 2024</span>
+</div>
+<div class="w-px h-10 bg-outline-variant hidden md:block"></div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-extrabold uppercase tracking-widest text-primary">Duration</span>
+<span class="text-lg font-extrabold text-primary">7 Days</span>
+</div>
+</section>
+</main>
+<!-- Footer Action -->
+<footer class="p-8 bg-surface-container-low border-t border-white/5">
+<button class="w-full h-14 bg-gradient-to-r from-primary to-primary-container rounded-2xl flex items-center justify-center gap-3 text-on-primary font-extrabold text-lg neon-glow-primary active:scale-95 fluid-transition">
+<span>Apply Range</span>
+<span class="material-symbols-outlined font-bold">arrow_forward</span>
+</button>
+</footer>
+</div>
+<!-- Decorative Background Glows -->
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/10 blur-[120px] rounded-full pointer-events-none"></div>
+</body></html>

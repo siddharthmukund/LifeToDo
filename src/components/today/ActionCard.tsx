@@ -6,7 +6,7 @@
 import { useRef, useState } from 'react'
 import { motion, useMotionValue, animate } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { Check } from 'lucide-react'
+import { Check, Zap, BatteryMedium, BatteryLow, FolderOpen } from 'lucide-react'
 import type { Action } from '@/types'
 import { useGTDStore } from '@/store/gtdStore'
 import { cn } from '@/lib/utils'
@@ -39,6 +39,11 @@ export function ActionCard({ action, onComplete, projectName }: ActionCardProps)
     action.energy === 'high'   ? t('filter.high') :
     action.energy === 'medium' ? t('filter.medium') :
     action.energy === 'low'    ? t('filter.low') : ''
+
+  const EnergyIcon =
+    action.energy === 'high'   ? Zap :
+    action.energy === 'medium' ? BatteryMedium :
+                                 BatteryLow
 
   function handleComplete() {
     if (hasActed.current) return
@@ -86,36 +91,40 @@ export function ActionCard({ action, onComplete, projectName }: ActionCardProps)
         animate={completing ? { scale: 0.95, opacity: 0 } : {}}
         aria-hidden="true"
         className={cn(
-          'relative glass-card flex items-start gap-4 rounded-2xl p-4 transition-all',
-          'cursor-grab active:cursor-grabbing select-none border-l-4',
-          borderColorName,
+          'relative glass-card flex flex-col justify-between h-44 rounded-[12px] p-6 transition-all',
+          'cursor-grab active:cursor-grabbing select-none border border-border-default hover:shadow-glow-primary bg-surface-card w-full',
         )}
       >
-        <div className="flex-1">
-          <div className="mb-1 flex items-center gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-primary-ink/70">
-              {contextLabel}
-            </span>
-            {isStale && (
-              <span className="rounded bg-status-warning/10 px-1.5 py-0.5 text-[8px] font-bold text-status-warning animate-pulse-slow">
-                {t('action.stale')}
-              </span>
-            )}
+        <div className="flex justify-between items-start w-full">
+          <div className="p-2 bg-primary/10 rounded-lg shrink-0">
+             <EnergyIcon className="text-primary-ink" size={20} />
           </div>
-
-          <h3 className="text-base font-bold leading-tight text-content-primary line-clamp-2">
-            {action.text}
-          </h3>
+          {energyLabel && (
+             <span className="text-[10px] font-bold uppercase tracking-widest text-primary-ink bg-primary/10 px-2 py-1 rounded-full text-right ml-2">
+               {energyLabel} Energy
+             </span>
+          )}
         </div>
 
-        <button
-          onClick={(e) => { e.stopPropagation(); handleComplete() }}
-          onPointerDown={(e) => e.stopPropagation()}
-          className="flex size-8 shrink-0 items-center justify-center rounded-full border-2 border-primary/30
-                     bg-primary/10 text-primary-ink transition-all active:bg-primary active:text-on-brand hover:scale-105"
-        >
-          <Check size={18} strokeWidth={3} aria-hidden="true" />
-        </button>
+        <div className="w-full">
+          <h3 className="text-xl font-bold leading-tight text-content-primary line-clamp-2">
+            {action.text}
+          </h3>
+          <div className="flex items-center justify-between mt-2">
+            <p className="text-sm font-medium text-content-secondary line-clamp-1">
+              {contextLabel || 'Inbox'}
+              {isStale && <span className="ml-2 rounded bg-status-warning/10 px-1.5 py-0.5 text-[8px] font-bold text-status-warning animate-pulse-slow">{t('action.stale')}</span>}
+            </p>
+            <button
+              onClick={(e) => { e.stopPropagation(); handleComplete() }}
+              onPointerDown={(e) => e.stopPropagation()}
+              className="flex size-8 shrink-0 items-center justify-center rounded-full border border-primary/30
+                         bg-primary/5 text-primary-ink transition-all active:bg-primary active:text-on-brand hover:scale-105"
+            >
+              <Check size={16} strokeWidth={3} aria-hidden="true" />
+            </button>
+          </div>
+        </div>
       </motion.div>
 
       {/*

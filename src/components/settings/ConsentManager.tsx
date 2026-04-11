@@ -110,13 +110,17 @@ export function ConsentManager() {
               <span className="text-xs text-content-muted font-medium flex-shrink-0">Required</span>
             ) : (
               <button
+                type="button"
+                role="switch"
+                aria-checked={granted[item.type]}
                 onClick={() => void toggle(item.type)}
-                className={`relative flex-shrink-0 w-11 h-6 rounded-full transition-colors active:scale-95
-                  ${granted[item.type] ? 'bg-primary shadow-glow-accent' : 'bg-overlay-active'}`}
+                style={{ backgroundColor: granted[item.type] ? '#37f6dd' : '#2b2a3c' }}
+                className="relative flex-shrink-0 w-11 h-6 rounded-full transition-colors duration-200 active:scale-95
+                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#37f6dd]/50"
               >
                 <span
-                  className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform
-                    ${granted[item.type] ? 'translate-x-5' : 'translate-x-0.5'}`}
+                  className="absolute top-[3px] w-[18px] h-[18px] rounded-full bg-white shadow transition-transform duration-200"
+                  style={{ transform: granted[item.type] ? 'translateX(22px)' : 'translateX(3px)' }}
                 />
               </button>
             )}

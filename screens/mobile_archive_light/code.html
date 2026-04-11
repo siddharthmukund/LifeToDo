@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#7f2a13",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed": "#2d0050",
+              "on-error": "#ffffff",
+              "error": "#ba1a1a",
+              "on-secondary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-container-lowest": "#ffffff",
+              "on-surface": "#191c1d",
+              "on-tertiary-container": "#74220b",
+              "surface-container-high": "#e7e8e9",
+              "secondary-fixed": "#f1dbff",
+              "primary": "#006b5c",
+              "outline-variant": "#bbcac4",
+              "on-primary": "#ffffff",
+              "primary-fixed": "#68fadd",
+              "on-secondary-fixed-variant": "#680eac",
+              "secondary-fixed-dim": "#deb7ff",
+              "primary-container": "#00bfa5",
+              "outline": "#6c7a76",
+              "on-surface-variant": "#3c4a46",
+              "tertiary-fixed": "#ffdbd2",
+              "primary-fixed-dim": "#44ddc1",
+              "secondary-container": "#b86dfd",
+              "tertiary-fixed-dim": "#ffb4a1",
+              "surface-bright": "#f8f9fa",
+              "surface-variant": "#e1e3e4",
+              "surface-container-low": "#f3f4f5",
+              "inverse-surface": "#2e3132",
+              "on-primary-fixed": "#00201a",
+              "on-tertiary-fixed": "#3c0800",
+              "on-background": "#191c1d",
+              "surface-container-highest": "#e1e3e4",
+              "inverse-on-surface": "#f0f1f2",
+              "tertiary-container": "#fe896a",
+              "on-secondary-container": "#410070",
+              "on-primary-fixed-variant": "#005145",
+              "inverse-primary": "#44ddc1",
+              "surface-tint": "#006b5c",
+              "surface": "#f8f9fa",
+              "surface-container": "#edeeef",
+              "on-primary-container": "#00473c",
+              "secondary": "#8234c6",
+              "tertiary": "#9f4128",
+              "surface-dim": "#d9dadb",
+              "background": "#f8f9fa"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#F8F9FA]/80 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,107,92,0.04)]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">menu</span>
+<h1 class="font-headline font-extrabold tracking-tighter text-xl text-primary">Life To Do</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container/20">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional man with a friendly expression in a modern office with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbgw1M0tk_IrTOtbUIOmH6kqCSRyVbY0Lv4AIrvTT-lgdmtm4sdy70DuUUjj6_234impopH1JJEB24SbEWeFVJtuHE2cJrgpYAYaeLbKtt9dM4pS-WScheS_VmX-OG4Kb9B_wYNebvPQcTFHBQG17HFs8M2-LGgYoNQ-DVxx3eYfxy7t3H2QvFiN824Sw-FF4lAidw78_DnRDbjUxSkaXQsIAyhXJKqYPLbStoQg6DCLjljg40BSg9oo5E_M_yriuO2xo9bcOlEA"/>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 min-h-screen">
+<!-- Velocity Metric Hero Section -->
+<section class="mb-10">
+<div class="bg-surface-container-low p-8 rounded-[2.5rem] relative overflow-hidden group">
+<div class="relative z-10">
+<span class="font-label text-[10px] font-bold uppercase tracking-[0.2em] text-outline opacity-70">Weekly Performance</span>
+<div class="flex items-end gap-2 mt-1">
+<h2 class="text-5xl font-extrabold tracking-tighter text-on-surface">142</h2>
+<span class="text-primary font-bold mb-1.5 flex items-center gap-1">
+                            Velocity Total
+                            <span class="material-symbols-outlined text-sm">trending_up</span>
+</span>
+</div>
+<p class="mt-4 text-sm text-on-surface-variant max-w-[200px] leading-relaxed">
+                        You've archived <span class="text-secondary font-bold">12% more</span> tasks than last week.
+                    </p>
+</div>
+<!-- Abstract Decorative Shape -->
+<div class="absolute -right-8 -bottom-8 w-40 h-40 bg-primary-container/10 rounded-full blur-3xl group-hover:bg-secondary-container/10 transition-colors duration-700"></div>
+<div class="absolute right-6 top-6">
+<div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Context Filters -->
+<nav class="flex gap-3 mb-10 overflow-x-auto pb-2 no-scrollbar">
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm shadow-lg shadow-primary/10">All</button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-white text-on-surface-variant font-bold text-sm hover:bg-surface-container-high transition-colors">Office</button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-white text-on-surface-variant font-bold text-sm hover:bg-surface-container-high transition-colors">Home</button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-white text-on-surface-variant font-bold text-sm hover:bg-surface-container-high transition-colors">Personal</button>
+</nav>
+<!-- Finished Projects Section -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline font-bold text-lg tracking-tight">Finished Projects</h3>
+<span class="text-[10px] font-extrabold text-outline uppercase tracking-widest bg-surface-container-high px-3 py-1 rounded-full">3 Active</span>
+</div>
+<div class="space-y-4">
+<!-- Project Card 1 -->
+<div class="bg-surface-container-lowest p-5 rounded-3xl border border-outline-variant/10 shadow-[0_8px_30px_rgba(0,0,0,0.02)]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-bold text-on-surface">Q3 Strategy Deck</h4>
+<p class="text-xs text-on-surface-variant mt-0.5">Marketing &amp; Growth</p>
+</div>
+<span class="material-symbols-outlined text-primary-container">verified</span>
+</div>
+<div class="h-2 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full w-full bg-primary"></div>
+</div>
+<div class="flex justify-between mt-3">
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">12 Actions</span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-wider">Archived Sep 12</span>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-3xl border border-outline-variant/10 shadow-[0_8px_30px_rgba(0,0,0,0.02)]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-bold text-on-surface">Home Studio Setup</h4>
+<p class="text-xs text-on-surface-variant mt-0.5">Personal Infrastructure</p>
+</div>
+<span class="material-symbols-outlined text-primary-container">verified</span>
+</div>
+<div class="h-2 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full w-full bg-primary"></div>
+</div>
+<div class="flex justify-between mt-3">
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">8 Actions</span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-wider">Archived Sep 08</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Completed Actions Section -->
+<section class="mb-8">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline font-bold text-lg tracking-tight">Completed Actions</h3>
+<span class="material-symbols-outlined text-outline">sort</span>
+</div>
+<div class="space-y-4">
+<!-- Action Card 1 -->
+<div class="group flex items-center gap-4 p-5 bg-surface-container-lowest rounded-2xl border border-outline-variant/5">
+<div class="w-6 h-6 rounded-full border-2 border-primary-container bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check</span>
+</div>
+<div class="flex-1">
+<p class="line-through text-on-surface-variant font-medium">Finalize venue contract for summit</p>
+<div class="flex gap-2 mt-1">
+<span class="text-[10px] font-bold text-secondary uppercase tracking-tighter">#Event</span>
+</div>
+</div>
+<span class="text-[10px] text-outline font-medium">2h ago</span>
+</div>
+<!-- Action Card 2 -->
+<div class="group flex items-center gap-4 p-5 bg-surface-container-lowest rounded-2xl border border-outline-variant/5">
+<div class="w-6 h-6 rounded-full border-2 border-primary-container bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check</span>
+</div>
+<div class="flex-1">
+<p class="line-through text-on-surface-variant font-medium">Review Q3 performance metrics</p>
+<div class="flex gap-2 mt-1">
+<span class="text-[10px] font-bold text-secondary uppercase tracking-tighter">#Office</span>
+</div>
+</div>
+<span class="text-[10px] text-outline font-medium">5h ago</span>
+</div>
+<!-- Action Card 3 -->
+<div class="group flex items-center gap-4 p-5 bg-surface-container-lowest rounded-2xl border border-outline-variant/5">
+<div class="w-6 h-6 rounded-full border-2 border-primary-container bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check</span>
+</div>
+<div class="flex-1">
+<p class="line-through text-on-surface-variant font-medium">Call plumber for kitchen leak</p>
+<div class="flex gap-2 mt-1">
+<span class="text-[10px] font-bold text-secondary uppercase tracking-tighter">#Home</span>
+</div>
+</div>
+<span class="text-[10px] text-outline font-medium">Yesterday</span>
+</div>
+<!-- Action Card 4 -->
+<div class="group flex items-center gap-4 p-5 bg-surface-container-lowest rounded-2xl border border-outline-variant/5">
+<div class="w-6 h-6 rounded-full border-2 border-primary-container bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check</span>
+</div>
+<div class="flex-1">
+<p class="line-through text-on-surface-variant font-medium">Renew gym membership subscription</p>
+<div class="flex gap-2 mt-1">
+<span class="text-[10px] font-bold text-secondary uppercase tracking-tighter">#Personal</span>
+</div>
+</div>
+<span class="text-[10px] text-outline font-medium">Yesterday</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 backdrop-blur-2xl border-t border-slate-100 shadow-[0_-8px_30px_rgba(0,0,0,0.04)] rounded-t-[2rem]">
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-[#8234C6] transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-label font-bold text-[10px] uppercase tracking-widest mt-1">Capture</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-[#8234C6] transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label font-bold text-[10px] uppercase tracking-widest mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#006B5C] to-[#00BFA5] text-white rounded-2xl px-5 py-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+<span class="font-label font-bold text-[10px] uppercase tracking-widest mt-1">Archive</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-[#8234C6] transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label font-bold text-[10px] uppercase tracking-widest mt-1">Settings</span>
+</a>
+</nav>
+</body></html>

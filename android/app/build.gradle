@@ -1,71 +1,63 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "app.lifetodo"
-    compileSdk 34
-
+    namespace = "app.lifetodo"
+    compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "app.lifetodo"
-        minSdk 24
-        targetSdk 34
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0.0"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
-
     signingConfigs {
         release {
-            // Set via environment variables on CI — never commit keystore passwords
-            def keystoreFile = System.getenv("KEYSTORE_FILE") ?: "release.keystore"
-            def keystorePass = System.getenv("KEYSTORE_PASSWORD") ?: ""
-            def keyAlias     = System.getenv("KEY_ALIAS") ?: "lifetodo"
-            def keyPass      = System.getenv("KEY_PASSWORD") ?: ""
-
-            storeFile      file(keystoreFile)
-            storePassword  keystorePass
-            keyAlias       keyAlias
-            keyPassword    keyPass
+            storeFile      file('/Users/siddharth/Documents/Claude/Life To Do/release.keystore')
+            storePassword  'lifetodo123'
+            keyAlias       'lifetodo'
+            keyPassword    'lifetodo123'
         }
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
 }
 
 repositories {
-    google()
-    mavenCentral()
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    // Capacitor core
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
     implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
     implementation project(':capacitor-cordova-android-plugins')
-
-    // Firebase (FCM)
-    implementation platform('com.google.firebase:firebase-bom:32.7.0')
-    implementation 'com.google.firebase:firebase-messaging'
-    implementation 'com.google.firebase:firebase-analytics'
-
-    // Google Play Billing
-    implementation 'com.android.billingclient:billing:6.2.0'
-
-    // Android-X
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
-    implementation 'androidx.core:core-splashscreen:1.0.1'
-    implementation 'androidx.biometric:biometric:1.1.0'
 }
 
-apply plugin: 'com.google.gms.google-services'
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}

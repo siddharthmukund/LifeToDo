@@ -12,8 +12,10 @@ import { BottomNav } from './BottomNav'
 import { SideNav } from './SideNav'
 import { useGTDStore } from '@/store/gtdStore'
 import { useTheme } from '@/hooks/useTheme'
+import { Plus } from 'lucide-react'
+import Link from 'next/link'
 import { pruneOldEvents } from '@/analytics/tracker'
-import { initPerformanceMonitoring, prunePerfLogs } from '@/perf/monitor'
+import { initPerformanceMonitoring, prunePerfLogs, pruneTransientLogs } from '@/perf/monitor'
 import { startMemoryWatcher } from '@/perf/memoryWatcher'
 import { registerPlugin, initializePlugins, teardownPlugins } from '@/plugins/registry'
 import { CalendarPlugin } from '@/plugins/integrations/CalendarPlugin'
@@ -65,18 +67,24 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     async function boot() {
-      // 1. Seed IndexedDB with defaults (idempotent)
-      const { initializeApp } = await import('@/lib/seed')
-      await initializeApp()
+      try {
+        // 1. Seed IndexedDB with defaults (idempotent)
+        const { initializeApp } = await import('@/lib/seed')
+        await initializeApp()
 
-      // 2. Hydrate Zustand store from IndexedDB
-      await loadAll()
+        // 2. Hydrate Zustand store from IndexedDB
+        await loadAll()
 
-      // 3. Prune old analytics + perf logs (non-blocking, non-critical)
-      void pruneOldEvents()
-      void prunePerfLogs()
-
-      setReady(true)
+        // 3. Prune old analytics + perf logs (non-blocking, non-critical)
+        void pruneOldEvents()
+        void prunePerfLogs()
+        void pruneTransientLogs()
+      } catch (err) {
+        console.error('[Boot] Initialization error:', err)
+        // Always unblock the UI even if boot fails — app works in degraded mode
+      } finally {
+        setReady(true)
+      }
     }
     boot()
   }, [loadAll])
@@ -108,12 +116,12 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
   if (!mounted || !ready) {
     return (
-      <div className={`bg-surface-base text-content-primary font-display min-h-screen ${adhdMode ? 'adhd-mode' : ''}`}>
-        <div className="fixed inset-0 flex items-center justify-center bg-surface-base z-50">
+      <div className={`bg-[#0d0d18] text-[#e9e6f7] font-display min-h-screen ${adhdMode ? 'adhd-mode' : ''}`}>
+        <div className="fixed inset-0 flex items-center justify-center bg-[#0d0d18] z-50">
           <div className="flex flex-col items-center gap-3">
-            <div className="size-16 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
-            <p className="text-primary-ink text-xs font-bold uppercase tracking-widest mt-4">
-              Loading Life To Do
+            <div className="size-16 rounded-full border-4 border-[#37f6dd]/20 border-t-[#37f6dd] animate-spin" />
+            <p className="text-[#37f6dd] text-xs font-bold uppercase tracking-widest mt-4">
+              Life To Do
             </p>
           </div>
         </div>
@@ -122,7 +130,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className={`bg-surface-base text-content-primary font-display min-h-screen ${adhdMode ? 'adhd-mode' : ''}`}>
+    <div className={`bg-surface-base text-content-primary font-display min-h-screen bg-gradient-decoration ${adhdMode ? 'adhd-mode' : ''}`}>
       {/* Desktop sidebar — hidden on mobile, shown at lg: breakpoint */}
       <SideNav />
 
@@ -146,6 +154,16 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
       {/* id="bottom-nav" is the secondary SkipLink target (iCCW #13) */}
       <div id={A11Y_CONFIG.bottomNavId} className="lg:hidden">
+        {/* Global Mobile FAB for easy voice/text capture navigation */}
+        <div className="fixed bottom-24 right-4 z-50">
+          <Link
+            href="/inbox"
+            aria-label="New Task"
+            className="flex items-center justify-center size-14 rounded-full bg-primary text-on-brand shadow-glow-primary active:scale-90 transition-transform"
+          >
+            <Plus size={28} strokeWidth={2.5} />
+          </Link>
+        </div>
         <BottomNav />
       </div>
 

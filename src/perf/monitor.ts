@@ -46,3 +46,37 @@ export async function prunePerfLogs(days = 30): Promise<void> {
     await db.perf_logs.where('ts').below(cutoff).delete()
   } catch { /* non-critical */ }
 }
+
+/**
+ * Prune all transient observability + gamification logs that have no
+ * retention requirement. Runs on app mount alongside pruneOldEvents().
+ *
+ * Retention policy:
+ *   error_log   — 7 days  (short-lived debugging data)
+ *   sync_queue  — 3 days  (stale items will never sync anyway)
+ *   xp_events   — 90 days (needed for lifetime stats aggregation)
+ */
+export async function pruneTransientLogs(): Promise<void> {
+  const now = Date.now()
+  const DAY = 86_400_000
+
+  await Promise.allSettled([
+    // Error logs: keep 7 days for debugging, drop older entries
+    db.error_log
+      .where('ts')
+      .below(now - 7 * DAY)
+      .delete(),
+
+    // Sync queue: stale entries older than 3 days will never be retried
+    db.sync_queue
+      .where('ts')
+      .below(now - 3 * DAY)
+      .delete(),
+
+    // XP events: keep 90 days for streak / weekly aggregations
+    db.xp_events
+      .where('timestamp')
+      .below(now - 90 * DAY)
+      .delete(),
+  ])
+}

@@ -24,45 +24,49 @@
 ────────────────────────────────────────────────────────────────────────────── */
 :root {
   /* ── Brand ──────────────────────────────────────────────────────────────── */
-  --primary: #00E5CC;
+  --primary: #37f6dd;
   /* cyan — fills: buttons, icons, progress arcs      */
-  --primary-ink: #00E5CC;
+  --primary-ink: #37f6dd;
   /* cyan as text on dark bg; overridden → #007A6E light */
-  --accent: #9D4EDD;
+  --accent: #c57eff;
   /* purple — secondary actions, upgrade nudges        */
+  --tertiary: #59caff;
+  /* blue — tertiary accents                           */
 
   /* ── Surface ─────────────────────────────────────────────────────────────── */
-  --surface-base: #0F0F1A;
+  --surface-base: #0d0d18;
   /* app shell / page background                 */
-  --surface-card: #1A1A2E;
+  --surface-card: #181826;
   /* default card / panel surface                */
-  --surface-elevated: #232342;
+  --surface-elevated: #1e1e2d;
   /* active card, modal body, focused inputs     */
+  --surface-bright: #2b2a3c;
+  /* hover surface, highest elevation            */
 
   /* ── Text ────────────────────────────────────────────────────────────────── */
-  --text-primary: #F5F5F5;
+  --text-primary: #e9e6f7;
   /* main body, headings                           */
-  --text-secondary: #94A3B8;
-  /* labels, descriptions  (≈ slate-400)           */
-  --text-tertiary: #64748B;
-  /* captions, timestamps  (≈ slate-500)           */
-  --text-on-brand: #0F0F1A;
+  --text-secondary: #aba9b9;
+  /* labels, descriptions                          */
+  --text-tertiary: #757482;
+  /* captions, timestamps                          */
+  --text-on-brand: #0d0d18;
   /* text on primary-filled buttons (stays dark)   */
 
   /* ── Border ──────────────────────────────────────────────────────────────── */
-  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-subtle: rgba(255, 255, 255, 0.05);
   /* dividers, skeleton borders   */
-  --border-default: rgba(255, 255, 255, 0.10);
+  --border-default: rgba(255, 255, 255, 0.08);
   /* card borders, input outlines */
-  --border-brand: rgba(0, 229, 204, 0.20);
+  --border-brand: rgba(55, 246, 221, 0.20);
   /* focus rings, active items    */
 
   /* ── Interactive overlays ────────────────────────────────────────────────── */
   --overlay-hover: rgba(255, 255, 255, 0.05);
   /* row / button hover tint      */
-  --overlay-active: rgba(0, 229, 204, 0.10);
+  --overlay-active: rgba(55, 246, 221, 0.10);
   /* pressed / selected fill      */
-  --overlay-dim: rgba(0, 0, 0, 0.20);
+  --overlay-dim: rgba(0, 0, 0, 0.40);
   /* modal backdrop, dark scrim   */
 
   /* ── Status ──────────────────────────────────────────────────────────────── */
@@ -72,29 +76,29 @@
   --status-warn-fg: #FACC15;
   --status-warn-bg: rgba(234, 179, 8, 0.10);
   --status-warn-border: rgba(234, 179, 8, 0.20);
-  --status-danger-fg: #F87171;
-  --status-danger-bg: rgba(239, 68, 68, 0.15);
-  --status-danger-border: rgba(239, 68, 68, 0.20);
+  --status-danger-fg: #ff716c;
+  --status-danger-bg: rgba(255, 113, 108, 0.15);
+  --status-danger-border: rgba(255, 113, 108, 0.20);
 
   /* ── Glass utility vars (consumed by .glass-* classes below) ─────────────── */
-  --glass-card-bg: rgba(0, 229, 204, 0.04);
-  --glass-card-border: rgba(0, 229, 204, 0.10);
-  --glass-purple-bg: rgba(157, 78, 221, 0.05);
-  --glass-purple-border: rgba(157, 78, 221, 0.12);
-  --glass-panel-bg: rgba(15, 15, 26, 0.88);
+  --glass-card-bg: rgba(24, 24, 38, 0.65);
+  --glass-card-border: rgba(255, 255, 255, 0.05);
+  --glass-purple-bg: rgba(24, 24, 38, 0.65);
+  --glass-purple-border: rgba(197, 127, 255, 0.12);
+  --glass-panel-bg: rgba(13, 13, 24, 0.92);
   --glass-panel-border: rgba(255, 255, 255, 0.06);
-  --glass-header-bg: rgba(15, 15, 26, 0.95);
-  --glass-header-border: rgba(0, 229, 204, 0.10);
+  --glass-header-bg: rgba(13, 13, 24, 0.92);
+  --glass-header-border: rgba(55, 246, 221, 0.08);
 
   /* ── Shadow vars (consumed by tailwind.config.ts boxShadow) ──────────────── */
-  --glow-primary-shadow: rgba(0, 229, 204, 0.30);
-  --glow-primary-shadow-lg: rgba(0, 229, 204, 0.40);
-  --glow-accent-shadow: rgba(0, 229, 204, 0.30);
-  --glow-purple-shadow: rgba(157, 78, 221, 0.40);
+  --glow-primary-shadow: rgba(55, 246, 221, 0.30);
+  --glow-primary-shadow-lg: rgba(55, 246, 221, 0.40);
+  --glow-accent-shadow: rgba(55, 246, 221, 0.30);
+  --glow-purple-shadow: rgba(197, 127, 255, 0.40);
   --glow-success-shadow: rgba(34, 197, 94, 0.30);
   --glow-warning-shadow: rgba(255, 184, 77, 0.30);
-  --active-glow-box: 0 0 20px rgba(0, 229, 204, 0.40);
-  --active-glow-purple-box: 0 0 24px rgba(157, 78, 221, 0.50);
+  --active-glow-box: 0 0 20px rgba(55, 246, 221, 0.40);
+  --active-glow-purple-box: 0 0 24px rgba(197, 127, 255, 0.50);
 
   /* ── Shimmer vars ────────────────────────────────────────────────────────── */
   --shimmer-base: rgba(255, 255, 255, 0.03);
@@ -112,6 +116,9 @@
   --gtd-accent: var(--primary);
   --gtd-text: var(--text-primary);
   --gtd-muted: var(--text-secondary);
+
+  /* ── Nav shadow ─────────────────────────────────────────────────────────── */
+  --nav-glow-shadow: 0 -4px 20px rgba(55, 246, 221, 0.10);
 }
 
 /* ── Light theme overrides ──────────────────────────────────────────────────
@@ -121,7 +128,7 @@
 ────────────────────────────────────────────────────────────────────────────── */
 [data-theme="light"] {
   /* Surface */
-  --surface-base: #F4F6FB;
+  --surface-base: #FAFAFA;
   --surface-card: #FFFFFF;
   --surface-elevated: #EDF1F9;
 
@@ -133,8 +140,9 @@
   /* D5: #FFFFFF on #00E5CC = 1.61:1 (FAIL). Fixed to dark navy → 11.85:1 (PASS) */
   --text-on-brand: #0F0F1A;
 
-  /* Brand text — accessible dark teal, 5.24:1 on white (WCAG AA ✓) */
-  --primary-ink: #007A6E;
+  /* Brand text & Accents — Vivid Blue requested (#2196F3) */
+  --primary: #2196F3;
+  --primary-ink: #0774C3;
 
   /* Borders — dark-on-light */
   --border-subtle: rgba(15, 15, 26, 0.08);
@@ -143,7 +151,7 @@
 
   /* Overlays */
   --overlay-hover: rgba(15, 15, 26, 0.04);
-  --overlay-active: rgba(0, 229, 204, 0.08);
+  --overlay-active: rgba(33, 150, 243, 0.08);
   --overlay-dim: rgba(15, 15, 26, 0.08);
 
   /* Status — darker accessible hues on white */
@@ -160,24 +168,24 @@
   --status-danger-border: rgba(220, 38, 38, 0.20);
 
   /* Glass — lighter tints for light surfaces */
-  --glass-card-bg: rgba(0, 185, 164, 0.06);
-  --glass-card-border: rgba(0, 185, 164, 0.22);
+  --glass-card-bg: rgba(33, 150, 243, 0.04);
+  --glass-card-border: rgba(33, 150, 243, 0.15);
   --glass-purple-bg: rgba(157, 78, 221, 0.07);
   --glass-purple-border: rgba(157, 78, 221, 0.22);
-  --glass-panel-bg: rgba(255, 255, 255, 0.92);
+  --glass-panel-bg: rgba(255, 255, 255, 0.95);
   /* Changed from blueish to clean white */
-  --glass-panel-border: rgba(15, 15, 26, 0.10);
-  --glass-header-bg: rgba(244, 246, 251, 0.95);
+  --glass-panel-border: rgba(15, 15, 26, 0.08);
+  --glass-header-bg: rgba(250, 250, 250, 0.95);
   --glass-header-border: rgba(15, 15, 26, 0.08);
 
   /* Shadows — reduced intensity on light */
-  --glow-primary-shadow: rgba(0, 185, 164, 0.20);
-  --glow-primary-shadow-lg: rgba(0, 185, 164, 0.28);
-  --glow-accent-shadow: rgba(0, 185, 164, 0.20);
+  --glow-primary-shadow: rgba(33, 150, 243, 0.20);
+  --glow-primary-shadow-lg: rgba(33, 150, 243, 0.28);
+  --glow-accent-shadow: rgba(33, 150, 243, 0.20);
   --glow-purple-shadow: rgba(157, 78, 221, 0.20);
   --glow-success-shadow: rgba(34, 197, 94, 0.20);
   --glow-warning-shadow: rgba(255, 184, 77, 0.20);
-  --active-glow-box: 0 0 20px rgba(0, 185, 164, 0.20);
+  --active-glow-box: 0 0 20px rgba(33, 150, 243, 0.20);
   --active-glow-purple-box: 0 0 24px rgba(157, 78, 221, 0.25);
 
   /* Shimmer */
@@ -290,12 +298,16 @@ body {
 /* glass-card: the standard task card surface. */
 .glass-card {
   background: var(--glass-card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-card-border);
 }
 
 /* glass-card-purple: alternative surface for accent/secondary contexts. */
 .glass-card-purple {
   background: var(--glass-purple-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-purple-border);
 }
 
@@ -307,12 +319,15 @@ body {
   border: 1px solid var(--glass-panel-border);
 }
 
-/* glass-header: sticky header surfaces. */
+/* glass-header: sticky header surfaces.
+   padding-top: env(safe-area-inset-top) pushes content below the Android/iOS status bar
+   when the app runs in edge-to-edge / fullscreen Capacitor mode.               */
 .glass-header {
   background: var(--glass-header-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--glass-header-border);
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 /* ── Glow effects ───────────────────────────────────────────────────────── */
@@ -530,7 +545,42 @@ a,
 
 /* ── Progress bar fill (reusable gradient) ──────────────────────────────── */
 .progress-fill {
-  background: linear-gradient(90deg, var(--primary) 0%, #00BFAE 100%);
+  background: linear-gradient(90deg, var(--primary) 0%, #00e5cc 100%);
+}
+
+/* ── Neon progress bar — used in project cards ──────────────────────────── */
+.progress-fill-neon {
+  background: linear-gradient(90deg, #37f6dd 0%, #00e5cc 100%);
+  box-shadow: 0 0 10px rgba(55, 246, 221, 0.4);
+}
+
+/* ── App background gradient decoration ─────────────────────────────────── */
+.bg-gradient-decoration::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  right: -10%;
+  width: 60%;
+  height: 40%;
+  background: rgba(55, 246, 221, 0.06);
+  filter: blur(120px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.bg-gradient-decoration::after {
+  content: '';
+  position: fixed;
+  bottom: 5%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: rgba(197, 127, 255, 0.04);
+  filter: blur(120px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* ── Swipe hint — screen edge fade on scrollable lists ──────────────────── */

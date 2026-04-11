@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Life To Do - Inbox</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-container": "#00e5cc",
+              "tertiary-fixed-dim": "#00afe8",
+              "on-secondary": "#340058",
+              "on-primary-fixed-variant": "#006358",
+              "on-surface": "#e9e6f7",
+              "surface-container-low": "#12121e",
+              "on-secondary-fixed": "#510085",
+              "tertiary-dim": "#00afe8",
+              "secondary": "#c57eff",
+              "on-tertiary-fixed-variant": "#003e55",
+              "on-primary-fixed": "#00443c",
+              "on-primary-container": "#004d44",
+              "surface-container-lowest": "#000000",
+              "surface-container-high": "#1e1e2d",
+              "on-error": "#490006",
+              "on-secondary-container": "#e6c3ff",
+              "secondary-dim": "#c57eff",
+              "primary-fixed-dim": "#11e8cf",
+              "surface-tint": "#37f6dd",
+              "error-dim": "#d7383b",
+              "surface": "#0d0d18",
+              "on-error-container": "#ffa8a3",
+              "primary-fixed": "#37f6dd",
+              "inverse-primary": "#006b5f",
+              "secondary-container": "#6a0baa",
+              "surface-dim": "#0d0d18",
+              "error-container": "#9f0519",
+              "error": "#ff716c",
+              "surface-container": "#181826",
+              "inverse-on-surface": "#555461",
+              "on-tertiary": "#003f57",
+              "secondary-fixed": "#e7c5ff",
+              "inverse-surface": "#fcf8ff",
+              "on-tertiary-fixed": "#001a27",
+              "background": "#0d0d18",
+              "surface-container-highest": "#242434",
+              "surface-variant": "#242434",
+              "on-surface-variant": "#aba9b9",
+              "on-primary": "#00594e",
+              "tertiary-fixed": "#0cbefb",
+              "secondary-fixed-dim": "#deb3ff",
+              "outline-variant": "#474754",
+              "tertiary-container": "#0cbefb",
+              "on-secondary-fixed-variant": "#7520b5",
+              "on-background": "#e9e6f7",
+              "primary": "#37f6dd",
+              "surface-bright": "#2b2a3c",
+              "outline": "#757482",
+              "primary-dim": "#11e8cf",
+              "tertiary": "#59caff",
+              "on-tertiary-container": "#003549"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .glass-card {
+        background: rgba(24, 24, 38, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .neon-glow-primary {
+        box-shadow: 0 0 20px rgba(0, 229, 204, 0.4);
+      }
+      .kinetic-curve {
+        transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen pb-24 selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0d0d18]/60 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="hover:bg-[#242434] transition-colors duration-300 p-2 rounded-full scale-95 active:duration-150">
+<span class="material-symbols-outlined text-[#37f6dd]">menu</span>
+</button>
+<h1 class="font-['Manrope'] font-bold tracking-tight text-[1.75rem] text-[#37f6dd]">Inbox</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="close-up portrait of a stylish young man with a confident expression against a dark urban background with blue neon lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeeIRXvqi0pTbQenfqw-T0xV_0DjzT50KiRJFlvXXX-QJZXbqUn2xKiFhmZJOfGzd0JYRhgRne5S06ypSc6rCLZF01yXvpKm6GvEhjwdOkpD38ez1kJ82rQiVdhrKaSs_yF5vpXpJUutA9WO4I7SDK-iX9gKnRNY3BMIlUuu02hkQF5U4JuWj2l7NgbPapd5pT-B7j0f9Hu0PuTXwQMRi_IOnVWDGvvT0vPCniAkqgAiSEcVLBtRfhAZA6f_4-CnrdokGe2e7qVg"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="pt-24 px-6 max-w-2xl mx-auto space-y-6">
+<!-- Welcome/Stats Section (Asymmetric Editorial Style) -->
+<section class="mb-10">
+<p class="font-label text-primary uppercase tracking-[0.2em] text-[0.7rem] mb-2">Velocity Overview</p>
+<div class="flex items-end gap-4">
+<h2 class="text-[3.5rem] font-extrabold tracking-tighter leading-none">12</h2>
+<div class="pb-2">
+<p class="text-on-surface-variant leading-tight">Actions pending<br/><span class="text-tertiary">4 completed today</span></p>
+</div>
+</div>
+</section>
+<!-- Task List -->
+<div class="space-y-4">
+<!-- Action Card 1 -->
+<div class="glass-card rounded-xl p-5 flex items-center gap-4 border-l-4 border-[#37f6dd] group hover:bg-surface-container-highest transition-all duration-300 kinetic-curve">
+<div class="flex-shrink-0 w-6 h-6 rounded-full border-2 border-outline group-hover:border-primary transition-colors flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="flex-grow">
+<h3 class="font-bold text-lg leading-tight mb-1">Respond to marketing brief</h3>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1 text-[0.7rem] font-bold text-on-surface-variant uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">corporate_fare</span>
+                            Office
+                        </span>
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[0.65rem] font-black uppercase tracking-widest">High Energy</span>
+</div>
+</div>
+<div class="text-on-surface-variant">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+</div>
+<!-- Action Card 2 (Swiped State Example) -->
+<div class="relative overflow-hidden rounded-xl">
+<!-- Action Background -->
+<div class="absolute inset-0 bg-[#00E5CC] flex items-center px-8 text-on-primary-container shadow-[0_0_30px_rgba(0,229,204,0.6)]">
+<span class="material-symbols-outlined text-4xl font-bold">check</span>
+</div>
+<!-- Foreground Card (Swiped Right) -->
+<div class="relative glass-card rounded-xl p-5 flex items-center gap-4 border-l-4 border-amber-400 translate-x-24 transition-transform duration-500 kinetic-curve opacity-90">
+<div class="flex-shrink-0 w-6 h-6 rounded-full border-2 border-outline flex items-center justify-center"></div>
+<div class="flex-grow">
+<h3 class="font-bold text-lg leading-tight mb-1 line-through opacity-50">Buy groceries</h3>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1 text-[0.7rem] font-bold text-on-surface-variant uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">home</span>
+                                Home
+                            </span>
+<span class="px-2 py-0.5 rounded bg-amber-400/10 text-amber-400 text-[0.65rem] font-black uppercase tracking-widest">Medium Energy</span>
+</div>
+</div>
+<div class="text-on-surface-variant">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+</div>
+</div>
+<!-- Action Card 3 -->
+<div class="glass-card rounded-xl p-5 flex items-center gap-4 border-l-4 border-[#37f6dd] group hover:bg-surface-container-highest transition-all duration-300 kinetic-curve">
+<div class="flex-shrink-0 w-6 h-6 rounded-full border-2 border-outline group-hover:border-primary transition-colors flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="flex-grow">
+<h3 class="font-bold text-lg leading-tight mb-1">Draft newsletter</h3>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1 text-[0.7rem] font-bold text-on-surface-variant uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">laptop_mac</span>
+                            Studio
+                        </span>
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[0.65rem] font-black uppercase tracking-widest">High Energy</span>
+</div>
+</div>
+<div class="text-on-surface-variant">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+</div>
+<!-- Secondary Category (Someday/Maybe) -->
+<div class="pt-8 pb-4">
+<h4 class="text-secondary font-bold text-sm uppercase tracking-[0.2em] flex items-center gap-2">
+<span class="w-8 h-px bg-secondary/30"></span>
+                    Aspirational Flow
+                </h4>
+</div>
+<!-- Action Card 4 (Someday) -->
+<div class="glass-card rounded-xl p-5 flex items-center gap-4 opacity-70 hover:opacity-100 transition-all duration-300 kinetic-curve">
+<div class="flex-shrink-0 w-6 h-6 rounded-full border-2 border-outline-variant flex items-center justify-center"></div>
+<div class="flex-grow">
+<h3 class="font-medium text-lg leading-tight mb-1">Learn Three.js basics</h3>
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1 text-[0.7rem] font-bold text-on-surface-variant uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">school</span>
+                            Education
+                        </span>
+</div>
+</div>
+<div class="text-on-surface-variant/40">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (Contextual) -->
+<button class="fixed right-6 bottom-24 w-14 h-14 bg-gradient-to-br from-primary to-primary-container text-on-primary-container rounded-2xl flex items-center justify-center neon-glow-primary hover:scale-105 active:scale-90 transition-all duration-300 z-40">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-3xl bg-[#0d0d18]/80 backdrop-blur-2xl border-t border-white/5 shadow-[0_-10px_40px_rgba(0,0,0,0.4)] flex justify-around items-center px-8 py-4 w-full">
+<!-- Inbox Tab (Active) -->
+<a class="flex flex-col items-center justify-center text-[#00e5cc] shadow-[0_0_20px_rgba(0,229,204,0.4)] bg-[#242434] rounded-xl p-3 relative kinetic-curve" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inbox</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem] uppercase tracking-wider mt-1 md:hidden lg:inline">Inbox</span>
+<!-- Badge -->
+<span class="absolute -top-1 -right-1 bg-error text-on-error text-[0.6rem] font-bold px-1.5 py-0.5 rounded-full ring-2 ring-surface">12</span>
+</a>
+<!-- Calendar Tab -->
+<a class="flex flex-col items-center justify-center text-[#474754] p-3 hover:text-[#37f6dd] transition-all duration-300" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem] uppercase tracking-wider mt-1 md:hidden lg:inline">Plan</span>
+</a>
+<!-- Focus/Bolt Tab -->
+<a class="flex flex-col items-center justify-center text-[#474754] p-3 hover:text-[#37f6dd] transition-all duration-300" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem] uppercase tracking-wider mt-1 md:hidden lg:inline">Focus</span>
+</a>
+<!-- Priority/Star Tab -->
+<a class="flex flex-col items-center justify-center text-[#474754] p-3 hover:text-[#37f6dd] transition-all duration-300" href="#">
+<span class="material-symbols-outlined">star</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem] uppercase tracking-wider mt-1 md:hidden lg:inline">Starred</span>
+</a>
+<!-- Settings Tab -->
+<a class="flex flex-col items-center justify-center text-[#474754] p-3 hover:text-[#37f6dd] transition-all duration-300" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem] uppercase tracking-wider mt-1 md:hidden lg:inline">Settings</span>
+</a>
+</nav>
+</body></html>

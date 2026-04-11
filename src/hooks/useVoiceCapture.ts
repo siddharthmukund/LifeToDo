@@ -5,8 +5,12 @@
 // - Ref-based callback to avoid stale closures
 // - Graceful fallback message when API is unavailable
 // - Audio level estimation for the VoiceWave visualizer
+// NOTE: Voice is disabled on Android native (Capacitor WebView) because
+//   webkitSpeechRecognition exists in WebView but always throws not-allowed.
+//   Text input is the primary capture method on Android.
 
 import { useState, useRef, useCallback, useEffect } from 'react'
+import { platform } from '@/native/platform'
 
 export type VoiceCaptureStatus = 'idle' | 'listening' | 'processing' | 'error'
 
@@ -67,8 +71,11 @@ export function useVoiceCapture({
   useEffect(() => { onCaptureRef.current = onCapture }, [onCapture])
   useEffect(() => { onErrorRef.current = onError }, [onError])
 
+  // On Android, CaptureBar uses useNativeSpeech instead of this hook.
+  // Return isSupported=false on Android so this hook's startListening is never called.
   const isSupported =
     typeof window !== 'undefined' &&
+    !platform.isAndroid() &&
     ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)
 
   // Build a Web Audio analyser for real-time level metering

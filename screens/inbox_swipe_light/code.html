@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Life To Do - Inbox</title>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com/preconnect.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#edeeef",
+              "primary-container": "#00bfa5",
+              "on-tertiary-container": "#74220b",
+              "primary-fixed": "#68fadd",
+              "surface-container-lowest": "#ffffff",
+              "outline": "#6c7a76",
+              "tertiary": "#9f4128",
+              "tertiary-container": "#fe896a",
+              "primary-fixed-dim": "#44ddc1",
+              "surface-tint": "#006b5c",
+              "on-primary-fixed-variant": "#005145",
+              "secondary-fixed": "#f1dbff",
+              "inverse-primary": "#44ddc1",
+              "secondary-container": "#b86dfd",
+              "background": "#f8f9fa",
+              "tertiary-fixed": "#ffdbd2",
+              "secondary": "#8234c6",
+              "on-secondary-fixed": "#2d0050",
+              "outline-variant": "#bbcac4",
+              "on-primary-container": "#00473c",
+              "on-secondary": "#ffffff",
+              "surface-dim": "#d9dadb",
+              "surface-container-highest": "#e1e3e4",
+              "surface-container-high": "#e7e8e9",
+              "secondary-fixed-dim": "#deb7ff",
+              "primary": "#006b5c",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#3c0800",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed-variant": "#7f2a13",
+              "on-primary-fixed": "#00201a",
+              "surface": "#f8f9fa",
+              "on-surface": "#191c1d",
+              "on-background": "#191c1d",
+              "inverse-surface": "#2e3132",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#3c4a46",
+              "on-secondary-fixed-variant": "#680eac",
+              "surface-variant": "#e1e3e4",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#410070",
+              "surface-container-low": "#f3f4f5",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "tertiary-fixed-dim": "#ffb4a1",
+              "surface-bright": "#f8f9fa"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,107,92,0.06)]">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close-up professional portrait of a smiling creative professional with soft natural lighting and a minimalist office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtleE4ob99pCvlXK3WHMUdW9ncX35wn6zVUFOrMu2GoB4P5rFNcQy9WrtpOit1GHQmuqMIgp6eiNXDDj0UHdf5rtK7r8ibtT1ltdNEDsOAVFc4tM7SQ9M7siU6kenlL_FhlOFKhPPwszoKoClSO92Xb37dpRpNiAEYSu3_DeDLFzFVVr2Kh2zYMEDJS78fHqiWfgCGUO3_TT53QvdndcxQWjQ8rIJK6juQrFRMir8fsLg0SUsU6DJHJAqUm5o3iwy9l2vm4jOuDw"/>
+</div>
+<span class="text-xl font-extrabold text-[#006B5C] dark:text-[#00BFA5] font-headline tracking-tight">Life To Do</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-xl text-slate-500 hover:bg-[#00BFA5]/10 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto min-h-screen">
+<!-- Header Section -->
+<header class="mb-10">
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface font-headline mb-2">Inbox</h1>
+<p class="text-on-surface-variant font-medium">Capture everything, decide later.</p>
+</header>
+<!-- Inbox Action Cards List -->
+<div class="flex flex-col gap-5">
+<!-- Swiped Card (State: Active/Interacted) -->
+<div class="relative group h-24 rounded-xl overflow-hidden shadow-[0_12px_40px_rgba(0,107,92,0.04)]">
+<!-- Swipe Background (Teal Reveal) -->
+<div class="absolute inset-0 bg-primary-container flex items-center justify-start pl-8">
+<span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Card Surface (Shifted Right) -->
+<div class="absolute inset-0 bg-surface-container-lowest translate-x-32 flex items-center px-6 transition-transform duration-300">
+<div class="absolute left-0 top-1/4 bottom-1/4 w-1 bg-primary-container rounded-r-full"></div>
+<div class="flex flex-col">
+<span class="text-lg font-bold text-on-surface">Buy groceries</span>
+<span class="text-xs font-bold uppercase tracking-wider text-primary mt-1">Today • High Energy</span>
+</div>
+</div>
+</div>
+<!-- Standard Card 2 (Medium Energy) -->
+<div class="relative h-24 bg-surface-container-lowest rounded-xl flex items-center px-6 shadow-[0_12px_40px_rgba(0,107,92,0.04)] hover:bg-primary-fixed/10 transition-colors duration-200">
+<!-- Energy Indicator (Amber) -->
+<div class="absolute left-0 top-1/4 bottom-1/4 w-1 bg-amber-500 rounded-r-full"></div>
+<div class="flex-1 flex flex-col">
+<span class="text-lg font-bold text-on-surface">Review quarterly budget</span>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Finance</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">schedule</span>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">45 MIN</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">drag_indicator</span>
+</div>
+<!-- Standard Card 3 (Low Energy) -->
+<div class="relative h-24 bg-surface-container-lowest rounded-xl flex items-center px-6 shadow-[0_12px_40px_rgba(0,107,92,0.04)] hover:bg-primary-fixed/10 transition-colors duration-200">
+<!-- Energy Indicator (Slate) -->
+<div class="absolute left-0 top-1/4 bottom-1/4 w-1 bg-slate-400 rounded-r-full"></div>
+<div class="flex-1 flex flex-col">
+<span class="text-lg font-bold text-on-surface">Call the vet for routine checkup</span>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Personal</span>
+<div class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] font-extrabold uppercase tracking-tighter">Quick win</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">drag_indicator</span>
+</div>
+<!-- Standard Card 4 (High Energy) -->
+<div class="relative h-24 bg-surface-container-lowest rounded-xl flex items-center px-6 shadow-[0_12px_40px_rgba(0,107,92,0.04)] hover:bg-primary-fixed/10 transition-colors duration-200">
+<!-- Energy Indicator (Teal) -->
+<div class="absolute left-0 top-1/4 bottom-1/4 w-1 bg-primary-container rounded-r-full"></div>
+<div class="flex-1 flex flex-col">
+<span class="text-lg font-bold text-on-surface">Draft design system documentation</span>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Work</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Deep Work</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">drag_indicator</span>
+</div>
+<!-- Standard Card 5 (Medium Energy) -->
+<div class="relative h-24 bg-surface-container-lowest rounded-xl flex items-center px-6 shadow-[0_12px_40px_rgba(0,107,92,0.04)] hover:bg-primary-fixed/10 transition-colors duration-200 opacity-60">
+<!-- Energy Indicator (Amber) -->
+<div class="absolute left-0 top-1/4 bottom-1/4 w-1 bg-amber-500 rounded-r-full"></div>
+<div class="flex-1 flex flex-col">
+<span class="text-lg font-bold text-on-surface line-through">Pick up dry cleaning</span>
+<span class="text-xs font-bold uppercase tracking-wider text-slate-400 mt-1">Completed 2h ago</span>
+</div>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 right-6 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-container text-white flex items-center justify-center shadow-[0_12px_40px_rgba(0,107,92,0.25)] active:scale-90 transition-transform duration-150 z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl shadow-[0_-8px_30px_rgba(0,0,0,0.04)] border-t border-white/20">
+<!-- Today Tab -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#006B5C] dark:hover:text-[#00BFA5] active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="today">today</span>
+<span class="font-manrope text-[11px] font-bold uppercase tracking-wider mt-1">Today</span>
+</a>
+<!-- Inbox Tab (Active) -->
+<a class="flex flex-col items-center justify-center text-[#006B5C] dark:text-[#00BFA5] bg-[#00BFA5]/10 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="inbox" style="font-variation-settings: 'FILL' 1;">inbox</span>
+<span class="font-manrope text-[11px] font-bold uppercase tracking-wider mt-1">Inbox</span>
+</a>
+<!-- Projects Tab -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#006B5C] dark:hover:text-[#00BFA5] active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-manrope text-[11px] font-bold uppercase tracking-wider mt-1">Projects</span>
+</a>
+<!-- Review Tab -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#006B5C] dark:hover:text-[#00BFA5] active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-manrope text-[11px] font-bold uppercase tracking-wider mt-1">Review</span>
+</a>
+<!-- Settings Tab -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#006B5C] dark:hover:text-[#00BFA5] active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-manrope text-[11px] font-bold uppercase tracking-wider mt-1">Settings</span>
+</a>
+</nav>
+</body></html>

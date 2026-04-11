@@ -2,13 +2,11 @@
 // app/insights/page.tsx
 // GTD Health Insights — Pro-tier dashboard.
 // Health score visible to all tiers; detailed charts are Pro-gated.
-// Recharts is lazily code-split to this route chunk automatically by Next.js.
+// Recharts is dynamically imported so it never blocks the initial render
+// of core GTD routes (/, /inbox, /projects).
 
 import { useState, useEffect } from 'react'
-import {
-  AreaChart, Area, BarChart, Bar, LineChart, Line,
-  XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
-} from 'recharts'
+import dynamic from 'next/dynamic'
 import { Zap, Lock, TrendingUp, Inbox, Activity, BarChart2, RefreshCw } from 'lucide-react'
 import Link from 'next/link'
 import { useGTDStore } from '@/store/gtdStore'
@@ -19,6 +17,28 @@ import { HealthScoreRing } from '@/components/ui/HealthScoreRing'
 import { ProgressBar } from '@/components/ui/ProgressBar'
 import { db } from '@/lib/db'
 import type { AnalyticsEvent } from '@/types'
+
+// ── Dynamic Recharts imports — loaded only when this route is visited ─────────
+// This keeps Recharts (~50 kB) out of the main bundle for /, /inbox, /projects.
+
+const ChartSkeleton = () => (
+  <div className="w-full animate-pulse bg-overlay-hover rounded-xl" style={{ height: 160 }} />
+)
+
+const AreaChart       = dynamic(() => import('recharts').then(m => ({ default: m.AreaChart })),       { ssr: false })
+const Area            = dynamic(() => import('recharts').then(m => ({ default: m.Area })),            { ssr: false })
+const BarChart        = dynamic(() => import('recharts').then(m => ({ default: m.BarChart })),        { ssr: false })
+const Bar             = dynamic(() => import('recharts').then(m => ({ default: m.Bar })),             { ssr: false })
+const LineChart       = dynamic(() => import('recharts').then(m => ({ default: m.LineChart })),       { ssr: false })
+const Line            = dynamic(() => import('recharts').then(m => ({ default: m.Line })),            { ssr: false })
+const XAxis           = dynamic(() => import('recharts').then(m => ({ default: m.XAxis })),           { ssr: false })
+const YAxis           = dynamic(() => import('recharts').then(m => ({ default: m.YAxis })),           { ssr: false })
+const Tooltip         = dynamic(() => import('recharts').then(m => ({ default: m.Tooltip })),         { ssr: false })
+const CartesianGrid   = dynamic(() => import('recharts').then(m => ({ default: m.CartesianGrid })),   { ssr: false })
+const ResponsiveContainer = dynamic(
+  () => import('recharts').then(m => ({ default: m.ResponsiveContainer })),
+  { ssr: false, loading: ChartSkeleton },
+)
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 

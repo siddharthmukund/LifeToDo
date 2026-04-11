@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Life To Do - Today Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#edeeef",
+              "primary-container": "#00bfa5",
+              "on-tertiary-container": "#74220b",
+              "primary-fixed": "#68fadd",
+              "surface-container-lowest": "#ffffff",
+              "outline": "#6c7a76",
+              "tertiary": "#9f4128",
+              "tertiary-container": "#fe896a",
+              "primary-fixed-dim": "#44ddc1",
+              "surface-tint": "#006b5c",
+              "on-primary-fixed-variant": "#005145",
+              "secondary-fixed": "#f1dbff",
+              "inverse-primary": "#44ddc1",
+              "secondary-container": "#b86dfd",
+              "background": "#f8f9fa",
+              "tertiary-fixed": "#ffdbd2",
+              "secondary": "#8234c6",
+              "on-secondary-fixed": "#2d0050",
+              "outline-variant": "#bbcac4",
+              "on-primary-container": "#00473c",
+              "on-secondary": "#ffffff",
+              "surface-dim": "#d9dadb",
+              "surface-container-highest": "#e1e3e4",
+              "surface-container-high": "#e7e8e9",
+              "secondary-fixed-dim": "#deb7ff",
+              "primary": "#006b5c",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#3c0800",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed-variant": "#7f2a13",
+              "on-primary-fixed": "#00201a",
+              "surface": "#f8f9fa",
+              "on-surface": "#191c1d",
+              "on-background": "#191c1d",
+              "inverse-surface": "#2e3132",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#3c4a46",
+              "on-secondary-fixed-variant": "#680eac",
+              "surface-variant": "#e1e3e4",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#410070",
+              "surface-container-low": "#f3f4f5",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#f0f1f2",
+              "tertiary-fixed-dim": "#ffb4a1",
+              "surface-bright": "#f8f9fa"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .text-glow-primary {
+            text-shadow: 0 0 15px rgba(0, 191, 165, 0.3);
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f8f9fa;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,107,92,0.06)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container/20">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Professional headshot of a young man with a friendly expression in soft natural studio lighting with a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUvL5qSMwxnwxzE3gfDqNXbM2-bnLKAqIRcaCYU5mkf1CDKi7HlnTpkFxlMnEIkLeeRgjx_OGOxlWJeik90llPRaigS-MuyrSMht0z_5Hf-2A-XtxqddeE-dqeUfI4i-luVUrzvbZJKsMJJDjqam5194FVkr3LsX8G5YQI5Sa9lZJsR0xNg-6GX1-ffZ_E3T3plPPgZ6D3Bg55mMILONo08GrtELsura6z1cCTGgmJ6rwlA-ui-aEBinT_luqgfyjSL3R6mfg-rw"/>
+</div>
+<span class="text-xl font-extrabold text-[#006B5C] dark:text-[#00BFA5] tracking-tight">Life To Do</span>
+</div>
+<button class="p-2 rounded-full hover:bg-[#00BFA5]/10 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#006B5C] dark:text-[#00BFA5]" data-icon="search">search</span>
+</button>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto space-y-10">
+<!-- Greeting Section -->
+<section class="space-y-1">
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface">Good morning, Alexander</h1>
+<p class="text-on-surface-variant font-medium text-lg">You have 5 focused tasks for today.</p>
+</section>
+<!-- Action Cards Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- Focus Card -->
+<div class="glass-card p-6 rounded-xl border border-white/40 shadow-sm flex flex-col justify-between h-44 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-primary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/5 px-2 py-1 rounded-full">High Energy</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-surface">Deep Work Session</h3>
+<p class="text-sm text-on-surface-variant mt-1">90 mins • Project Alpha</p>
+</div>
+</div>
+<!-- Health Card -->
+<div class="glass-card p-6 rounded-xl border border-white/40 shadow-sm flex flex-col justify-between h-44 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-secondary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="fitness_center">fitness_center</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary bg-secondary/5 px-2 py-1 rounded-full">Recovery</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-surface">Morning Stretch</h3>
+<p class="text-sm text-on-surface-variant mt-1">15 mins • Living Room</p>
+</div>
+</div>
+<!-- Social Card -->
+<div class="glass-card p-6 rounded-xl border border-white/40 shadow-sm flex flex-col justify-between h-44 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-tertiary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-tertiary" data-icon="groups">groups</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-tertiary bg-tertiary/5 px-2 py-1 rounded-full">Connection</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-surface">Sync with Sarah</h3>
+<p class="text-sm text-on-surface-variant mt-1">11:00 AM • Design Review</p>
+</div>
+</div>
+<!-- Learning Card -->
+<div class="glass-card p-6 rounded-xl border border-white/40 shadow-sm flex flex-col justify-between h-44 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-primary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="menu_book">menu_book</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/5 px-2 py-1 rounded-full">Growth</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-surface">Read: Atomic Habits</h3>
+<p class="text-sm text-on-surface-variant mt-1">20 mins • Chapter 4</p>
+</div>
+</div>
+</section>
+<!-- Voice Capture Section -->
+<section class="flex flex-col items-center justify-center py-12 relative">
+<div class="relative flex items-center justify-center w-36 h-36">
+<!-- Outer Ring 1 -->
+<div class="absolute inset-0 rounded-full bg-primary-container/5 border border-primary-container/10 scale-150"></div>
+<!-- Outer Ring 2 -->
+<div class="absolute inset-0 rounded-full bg-primary-container/10 border border-primary-container/20 scale-125"></div>
+<!-- Main Orb -->
+<button class="relative z-10 w-full h-full rounded-full bg-gradient-to-br from-primary to-primary-container shadow-[0_12px_40px_rgba(0,107,92,0.2)] flex items-center justify-center group active:scale-90 transition-transform duration-300">
+<span class="material-symbols-outlined text-white text-5xl" data-icon="mic" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</div>
+<p class="mt-16 font-bold tracking-widest text-[11px] uppercase text-primary/60">Tap to Capture Thought</p>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl shadow-[0_-8px_30px_rgba(0,0,0,0.04)] border-t border-white/20">
+<!-- Today Tab (Active) -->
+<a class="flex flex-col items-center justify-center text-[#006B5C] dark:text-[#00BFA5] bg-[#00BFA5]/10 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="today" style="font-variation-settings: 'FILL' 1;">today</span>
+<span class="font-manrope text-[11px] font-bold uppercase tracking-wider mt-0.5">Today</span>
+</a>
+<!-- Inbox Tab -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#006B5C] dark:hover:text-[#00BFA5] active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="inbox">inbox</span>
+<span class="font-manrope text-[11px] font-bold uppercase tracking-wider mt-0.5">Inbox</span>
+</a>
+<!-- Projects Tab -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#006B5C] dark:hover:text-[#00BFA5] active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-manrope text-[11px] font-bold uppercase tracking-wider mt-0.5">Projects</span>
+</a>
+<!-- Review Tab -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#006B5C] dark:hover:text-[#00BFA5] active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-manrope text-[11px] font-bold uppercase tracking-wider mt-0.5">Review</span>
+</a>
+<!-- Settings Tab -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#006B5C] dark:hover:text-[#00BFA5] active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-manrope text-[11px] font-bold uppercase tracking-wider mt-0.5">Settings</span>
+</a>
+</nav>
+</body></html>

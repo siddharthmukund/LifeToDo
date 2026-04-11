@@ -1,14 +1,15 @@
 'use client'
 // CaptureBar — primary GTD capture entry point.
-// Voice is the hero (large pulsing mic button). Text input as fallback.
+// On Android native: uses @capacitor-community/speech-recognition (real native mic).
+// On web: uses Web Speech API (useVoiceCapture).
 // After a successful capture, optionally enters clarify mode (voice enrichment).
-// Single responsibility: capture + optional one-shot clarification.
 // iCCW #13: mic area converted to <button>, aria-live status region, keyboard-accessible.
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mic } from 'lucide-react'
+import { Mic, Keyboard } from 'lucide-react'
 import { useVoiceCapture } from '@/hooks/useVoiceCapture'
+import { useNativeSpeech } from '@/native/speech/useNativeSpeech'
 import { VoiceWave } from './VoiceWave'
 import { VoiceClarifyBar } from './VoiceClarifyBar'
 import { db } from '@/lib/db'
@@ -16,6 +17,7 @@ import { cn } from '@/lib/utils'
 import type { VoiceClarifyResult } from '@/types'
 import { SmartInputBar } from '../ai/SmartInputBar'
 import { useTranslations } from 'next-intl'
+import { platform } from '@/native/platform'
 
 interface CaptureBarProps {
   /** Called when capture (+ optional clarify) is complete. */
@@ -26,6 +28,7 @@ interface CaptureBarProps {
 export function CaptureBar({ onCapture, className }: CaptureBarProps) {
   const tInbox = useTranslations('inbox.capture')
   const tCommon = useTranslations('common.actions')
+  // Start in voice orb mode on all platforms (mic or text toggled by user)
   const [textMode, setTextMode] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const [clarifyMode, setClarifyMode] = useState(false)
@@ -33,6 +36,9 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
   const [capturedSource, setCapturedSource] = useState<'voice' | 'text'>('voice')
   const [projectNames, setProjectNames] = useState<Record<string, string>>({})
   const inputRef = useRef<HTMLInputElement>(null)
+  // Wrapper ref used to querySelector the actual <input> inside SmartInputBar
+  // and programmatically open the Android software keyboard
+  const textContainerRef = useRef<HTMLDivElement>(null)
 
   // Pre-load active project names for fuzzy matching in VoiceClarifyBar
   const loadProjectNames = useCallback(async () => {
@@ -48,13 +54,21 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
 
   const [nlpMeta, setNlpMeta] = useState<{ dueDate: Date | null, projects: string[], contexts: string[] } | undefined>()
 
+  const [captureFlash, setCaptureFlash] = useState(false)
+
   /** Enter voice-clarify mode after a successful initial capture. */
   function enterClarifyMode(text: string, source: 'voice' | 'text', meta?: { dueDate: Date | null, projects: string[], contexts: string[] }) {
     setCapturedText(text)
     setCapturedSource(source)
     setNlpMeta(meta)
-    if (source === 'voice') setClarifyMode(true) // Skip clarify bar on manual text for now
-    setTextMode(false)
+    if (source === 'voice') {
+      setClarifyMode(true)
+      setTextMode(false)
+    } else {
+      // Text capture: flash success, keep text mode open for sequential entry
+      setCaptureFlash(true)
+      setTimeout(() => setCaptureFlash(false), 1200)
+    }
     setInputValue('')
     void loadProjectNames()
   }
@@ -80,13 +94,21 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [capturedText, capturedSource, nlpMeta, onCapture])
 
-  // ── Voice capture hook ────────────────────────────────────────────────────
+  // ── Voice capture hooks ───────────────────────────────────────────────────
+  // Always call both hooks (Rules of Hooks — no conditional calls).
+  // Only one is used at runtime based on platform.
+  const webVoice = useVoiceCapture({
+    onCapture: (text) => enterClarifyMode(text, 'voice'),
+  })
+  const nativeVoice = useNativeSpeech({
+    onCapture: (text) => enterClarifyMode(text, 'voice'),
+  })
+
+  // Select the correct implementation
   const {
     status, transcript, isSupported, errorMessage, audioLevel,
     startListening, stopListening, cancelListening,
-  } = useVoiceCapture({
-    onCapture: (text) => enterClarifyMode(text, 'voice'),
-  })
+  } = platform.isAndroid() ? nativeVoice : webVoice
 
   const isListening = status === 'listening'
   const isProcessing = status === 'processing'
@@ -103,11 +125,20 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
     setTimeout(() => { onCapture(trimmed, 'text') }, 10)
   }
 
+  // Focus the real <input> inside SmartInputBar to open the Android keyboard.
+  // querySelector is needed because SmartInputBar manages its own internal ref.
+  function focusTextInput() {
+    setTimeout(() => {
+      const el = textContainerRef.current?.querySelector('input')
+      el?.focus()
+    }, 100)
+  }
+
   function handleMicClick() {
     if (isListening) { stopListening(); return }
     if (!isSupported) {
       setTextMode(true)
-      setTimeout(() => inputRef.current?.focus(), 100)
+      focusTextInput()
       return
     }
     setTextMode(false)
@@ -117,7 +148,7 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
   function handleTextModeOpen() {
     if (isListening) cancelListening()
     setTextMode(true)
-    setTimeout(() => inputRef.current?.focus(), 100)
+    focusTextInput()
   }
 
   // Derive descriptive aria-label for the mic button based on current state
@@ -249,9 +280,10 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
                       autoFocus
                       type="button"
                       onClick={handleTextModeOpen}
-                      className="text-xs font-bold uppercase tracking-widest text-primary-ink/70 hover:text-primary-ink transition-colors px-4 py-2 min-h-[44px]"
+                      className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-primary-ink/70 hover:text-primary-ink transition-colors px-4 py-2 min-h-[44px]"
                     >
-                      {tInbox('voiceButton.start').toLowerCase().includes('tap') ? 'OR TYPE' : '⌨️ Keyboard'}
+                      <Keyboard size={14} />
+                      Type instead
                     </button>
                   </motion.div>
                 )}
@@ -276,27 +308,47 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
           <motion.div
             key="text-input"
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}
-            className="w-full max-w-[90%] flex flex-col gap-3 my-10"
+            className="w-full flex flex-col gap-3 my-6"
           >
-            <SmartInputBar
-              placeholder={tInbox('placeholder')}
-              autoFocus
-              onCapture={async (cleanText, meta) => {
-                enterClarifyMode(cleanText, 'text', meta);
-                onCapture(cleanText, 'text', undefined, meta);
-              }}
-            />
+            {/* Success flash */}
+            <AnimatePresence>
+              {captureFlash && (
+                <motion.div
+                  key="flash"
+                  initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#37f6dd]/10 border border-[#37f6dd]/30 text-[#37f6dd] text-sm font-bold"
+                >
+                  <span>✓</span> Task captured!
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-            <div className="flex justify-between items-center px-2">
-              <button
-                type="button"
-                onClick={() => { setTextMode(false); setInputValue('') }}
-                aria-label={tCommon('cancel')}
-                className="text-xs font-bold uppercase tracking-widest text-content-secondary hover:text-content-primary px-2 py-2 min-h-[44px]"
-              >
-                {tCommon('cancel')}
-              </button>
+            {/* Wrapper ref lets us querySelector the real <input> for Android focus */}
+            <div ref={textContainerRef}>
+              <SmartInputBar
+                placeholder={tInbox('placeholder')}
+                autoFocus={!platform.isNative()} // autoFocus unreliable on Android; we use focusTextInput()
+                onCapture={async (cleanText, meta) => {
+                  enterClarifyMode(cleanText, 'text', meta);
+                  onCapture(cleanText, 'text', undefined, meta);
+                }}
+              />
             </div>
+
+            {/* Only show mic-switch button when voice is actually available */}
+            {isSupported && (
+              <div className="flex justify-between items-center px-2">
+                <button
+                  type="button"
+                  onClick={() => { setTextMode(false); setInputValue('') }}
+                  aria-label="Switch to voice input"
+                  className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#aba9b9] hover:text-[#e9e6f7] px-2 py-2 min-h-[44px]"
+                >
+                  <Mic size={14} />
+                  Voice
+                </button>
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

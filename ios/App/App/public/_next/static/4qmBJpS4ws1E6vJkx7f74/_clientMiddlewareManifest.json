@@ -1,0 +1,14 @@
+[
+  {
+    "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/(\\/?index|\\/?index\\.json))?[\\/#\\?]?$",
+    "originalSource": "/"
+  },
+  {
+    "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/(hi|es|ar|pt-BR|de|ja|zh-CN))(?:\\/((?:[^\\/#\\?]+?)(?:\\/(?:[^\\/#\\?]+?))*))?(\\.json)?[\\/#\\?]?$",
+    "originalSource": "/(hi|es|ar|pt-BR|de|ja|zh-CN)/:path*"
+  },
+  {
+    "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/((?!api|_next|_vercel|.*\\\\..*).*))(\\.json)?[\\/#\\?]?$",
+    "originalSource": "/((?!api|_next|_vercel|.*\\\\..*).*)"
+  }
+]

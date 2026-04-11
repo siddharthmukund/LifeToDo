@@ -9,9 +9,40 @@ import type { EnergyLevel } from '@/types'
 
 const ENERGY_OPTIONS: EnergyLevel[] = ['high', 'medium', 'low']
 
+/** Reusable toggle — explicit state-driven styling, no Tailwind peer-checked tricks */
+function Toggle({
+  checked,
+  onChange,
+}: {
+  checked: boolean
+  onChange: (v: boolean) => void
+}) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      onClick={() => onChange(!checked)}
+      style={{ backgroundColor: checked ? '#37f6dd' : '#2b2a3c' }}
+      className="relative flex-shrink-0 w-11 h-6 rounded-full transition-colors duration-200
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#37f6dd]/50
+                 focus-visible:ring-offset-2 focus-visible:ring-offset-[#181826] active:scale-95"
+    >
+      <span
+        className="absolute top-[3px] w-[18px] h-[18px] rounded-full bg-white shadow transition-transform duration-200"
+        style={{ transform: checked ? 'translateX(22px)' : 'translateX(3px)' }}
+      />
+    </button>
+  )
+}
+
 export function GTDPreferences() {
   const { settings, updateSettings } = useGTDStore()
   if (!settings) return null
+
+  const staleInboxDays      = settings.staleInboxDays      ?? 7
+  const waitingForDays      = settings.waitingForDays      ?? 14
+  const twoMinuteRuleEnabled = settings.twoMinuteRuleEnabled ?? true
 
   return (
     <div className="space-y-3">
@@ -56,9 +87,12 @@ export function GTDPreferences() {
             {[3, 5, 7, 14].map(days => (
               <button
                 key={days}
-                className="flex-1 py-2.5 rounded-xl text-xs font-bold bg-surface-elevated
-                           text-content-secondary border border-border-default hover:text-content-primary
-                           transition-colors active:scale-95"
+                onClick={() => void updateSettings({ staleInboxDays: days })}
+                className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-colors active:scale-95
+                  ${staleInboxDays === days
+                    ? 'bg-primary text-on-brand shadow-glow-accent'
+                    : 'bg-surface-elevated text-content-secondary border border-border-default hover:text-content-primary'
+                  }`}
               >
                 {days}d
               </button>
@@ -79,9 +113,12 @@ export function GTDPreferences() {
             {[7, 14, 21, 30].map(days => (
               <button
                 key={days}
-                className="flex-1 py-2.5 rounded-xl text-xs font-bold bg-surface-elevated
-                           text-content-secondary border border-border-default hover:text-content-primary
-                           transition-colors active:scale-95"
+                onClick={() => void updateSettings({ waitingForDays: days })}
+                className={`flex-1 py-2.5 rounded-xl text-xs font-bold transition-colors active:scale-95
+                  ${waitingForDays === days
+                    ? 'bg-primary text-on-brand shadow-glow-accent'
+                    : 'bg-surface-elevated text-content-secondary border border-border-default hover:text-content-primary'
+                  }`}
               >
                 {days}d
               </button>
@@ -89,27 +126,21 @@ export function GTDPreferences() {
           </div>
         </div>
 
-        {/* 2-minute rule threshold */}
-        <div>
-          <div className="flex items-center gap-2 mb-3">
-            <Clock size={15} className="text-content-secondary" />
-            <p className="text-sm font-medium text-content-primary">2-minute rule</p>
+        {/* 2-minute rule toggle */}
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <Clock size={15} className="text-content-secondary flex-shrink-0" />
+            <div>
+              <p className="text-sm font-medium text-content-primary">2-minute rule</p>
+              <p className="text-xs text-content-secondary mt-0.5">
+                Suggest "do it now" for tasks under 2 minutes
+              </p>
+            </div>
           </div>
-          <p className="text-xs text-content-secondary mb-2">
-            Auto-suggest "do it now" for tasks under:
-          </p>
-          <div className="flex gap-1.5">
-            {[1, 2, 3, 5].map(mins => (
-              <button
-                key={mins}
-                className="flex-1 py-2.5 rounded-xl text-xs font-bold bg-surface-elevated
-                           text-content-secondary border border-border-default hover:text-content-primary
-                           transition-colors active:scale-95"
-              >
-                {mins}m
-              </button>
-            ))}
-          </div>
+          <Toggle
+            checked={twoMinuteRuleEnabled}
+            onChange={v => void updateSettings({ twoMinuteRuleEnabled: v })}
+          />
         </div>
 
       </div>

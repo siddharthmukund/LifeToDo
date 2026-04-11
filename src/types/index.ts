@@ -89,6 +89,11 @@ export interface Settings {
   onboardingComplete: boolean
   adhdMode: boolean              // limits lists to 7, scales fonts 1.5×
   lastEnergyLevel: EnergyLevel | null  // persisted energy filter
+  // ── GTD Preferences (optional — defaults applied in GTDPreferences component) ──
+  staleInboxDays?: number        // days before inbox item flagged stale (default 7)
+  waitingForDays?: number        // days before waiting-for nudge (default 14)
+  twoMinuteRuleEnabled?: boolean // show 2-min rule reminder during clarify (default true)
+  workingHours?: WorkingHours    // working hours schedule (enabled flag inside)
 }
 
 // ── User Profile & Account Types (iCCW #6) ──────────────────────────────────

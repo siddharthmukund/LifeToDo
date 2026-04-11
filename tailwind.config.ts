@@ -20,6 +20,7 @@ const config: Config = {
         // ── Core brand tokens (driven by CSS vars in globals.css) ────────────
         primary: 'var(--primary)',           // Cyan CTA fill
         accent: 'var(--accent)',            // Purple secondary
+        tertiary: 'var(--tertiary)',         // Blue tertiary
 
         // ── iCCW #5 Semantic surface tokens ──────────────────────────────────
         surface: {

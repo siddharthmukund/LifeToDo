@@ -6,12 +6,7 @@ const config: CapacitorConfig = {
   webDir: 'out',                        // Next.js static export output
 
   server: {
-    // Development: load from local dev server
-    // Production: load from bundled web assets
-    url: process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : undefined,
-    cleartext: process.env.NODE_ENV === 'development',
+    androidScheme: 'https'
   },
 
   plugins: {

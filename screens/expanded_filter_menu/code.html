@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Archive Filters - Luminous Velocity</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-surface": "#fcf8ff",
+              "secondary-fixed-dim": "#deb3ff",
+              "tertiary-container": "#0cbefb",
+              "on-secondary-fixed": "#510085",
+              "primary-fixed-dim": "#11e8cf",
+              "surface-container-highest": "#242434",
+              "on-primary-fixed-variant": "#006358",
+              "on-primary-container": "#004d44",
+              "on-primary": "#00594e",
+              "primary-container": "#00e5cc",
+              "surface-dim": "#0d0d18",
+              "surface-container-lowest": "#000000",
+              "tertiary-fixed": "#0cbefb",
+              "surface-bright": "#2b2a3c",
+              "surface": "#0d0d18",
+              "on-primary-fixed": "#00443c",
+              "primary-fixed": "#37f6dd",
+              "on-surface-variant": "#aba9b9",
+              "on-tertiary": "#003f57",
+              "surface-variant": "#242434",
+              "surface-tint": "#37f6dd",
+              "primary": "#37f6dd",
+              "on-surface": "#e9e6f7",
+              "tertiary-fixed-dim": "#00afe8",
+              "background": "#0d0d18",
+              "on-secondary-fixed-variant": "#7520b5",
+              "secondary": "#c57eff",
+              "outline-variant": "#474754",
+              "on-secondary": "#340058",
+              "error": "#ff716c",
+              "on-secondary-container": "#e6c3ff",
+              "on-tertiary-fixed": "#001a27",
+              "secondary-fixed": "#e7c5ff",
+              "secondary-dim": "#c57eff",
+              "secondary-container": "#6a0baa",
+              "on-tertiary-fixed-variant": "#003e55",
+              "inverse-on-surface": "#555461",
+              "on-error-container": "#ffa8a3",
+              "primary-dim": "#11e8cf",
+              "surface-container-high": "#1e1e2d",
+              "on-background": "#e9e6f7",
+              "inverse-primary": "#006b5f",
+              "tertiary-dim": "#00afe8",
+              "surface-container-low": "#12121e",
+              "on-error": "#490006",
+              "error-dim": "#d7383b",
+              "tertiary": "#59caff",
+              "surface-container": "#181826",
+              "error-container": "#9f0519",
+              "on-tertiary-container": "#003549",
+              "outline": "#757482"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neon-glow-primary {
+            box-shadow: 0 0 20px rgba(0, 229, 204, 0.4);
+        }
+        .neon-glow-inner-primary {
+            box-shadow: inset 0 0 10px rgba(0, 229, 204, 0.2);
+        }
+        .glass-sheet {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- Background Content (Archive Screen Mock) -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none opacity-40">
+<div class="p-6 space-y-6">
+<div class="h-8 w-48 bg-surface-container rounded-lg"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="h-32 bg-surface-container rounded-xl border border-white/5"></div>
+<div class="h-32 bg-surface-container rounded-xl border border-white/5"></div>
+<div class="h-32 bg-surface-container rounded-xl border border-white/5"></div>
+<div class="h-32 bg-surface-container rounded-xl border border-white/5"></div>
+</div>
+</div>
+</div>
+<!-- Overlay / Scrim -->
+<div class="fixed inset-0 bg-black/60 z-40"></div>
+<!-- Bottom Sheet Container -->
+<div class="fixed inset-x-0 bottom-0 z-50 flex flex-col items-center">
+<!-- Handle for Visual Cue -->
+<div class="w-12 h-1.5 bg-outline-variant/30 rounded-full mb-3"></div>
+<!-- The Sheet -->
+<div class="glass-sheet w-full max-w-2xl rounded-t-[2.5rem] overflow-hidden flex flex-col max-h-[795px]">
+<!-- TopAppBar Internal to Sheet -->
+<header class="flex items-center justify-between px-6 py-6 w-full">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-highest/50 text-on-surface hover:bg-surface-container-highest transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<h1 class="font-headline font-bold tracking-tight text-[1.75rem] text-[#e9e6f7]">Archive</h1>
+</div>
+<button class="font-label font-bold text-primary transition-colors duration-300 hover:text-[#37f6dd] active:scale-95">Reset</button>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto px-6 pb-32 hide-scrollbar">
+<!-- Section: Date Range -->
+<section class="mb-10">
+<h2 class="font-headline font-bold text-lg mb-4 text-on-surface-variant tracking-wide">Date Range</h2>
+<div class="flex flex-wrap gap-3">
+<button class="px-5 py-2.5 rounded-full text-sm font-bold border border-outline-variant/20 bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-all">Today</button>
+<button class="px-5 py-2.5 rounded-full text-sm font-bold border border-outline-variant/20 bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-all">Last 7 Days</button>
+<!-- Active State -->
+<button class="px-5 py-2.5 rounded-full text-sm font-bold border-2 border-primary-container bg-surface-container-highest text-primary-container neon-glow-inner-primary transition-all">Last 30 Days</button>
+<button class="px-5 py-2.5 rounded-full text-sm font-bold border border-outline-variant/20 bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-all flex items-center gap-2">
+                            Custom <span class="material-symbols-outlined text-sm" data-icon="calendar_today">calendar_today</span>
+</button>
+</div>
+</section>
+<!-- Section: Context -->
+<section class="mb-10">
+<h2 class="font-headline font-bold text-lg mb-4 text-on-surface-variant tracking-wide">Context</h2>
+<div class="flex flex-wrap gap-3">
+<button class="px-5 py-2.5 rounded-full text-sm font-bold border border-outline-variant/20 bg-surface-container-low text-on-surface-variant flex items-center gap-2 hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="business">business</span> Office
+                        </button>
+<!-- Active Multi-select -->
+<button class="px-5 py-2.5 rounded-full text-sm font-bold border-2 border-primary-container bg-surface-container-highest text-primary-container neon-glow-inner-primary flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span> Home
+                        </button>
+<button class="px-5 py-2.5 rounded-full text-sm font-bold border border-outline-variant/20 bg-surface-container-low text-on-surface-variant flex items-center gap-2 hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="person">person</span> Personal
+                        </button>
+<button class="px-5 py-2.5 rounded-full text-sm font-bold border border-outline-variant/20 bg-surface-container-low text-on-surface-variant flex items-center gap-2 hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="brush">brush</span> Studio
+                        </button>
+</div>
+</section>
+<!-- Section: Energy Level -->
+<section class="mb-10">
+<h2 class="font-headline font-bold text-lg mb-4 text-on-surface-variant tracking-wide">Energy Level</h2>
+<div class="grid grid-cols-3 gap-4">
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl bg-surface-container-low border border-outline-variant/10 hover:bg-surface-container-high transition-all group">
+<div class="w-2 h-2 rounded-full bg-primary mb-2 shadow-[0_0_8px_#37f6dd]"></div>
+<span class="text-sm font-bold text-on-surface">High</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl bg-surface-container-low border border-outline-variant/10 hover:bg-surface-container-high transition-all group">
+<div class="w-2 h-2 rounded-full bg-secondary-fixed-dim mb-2 shadow-[0_0_8px_#deb3ff]"></div>
+<span class="text-sm font-bold text-on-surface">Medium</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 rounded-2xl bg-surface-container-low border border-outline-variant/10 hover:bg-surface-container-high transition-all group">
+<div class="w-2 h-2 rounded-full bg-outline mb-2"></div>
+<span class="text-sm font-bold text-on-surface">Low</span>
+</button>
+</div>
+</section>
+<!-- Section: Project Type -->
+<section class="mb-6">
+<h2 class="font-headline font-bold text-lg mb-4 text-on-surface-variant tracking-wide">Project Type</h2>
+<div class="space-y-3">
+<label class="flex items-center justify-between p-4 rounded-2xl bg-surface-container-low border border-outline-variant/10 cursor-pointer hover:bg-surface-container-high transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+<span class="font-bold">Active projects</span>
+</div>
+<input checked="" class="w-6 h-6 rounded-full border-2 border-outline-variant bg-transparent checked:bg-primary-container checked:border-primary-container focus:ring-0 transition-all" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-4 rounded-2xl bg-surface-container-low border border-outline-variant/10 cursor-pointer hover:bg-surface-container-high transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline" data-icon="archive">archive</span>
+<span class="font-bold">Archived projects</span>
+</div>
+<input class="w-6 h-6 rounded-full border-2 border-outline-variant bg-transparent checked:bg-primary-container checked:border-primary-container focus:ring-0 transition-all" type="checkbox"/>
+</label>
+</div>
+</section>
+</div>
+<!-- Footer Action -->
+<div class="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-[#1a1a2e] via-[#1a1a2e] to-transparent">
+<button class="w-full py-5 rounded-2xl bg-gradient-to-r from-primary to-primary-container text-on-primary-container font-headline font-extrabold text-lg tracking-tight neon-glow-primary active:scale-[0.98] transition-all transform duration-200">
+                    Apply Filters
+                </button>
+</div>
+</div>
+</div>
+<!-- Persistent Bottom Nav (Underneath but aligned) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-[2rem] bg-[#12121e]/60 backdrop-blur-2xl border-t border-white/5 flex justify-around items-center h-20 px-4">
+<div class="flex flex-col items-center justify-center text-[#474754] opacity-60">
+<span class="material-symbols-outlined text-2xl" data-icon="inbox">inbox</span>
+<span class="font-headline font-bold text-[0.75rem] uppercase tracking-widest mt-1">Inbox</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#474754] opacity-60">
+<span class="material-symbols-outlined text-2xl" data-icon="layers">layers</span>
+<span class="font-headline font-bold text-[0.75rem] uppercase tracking-widest mt-1">Projects</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#474754] opacity-60">
+<span class="material-symbols-outlined text-2xl" data-icon="bolt">bolt</span>
+<span class="font-headline font-bold text-[0.75rem] uppercase tracking-widest mt-1">Focus</span>
+</div>
+<!-- Active Tab: Archive -->
+<div class="flex flex-col items-center justify-center text-[#00e5cc] drop-shadow-[0_0_10px_rgba(0,229,204,0.4)]">
+<span class="material-symbols-outlined text-2xl" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-headline font-bold text-[0.75rem] uppercase tracking-widest mt-1">Archive</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#474754] opacity-60">
+<span class="material-symbols-outlined text-2xl" data-icon="settings">settings</span>
+<span class="font-headline font-bold text-[0.75rem] uppercase tracking-widest mt-1">Settings</span>
+</div>
+</nav>
+</body></html>

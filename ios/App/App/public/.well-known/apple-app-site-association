@@ -1,0 +1,27 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "TEAMID.app.lifetodo",
+        "paths": [
+          "/inbox",
+          "/next-actions",
+          "/projects",
+          "/projects/*",
+          "/review",
+          "/capture",
+          "/settings",
+          "/settings/*",
+          "/share",
+          "/*"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "TEAMID.app.lifetodo"
+    ]
+  }
+}

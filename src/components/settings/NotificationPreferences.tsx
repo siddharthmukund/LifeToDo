@@ -76,13 +76,17 @@ export function NotificationPreferences() {
                 <span className="text-xs text-content-muted font-medium">Always on</span>
               ) : row.settingsKey ? (
                 <button
+                  type="button"
+                  role="switch"
+                  aria-checked={isOn}
                   onClick={() => toggle(row.settingsKey!)}
-                  className={`relative w-11 h-6 rounded-full transition-colors active:scale-95
-                    ${isOn ? 'bg-primary shadow-glow-accent' : 'bg-overlay-active'}`}
+                  style={{ backgroundColor: isOn ? '#37f6dd' : '#2b2a3c' }}
+                  className="relative flex-shrink-0 w-11 h-6 rounded-full transition-colors duration-200 active:scale-95
+                             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#37f6dd]/50"
                 >
                   <span
-                    className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform
-                      ${isOn ? 'translate-x-5' : 'translate-x-0.5'}`}
+                    className="absolute top-[3px] w-[18px] h-[18px] rounded-full bg-white shadow transition-transform duration-200"
+                    style={{ transform: isOn ? 'translateX(22px)' : 'translateX(3px)' }}
                   />
                 </button>
               ) : null}

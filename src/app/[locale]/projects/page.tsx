@@ -55,25 +55,38 @@ export default function ProjectsPage() {
     <div className="flex flex-col h-full animate-fade-in">
 
       {/* ── Sticky header ──────────────────────────────────────────────────── */}
-      <div className="sticky top-0 z-10 bg-surface-base/95 backdrop-blur-xl border-b border-primary/10 px-6 pt-14 pb-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-display font-bold text-content-primary flex items-center gap-2">
-              <FolderOpen size={22} className="text-primary-ink fill-primary/20" />
-              {t('title')}
-            </h1>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-content-muted mt-1">
-              {projects.length} {t('active')}
+      <div className="sticky top-0 z-10 glass-header px-6 pt-4 pb-4">
+        {/* App bar */}
+        <div className="flex items-center justify-between mb-4">
+          <h1 className="font-display text-[1.75rem] font-extrabold tracking-tight text-[#37f6dd]">
+            Projects
+          </h1>
+          <button
+            onClick={() => setShowNew(true)}
+            className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#37f6dd] to-[#00e5cc] text-[#0d0d18] flex items-center justify-center shadow-[0_0_16px_rgba(55,246,221,0.35)] hover:opacity-90 transition-all active:scale-90"
+            aria-label={t('newButton')}
+          >
+            <Plus size={20} strokeWidth={2.5} />
+          </button>
+        </div>
+        {/* Editorial velocity stat */}
+        <div className="mb-1">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#aba9b9] mb-1">
+            Current Velocity
+          </p>
+          <div className="flex items-end gap-3">
+            <span className="text-[3.5rem] font-extrabold tracking-tighter leading-none text-[#e9e6f7]">
+              {projects.length}
+            </span>
+            <div className="pb-2">
+              <span className="text-[#37f6dd] font-bold text-sm">{t('active')}</span>
               {projectsWithWarning.length > 0 && (
-                <span className="text-status-warning ml-2">
-                  · {projectsWithWarning.length} {t('stuck')}
-                </span>
+                <p className="text-[10px] text-yellow-400 font-bold">
+                  {projectsWithWarning.length} {t('stuck')}
+                </p>
               )}
-            </p>
+            </div>
           </div>
-          <Button size="sm" onClick={() => setShowNew(true)}>
-            <Plus size={16} /> {t('newButton')}
-          </Button>
         </div>
       </div>
 
@@ -91,8 +104,9 @@ export default function ProjectsPage() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.04 }}
-                className={`glass-card rounded-2xl px-5 py-5 border-l-4 transition-all
-                  ${!p.nextAction ? 'border-l-yellow-500' : 'border-l-primary'}`}
+                className={`glass-card rounded-2xl px-5 py-5 border-l-4 transition-all cursor-pointer group
+                  hover:bg-[#1e1e2d] active:scale-[0.98]
+                  ${!p.nextAction ? 'border-l-yellow-500' : 'border-l-[#37f6dd]'}`}
               >
                 {/* Stuck badge */}
                 {!p.nextAction && (

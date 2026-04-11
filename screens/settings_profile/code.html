@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#37f6dd",
+              "surface-container-lowest": "#000000",
+              "on-error-container": "#ffa8a3",
+              "inverse-primary": "#006b5f",
+              "inverse-surface": "#fcf8ff",
+              "on-background": "#e9e6f7",
+              "tertiary-dim": "#00afe8",
+              "on-tertiary-fixed-variant": "#003e55",
+              "primary-dim": "#11e8cf",
+              "on-primary-container": "#004d44",
+              "surface-dim": "#0d0d18",
+              "error-dim": "#d7383b",
+              "on-secondary": "#340058",
+              "surface-tint": "#37f6dd",
+              "secondary-container": "#6a0baa",
+              "on-tertiary-fixed": "#001a27",
+              "tertiary-fixed": "#0cbefb",
+              "primary-container": "#00e5cc",
+              "error-container": "#9f0519",
+              "on-primary-fixed": "#00443c",
+              "on-tertiary": "#003f57",
+              "primary-fixed-dim": "#11e8cf",
+              "surface-bright": "#2b2a3c",
+              "on-error": "#490006",
+              "on-primary-fixed-variant": "#006358",
+              "on-secondary-fixed-variant": "#7520b5",
+              "secondary": "#c57eff",
+              "secondary-fixed-dim": "#deb3ff",
+              "primary-fixed": "#37f6dd",
+              "on-surface-variant": "#aba9b9",
+              "outline-variant": "#474754",
+              "outline": "#757482",
+              "error": "#ff716c",
+              "secondary-dim": "#c57eff",
+              "tertiary-container": "#0cbefb",
+              "secondary-fixed": "#e7c5ff",
+              "surface": "#0d0d18",
+              "on-tertiary-container": "#003549",
+              "background": "#0d0d18",
+              "surface-container-high": "#1e1e2d",
+              "tertiary": "#59caff",
+              "surface-container-low": "#12121e",
+              "on-surface": "#e9e6f7",
+              "on-primary": "#00594e",
+              "surface-container-highest": "#242434",
+              "on-secondary-fixed": "#510085",
+              "surface-variant": "#242434",
+              "on-secondary-container": "#e6c3ff",
+              "inverse-on-surface": "#555461",
+              "surface-container": "#181826",
+              "tertiary-fixed-dim": "#00afe8"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(0, 229, 204, 0.4);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary/30 selection:text-primary min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0d0d18]/60 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full">
+<h1 class="font-manrope font-extrabold tracking-tighter text-[#37f6dd] drop-shadow-[0_0_10px_rgba(0,229,204,0.4)] text-[1.75rem]">Life To Do</h1>
+<div class="flex items-center gap-4">
+<button class="hover:bg-[#242434] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-95 p-2 rounded-full">
+<span class="material-symbols-outlined text-[#37f6dd]">settings_suggest</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-bright overflow-hidden ring-2 ring-primary/20">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="Close up portrait of a stylish man with short dark hair in front of a dark minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm88VFVJsj8tI0nUcgSu9o9sQufsGKknkSt4iJWZwZpqSvmA43X7XURxP-4yElormIMSQYqh3P6F2cGo5kFwr0p0lpWcwoajNybXY0fgPeiRPYPjsucu5WPurNsA2kKvJ2-YE8uVkHZq--SHVqZJRfuFg3sd7WOZqF9kJU8CNCGhu4gutiMDrHWHTMp_RrgMJXd3XUVLwhG-2AL7fus0WYqZFljdvGTjFKuyEUrmSzbm9ANgLGCD79Q5tGgafEBK7HyLC596Z7rw"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto space-y-8">
+<!-- User Profile Section -->
+<section class="flex flex-col items-center text-center space-y-4 py-6">
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+<div class="relative w-28 h-28 rounded-full overflow-hidden border-4 border-surface-container-highest">
+<img alt="Alexander Profile" class="w-full h-full object-cover" data-alt="Professional headshot of a confident man named Alexander in a dark studio setting with soft cyan backlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABStx-_UiFKKoOjGNGkbk2VfKvQflHDjTGQ_yp4oGWhO0qsc9WRponVgyKki-MqB81dqYCZJLdJYjsWSKdRO43zmrKt13DOPaiEvdF2-0DAmlS6BTmKNVZQq52Z25WEc9N1ql_kfkfW1_Wx7GjzgdIU2j11ZWRTX6kAGZqmM0yJHxZRRboBGntxBw6vzWD3UzCr_ZlKBmkfQjjR-GRkz7AGRt4Fxo_d9QaRHAJrotF5GbxrolCok7PWh3PvPJINIa3H-bQ_7TU3A"/>
+</div>
+<div class="absolute bottom-1 right-1 bg-primary text-on-primary p-1.5 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+<div>
+<h2 class="text-[2rem] font-bold tracking-tight text-on-background">Alexander</h2>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full mt-2">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[0.75rem] font-bold uppercase tracking-wider text-primary">Premium Member</span>
+</div>
+</div>
+</section>
+<!-- Setting Groups -->
+<div class="space-y-6">
+<!-- Account Group -->
+<div class="space-y-3">
+<h3 class="text-[0.75rem] font-bold uppercase tracking-widest text-on-surface-variant px-2">Account</h3>
+<div class="glass-card rounded-[2rem] p-2 space-y-1">
+<button class="w-full flex items-center justify-between p-4 hover:bg-white/5 rounded-2xl transition-all duration-300 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<span class="font-bold text-on-background">Profile</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 hover:bg-white/5 rounded-2xl transition-all duration-300 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="font-bold text-on-background">Subscription</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-secondary transition-colors">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- GTD Preferences -->
+<div class="space-y-3">
+<h3 class="text-[0.75rem] font-bold uppercase tracking-widest text-on-surface-variant px-2">GTD Preferences</h3>
+<div class="glass-card rounded-[2rem] p-2 space-y-1">
+<button class="w-full flex items-center justify-between p-4 hover:bg-white/5 rounded-2xl transition-all duration-300 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<span class="font-bold text-on-background">Capture Methods</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-tertiary transition-colors">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 hover:bg-white/5 rounded-2xl transition-all duration-300 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">layers</span>
+</div>
+<span class="font-bold text-on-background">Contexts</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-tertiary transition-colors">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 hover:bg-white/5 rounded-2xl transition-all duration-300 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">event_repeat</span>
+</div>
+<span class="font-bold text-on-background">Review Schedule</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-tertiary transition-colors">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Appearance -->
+<div class="space-y-3">
+<h3 class="text-[0.75rem] font-bold uppercase tracking-widest text-on-surface-variant px-2">Appearance</h3>
+<div class="glass-card rounded-[2rem] p-2 space-y-1">
+<div class="flex items-center justify-between p-4 rounded-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">dark_mode</span>
+</div>
+<span class="font-bold text-on-background">Dark Mode</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary neon-glow"></div>
+</div>
+</div>
+<button class="w-full flex items-center justify-between p-4 hover:bg-white/5 rounded-2xl transition-all duration-300 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">palette</span>
+</div>
+<div class="text-left">
+<span class="font-bold block text-on-background">Accent Color</span>
+<span class="text-[0.7rem] text-primary uppercase font-extrabold tracking-tighter">Neon Cyan</span>
+</div>
+</div>
+<div class="w-4 h-4 rounded-full bg-primary neon-glow"></div>
+</button>
+</div>
+</div>
+<!-- App Integration -->
+<div class="space-y-3">
+<h3 class="text-[0.75rem] font-bold uppercase tracking-widest text-on-surface-variant px-2">App Integration</h3>
+<div class="glass-card rounded-[2rem] p-2 space-y-1">
+<div class="flex items-center justify-between p-4 rounded-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<span class="font-bold text-on-background">Google Calendar</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary neon-glow"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 rounded-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<span class="font-bold text-on-background">Slack</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary transition-all"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 rounded-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<span class="font-bold text-on-background">Apple Health</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest rounded-full peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary transition-all"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Help & Support -->
+<div class="space-y-3">
+<h3 class="text-[0.75rem] font-bold uppercase tracking-widest text-on-surface-variant px-2">Help &amp; Support</h3>
+<div class="glass-card rounded-[2rem] p-2">
+<button class="w-full flex items-center justify-between p-4 hover:bg-white/5 rounded-2xl transition-all duration-300 group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">help_center</span>
+</div>
+<span class="font-bold text-on-background">Contact Support</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-secondary transition-colors">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Logout -->
+<button class="w-full p-6 text-error font-bold flex items-center justify-center gap-2 hover:bg-error/5 rounded-[2rem] transition-colors border border-error/10 mt-4">
+<span class="material-symbols-outlined">logout</span>
+                Logout Alexander
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-[2rem] border-t border-white/5 bg-[#2b2a3c]/60 backdrop-blur-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.4)] flex justify-around items-center h-20 px-8 pb-4">
+<a class="flex flex-col items-center justify-center text-[#474754] hover:text-[#37f6dd]/80 transition-all active:scale-90 duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" href="#">
+<span class="material-symbols-outlined" data-icon="inbox">inbox</span>
+<span class="font-manrope font-bold text-[0.75rem] uppercase tracking-wider">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#474754] hover:text-[#37f6dd]/80 transition-all active:scale-90 duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" href="#">
+<span class="material-symbols-outlined" data-icon="tactic">tactic</span>
+<span class="font-manrope font-bold text-[0.75rem] uppercase tracking-wider">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#474754] hover:text-[#37f6dd]/80 transition-all active:scale-90 duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" href="#">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+<span class="font-manrope font-bold text-[0.75rem] uppercase tracking-wider">Focus</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#37f6dd] drop-shadow-[0_0_8px_rgba(0,229,204,0.6)] scale-110 active:scale-90 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-manrope font-bold text-[0.75rem] uppercase tracking-wider">Settings</span>
+</a>
+</nav>
+</body></html>

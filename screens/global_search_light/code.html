@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#7f2a13",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed": "#2d0050",
+              "on-error": "#ffffff",
+              "error": "#ba1a1a",
+              "on-secondary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-container-lowest": "#ffffff",
+              "on-surface": "#191c1d",
+              "on-tertiary-container": "#74220b",
+              "surface-container-high": "#e7e8e9",
+              "secondary-fixed": "#f1dbff",
+              "primary": "#006b5c",
+              "outline-variant": "#bbcac4",
+              "on-primary": "#ffffff",
+              "primary-fixed": "#68fadd",
+              "on-secondary-fixed-variant": "#680eac",
+              "secondary-fixed-dim": "#deb7ff",
+              "primary-container": "#00bfa5",
+              "outline": "#6c7a76",
+              "on-surface-variant": "#3c4a46",
+              "tertiary-fixed": "#ffdbd2",
+              "primary-fixed-dim": "#44ddc1",
+              "secondary-container": "#b86dfd",
+              "tertiary-fixed-dim": "#ffb4a1",
+              "surface-bright": "#f8f9fa",
+              "surface-variant": "#e1e3e4",
+              "surface-container-low": "#f3f4f5",
+              "inverse-surface": "#2e3132",
+              "on-primary-fixed": "#00201a",
+              "on-tertiary-fixed": "#3c0800",
+              "on-background": "#191c1d",
+              "surface-container-highest": "#e1e3e4",
+              "inverse-on-surface": "#f0f1f2",
+              "tertiary-container": "#fe896a",
+              "on-secondary-container": "#410070",
+              "on-primary-fixed-variant": "#005145",
+              "inverse-primary": "#44ddc1",
+              "surface-tint": "#006b5c",
+              "surface": "#f8f9fa",
+              "surface-container": "#edeeef",
+              "on-primary-container": "#00473c",
+              "secondary": "#8234c6",
+              "tertiary": "#9f4128",
+              "surface-dim": "#d9dadb",
+              "background": "#f8f9fa"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#F8F9FA]/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,107,92,0.04)]">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#006B5C] dark:text-[#00BFA5]">menu</span>
+<h1 class="text-xl font-extrabold tracking-tighter text-[#006B5C] dark:text-[#00BFA5] font-['Manrope']">Life To Do</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full overflow-hidden border-2 border-primary-container/20">
+<img alt="User profile" data-alt="professional portrait of a creative professional in a clean minimalist studio setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_KSEfiahe3iVfYU2Bdv3qp_J8nCQzInU-ppEEWIQwhTwoVKelYHqBE19ZUPcZSxKNM45jr9cnQwPPqRb9wgMz7kXjNBuTJo_9Qg7RUKD654PCVvgistqMPVET-NOcwDYGghWutqS3ee24S8IJK8H2eEU1h8dFsYA0XPAo7XIaZCXpK064IgsbWvCKb4cljnCf-xR-uwL224mg07kuHVMbMx7lV752_dh0DbsLeW3BA56ksnvtQoPYkkX-2JrSgYF3rB2nwe-Rag"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-5xl mx-auto">
+<!-- Search Interface -->
+<section class="mb-12">
+<div class="relative group">
+<div class="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-5 pl-14 pr-16 text-lg font-medium focus:ring-2 focus:ring-secondary/30 transition-all placeholder:text-outline-variant" placeholder="Search tasks, projects, or tags..." type="text"/>
+<button class="absolute inset-y-0 right-5 flex items-center hover:text-primary transition-colors">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+</section>
+<!-- Recent Searches & Quick Filters -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Left Column: History & Discovery -->
+<div class="md:col-span-4 space-y-10">
+<!-- Recent Searches -->
+<section>
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-xs font-bold uppercase tracking-widest text-outline">Recent Searches</h2>
+<button class="text-[10px] font-bold uppercase tracking-widest text-secondary hover:underline">Clear All</button>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3 py-2 group cursor-pointer">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">history</span>
+<span class="text-on-surface-variant font-medium group-hover:text-on-surface">Quarterly Review</span>
+</div>
+<div class="flex items-center gap-3 py-2 group cursor-pointer">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">history</span>
+<span class="text-on-surface-variant font-medium group-hover:text-on-surface">Design System updates</span>
+</div>
+<div class="flex items-center gap-3 py-2 group cursor-pointer">
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">history</span>
+<span class="text-on-surface-variant font-medium group-hover:text-on-surface">Client meeting prep</span>
+</div>
+</div>
+</section>
+<!-- Discover Cards (Asymmetric Bento) -->
+<section>
+<h2 class="text-xs font-bold uppercase tracking-widest text-outline mb-4">Discover</h2>
+<div class="grid grid-cols-1 gap-4">
+<!-- High Energy -->
+<div class="bg-gradient-to-br from-primary to-primary-container p-5 rounded-2xl text-white shadow-[0_12px_30px_rgba(0,107,92,0.15)] group cursor-pointer overflow-hidden relative">
+<div class="absolute -right-4 -bottom-4 opacity-10 scale-150">
+<span class="material-symbols-outlined text-9xl">bolt</span>
+</div>
+<span class="material-symbols-outlined mb-2" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<h3 class="font-bold text-lg leading-tight">High Energy<br/>Sprints</h3>
+<p class="text-white/80 text-xs mt-1">12 tasks ready for focus</p>
+</div>
+<!-- Overdue -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/10 shadow-sm group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+<span class="text-[10px] font-bold bg-error-container/20 text-error px-2 py-1 rounded-full uppercase tracking-tighter">Immediate</span>
+</div>
+<h3 class="font-bold text-on-surface">Overdue Review</h3>
+<p class="text-on-surface-variant text-xs mt-1">4 critical actions missed</p>
+</div>
+<!-- Someday -->
+<div class="bg-secondary-fixed p-5 rounded-2xl text-on-secondary-fixed group cursor-pointer">
+<span class="material-symbols-outlined mb-2 text-secondary">bed</span>
+<h3 class="font-bold text-lg leading-tight">Someday /<br/>Maybe</h3>
+<p class="text-on-secondary-fixed/70 text-xs mt-1">Incubate your ideas</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Results/Actions -->
+<div class="md:col-span-8 space-y-6">
+<div class="flex justify-between items-center">
+<h2 class="text-xs font-bold uppercase tracking-widest text-outline">Suggested Actions</h2>
+<span class="text-[10px] font-medium text-outline-variant">8 Results Found</span>
+</div>
+<div class="space-y-4">
+<!-- Action Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-transparent hover:border-primary/10 transition-all cursor-pointer group">
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-lg text-on-surface group-hover:text-primary transition-colors">Finalize Q4 Roadmap Presentation</h4>
+<span class="text-[10px] font-bold px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full uppercase tracking-widest">High Energy</span>
+</div>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex items-center gap-1.5 text-on-surface-variant text-xs font-medium">
+<span class="material-symbols-outlined text-sm">folder</span>
+<span>Product Vision</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant text-xs font-medium">
+<span class="material-symbols-outlined text-sm text-secondary">schedule</span>
+<span>Due Today, 5:00 PM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-transparent hover:border-primary/10 transition-all cursor-pointer group">
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-outline-variant">radio_button_unchecked</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-lg text-on-surface group-hover:text-primary transition-colors">Review Design System PR #402</h4>
+<span class="text-[10px] font-bold px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full uppercase tracking-widest">Med Energy</span>
+</div>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex items-center gap-1.5 text-on-surface-variant text-xs font-medium">
+<span class="material-symbols-outlined text-sm">alternate_email</span>
+<span>@DesignTeam</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant text-xs font-medium">
+<span class="material-symbols-outlined text-sm">link</span>
+<span>GitHub Attachment</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-transparent hover:border-primary/10 transition-all cursor-pointer group">
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-outline-variant">radio_button_unchecked</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-lg text-on-surface group-hover:text-primary transition-colors">Call Electrician regarding Studio lights</h4>
+<span class="text-[10px] font-bold px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full uppercase tracking-widest">Low Energy</span>
+</div>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex items-center gap-1.5 text-on-surface-variant text-xs font-medium">
+<span class="material-symbols-outlined text-sm">call</span>
+<span>Quick Action</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant text-xs font-medium">
+<span class="material-symbols-outlined text-sm">home</span>
+<span>Studio Maintenance</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State / Suggestion -->
+<div class="py-12 flex flex-col items-center justify-center text-center opacity-50">
+<span class="material-symbols-outlined text-4xl mb-3 text-outline-variant">auto_awesome</span>
+<p class="text-sm font-medium text-on-surface-variant">Looking for more?<br/>Try searching for specific <span class="text-primary font-bold">@contexts</span> or <span class="text-secondary font-bold">#tags</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl shadow-[0_-8px_30px_rgba(0,0,0,0.04)] rounded-t-[2rem] md:hidden">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#8234C6] transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-['Manrope'] font-bold text-[10px] uppercase tracking-widest mt-1">Capture</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#006B5C] to-[#00BFA5] text-white rounded-2xl px-5 py-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-['Manrope'] font-bold text-[10px] uppercase tracking-widest mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#8234C6] transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">archive</span>
+<span class="font-['Manrope'] font-bold text-[10px] uppercase tracking-widest mt-1">Archive</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-[#8234C6] transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Manrope'] font-bold text-[10px] uppercase tracking-widest mt-1">Settings</span>
+</a>
+</nav>
+<!-- Desktop Sidebar Suggestion (Semantic Shell) -->
+<div class="hidden md:block fixed left-0 top-0 h-full w-20 bg-surface-container-low z-40 flex flex-col items-center py-20 gap-8">
+<div class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-2xl">inbox</span>
+</div>
+<div class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-2xl">wb_sunny</span>
+</div>
+<div class="w-12 h-12 flex items-center justify-center bg-primary text-white rounded-xl shadow-lg shadow-primary/20 cursor-pointer">
+<span class="material-symbols-outlined text-2xl">search</span>
+</div>
+<div class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-2xl">bolt</span>
+</div>
+<div class="mt-auto w-12 h-12 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer mb-8">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</div>
+</div>
+</body></html>

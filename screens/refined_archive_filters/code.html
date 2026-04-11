@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: #0d0d18;
+      color: #e9e6f7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .neon-glow-primary {
+      box-shadow: 0 0 20px rgba(0, 229, 204, 0.4);
+    }
+    .glass-card {
+      background: rgba(43, 42, 60, 0.4);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "error": "#ff716c",
+            "outline": "#757482",
+            "outline-variant": "#474754",
+            "surface": "#0d0d18",
+            "surface-container-low": "#12121e",
+            "surface-container": "#181826",
+            "surface-container-high": "#1e1e2d",
+            "surface-container-highest": "#242434",
+            "surface-bright": "#2b2a3c",
+            "primary": "#37f6dd",
+            "primary-container": "#00e5cc",
+            "on-primary": "#00594e",
+            "on-surface": "#e9e6f7",
+            "secondary": "#c57eff",
+            "tertiary": "#59caff",
+          },
+          fontFamily: {
+            "headline": ["Manrope"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0d0d18] flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="text-[#00e5cc] active:scale-95 transition-transform">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-['Manrope'] font-bold text-[1.75rem] tracking-[-2%] text-[#e9e6f7]">Archive</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#e9e6f7] hover:bg-[#242434] p-2 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-6 max-w-2xl mx-auto">
+<!-- Velocity Header Section -->
+<section class="mb-8 mt-4">
+<div class="flex flex-col items-start">
+<span class="text-label-md font-bold text-primary uppercase tracking-wider mb-1">Performance Metrics</span>
+<div class="flex items-baseline gap-3">
+<h2 class="text-[3.5rem] font-extrabold tracking-[-3%] leading-none text-on-surface">124</h2>
+<div class="flex flex-col">
+<span class="text-xl font-bold text-on-surface/80">Velocity Total</span>
+<span class="text-xs font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12% from last month
+            </span>
+</div>
+</div>
+</div>
+<!-- Sort & Search Bar -->
+<div class="mt-8 flex items-center justify-between">
+<button class="flex items-center gap-2 bg-surface-container px-4 py-2 rounded-xl text-on-surface/80 hover:bg-surface-container-highest transition-colors active:scale-95 border border-white/5">
+<span class="material-symbols-outlined text-sm">sort</span>
+<span class="text-sm font-bold">Sort by: Date Completed</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="relative group">
+<input class="bg-surface-container-low border-none focus:ring-1 focus:ring-primary/40 rounded-xl py-2 pl-10 pr-4 text-sm w-48 placeholder:text-outline transition-all focus:w-64" placeholder="Search archive..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg group-focus-within:text-primary transition-colors">search</span>
+</div>
+</div>
+</section>
+<!-- Refined Filtering Layer -->
+<section class="mb-10 -mx-6 px-6 overflow-x-auto no-scrollbar flex items-center gap-3 py-2">
+<!-- Filter Toggle Icon -->
+<button class="flex-shrink-0 w-10 h-10 rounded-xl bg-[#1A1A2E] border border-outline-variant/20 flex items-center justify-center text-on-surface hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined">tune</span>
+</button>
+<!-- Active Filter Chip -->
+<button class="flex-shrink-0 flex items-center gap-2 px-4 h-10 rounded-xl bg-[#1A1A2E] border-2 border-primary-container text-primary-container font-bold text-sm neon-glow-primary active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg">calendar_today</span>
+        Last 30 Days
+        <span class="material-symbols-outlined text-sm">close</span>
+</button>
+<!-- Default Filter Chips -->
+<button class="flex-shrink-0 flex items-center gap-2 px-4 h-10 rounded-xl bg-[#1A1A2E] border border-outline-variant/20 text-on-surface/60 font-bold text-sm hover:text-on-surface hover:border-outline-variant/50 transition-all">
+        All Contexts
+        <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex-shrink-0 flex items-center gap-2 px-4 h-10 rounded-xl bg-[#1A1A2E] border border-outline-variant/20 text-on-surface/60 font-bold text-sm hover:text-on-surface hover:border-outline-variant/50 transition-all">
+        Energy Level
+        <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex-shrink-0 flex items-center gap-2 px-4 h-10 rounded-xl bg-[#1A1A2E] border border-outline-variant/20 text-on-surface/60 font-bold text-sm hover:text-on-surface hover:border-outline-variant/50 transition-all">
+        Status
+        <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</section>
+<!-- Finished Projects (Bento-style Grid) -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-title-lg font-bold">Finished Projects</h3>
+<span class="text-label-md font-bold text-secondary">8 Total</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Project Card 1 -->
+<div class="glass-card p-5 rounded-3xl relative overflow-hidden group hover:bg-surface-container-highest transition-colors">
+<div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<span class="text-[0.65rem] font-bold text-secondary uppercase tracking-[0.1em] mb-2 block">Someday/Maybe Flow</span>
+<h4 class="text-lg font-bold mb-3 leading-tight">Q3 Personal Infrastructure Overhaul</h4>
+<div class="flex items-center gap-4 mt-auto">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border border-surface bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="close up headshot of a professional collaborator in a minimalist studio environment with soft blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaGm9ueqQkE8VuiJjAqCdO-Y-YLh5Z8WgFQK8IGV56FBPDLLW2aboJdQ9QbHuJuEzZ2XisAQX3Dcx_rskrZM5m38H2_5kXgeBeMPhdZucnONpxTjvPU1dKJMiUBFvs5fNiFCh7H9-RtvbV_I0qGshQUE0p1BQAPfyPLnJop738Z-qcbOAR5jh6YeAReg3vO-Sn9eNJoJYzntMjoTmZFMBTovP7eNSGUjtztPIEQHySOg39qpTPxUwNk0bh0CPdcY2k9OaopCh-iQ"/>
+</div>
+<div class="w-6 h-6 rounded-full border border-surface bg-primary flex items-center justify-center text-[10px] text-on-primary font-bold">+2</div>
+</div>
+<span class="text-[0.7rem] font-bold text-on-surface/40 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">done_all</span> Completed 2d ago
+            </span>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="glass-card p-5 rounded-3xl group hover:bg-surface-container-highest transition-colors">
+<span class="text-[0.65rem] font-bold text-primary uppercase tracking-[0.1em] mb-2 block">Deep Work</span>
+<h4 class="text-lg font-bold mb-3 leading-tight">Brand Visual Identity V2</h4>
+<div class="flex items-center justify-between">
+<div class="h-1 flex-1 bg-white/5 rounded-full mr-4">
+<div class="h-full bg-primary rounded-full w-full"></div>
+</div>
+<span class="text-[0.7rem] font-bold text-primary">100%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Completed Actions (Asymmetric List) -->
+<section class="mb-20">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-title-lg font-bold">Completed Actions</h3>
+<button class="text-primary text-xs font-bold hover:underline">Clear History</button>
+</div>
+<div class="space-y-4">
+<!-- Action Item 1 -->
+<div class="bg-surface-container rounded-2xl p-4 flex items-center gap-4 group transition-all duration-300 hover:translate-x-1">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary neon-glow-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1">
+<h5 class="font-bold text-on-surface">Finalize quarterly audit report</h5>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-[0.7rem] font-bold text-on-surface/40 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">schedule</span> 4:30 PM
+              </span>
+<span class="px-2 py-0.5 rounded-lg bg-surface-container-high text-[0.65rem] font-bold text-tertiary">Work</span>
+</div>
+</div>
+<button class="p-2 text-on-surface/20 group-hover:text-on-surface/60 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Action Item 2 -->
+<div class="bg-surface-container rounded-2xl p-4 flex items-center gap-4 group transition-all duration-300 hover:translate-x-1">
+<div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1">
+<h5 class="font-bold text-on-surface">Update home automation scripts</h5>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-[0.7rem] font-bold text-on-surface/40 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">schedule</span> 11:20 AM
+              </span>
+<span class="px-2 py-0.5 rounded-lg bg-surface-container-high text-[0.65rem] font-bold text-secondary">Personal</span>
+</div>
+</div>
+<button class="p-2 text-on-surface/20 group-hover:text-on-surface/60 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Action Item 3 -->
+<div class="bg-surface-container rounded-2xl p-4 flex items-center gap-4 group transition-all duration-300 hover:translate-x-1 opacity-60">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1">
+<h5 class="font-bold text-on-surface line-through">Draft architectural brief for the neon museum</h5>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-[0.7rem] font-bold text-on-surface/40 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">history</span> Yesterday
+              </span>
+</div>
+</div>
+<button class="p-2 text-on-surface/20 group-hover:text-on-surface/60 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-[1.5rem] bg-[#2b2a3c]/60 backdrop-blur-3xl border-t border-white/5 shadow-[0_0_20px_rgba(0,229,204,0.08)] flex justify-around items-center h-20 px-4 pb-safe">
+<a class="flex flex-col items-center justify-center text-[#e9e6f7]/60 hover:text-[#00e5cc] transition-all active:scale-90 cubic-bezier(0.22,1,0.36,1)" href="#">
+<span class="material-symbols-outlined">inbox</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem]">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#e9e6f7]/60 hover:text-[#00e5cc] transition-all active:scale-90 cubic-bezier(0.22,1,0.36,1)" href="#">
+<span class="material-symbols-outlined">folder</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem]">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#00e5cc] drop-shadow-[0_0_10px_rgba(0,229,204,0.4)] active:scale-90 cubic-bezier(0.22,1,0.36,1)" href="#">
+<span class="material-symbols-outlined">archive</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem]">Archive</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#e9e6f7]/60 hover:text-[#00e5cc] transition-all active:scale-90 cubic-bezier(0.22,1,0.36,1)" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Manrope'] font-bold text-[0.75rem]">Settings</span>
+</a>
+</nav>
+</body></html>

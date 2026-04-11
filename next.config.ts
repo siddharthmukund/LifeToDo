@@ -44,6 +44,7 @@ const nextConfig: NextConfig = {
   },
   ...(process.env.BUILD_TARGET === 'native' && {
     output: 'export',
+    trailingSlash: true,
     images: { unoptimized: true },
   }),
 }
