@@ -37,8 +37,8 @@ export function BiometricSettings() {
         <div className="bg-surface-card rounded-2xl border border-border-default divide-y divide-border-subtle mb-6">
             <div className="flex items-center justify-between px-5 py-4">
                 <div className="flex items-center gap-3">
-                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20">
-                        <Shield size={16} className="text-emerald-500" />
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-status-ok/10 border border-status-ok/20">
+                        <Shield size={16} className="text-status-ok" />
                     </div>
                     <div>
                         <p className="text-sm font-medium text-content-primary">App Lock</p>
@@ -48,7 +48,7 @@ export function BiometricSettings() {
                 <button
                     onClick={handleToggle}
                     className={`relative w-11 h-6 rounded-full transition-colors active:scale-95
-              ${isEnabled ? 'bg-emerald-500 shadow-lg shadow-emerald-500/30' : 'bg-overlay-active'}`}
+              ${isEnabled ? 'bg-status-ok shadow-glow-success' : 'bg-overlay-active'}`}
                 >
                     <span
                         className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform

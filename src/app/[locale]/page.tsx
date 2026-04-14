@@ -316,11 +316,11 @@ export default function TodayPage() {
 
       {/* ── TopAppBar ──────────────────────────────────────────────────────── */}
       <header className="sticky top-0 w-full z-50 flex justify-between items-center px-6 min-h-[4rem] glass-header">
-        <h1 className="font-display text-[1.75rem] font-extrabold tracking-tight text-[#37f6dd]">
+        <h1 className="font-display text-[1.75rem] font-extrabold tracking-tight text-primary">
           Today
         </h1>
         <Link href="/inbox" aria-label="Add task">
-          <div className="w-10 h-10 rounded-xl bg-[#37f6dd] text-[#0d0d18] flex items-center justify-center shadow-[0_0_16px_rgba(55,246,221,0.4)] active:scale-90 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-primary text-on-brand flex items-center justify-center shadow-glow-accent active:scale-90 transition-transform">
             <Plus size={22} strokeWidth={2.5} />
           </div>
         </Link>
@@ -331,17 +331,17 @@ export default function TodayPage() {
 
         {/* Stat + XP */}
         <section>
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#aba9b9] mb-1">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-content-secondary mb-1">
             Today&rsquo;s Focus
           </p>
           <div className="flex items-end gap-4 mb-3">
-            <span className="text-[3.5rem] font-extrabold tracking-tighter leading-none text-[#e9e6f7]">
+            <span className="text-[3.5rem] font-extrabold tracking-tighter leading-none text-content-primary">
               {totalItems}
             </span>
-            <div className="pb-2 text-[#aba9b9] leading-tight text-sm">
+            <div className="pb-2 text-content-secondary leading-tight text-sm">
               {totalItems === 1 ? 'action' : 'actions'} pending
               {doneToday > 0 && (
-                <p className="text-[#37f6dd] font-bold text-xs">{doneToday} completed today</p>
+                <p className="text-primary font-bold text-xs">{doneToday} completed today</p>
               )}
             </div>
           </div>
@@ -393,24 +393,24 @@ export default function TodayPage() {
             <div className="relative flex items-center justify-center w-36 h-36">
               {!platform.isAndroid() && (
                 <>
-                  <div className="absolute inset-0 rounded-full border-2 border-[#37f6dd]/20 scale-150 animate-pulse-ring pointer-events-none" />
-                  <div className="absolute inset-0 rounded-full border border-[#37f6dd]/10 scale-[1.8] animate-pulse-ring-2 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-full border-2 border-primary/20 scale-150 animate-pulse-ring pointer-events-none" />
+                  <div className="absolute inset-0 rounded-full border border-primary/10 scale-[1.8] animate-pulse-ring-2 pointer-events-none" />
                 </>
               )}
               <Link
                 href="/inbox"
-                className="relative z-10 w-full h-full rounded-full bg-[#37f6dd]/20 border border-[#37f6dd]/40 shadow-[0_0_40px_rgba(55,246,221,0.4)] flex items-center justify-center active:scale-90 transition-transform duration-300"
+                className="relative z-10 w-full h-full rounded-full bg-primary/20 border border-primary/40 shadow-glow-primary-lg flex items-center justify-center active:scale-90 transition-transform duration-300"
                 aria-label="Add new task"
               >
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#37f6dd] to-[#00e5cc] flex items-center justify-center shadow-[0_0_20px_rgba(55,246,221,0.6)]">
-                  <Mic className="text-[#0d0d18]" size={40} strokeWidth={1.5} />
+                <div className="w-24 h-24 rounded-full bg-primary flex items-center justify-center shadow-glow-accent">
+                  <Mic className="text-on-brand" size={40} strokeWidth={1.5} />
                 </div>
               </Link>
             </div>
-            <p className="mt-16 font-bold tracking-widest text-[11px] uppercase text-[#37f6dd]/60 animate-pulse">
+            <p className="mt-16 font-bold tracking-widest text-[11px] uppercase text-primary/60 animate-pulse">
               Tap to Capture a Thought
             </p>
-            <Link href="/inbox" className="mt-4 flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#181826] border border-[#474754] text-[#aba9b9] text-xs font-bold uppercase tracking-widest hover:border-[#37f6dd]/40 transition-colors active:scale-95">
+            <Link href="/inbox" className="mt-4 flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-card border border-border-default text-content-secondary text-xs font-bold uppercase tracking-widest hover:border-primary/40 transition-colors active:scale-95">
               <Plus size={14} />
               Add task
             </Link>

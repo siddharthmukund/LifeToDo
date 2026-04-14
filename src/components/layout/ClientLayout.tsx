@@ -116,11 +116,11 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
   if (!mounted || !ready) {
     return (
-      <div className={`bg-[#0d0d18] text-[#e9e6f7] font-display min-h-screen ${adhdMode ? 'adhd-mode' : ''}`}>
-        <div className="fixed inset-0 flex items-center justify-center bg-[#0d0d18] z-50">
+      <div className={`bg-surface-base text-content-primary font-display min-h-screen ${adhdMode ? 'adhd-mode' : ''}`}>
+        <div className="fixed inset-0 flex items-center justify-center bg-surface-base z-50">
           <div className="flex flex-col items-center gap-3">
-            <div className="size-16 rounded-full border-4 border-[#37f6dd]/20 border-t-[#37f6dd] animate-spin" />
-            <p className="text-[#37f6dd] text-xs font-bold uppercase tracking-widest mt-4">
+            <div className="size-16 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
+            <p className="text-primary text-xs font-bold uppercase tracking-widest mt-4">
               Life To Do
             </p>
           </div>

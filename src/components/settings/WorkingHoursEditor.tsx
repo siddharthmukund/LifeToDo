@@ -75,9 +75,9 @@ export function WorkingHoursEditor() {
             role="switch"
             aria-checked={hours.enabled}
             onClick={() => void save({ enabled: !hours.enabled })}
-            style={{ backgroundColor: hours.enabled ? '#37f6dd' : '#2b2a3c' }}
+            style={{ backgroundColor: hours.enabled ? 'var(--primary)' : 'var(--surface-bright)' }}
             className="relative flex-shrink-0 w-11 h-6 rounded-full transition-colors duration-200 active:scale-95
-                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#37f6dd]/50"
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           >
             <span
               className="absolute top-[3px] w-[18px] h-[18px] rounded-full bg-white shadow transition-transform duration-200"

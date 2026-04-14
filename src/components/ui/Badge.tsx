@@ -23,9 +23,9 @@ const colors: Record<Color, string> = {
   default: 'bg-overlay-hover text-content-secondary',
   accent:  'bg-primary/15 text-primary-ink border border-primary/25',
   success: 'bg-status-success/15 text-status-success border border-status-ok',
-  warning: 'bg-yellow-500/15 text-status-warning border border-yellow-500/25',
-  danger:  'bg-status-error/15 text-status-error border border-red-500/25',
-  someday: 'bg-purple-500/15 text-purple-400 border border-purple-500/25',
+  warning: 'bg-status-warn/15 text-status-warning border border-status-warn/25',
+  danger:  'bg-status-error/15 text-status-error border border-status-danger/25',
+  someday: 'bg-accent/15 text-accent border border-accent/25',
   muted:   'bg-overlay-hover text-content-muted',
 }
 

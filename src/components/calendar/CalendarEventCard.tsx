@@ -9,7 +9,7 @@ import type { Action } from '@/types'
 const ENERGY_COLORS = {
   high:   'border-l-primary bg-primary/10',
   medium: 'border-l-accent bg-accent/10',
-  low:    'border-l-green-500 bg-green-500/10',
+  low:    'border-l-status-ok bg-status-ok/10',
 } as const
 
 interface CalendarEventCardProps {

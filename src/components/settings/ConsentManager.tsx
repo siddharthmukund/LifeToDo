@@ -114,9 +114,9 @@ export function ConsentManager() {
                 role="switch"
                 aria-checked={granted[item.type]}
                 onClick={() => void toggle(item.type)}
-                style={{ backgroundColor: granted[item.type] ? '#37f6dd' : '#2b2a3c' }}
+                style={{ backgroundColor: granted[item.type] ? 'var(--primary)' : 'var(--surface-bright)' }}
                 className="relative flex-shrink-0 w-11 h-6 rounded-full transition-colors duration-200 active:scale-95
-                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#37f6dd]/50"
+                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
               >
                 <span
                   className="absolute top-[3px] w-[18px] h-[18px] rounded-full bg-white shadow transition-transform duration-200"

@@ -9,9 +9,9 @@ interface Props {
 }
 
 const DIFFICULTY_STYLES: Record<string, string> = {
-  easy: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
-  medium: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
-  hard: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+  easy:   'bg-status-ok/15 text-status-ok',
+  medium: 'bg-status-warn/15 text-status-warning',
+  hard:   'bg-status-error/15 text-status-error',
 };
 
 function timeUntilExpiry(expiresAt: string): string {
@@ -33,7 +33,7 @@ export function ChallengeCard({ challenge }: Props) {
     <div
       className={`rounded-2xl border p-4 space-y-3 transition-all ${
         isCompleted
-          ? 'bg-emerald-50/50 border-emerald-200/60 dark:bg-emerald-900/10 dark:border-emerald-800/30'
+          ? 'bg-status-ok/5 border-status-ok/30'
           : 'bg-surface-card border-border-subtle'
       }`}
     >
@@ -42,7 +42,7 @@ export function ChallengeCard({ challenge }: Props) {
         <div className="flex items-center gap-2">
           <span className="text-xl">{def.icon}</span>
           <div>
-            <p className={`text-sm font-bold ${isCompleted ? 'text-emerald-700 dark:text-emerald-400' : 'text-content-primary'}`}>
+            <p className={`text-sm font-bold ${isCompleted ? 'text-status-ok' : 'text-content-primary'}`}>
               {def.name}
             </p>
             <p className="text-xs text-content-muted">{def.description}</p>
@@ -50,7 +50,7 @@ export function ChallengeCard({ challenge }: Props) {
         </div>
         <div className="flex flex-col items-end gap-1 shrink-0">
           {isCompleted ? (
-            <CheckCircle2 size={18} className="text-emerald-500" />
+            <CheckCircle2 size={18} className="text-status-ok" />
           ) : (
             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${DIFFICULTY_STYLES[def.difficulty] ?? ''}`}>
               {def.difficulty}

@@ -17,16 +17,16 @@ export function BrainDumpInput({ onProcess, isProcessing, error }: BrainDumpInpu
 
     return (
         <div className="flex flex-col gap-3">
-            <h3 className="text-lg font-semibold dark:text-white flex items-center gap-2">
-                <Sparkles size={20} className="text-indigo-500" />
+            <h3 className="text-lg font-semibold text-content-primary flex items-center gap-2">
+                <Sparkles size={20} className="text-primary-ink" />
                 Magic Brain Dump
             </h3>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="text-sm text-content-secondary">
                 Paste a stream of thoughts, an email, or meeting notes. AI will extract the actionable tasks for you.
             </p>
 
             <textarea
-                className="w-full min-h-[160px] p-4 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 resize-y focus:ring-2 focus:ring-indigo-500/50 outline-none transition-all dark:text-white"
+                className="w-full min-h-[160px] p-4 rounded-xl border border-border-default bg-surface-base resize-y focus:ring-2 focus:ring-primary/50 outline-none transition-all text-content-primary"
                 placeholder="I need to call the dentist, also email Sarah about the project timeline and don't forget to buy groceries..."
                 value={text}
                 onChange={(e) => setText(e.target.value)}
@@ -34,7 +34,7 @@ export function BrainDumpInput({ onProcess, isProcessing, error }: BrainDumpInpu
             />
 
             {error && (
-                <div className="text-sm text-red-500 bg-red-50 dark:bg-red-500/10 p-3 rounded-lg border border-red-100 dark:border-red-500/20">
+                <div className="text-sm text-status-error bg-status-error/10 p-3 rounded-lg border border-status-danger/20">
                     {error}
                 </div>
             )}
@@ -42,11 +42,11 @@ export function BrainDumpInput({ onProcess, isProcessing, error }: BrainDumpInpu
             <button
                 onClick={handleProcess}
                 disabled={text.trim().length < 10 || isProcessing}
-                className="w-full py-3.5 px-4 bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 disabled:opacity-50 text-white font-medium rounded-xl shadow transition-colors flex justify-center items-center gap-2"
+                className="w-full py-3.5 px-4 bg-primary hover:bg-primary/90 active:bg-primary/80 disabled:opacity-50 text-on-brand font-medium rounded-xl shadow transition-colors flex justify-center items-center gap-2"
             >
                 {isProcessing ? (
                     <>
-                        <div className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <div className="size-4 border-2 border-on-brand/30 border-t-on-brand rounded-full animate-spin" />
                         Processing with AI...
                     </>
                 ) : (

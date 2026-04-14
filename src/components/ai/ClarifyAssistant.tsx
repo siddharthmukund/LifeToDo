@@ -52,8 +52,8 @@ export function ClarifyAssistant({ taskText, onClose }: ClarifyAssistantProps) {
                 {/* Header */}
                 <div className="p-4 md:p-6 border-b border-border-default/50 bg-gradient-to-r from-surface-card to-surface-body flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        <div className="bg-indigo-500/10 p-2.5 rounded-2xl border border-indigo-500/20">
-                            <Sparkles size={20} className="text-indigo-400" />
+                        <div className="bg-primary/10 p-2.5 rounded-2xl border border-primary/20">
+                            <Sparkles size={20} className="text-primary-ink" />
                         </div>
                         <div>
                             <h3 className="font-display font-bold text-lg leading-tight">Clarify Coach</h3>
@@ -66,7 +66,7 @@ export function ClarifyAssistant({ taskText, onClose }: ClarifyAssistantProps) {
                 </div>
 
                 {/* Chat Log */}
-                <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 custom-scrollbar bg-surface-body dark:bg-black/20">
+                <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 custom-scrollbar bg-surface-body">
                     <AnimatePresence initial={false}>
                         {messages.map((m: any) => (
                             <motion.div
@@ -76,7 +76,7 @@ export function ClarifyAssistant({ taskText, onClose }: ClarifyAssistantProps) {
                                 className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                             >
                                 <div className={`max-w-[85%] rounded-2xl p-4 shadow-sm border ${m.role === 'user'
-                                        ? 'bg-indigo-600 text-white border-indigo-500 rounded-tr-sm'
+                                        ? 'bg-primary text-on-brand border-primary/50 rounded-tr-sm'
                                         : 'bg-surface-card text-content-primary border-border-default rounded-tl-sm'
                                     }`}>
                                     <div className="flex items-center gap-2 mb-2 opacity-80">
@@ -107,7 +107,7 @@ export function ClarifyAssistant({ taskText, onClose }: ClarifyAssistantProps) {
                 <div className="p-4 border-t border-border-default bg-surface-card">
                     <form
                         onSubmit={handleSend}
-                        className="relative flex items-center bg-surface-body focus-within:bg-surface-card border border-border-default focus-within:border-indigo-400 rounded-2xl px-4 py-1.5 transition-colors shadow-inner"
+                        className="relative flex items-center bg-surface-body focus-within:bg-surface-card border border-border-default focus-within:border-primary/50 rounded-2xl px-4 py-1.5 transition-colors shadow-inner"
                     >
                         <input
                             value={inputValue}
@@ -120,7 +120,7 @@ export function ClarifyAssistant({ taskText, onClose }: ClarifyAssistantProps) {
                         <button
                             type="submit"
                             disabled={isLoading || !inputValue.trim()}
-                            className="flex-shrink-0 text-white bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 disabled:opacity-50 p-2 rounded-xl transition-all shadow-md active:scale-95 ml-2"
+                            className="flex-shrink-0 text-on-brand bg-primary hover:bg-primary/90 disabled:opacity-30 p-2 rounded-xl transition-all shadow-md active:scale-95 ml-2"
                         >
                             <Send size={16} />
                         </button>

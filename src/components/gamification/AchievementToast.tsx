@@ -53,18 +53,18 @@ export function AchievementToast() {
         `}
             >
                 <div className={`
-          flex items-center gap-4 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 shadow-xl rounded-2xl overflow-hidden
+          flex items-center gap-4 glass-card shadow-glow-accent rounded-2xl overflow-hidden
           ${intensity === 'subtle' ? 'min-w-[200px] p-2' : 'min-w-[300px] p-3'}
         `}>
-                    <div className="flex bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 h-12 w-12 rounded-xl items-center justify-center text-2xl">
+                    <div className="flex bg-status-warn/20 text-status-warning h-12 w-12 rounded-xl items-center justify-center text-2xl">
                         {icon}
                     </div>
                     <div className="flex-1">
-                        <p className="text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">{title}</p>
-                        <p className="text-sm font-bold text-zinc-900 dark:text-zinc-100">{subtitle}</p>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-status-warning">{title}</p>
+                        <p className="text-sm font-bold text-content-primary">{subtitle}</p>
                     </div>
                     <div className="px-3">
-                        <span className="text-sm font-bold text-blue-500">+{xp} XP</span>
+                        <span className="text-sm font-bold text-primary-ink">+{xp} XP</span>
                     </div>
                 </div>
             </motion.div>

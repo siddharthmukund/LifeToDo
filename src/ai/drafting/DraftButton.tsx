@@ -18,7 +18,7 @@ export function DraftButton({ onClick }: DraftButtonProps) {
                 e.preventDefault();
                 onClick();
             }}
-            className="p-1.5 text-zinc-400 hover:text-purple-500 hover:bg-purple-50 dark:hover:bg-purple-500/10 rounded-lg transition-colors group flex items-center gap-1.5"
+            className="p-1.5 text-content-muted hover:text-accent hover:bg-accent/10 rounded-lg transition-colors group flex items-center gap-1.5"
             title="Draft content with AI"
         >
             <PenTool size={16} />

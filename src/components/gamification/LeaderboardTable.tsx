@@ -10,9 +10,9 @@ interface Props {
 }
 
 function RankBadge({ rank }: { rank: number }) {
-  if (rank === 1) return <Medal size={16} className="text-yellow-500" />;
-  if (rank === 2) return <Medal size={16} className="text-slate-400" />;
-  if (rank === 3) return <Medal size={16} className="text-amber-600" />;
+  if (rank === 1) return <Medal size={16} className="text-status-warning" />;
+  if (rank === 2) return <Medal size={16} className="text-content-muted" />;
+  if (rank === 3) return <Medal size={16} className="text-status-warning/70" />;
   return <span className="text-xs font-bold text-content-muted tabular-nums w-4 text-center">{rank}</span>;
 }
 
@@ -80,7 +80,7 @@ export function LeaderboardTable({ className = '' }: Props) {
           <button
             onClick={handleJoin}
             disabled={joining}
-            className="px-5 py-2 bg-primary text-white rounded-xl text-sm font-bold disabled:opacity-50"
+            className="px-5 py-2 bg-primary text-on-brand rounded-xl text-sm font-bold disabled:opacity-50"
           >
             {joining ? 'Joining…' : 'Join (anonymous ranking)'}
           </button>

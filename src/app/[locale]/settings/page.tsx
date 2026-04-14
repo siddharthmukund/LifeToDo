@@ -43,15 +43,14 @@ export default function SettingsPage() {
 
       {/* ── TopAppBar ──────────────────────────────────────────────────────── */}
       <header className="sticky top-0 z-10 glass-header px-6 pb-4 flex items-center justify-between min-h-[4rem]">
-        <h1 className="font-display text-[1.75rem] font-extrabold tracking-tight"
-            style={{ color: '#37f6dd', textShadow: '0 0 10px rgba(55,246,221,0.4)' }}>
+        <h1 className="font-display text-[1.75rem] font-extrabold tracking-tight text-primary">
           Life To Do
         </h1>
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <div className="w-9 h-9 rounded-full bg-[#2b2a3c] overflow-hidden ring-2 ring-[#37f6dd]/20">
-            <div className="w-full h-full bg-gradient-to-br from-[#37f6dd]/30 to-[#c57eff]/30 flex items-center justify-center">
-              <User size={18} className="text-[#aba9b9]" />
+          <div className="w-9 h-9 rounded-full bg-surface-bright overflow-hidden ring-2 ring-primary/20">
+            <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center">
+              <User size={18} className="text-content-secondary" />
             </div>
           </div>
         </div>
@@ -60,17 +59,17 @@ export default function SettingsPage() {
       {/* ── Profile card ───────────────────────────────────────────────────── */}
       <div className="px-6 pt-6 pb-2 flex flex-col items-center text-center">
         <div className="relative mb-3">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#37f6dd]/30 to-[#c57eff]/30 flex items-center justify-center border-2 border-[#37f6dd]/20">
-            <User size={36} className="text-[#aba9b9]" />
+          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center border-2 border-primary/20">
+            <User size={36} className="text-content-secondary" />
           </div>
-          <div className="absolute bottom-0 right-0 bg-[#37f6dd] text-[#0d0d18] p-1 rounded-full">
+          <div className="absolute bottom-0 right-0 bg-primary text-on-brand p-1 rounded-full">
             <Star size={12} />
           </div>
         </div>
-        <h2 className="text-2xl font-bold tracking-tight text-[#e9e6f7]">{user?.displayName ?? user?.email?.split('@')[0] ?? 'You'}</h2>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#37f6dd]/10 border border-[#37f6dd]/20 rounded-full mt-2">
-          <Star size={12} className="text-[#37f6dd]" />
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#37f6dd]">{t('title')}</span>
+        <h2 className="text-2xl font-bold tracking-tight text-content-primary">{user?.displayName ?? user?.email?.split('@')[0] ?? 'You'}</h2>
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full mt-2">
+          <Star size={12} className="text-primary" />
+          <span className="text-[10px] font-bold uppercase tracking-wider text-primary">{t('title')}</span>
         </div>
       </div>
 

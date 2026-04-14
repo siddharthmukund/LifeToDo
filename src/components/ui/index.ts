@@ -2,6 +2,7 @@
 // New in iCCW #3 (Figma-to-Code pass): MicButton, Card, ContextChip, PaginatedList, StreakCalendar
 // New in iCCW #4 (Enhancement Layer): HealthScoreRing
 export { Badge }            from './Badge'
+export { Chip }             from './Chip'
 export { Button }           from './Button'
 export { Card }             from './Card'
 export { ContextChip }      from './ContextChip'

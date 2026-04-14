@@ -11,7 +11,7 @@ type AccentColor = 'primary' | 'warning' | 'danger' | 'muted' | 'none'
 
 const ACCENT_BORDER: Record<AccentColor, string> = {
   primary: 'border-l-primary',
-  warning: 'border-l-yellow-500',
+  warning: 'border-l-status-warning',
   danger:  'border-l-danger',
   muted:   'border-l-white/10',
   none:    '',

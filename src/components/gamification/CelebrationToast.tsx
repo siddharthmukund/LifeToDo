@@ -13,10 +13,10 @@ function getToastContent(event: CelebrationEvent) {
   switch (event.type) {
     case 'xp':
       return {
-        icon: <Star size={16} className="text-yellow-500" fill="currentColor" />,
+        icon: <Star size={16} className="text-status-warning" fill="currentColor" />,
         headline: `+${event.amount} XP`,
         sub: null,
-        bg: 'bg-yellow-50 border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800/40',
+        bg: 'bg-status-warn/10 border-status-warn',
       };
     case 'achievement': {
       const def = ACHIEVEMENTS.find(a => a.id === event.achievementId);
@@ -24,36 +24,36 @@ function getToastContent(event: CelebrationEvent) {
         icon: <span className="text-xl">{def?.icon ?? '🏆'}</span>,
         headline: def?.name ?? 'Achievement Unlocked!',
         sub: `+${event.xpReward} XP`,
-        bg: 'bg-violet-50 border-violet-200 dark:bg-violet-900/20 dark:border-violet-800/40',
+        bg: 'bg-surface-card border-border-default',
       };
     }
     case 'streak':
       return {
-        icon: <Flame size={16} className="text-orange-500" fill="currentColor" />,
+        icon: <Flame size={16} className="text-status-warning" fill="currentColor" />,
         headline: `${event.days}-Day Streak!`,
         sub: null,
-        bg: 'bg-orange-50 border-orange-200 dark:bg-orange-900/20 dark:border-orange-800/40',
+        bg: 'bg-status-warn/10 border-status-warn',
       };
     case 'inbox_zero':
       return {
-        icon: <CheckCircle2 size={16} className="text-emerald-500" />,
+        icon: <CheckCircle2 size={16} className="text-status-ok" />,
         headline: 'Inbox Zero!',
         sub: null,
-        bg: 'bg-emerald-50 border-emerald-200 dark:bg-emerald-900/20 dark:border-emerald-800/40',
+        bg: 'bg-status-ok/10 border-status-ok',
       };
     case 'weekly_review':
       return {
-        icon: <BookOpen size={16} className="text-blue-500" />,
+        icon: <BookOpen size={16} className="text-primary-ink" />,
         headline: 'Weekly Review Done!',
         sub: '+50 XP',
-        bg: 'bg-blue-50 border-blue-200 dark:bg-blue-900/20 dark:border-blue-800/40',
+        bg: 'bg-primary/5 border-primary/20',
       };
     case 'project_completed':
       return {
-        icon: <Trophy size={16} className="text-amber-500" fill="currentColor" />,
+        icon: <Trophy size={16} className="text-status-warning" fill="currentColor" />,
         headline: 'Project Complete!',
         sub: event.projectName,
-        bg: 'bg-amber-50 border-amber-200 dark:bg-amber-900/20 dark:border-amber-800/40',
+        bg: 'bg-status-warn/10 border-status-warn',
       };
     case 'challenge_completed':
       return {

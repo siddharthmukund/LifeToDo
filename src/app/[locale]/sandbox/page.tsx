@@ -18,7 +18,7 @@ export default function GamificationSandbox() {
 
     if (!isEnabled) {
         return (
-            <div className="p-8 text-center text-zinc-500">
+            <div className="p-8 text-center text-content-muted">
                 Gamification is globally disabled in Settings.
             </div>
         );
@@ -50,11 +50,11 @@ export default function GamificationSandbox() {
             <div className="flex items-center justify-between">
                 <div>
                     <h1 className="text-3xl font-display font-bold">Gamification Sandbox</h1>
-                    <p className="text-zinc-500">Internal test suite for triggering XP events.</p>
+                    <p className="text-content-secondary">Internal test suite for triggering XP events.</p>
                 </div>
                 <button
                     onClick={forceClearData}
-                    className="px-4 py-2 bg-red-100 text-red-600 font-medium rounded-lg hover:bg-red-200"
+                    className="px-4 py-2 bg-status-error/10 text-status-error font-medium rounded-lg hover:bg-status-error/20"
                 >
                     Nuke Gamification Data
                 </button>
@@ -63,16 +63,16 @@ export default function GamificationSandbox() {
             {/* ── Status ──────────────────────────────────────────────────────────── */}
             <div className="grid grid-cols-3 gap-6">
                 <div className="bg-surface-card border border-border-default rounded-2xl p-6">
-                    <p className="text-xs uppercase tracking-widest font-bold text-zinc-500 mb-2">Current Level</p>
+                    <p className="text-xs uppercase tracking-widest font-bold text-content-muted mb-2">Current Level</p>
                     <p className="text-4xl font-bold">{currentLevel}</p>
-                    <p className="text-sm font-mono text-blue-500 mt-2">{totalXP} total XP</p>
+                    <p className="text-sm font-mono text-primary mt-2">{totalXP} total XP</p>
                 </div>
                 <div className="bg-surface-card border border-border-default rounded-2xl p-6">
-                    <p className="text-xs uppercase tracking-widest font-bold text-zinc-500 mb-2">Achievements</p>
+                    <p className="text-xs uppercase tracking-widest font-bold text-content-muted mb-2">Achievements</p>
                     <p className="text-4xl font-bold">{unlockedCount} / {ACHIEVEMENTS.length}</p>
                 </div>
                 <div className="bg-surface-card border border-border-default rounded-2xl p-6">
-                    <p className="text-xs uppercase tracking-widest font-bold text-zinc-500 mb-2">Active Challenges</p>
+                    <p className="text-xs uppercase tracking-widest font-bold text-content-muted mb-2">Active Challenges</p>
                     <p className="text-4xl font-bold">{challenges.length}</p>
                 </div>
             </div>
@@ -81,13 +81,13 @@ export default function GamificationSandbox() {
             <section>
                 <h2 className="text-xl font-bold mb-4">Test Render Celebrations</h2>
                 <div className="flex flex-wrap gap-3">
-                    <button onClick={() => testCelebration('inbox_zero')} className="px-4 py-2 border rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800">
+                    <button onClick={() => testCelebration('inbox_zero')} className="px-4 py-2 border rounded-xl hover:bg-overlay-hover">
                         Inbox Zero
                     </button>
-                    <button onClick={() => testCelebration('review')} className="px-4 py-2 border rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800">
+                    <button onClick={() => testCelebration('review')} className="px-4 py-2 border rounded-xl hover:bg-overlay-hover">
                         Weekly Review
                     </button>
-                    <button onClick={() => testCelebration('level_up')} className="px-4 py-2 border rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800">
+                    <button onClick={() => testCelebration('level_up')} className="px-4 py-2 border rounded-xl hover:bg-overlay-hover">
                         Level Up Modal
                     </button>
                 </div>
@@ -128,7 +128,7 @@ export default function GamificationSandbox() {
             <section>
                 <h2 className="text-xl font-bold mb-4">Active Challenges Tracking</h2>
                 {challenges.length === 0 ? (
-                    <p className="text-zinc-500 italic">No active challenges. They might be filtered out by Free tier or not initiated.</p>
+                    <p className="text-content-muted italic">No active challenges. They might be filtered out by Free tier or not initiated.</p>
                 ) : (
                     <div className="space-y-3">
                         {challenges.map(c => (
@@ -137,11 +137,11 @@ export default function GamificationSandbox() {
                                     <p className="font-bold flex items-center gap-2">
                                         {c.def?.icon} {c.def?.name}
                                     </p>
-                                    <p className="text-sm text-zinc-500">{c.def?.description}</p>
+                                    <p className="text-sm text-content-muted">{c.def?.description}</p>
                                 </div>
                                 <div className="text-right">
                                     <p className="font-mono font-bold text-lg">{c.current} / {c.target}</p>
-                                    <p className="text-xs text-blue-500 uppercase font-bold tracking-widest">{c.status}</p>
+                                    <p className="text-xs text-primary-ink uppercase font-bold tracking-widest">{c.status}</p>
                                 </div>
                             </div>
                         ))}

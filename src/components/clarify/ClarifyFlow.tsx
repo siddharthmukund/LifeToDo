@@ -94,7 +94,7 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
           {isAiEnabled && (
             <button
               onClick={() => setShowCoach(true)}
-              className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full hover:bg-indigo-100 transition-colors active:scale-95"
+              className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-primary-ink bg-primary/10 px-3 py-1 rounded-full hover:bg-primary/20 transition-colors active:scale-95"
             >
               <Sparkles size={12} /> {t('flow.askCoach')}
             </button>
@@ -253,7 +253,7 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
                 onChange={e => setProjectName(e.target.value)}
                 placeholder={t('flow.newProject.outcomePlaceholder')}
                 className="w-full bg-surface-card border border-border-default rounded-2xl
-                           px-5 py-4 text-base font-medium text-content-primary placeholder-slate-500
+                           px-5 py-4 text-base font-medium text-content-primary placeholder-content-muted
                            focus:outline-none focus:border-primary/50 mb-6 shadow-inner"
                 autoFocus
               />
@@ -263,7 +263,7 @@ export function ClarifyFlow({ item, onComplete, onSkip }: ClarifyFlowProps) {
                 onChange={e => setNextActionText(e.target.value)}
                 placeholder={t('flow.newProject.nextActionPlaceholder')}
                 className="w-full bg-surface-card border border-border-default rounded-2xl
-                           px-5 py-4 text-base font-medium text-content-primary placeholder-slate-500
+                           px-5 py-4 text-base font-medium text-content-primary placeholder-content-muted
                            focus:outline-none focus:border-primary/50 mb-8 shadow-inner"
               />
               <Button
