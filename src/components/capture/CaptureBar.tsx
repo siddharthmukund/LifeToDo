@@ -316,7 +316,7 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
                 <motion.div
                   key="flash"
                   initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#37f6dd]/10 border border-[#37f6dd]/30 text-[#37f6dd] text-sm font-bold"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 border border-primary/30 text-primary text-sm font-bold"
                 >
                   <span>✓</span> Task captured!
                 </motion.div>
@@ -342,7 +342,7 @@ export function CaptureBar({ onCapture, className }: CaptureBarProps) {
                   type="button"
                   onClick={() => { setTextMode(false); setInputValue('') }}
                   aria-label="Switch to voice input"
-                  className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#aba9b9] hover:text-[#e9e6f7] px-2 py-2 min-h-[44px]"
+                  className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-content-secondary hover:text-content-primary px-2 py-2 min-h-[44px]"
                 >
                   <Mic size={14} />
                   Voice

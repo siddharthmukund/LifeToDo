@@ -23,10 +23,10 @@ function Toggle({
       role="switch"
       aria-checked={checked}
       onClick={() => onChange(!checked)}
-      style={{ backgroundColor: checked ? '#37f6dd' : '#2b2a3c' }}
+      style={{ backgroundColor: checked ? 'var(--primary)' : 'var(--surface-bright)' }}
       className="relative flex-shrink-0 w-11 h-6 rounded-full transition-colors duration-200
-                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#37f6dd]/50
-                 focus-visible:ring-offset-2 focus-visible:ring-offset-[#181826] active:scale-95"
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
+                 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base active:scale-95"
     >
       <span
         className="absolute top-[3px] w-[18px] h-[18px] rounded-full bg-white shadow transition-transform duration-200"

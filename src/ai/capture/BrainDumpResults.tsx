@@ -37,10 +37,10 @@ export function BrainDumpResults({ tasks, onAdd, onCancel, isADHDMode = false }:
     return (
         <div className="flex flex-col gap-4 h-full">
             <div className="flex justify-between items-baseline shrink-0">
-                <h3 className="text-lg font-semibold dark:text-white flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-content-primary flex items-center gap-2">
                     Extracted {tasks.length} tasks
                 </h3>
-                <span className="text-sm text-zinc-500 font-medium">
+                <span className="text-sm text-content-secondary font-medium">
                     {selectedIndices.size} selected
                 </span>
             </div>
@@ -59,39 +59,39 @@ export function BrainDumpResults({ tasks, onAdd, onCancel, isADHDMode = false }:
                                 className={`
                                     p-4 rounded-xl border cursor-pointer transition-all flex gap-3 group
                                     ${isSelected
-                                        ? 'border-indigo-500/50 bg-indigo-50/50 dark:bg-indigo-500/10 shadow-sm'
-                                        : 'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 opacity-70 hover:opacity-100'}
+                                        ? 'border-primary/50 bg-primary/10 shadow-sm'
+                                        : 'border-border-subtle bg-surface-card opacity-70 hover:opacity-100'}
                                 `}
                             >
                                 <div className={`
                                     mt-0.5 shrink-0 size-5 rounded-md border flex items-center justify-center transition-colors
-                                    ${isSelected ? 'bg-indigo-500 border-indigo-500 text-white' : 'border-zinc-300 dark:border-zinc-600'}
+                                    ${isSelected ? 'bg-primary border-primary text-on-brand' : 'border-border-default'}
                                 `}>
                                     {isSelected && <Check size={14} strokeWidth={3} />}
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className={`font-medium text-[15px] mb-1.5 transition-colors ${isSelected ? 'text-zinc-900 dark:text-white' : 'text-zinc-500 dark:text-zinc-400'}`}>
+                                    <p className={`font-medium text-[15px] mb-1.5 transition-colors ${isSelected ? 'text-content-primary' : 'text-content-muted'}`}>
                                         {task.title}
                                     </p>
 
                                     <div className="flex flex-wrap gap-1.5 pointer-events-none">
                                         {task.dueDate && (
-                                            <span className="flex items-center gap-1 text-[11px] font-medium px-1.5 py-0.5 rounded bg-blue-100/50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400">
+                                            <span className="flex items-center gap-1 text-[11px] font-medium px-1.5 py-0.5 rounded bg-tertiary/10 text-tertiary">
                                                 <Calendar size={10} /> {format(new Date(task.dueDate), 'MMM d')}
                                             </span>
                                         )}
                                         {task.context && (
-                                            <span className="flex items-center gap-0.5 text-[11px] font-medium px-1.5 py-0.5 rounded bg-emerald-100/50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">
+                                            <span className="flex items-center gap-0.5 text-[11px] font-medium px-1.5 py-0.5 rounded bg-status-ok/10 text-status-ok">
                                                 <AtSign size={10} /> {task.context.replace('@', '')}
                                             </span>
                                         )}
                                         {task.project && (
-                                            <span className="flex items-center gap-0.5 text-[11px] font-medium px-1.5 py-0.5 rounded bg-orange-100/50 text-orange-700 dark:bg-orange-500/10 dark:text-orange-400">
+                                            <span className="flex items-center gap-0.5 text-[11px] font-medium px-1.5 py-0.5 rounded bg-status-warn/10 text-status-warning">
                                                 <Hash size={10} /> {task.project}
                                             </span>
                                         )}
                                         {task.energyLevel && (
-                                            <span className="flex items-center gap-0.5 text-[11px] font-medium px-1.5 py-0.5 rounded bg-yellow-100/50 text-yellow-800 dark:bg-yellow-500/10 dark:text-yellow-400">
+                                            <span className="flex items-center gap-0.5 text-[11px] font-medium px-1.5 py-0.5 rounded bg-status-warn/10 text-status-warning">
                                                 <Zap size={10} className={task.energyLevel === 'high' ? 'fill-current' : ''} />
                                                 <span className="capitalize">{task.energyLevel}</span>
                                             </span>
@@ -106,7 +106,7 @@ export function BrainDumpResults({ tasks, onAdd, onCancel, isADHDMode = false }:
                 {hiddenCount > 0 && !showAll && (
                     <button
                         onClick={() => setShowAll(true)}
-                        className="w-full py-2.5 text-sm font-medium text-indigo-500 bg-indigo-50 dark:bg-indigo-500/10 rounded-xl hover:bg-indigo-100 transition-colors"
+                        className="w-full py-2.5 text-sm font-medium text-primary-ink bg-primary/10 rounded-xl hover:bg-primary/20 transition-colors"
                     >
                         Show {hiddenCount} more tasks
                     </button>
@@ -116,14 +116,14 @@ export function BrainDumpResults({ tasks, onAdd, onCancel, isADHDMode = false }:
             <div className="flex gap-3 pt-3 mt-auto shrink-0 border-t border-border-default">
                 <button
                     onClick={onCancel}
-                    className="flex-1 py-3 px-4 text-zinc-600 dark:text-zinc-300 font-medium rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                    className="flex-1 py-3 px-4 text-content-secondary font-medium rounded-xl hover:bg-overlay-hover transition-colors"
                 >
                     Cancel
                 </button>
                 <button
                     onClick={handleConfirm}
                     disabled={selectedIndices.size === 0}
-                    className="flex-[2] py-3 px-4 bg-indigo-500 hover:bg-indigo-600 disabled:opacity-50 text-white font-medium rounded-xl shadow transition-colors"
+                    className="flex-[2] py-3 px-4 bg-primary hover:bg-primary/90 disabled:opacity-50 text-on-brand font-medium rounded-xl shadow transition-colors"
                 >
                     Add {selectedIndices.size} Items to Inbox
                 </button>

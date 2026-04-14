@@ -46,22 +46,22 @@ export function PushPermissionPrompt() {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    className="relative w-full max-w-sm bg-white dark:bg-zinc-900 rounded-3xl p-6 shadow-2xl"
+                    className="relative w-full max-w-sm bg-surface-card rounded-3xl p-6 shadow-2xl"
                 >
-                    <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-5 border border-indigo-100 dark:border-indigo-500/20">
-                        <Bell size={28} className="text-indigo-500" />
+                    <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-5 border border-primary/20">
+                        <Bell size={28} className="text-primary-ink" />
                     </div>
-                    <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">
+                    <h2 className="text-xl font-bold text-content-primary mb-2">
                         Stay on top of your GTD practice
                     </h2>
-                    <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-6 leading-relaxed">
+                    <p className="text-content-secondary text-sm mb-6 leading-relaxed">
                         Life To Do can send gentle reminders for your weekly review, streak milestones, and when your inbox needs attention.
                     </p>
                     <div className="flex flex-col gap-3">
-                        <button onClick={handleGrant} className="w-full py-3.5 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-xl">
+                        <button onClick={handleGrant} className="w-full py-3.5 bg-primary hover:bg-primary/90 text-on-brand font-semibold rounded-xl">
                             Enable Notifications
                         </button>
-                        <button onClick={handleDecline} className="w-full py-3.5 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium rounded-xl">
+                        <button onClick={handleDecline} className="w-full py-3.5 bg-surface-elevated text-content-primary font-medium rounded-xl">
                             Not Now
                         </button>
                     </div>

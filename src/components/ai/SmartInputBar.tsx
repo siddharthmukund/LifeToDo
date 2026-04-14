@@ -61,8 +61,7 @@ export function SmartInputBar({ onCapture, placeholder = "Capture a thought...",
 
     return (
         <div
-            className="relative w-full rounded-2xl border border-[#474754] focus-within:border-[#37f6dd]/50 focus-within:shadow-[0_0_16px_rgba(55,246,221,0.15)] transition-all"
-            style={{ background: 'rgba(24,24,38,0.9)' }}
+            className="relative w-full rounded-2xl border border-border-default bg-surface-card focus-within:border-primary/50 focus-within:shadow-glow-accent transition-all"
         >
             {/* Parsed tags row */}
             <AnimatePresence>
@@ -74,28 +73,28 @@ export function SmartInputBar({ onCapture, placeholder = "Capture a thought...",
                         className="flex flex-wrap items-center gap-2 px-4 pt-3 pb-1 border-b border-white/5"
                     >
                         {showDueDate && (
-                            <motion.span layout className="inline-flex items-center gap-1.5 px-2 py-1 text-xs font-semibold bg-[#59caff]/10 text-[#59caff] rounded-lg border border-[#59caff]/20">
+                            <motion.span layout className="inline-flex items-center gap-1.5 px-2 py-1 text-xs font-semibold bg-tertiary/10 text-tertiary rounded-lg border border-tertiary/20">
                                 <Calendar size={11} />
                                 {format(new Date(parsedData.dueDate!), 'MMM d')}
                                 {isAiEnabled && <AIBadge confidence={suggestions?.confidence.dueDate} />}
                             </motion.span>
                         )}
                         {showProject && (
-                            <motion.span layout className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold bg-[#c57eff]/10 text-[#c57eff] rounded-lg border border-[#c57eff]/20">
+                            <motion.span layout className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold bg-accent/10 text-accent rounded-lg border border-accent/20">
                                 <Hash size={11} />
                                 {parsedData.project}
                                 {isAiEnabled && <AIBadge confidence={suggestions?.confidence.project} />}
                             </motion.span>
                         )}
                         {showContext && (
-                            <motion.span layout className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold bg-[#37f6dd]/10 text-[#37f6dd] rounded-lg border border-[#37f6dd]/20">
+                            <motion.span layout className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-lg border border-primary/20">
                                 <AtSign size={11} />
                                 {parsedData.context}
                                 {isAiEnabled && <AIBadge confidence={suggestions?.confidence.context} />}
                             </motion.span>
                         )}
                         {showEnergy && (
-                            <motion.span layout className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold bg-yellow-500/10 text-yellow-400 rounded-lg border border-yellow-500/20">
+                            <motion.span layout className="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold bg-status-warning/10 text-status-warning rounded-lg border border-status-warn/20">
                                 <Zap size={11} />
                                 {parsedData.energyLevel}
                                 {isAiEnabled && <AIBadge confidence={suggestions?.confidence.energyLevel} />}
@@ -116,19 +115,18 @@ export function SmartInputBar({ onCapture, placeholder = "Capture a thought...",
                     }}
                     placeholder={placeholder}
                     autoFocus={autoFocus}
-                    className="flex-1 bg-transparent border-none px-4 py-4 text-base text-[#e9e6f7] placeholder-[#757482] focus:ring-0 focus:outline-none"
-                    style={{ caretColor: '#37f6dd' }}
+                    className="flex-1 bg-transparent border-none px-4 py-4 text-base text-content-primary placeholder-content-muted focus:ring-0 focus:outline-none"
                 />
                 <button
                     onClick={handleSubmit}
                     disabled={!cleanAction.trim() || isSubmitting}
                     aria-label="Send"
-                    className="mr-2 p-2.5 bg-[#37f6dd] text-[#0d0d18] rounded-xl font-bold
-                               shadow-[0_0_16px_rgba(55,246,221,0.35)] disabled:opacity-30
-                               hover:bg-[#11e8cf] transition-all active:scale-90"
+                    className="mr-2 p-2.5 bg-primary text-on-brand rounded-xl font-bold
+                               shadow-glow-accent disabled:opacity-30
+                               hover:bg-primary/90 transition-all active:scale-90"
                 >
                     {isSubmitting ? (
-                        <div className="size-5 border-2 border-[#0d0d18]/30 border-t-[#0d0d18] rounded-full animate-spin" />
+                        <div className="size-5 border-2 border-on-brand/30 border-t-on-brand rounded-full animate-spin" />
                     ) : (
                         <Send size={18} strokeWidth={2.5} />
                     )}
@@ -140,7 +138,7 @@ export function SmartInputBar({ onCapture, placeholder = "Capture a thought...",
                 {(isParsing || (cleanAction.length > 0 && input !== cleanAction)) && (
                     <motion.div
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                        className="absolute -bottom-5 left-3 flex items-center gap-2 text-[10px] text-[#757482] pointer-events-none"
+                        className="absolute -bottom-5 left-3 flex items-center gap-2 text-[10px] text-content-muted pointer-events-none"
                     >
                         {isParsing ? <AILoadingIndicator /> : <span>Saving as: &ldquo;{cleanAction}&rdquo;</span>}
                     </motion.div>

@@ -29,20 +29,20 @@ function resolveConfidence(confidence: number | undefined): {
   }
   if (confidence >= 0.8) {
     return {
-      colorClass: 'bg-green-500/10 border-green-500/20 text-green-600 dark:text-green-400',
+      colorClass: 'bg-status-ok/10 border-status-ok/20 text-status-ok',
       icon: CheckCircle2,
       label: 'High confidence',
     };
   }
   if (confidence >= 0.5) {
     return {
-      colorClass: 'bg-yellow-500/10 border-yellow-500/20 text-yellow-600 dark:text-yellow-400',
+      colorClass: 'bg-status-warn/10 border-status-warn/20 text-status-warning',
       icon: AlertCircle,
       label: 'Medium confidence',
     };
   }
   return {
-    colorClass: 'bg-gray-500/10 border-gray-500/20 text-gray-500 dark:text-gray-400',
+    colorClass: 'bg-overlay-hover border-border-default text-content-muted',
     icon: MinusCircle,
     label: 'Low confidence',
   };

@@ -22,8 +22,8 @@ interface ProgressBarProps {
 
 const COLORS = {
   accent:  'bg-primary',
-  success: 'bg-green-500',
-  warning: 'bg-yellow-500',
+  success: 'bg-status-ok',
+  warning: 'bg-status-warning',
 }
 
 const HEIGHTS = {

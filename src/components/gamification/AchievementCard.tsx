@@ -8,24 +8,24 @@ interface Props {
 
 const TIER_STYLES: Record<string, { ring: string; bg: string; label: string }> = {
   bronze: {
-    ring: 'ring-amber-400/60',
-    bg: 'bg-amber-50 dark:bg-amber-900/20',
-    label: 'text-amber-600 dark:text-amber-400',
+    ring: 'ring-status-warn/60',
+    bg: 'bg-status-warn/10',
+    label: 'text-status-warning',
   },
   silver: {
-    ring: 'ring-slate-400/60',
-    bg: 'bg-slate-50 dark:bg-slate-800/30',
-    label: 'text-slate-500 dark:text-slate-400',
+    ring: 'ring-border-default/60',
+    bg: 'bg-surface-elevated',
+    label: 'text-content-secondary',
   },
   gold: {
-    ring: 'ring-yellow-400/60',
-    bg: 'bg-yellow-50 dark:bg-yellow-900/20',
-    label: 'text-yellow-600 dark:text-yellow-400',
+    ring: 'ring-status-warning/60',
+    bg: 'bg-status-warning/10',
+    label: 'text-status-warning',
   },
   platinum: {
-    ring: 'ring-violet-400/60',
-    bg: 'bg-violet-50 dark:bg-violet-900/20',
-    label: 'text-violet-600 dark:text-violet-400',
+    ring: 'ring-accent/60',
+    bg: 'bg-accent/10',
+    label: 'text-accent',
   },
 };
 

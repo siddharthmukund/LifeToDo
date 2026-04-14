@@ -58,7 +58,7 @@ export function InboxItemCard({ item, onClarify, onTrash }: InboxItemCardProps) 
       <motion.div
         style={{ opacity: trashOpacity }}
         className="absolute inset-0 flex items-center justify-start pl-5
-                   bg-red-500 rounded-2xl pointer-events-none"
+                   bg-status-error rounded-2xl pointer-events-none"
       >
         <Trash2 size={22} className="text-content-primary" />
         <span className="ml-2 text-content-primary text-sm font-bold tracking-wider">{t('trash')}</span>

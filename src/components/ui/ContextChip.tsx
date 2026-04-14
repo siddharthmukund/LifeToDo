@@ -46,7 +46,7 @@ export function ContextChip({
         'min-h-[44px] px-4', // touch target
         active
           ? 'bg-primary text-content-inverse font-bold shadow-glow-accent'
-          : 'bg-surface-card border border-border-subtle text-content-secondary hover:border-primary/30 hover:text-slate-200',
+          : 'bg-surface-card border border-border-subtle text-content-secondary hover:border-primary/30 hover:text-content-primary',
         readOnly && 'cursor-default',
         !readOnly && !active && 'cursor-pointer active:scale-95',
         className,

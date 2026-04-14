@@ -55,14 +55,14 @@ export function GardenPlant({ stage, delay = 0 }: GardenPlantProps) {
 
       {/* Stem */}
       <motion.div
-        className="w-0.5 rounded-t-full bg-green-400/70"
+        className="w-0.5 rounded-t-full bg-status-ok/70"
         initial={{ height: 0 }}
         animate={{ height: stemH }}
         transition={{ duration: 0.6, delay: delay + 0.1, ease: 'easeOut' }}
       />
 
       {/* Ground dot */}
-      <div className="w-2.5 h-1 rounded-full bg-green-300/40 mt-0.5" />
+      <div className="w-2.5 h-1 rounded-full bg-status-ok/40 mt-0.5" />
     </motion.div>
   )
 }

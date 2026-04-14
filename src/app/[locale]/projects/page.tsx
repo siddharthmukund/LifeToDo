@@ -58,12 +58,12 @@ export default function ProjectsPage() {
       <div className="sticky top-0 z-10 glass-header px-6 pt-4 pb-4">
         {/* App bar */}
         <div className="flex items-center justify-between mb-4">
-          <h1 className="font-display text-[1.75rem] font-extrabold tracking-tight text-[#37f6dd]">
+          <h1 className="font-display text-[1.75rem] font-extrabold tracking-tight text-primary">
             Projects
           </h1>
           <button
             onClick={() => setShowNew(true)}
-            className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#37f6dd] to-[#00e5cc] text-[#0d0d18] flex items-center justify-center shadow-[0_0_16px_rgba(55,246,221,0.35)] hover:opacity-90 transition-all active:scale-90"
+            className="w-10 h-10 rounded-xl bg-primary text-on-brand flex items-center justify-center shadow-glow-accent hover:opacity-90 transition-all active:scale-90"
             aria-label={t('newButton')}
           >
             <Plus size={20} strokeWidth={2.5} />
@@ -71,17 +71,17 @@ export default function ProjectsPage() {
         </div>
         {/* Editorial velocity stat */}
         <div className="mb-1">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#aba9b9] mb-1">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-content-secondary mb-1">
             Current Velocity
           </p>
           <div className="flex items-end gap-3">
-            <span className="text-[3.5rem] font-extrabold tracking-tighter leading-none text-[#e9e6f7]">
+            <span className="text-[3.5rem] font-extrabold tracking-tighter leading-none text-content-primary">
               {projects.length}
             </span>
             <div className="pb-2">
-              <span className="text-[#37f6dd] font-bold text-sm">{t('active')}</span>
+              <span className="text-primary font-bold text-sm">{t('active')}</span>
               {projectsWithWarning.length > 0 && (
-                <p className="text-[10px] text-yellow-400 font-bold">
+                <p className="text-[10px] text-status-warning font-bold">
                   {projectsWithWarning.length} {t('stuck')}
                 </p>
               )}
@@ -105,8 +105,8 @@ export default function ProjectsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.04 }}
                 className={`glass-card rounded-2xl px-5 py-5 border-l-4 transition-all cursor-pointer group
-                  hover:bg-[#1e1e2d] active:scale-[0.98]
-                  ${!p.nextAction ? 'border-l-yellow-500' : 'border-l-[#37f6dd]'}`}
+                  hover:bg-surface-elevated active:scale-[0.98]
+                  ${!p.nextAction ? 'border-l-status-warning' : 'border-l-primary'}`}
               >
                 {/* Stuck badge */}
                 {!p.nextAction && (
@@ -211,7 +211,7 @@ export default function ProjectsPage() {
               onChange={e => setNewName(e.target.value)}
               placeholder={t('form.namePlaceholder')}
               className="w-full bg-surface-card border border-border-default rounded-2xl px-5 py-4
-                         text-base font-medium text-content-primary placeholder-slate-500
+                         text-base font-medium text-content-primary placeholder-content-muted
                          focus:outline-none focus:border-primary/50 shadow-inner"
               autoFocus
             />
@@ -225,7 +225,7 @@ export default function ProjectsPage() {
               onChange={e => setNewOutcome(e.target.value)}
               placeholder={t('form.outcomePlaceholder')}
               className="w-full bg-surface-card border border-border-default rounded-2xl px-5 py-4
-                         text-base font-medium text-content-primary placeholder-slate-500
+                         text-base font-medium text-content-primary placeholder-content-muted
                          focus:outline-none focus:border-primary/50 shadow-inner"
             />
           </div>
@@ -238,7 +238,7 @@ export default function ProjectsPage() {
               onChange={e => setNewNextAction(e.target.value)}
               placeholder={t('form.nextActionPlaceholder')}
               className="w-full bg-surface-card border border-border-default rounded-2xl px-5 py-4
-                         text-base font-medium text-content-primary placeholder-slate-500
+                         text-base font-medium text-content-primary placeholder-content-muted
                          focus:outline-none focus:border-primary/50 shadow-inner"
             />
           </div>

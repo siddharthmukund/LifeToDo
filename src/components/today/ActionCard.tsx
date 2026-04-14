@@ -32,8 +32,8 @@ export function ActionCard({ action, onComplete, projectName }: ActionCardProps)
 
   const borderColorName =
     action.energy === 'high'   ? 'border-l-primary' :
-    action.energy === 'medium' ? 'border-l-yellow-500' :
-                                 'border-l-slate-700/50'
+    action.energy === 'medium' ? 'border-l-status-warning' :
+                                 'border-l-border-default'
 
   const energyLabel =
     action.energy === 'high'   ? t('filter.high') :

@@ -23,9 +23,9 @@ const variants: Record<Variant, string> = {
   ghost:
     'text-content-secondary font-medium hover:text-content-primary hover:bg-overlay-hover active:scale-95',
   danger:
-    'bg-status-error/15 text-status-error border border-status-danger font-medium hover:bg-red-500/25 active:scale-95',
+    'bg-status-error/15 text-status-error border border-status-danger font-medium hover:bg-status-error/20 active:scale-95',
   success:
-    'bg-status-success/15 text-status-success border border-status-ok font-medium hover:bg-green-500/25 active:scale-95',
+    'bg-status-success/15 text-status-success border border-status-ok font-medium hover:bg-status-ok/20 active:scale-95',
 }
 
 const sizes: Record<Size, string> = {

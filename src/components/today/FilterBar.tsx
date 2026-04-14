@@ -5,6 +5,7 @@ import type { EnergyLevel } from '@/types'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import { X } from 'lucide-react'
+import { Chip } from '@/components/ui/Chip'
 
 export function FilterBar() {
   const { contexts, filters, setFilter, clearFilters } = useGTDStore()
@@ -111,19 +112,3 @@ export function FilterBar() {
   )
 }
 
-function Chip({ active, onClick, label, emoji }: { active: boolean; onClick: () => void; label: string; emoji?: string | null }) {
-  return (
-    <button
-      onClick={onClick}
-      className={cn(
-        'flex items-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-sm transition-all active:scale-95 border',
-        active
-          ? 'bg-primary text-on-brand font-bold border-transparent shadow-glow-accent'
-          : 'bg-surface-card border-border-default font-medium text-content-secondary hover:border-border-brand hover:text-content-primary'
-      )}
-    >
-      {emoji && <span className="text-lg">{emoji}</span>}
-      {label}
-    </button>
-  )
-}

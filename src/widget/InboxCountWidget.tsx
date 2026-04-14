@@ -26,7 +26,7 @@ export function InboxCountWidget() {
     <Link href="/inbox" className="block">
       <div className={[
         'rounded-2xl border p-4 hover:border-primary/30 transition-colors',
-        isInboxZero ? 'bg-green-500/10 border-green-500/20' : 'bg-surface-card border-border-subtle',
+        isInboxZero ? 'bg-status-ok/10 border-status-ok/20' : 'bg-surface-card border-border-subtle',
       ].join(' ')}>
         <div className="flex items-center justify-between mb-2">
           <p className="text-[10px] font-bold uppercase tracking-widest text-content-muted">Inbox</p>

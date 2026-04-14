@@ -11,11 +11,11 @@ interface Props {
 
 const STREAK_COLORS: Record<number, string> = {
   0: 'text-content-muted',
-  1: 'text-orange-400',
-  4: 'text-orange-500',
-  7: 'text-amber-500',
-  14: 'text-yellow-500',
-  28: 'text-red-500',
+  1: 'text-status-warning',
+  4: 'text-status-warning',
+  7: 'text-status-warning',
+  14: 'text-status-warning',
+  28: 'text-status-error',
 };
 
 function getStreakColor(days: number): string {
@@ -45,7 +45,7 @@ export function StreakBadge({ showMultiplier = false, className = '' }: Props) {
         {days}
       </span>
       {showMultiplier && multiplier > 1.0 && (
-        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-status-warn/20 text-status-warning">
           {multiplier.toFixed(1)}×
         </span>
       )}

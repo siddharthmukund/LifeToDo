@@ -94,7 +94,7 @@ export function SideNav() {
             {staleBadge !== null && (
               <div
                 className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4 h-[18px] min-w-[18px] flex items-center
-                             justify-center px-1 text-[10px] font-bold bg-yellow-500 text-on-brand rounded-full leading-none"
+                             justify-center px-1 text-[10px] font-bold bg-status-warning text-on-brand rounded-full leading-none"
                 aria-hidden="true"
               >
                 {staleBadge > 99 ? '99+' : staleBadge}

@@ -65,10 +65,10 @@ export function SkipLink({ targets }: SkipLinkProps) {
                         'focus:fixed focus:left-4 focus:top-4 focus:z-[9999]',
                         'focus:px-4 focus:py-2',
                         'focus:rounded-xl',
-                        'focus:bg-emerald-600 focus:text-white',
+                        'focus:bg-status-ok focus:text-on-brand',
                         'focus:font-semibold focus:text-sm',
-                        'focus:shadow-lg focus:shadow-emerald-900/30',
-                        'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-600',
+                        'focus:shadow-lg focus:shadow-glow-success',
+                        'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-status-ok',
                         'transition-none', // no animation on the skip link itself
                     ].join(' ')}
                 >

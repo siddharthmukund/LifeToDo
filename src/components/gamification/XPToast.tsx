@@ -30,7 +30,7 @@ export function XPToast() {
                 className="fixed bottom-24 right-6 z-50 pointer-events-none"
             >
                 <div className={`
-          flex items-center gap-2 bg-blue-500 text-white font-bold rounded-full shadow-lg
+          flex items-center gap-2 bg-primary text-on-brand font-bold rounded-full shadow-glow-accent
           ${intensity === 'subtle' ? 'px-3 py-1.5 text-sm' : 'px-4 py-2'}
         `}>
                     <span>+{currentEvent.amount} XP</span>

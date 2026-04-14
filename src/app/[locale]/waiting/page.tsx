@@ -179,7 +179,7 @@ export default function WaitingForPage() {
               onChange={e => setNewText(e.target.value)}
               placeholder="e.g. Response to the proposal email"
               className="w-full bg-surface-card border border-border-default rounded-2xl px-5 py-4
-                         text-base font-medium text-content-primary placeholder-slate-500
+                         text-base font-medium text-content-primary placeholder-content-muted
                          focus:outline-none focus:border-primary/50 shadow-inner"
               autoFocus
             />
@@ -193,7 +193,7 @@ export default function WaitingForPage() {
               onChange={e => setNewPerson(e.target.value)}
               placeholder="Who? (e.g. Sarah, Legal Team, Client)"
               className="w-full bg-surface-card border border-border-default rounded-2xl px-5 py-4
-                         text-base font-medium text-content-primary placeholder-slate-500
+                         text-base font-medium text-content-primary placeholder-content-muted
                          focus:outline-none focus:border-primary/50 shadow-inner"
             />
           </div>
@@ -233,7 +233,7 @@ function WaitingCard({
       exit={{ opacity: 0, height: 0, marginBottom: 0 }}
       transition={{ delay: index * 0.04 }}
       className={`glass-card rounded-2xl px-5 py-4 border-l-4
-        ${overdue ? 'border-l-yellow-500' : 'border-l-primary'}`}
+        ${overdue ? 'border-l-status-warning' : 'border-l-primary'}`}
     >
       {/* Overdue badge */}
       {overdue && (
